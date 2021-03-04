@@ -1,7 +1,7 @@
 ---
-title: "Euclid"
+title: "Euclid Algorithm and Extended Euclid Algorithm."
 date: 2021-03-04T17:52:31+08:00
-draft: true
+draft: false
 ---
 # 欧几里得（Euclid）与拓展的欧几里得算法
 
