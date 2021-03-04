@@ -1,421 +1,135 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Euclid - A Simple Blog Site.</title>
-  <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
-
-<meta name="author" content="xinyu-yang" /><meta name="description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭" />
-
-
-
-
-
-
-<meta name="generator" content="Hugo 0.80.0 with theme even" />
-
-
-<link rel="canonical" href="http://xinyu-yang.github.io/post/euclid/" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-
-
-
-<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
-
-
-<meta property="og:title" content="Euclid" />
-<meta property="og:description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://xinyu-yang.github.io/post/euclid/" />
-<meta property="article:published_time" content="2021-03-04T17:52:31+08:00" />
-<meta property="article:modified_time" content="2021-03-04T17:52:31+08:00" />
-<meta itemprop="name" content="Euclid">
-<meta itemprop="description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭">
-<meta itemprop="datePublished" content="2021-03-04T17:52:31+08:00" />
-<meta itemprop="dateModified" content="2021-03-04T17:52:31+08:00" />
-<meta itemprop="wordCount" content="2694">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Euclid"/>
-<meta name="twitter:description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭"/>
-
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/" class="logo">Xinyu-Yang</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    <a href="/">
-        <li class="mobile-menu-item">Home</li>
-      </a><a href="/post/">
-        <li class="mobile-menu-item">Archives</li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">Tags</li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">Categories</li>
-      </a>
-  </ul>
-
-  
-
-
-</nav>
-
-  <div class="container" id="mobile-panel">
-    <header id="header" class="header">
-        <div class="logo-wrapper">
-  <a href="/" class="logo">Xinyu-Yang</a>
-</div>
-
-
-
-
-
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
-    <li class="menu-item">
-        <a class="menu-item-link" href="/">Home</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/post/">Archives</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/tags/">Tags</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/categories/">Categories</a>
-      </li>
-  </ul>
-</nav>
-
-    </header>
-
-    <main id="main" class="main">
-      <div class="content-wrapper">
-        <div id="content" class="content">
-          <article class="post">
-    
-    <header class="post-header">
-      <h1 class="post-title">Euclid</h1>
-
-      <div class="post-meta">
-        <span class="post-time"> 2021-03-04 </span>
-        
-          <span class="more-meta"> 约 2694 字 </span>
-          <span class="more-meta"> 预计阅读 6 分钟 </span>
-        
-      </div>
-    </header>
-
-    <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content always-active">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#欧几里得euclid与拓展的欧几里得算法">欧几里得（Euclid）与拓展的欧几里得算法</a>
-      <ul>
-        <li><a href="#欧几里得算法">欧几里得算法</a>
-          <ul>
-            <li><a href="#原理">原理</a></li>
-            <li><a href="#实现">实现</a></li>
-          </ul>
-        </li>
-        <li><a href="#拓展的欧几里得算法">拓展的欧几里得算法</a>
-          <ul>
-            <li><a href="#原理-1">原理</a></li>
-            <li><a href="#递归求解">递归求解</a></li>
-            <li><a href="#迭代求解">迭代求解</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-  </div>
-</div>
-    <div class="post-content">
-      <h1 id="欧几里得euclid与拓展的欧几里得算法">欧几里得（Euclid）与拓展的欧几里得算法</h1>
-<hr>
-<ul>
-<li><a href="#%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97euclid%e4%b8%8e%e6%8b%93%e5%b1%95%e7%9a%84%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95">欧几里得（Euclid）与拓展的欧几里得算法</a>
-<ul>
-<li><a href="#%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95">欧几里得算法</a>
-<ul>
-<li><a href="#%e5%8e%9f%e7%90%86">原理</a></li>
-<li><a href="#%e5%ae%9e%e7%8e%b0">实现</a></li>
-</ul>
-</li>
-<li><a href="#%e6%8b%93%e5%b1%95%e7%9a%84%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95">拓展的欧几里得算法</a>
-<ul>
-<li><a href="#%e5%8e%9f%e7%90%86-1">原理</a></li>
-<li><a href="#%e9%80%92%e5%bd%92%e6%b1%82%e8%a7%a3">递归求解</a></li>
-<li><a href="#%e8%bf%ad%e4%bb%a3%e6%b1%82%e8%a7%a3">迭代求解</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="欧几里得算法">欧几里得算法</h2>
-<h3 id="原理">原理</h3>
-<p>欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最大公约数表示为$gcd(a,b)$，根据欧几里得算法，$gcd(a,b)=gcd(b,a%b)$。证明如下：</p>
-<blockquote>
-<p>如果$b&gt;a$，显然成立；因此只需考虑$b&lt;a$的情况。根据初等数学知识，可知$a,b$的关系可表示为$a=qb+r$，其中$q$为商，$r$为余数。</p>
-</blockquote>
-<blockquote>
-<p>对于$(a,b)$的最大公约数$g1=gcd(a,b)$，当然$g1|a,g1|b$（$g1|a$表示g1整除a），所以易知对于$r=a-qb$，同样满足$g1|r$；</p>
-</blockquote>
-<blockquote>
-<p>又因为$a%b=r$，所以对于$a,b$的最大公约数g1，同样满足$g1|a%b,g1|b$，即$(b,a%b)$的最大公约数至少为$g1$，即$gcd(b,a%b)&gt;g1=gcd(a,b)$。</p>
-</blockquote>
-<blockquote>
-<p>反过来，对于$(b,a%b)$的最大公约数$g2=gcd(b,a%b)$，同样满足$g2|a, g2|b$，即$gcd(a,b)&gt;g2=gcd(b,a%b)$。</p>
-</blockquote>
-<blockquote>
-<p>因此$gcd(a,b)=gcd(b,a%b)$证明成立。下面对该算法进行实现。</p>
-</blockquote>
-<h3 id="实现">实现</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;                                     </span><span class="cp">
-</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>          
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Euclid Algorithm and Extended Euclid Algorithm. - A Simple Blog Site.</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="xinyu-yang"><meta name=description content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭"><meta name=generator content="Hugo 0.81.0 with theme even"><link rel=canonical href=http://xinyu-yang.github.io/post/euclid/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Euclid Algorithm and Extended Euclid Algorithm."><meta property="og:description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭"><meta property="og:type" content="article"><meta property="og:url" content="http://xinyu-yang.github.io/post/euclid/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-03-04T17:52:31+08:00"><meta property="article:modified_time" content="2021-03-04T17:52:31+08:00"><meta itemprop=name content="Euclid Algorithm and Extended Euclid Algorithm."><meta itemprop=description content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭"><meta itemprop=datePublished content="2021-03-04T17:52:31+08:00"><meta itemprop=dateModified content="2021-03-04T17:52:31+08:00"><meta itemprop=wordCount content="2694"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Euclid Algorithm and Extended Euclid Algorithm."><meta name=twitter:description content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Xinyu-Yang</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Xinyu-Yang</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Euclid Algorithm and Extended Euclid Algorithm.</h1><div class=post-meta><span class=post-time>2021-03-04</span>
+<span class=more-meta>约 2694 字</span>
+<span class=more-meta>预计阅读 6 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#欧几里得euclid与拓展的欧几里得算法>欧几里得（Euclid）与拓展的欧几里得算法</a><ul><li><a href=#欧几里得算法>欧几里得算法</a><ul><li><a href=#原理>原理</a></li><li><a href=#实现>实现</a></li></ul></li><li><a href=#拓展的欧几里得算法>拓展的欧几里得算法</a><ul><li><a href=#原理-1>原理</a></li><li><a href=#递归求解>递归求解</a></li><li><a href=#迭代求解>迭代求解</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-content><h1 id=欧几里得euclid与拓展的欧几里得算法>欧几里得（Euclid）与拓展的欧几里得算法</h1><hr><ul><li><a href=#%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97euclid%e4%b8%8e%e6%8b%93%e5%b1%95%e7%9a%84%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95>欧几里得（Euclid）与拓展的欧几里得算法</a><ul><li><a href=#%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95>欧几里得算法</a><ul><li><a href=#%e5%8e%9f%e7%90%86>原理</a></li><li><a href=#%e5%ae%9e%e7%8e%b0>实现</a></li></ul></li><li><a href=#%e6%8b%93%e5%b1%95%e7%9a%84%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95>拓展的欧几里得算法</a><ul><li><a href=#%e5%8e%9f%e7%90%86-1>原理</a></li><li><a href=#%e9%80%92%e5%bd%92%e6%b1%82%e8%a7%a3>递归求解</a></li><li><a href=#%e8%bf%ad%e4%bb%a3%e6%b1%82%e8%a7%a3>迭代求解</a></li></ul></li></ul></li></ul><hr><h2 id=欧几里得算法>欧几里得算法</h2><h3 id=原理>原理</h3><p>欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最大公约数表示为$gcd(a,b)$，根据欧几里得算法，$gcd(a,b)=gcd(b,a%b)$。证明如下：</p><blockquote><p>如果$b>a$，显然成立；因此只需考虑$b&lt;a$的情况。根据初等数学知识，可知$a,b$的关系可表示为$a=qb+r$，其中$q$为商，$r$为余数。</p></blockquote><blockquote><p>对于$(a,b)$的最大公约数$g1=gcd(a,b)$，当然$g1|a,g1|b$（$g1|a$表示g1整除a），所以易知对于$r=a-qb$，同样满足$g1|r$；</p></blockquote><blockquote><p>又因为$a%b=r$，所以对于$a,b$的最大公约数g1，同样满足$g1|a%b,g1|b$，即$(b,a%b)$的最大公约数至少为$g1$，即$gcd(b,a%b)>g1=gcd(a,b)$。</p></blockquote><blockquote><p>反过来，对于$(b,a%b)$的最大公约数$g2=gcd(b,a%b)$，同样满足$g2|a, g2|b$，即$gcd(a,b)>g2=gcd(b,a%b)$。</p></blockquote><blockquote><p>因此$gcd(a,b)=gcd(b,a%b)$证明成立。下面对该算法进行实现。</p></blockquote><h3 id=实现>实现</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c++ data-lang=c++><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;                                     </span><span class=cp>
+</span><span class=cp></span><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>          
                               
-<span class="kt">int</span> <span class="nf">euclid</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>      
-<span class="p">{</span>                             
-    <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>                 
-    <span class="p">{</span>                         
-        <span class="k">return</span> <span class="n">euclid</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">);</span>
-    <span class="p">}</span>                         
-    <span class="k">else</span>                      
-    <span class="p">{</span>                         
-        <span class="k">return</span> <span class="n">a</span><span class="p">;</span>             
-    <span class="p">}</span>                         
-<span class="p">}</span>                                                         
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>                    
-<span class="p">{</span>                             
-    <span class="kt">int</span> <span class="n">a</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">b</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>            
-    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>            
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">euclid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>      
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>                 
-<span class="p">}</span>                             
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="拓展的欧几里得算法">拓展的欧几里得算法</h2>
-<h3 id="原理-1">原理</h3>
-<p>拓展的欧几里得算法在密码学中有着重要的应用，现给出定理：</p>
-<blockquote>
-<p>对正整数a，b；总是存在一组整数X,Y，使得$Xa+Yb=gcd(a,b)$成立，且$gcd(a,b)$为满足这种条件的最小整数。</p>
-</blockquote>
-<p>这里不对该定理进行证明，欧几里得算法给出了在已知a，b的情况下求$gcd(a,b)$的方法，但是如果想要求得X，Y的值，就要求助于<strong>拓展的欧几里得算法</strong>。怎么才能从欧几里得算法的计算过程当中得到我们想要求解的值呢？我们再次详细回顾欧几里得算法的求解过程。</p>
-<p>对于已知整数$a,b$，我们的算法求解过程如下：</p>
-<table>
-<thead>
-<tr>
-<th>$a$</th>
-<th>$b$</th>
-<th>余数$r$</th>
-<th>商$q$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>a</td>
-<td>b</td>
-<td>$r1=a%b$</td>
-<td>$q1=a/b$</td>
-</tr>
-<tr>
-<td>b</td>
-<td>r1</td>
-<td>$r2=b%r1$</td>
-<td>$q2=b/r1$</td>
-</tr>
-<tr>
-<td>r1</td>
-<td>r2</td>
-<td>$r3=r1%r2$</td>
-<td>$q3=r1/r2$</td>
-</tr>
-<tr>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td>&hellip;</td>
-<td>&hellip;</td>
-</tr>
-<tr>
-<td>$r_{n-1}$</td>
-<td>$r_n$</td>
-<td>$r_{n+1}=r_{n-1}%r_n$</td>
-<td>$q_{n+1}=r_{n-1}/r_n$</td>
-</tr>
-</tbody>
-</table>
-<p>逐步计算，直到某一步出现$r_{n-1}%r_{n}=0$的情况，这时候就找到了最大公约数，最大公约数即为$r_n$，以上就是欧几里得算法的全过程。通过这个过程当中多产生的一些中间结果我们能不能求得$X,Y$的值呢？下面进行两种求解方法的推导。</p>
-<h3 id="递归求解">递归求解</h3>
-<p>根据上面的表格我知道，$Xa+Yb=gcd(a,b)$，并且对于中间所求解的每一步我们所得到的$r_i$都满足$X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b)$，因为很明显每一对$r_i,r_{i+1}$都满足最大公约数为$gcd(a,b)$，这也是欧几里得算法的原理。</p>
-<p>我们试着寻找$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，由以上阐述可知:</p>
-<p>$$
+<span class=kt>int</span> <span class=nf>euclid</span><span class=p>(</span><span class=kt>int</span> <span class=n>a</span><span class=p>,</span> <span class=kt>int</span> <span class=n>b</span><span class=p>)</span>      
+<span class=p>{</span>                             
+    <span class=k>if</span> <span class=p>(</span><span class=n>b</span><span class=o>!=</span><span class=mi>0</span><span class=p>)</span>                 
+    <span class=p>{</span>                         
+        <span class=k>return</span> <span class=n>euclid</span><span class=p>(</span><span class=n>b</span><span class=p>,</span> <span class=n>a</span><span class=o>%</span><span class=n>b</span><span class=p>);</span>
+    <span class=p>}</span>                         
+    <span class=k>else</span>                      
+    <span class=p>{</span>                         
+        <span class=k>return</span> <span class=n>a</span><span class=p>;</span>             
+    <span class=p>}</span>                         
+<span class=p>}</span>                                                         
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>                    
+<span class=p>{</span>                             
+    <span class=kt>int</span> <span class=n>a</span><span class=p>(</span><span class=mi>0</span><span class=p>),</span><span class=n>b</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>            
+    <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>a</span> <span class=o>&gt;&gt;</span> <span class=n>b</span><span class=p>;</span>            
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>euclid</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>);</span>      
+    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>                 
+<span class=p>}</span>                             
+</code></pre></td></tr></table></div></div><h2 id=拓展的欧几里得算法>拓展的欧几里得算法</h2><h3 id=原理-1>原理</h3><p>拓展的欧几里得算法在密码学中有着重要的应用，现给出定理：</p><blockquote><p>对正整数a，b；总是存在一组整数X,Y，使得$Xa+Yb=gcd(a,b)$成立，且$gcd(a,b)$为满足这种条件的最小整数。</p></blockquote><p>这里不对该定理进行证明，欧几里得算法给出了在已知a，b的情况下求$gcd(a,b)$的方法，但是如果想要求得X，Y的值，就要求助于<strong>拓展的欧几里得算法</strong>。怎么才能从欧几里得算法的计算过程当中得到我们想要求解的值呢？我们再次详细回顾欧几里得算法的求解过程。</p><p>对于已知整数$a,b$，我们的算法求解过程如下：</p><table><thead><tr><th>$a$</th><th>$b$</th><th>余数$r$</th><th>商$q$</th></tr></thead><tbody><tr><td>a</td><td>b</td><td>$r1=a%b$</td><td>$q1=a/b$</td></tr><tr><td>b</td><td>r1</td><td>$r2=b%r1$</td><td>$q2=b/r1$</td></tr><tr><td>r1</td><td>r2</td><td>$r3=r1%r2$</td><td>$q3=r1/r2$</td></tr><tr><td>&mldr;</td><td>&mldr;</td><td>&mldr;</td><td>&mldr;</td></tr><tr><td>$r_{n-1}$</td><td>$r_n$</td><td>$r_{n+1}=r_{n-1}%r_n$</td><td>$q_{n+1}=r_{n-1}/r_n$</td></tr></tbody></table><p>逐步计算，直到某一步出现$r_{n-1}%r_{n}=0$的情况，这时候就找到了最大公约数，最大公约数即为$r_n$，以上就是欧几里得算法的全过程。通过这个过程当中多产生的一些中间结果我们能不能求得$X,Y$的值呢？下面进行两种求解方法的推导。</p><h3 id=递归求解>递归求解</h3><p>根据上面的表格我知道，$Xa+Yb=gcd(a,b)$，并且对于中间所求解的每一步我们所得到的$r_i$都满足$X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b)$，因为很明显每一对$r_i,r_{i+1}$都满足最大公约数为$gcd(a,b)$，这也是欧几里得算法的原理。</p><p>我们试着寻找$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，由以上阐述可知:</p><p>$$
 \begin{cases}
-X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b), &amp;\text{(1)} \<br>
-X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}=gcd(a,b),&amp;\text{(2)}
+X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b), &\text{(1)} \<br>X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}=gcd(a,b),&\text{(2)}
 \end{cases}
-$$</p>
-<p>为了将上式转换成$r_i$的方程组，我们使用$r_{i+1},r_{i+2}来表示r_i$，通过以上可知$r_i=r_i/r_{i+1}\cdot r_{i+1}+r_{i+2}$，将该式带入上式（1），并将两式合并可得：
-$$ <br>
-X_i\cdot (r_i/r_{i+1}\cdot r_{i+1}+r_{i+2})+Y_i\cdot r_{i+1}=X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}
+$$</p><p>为了将上式转换成$r_i$的方程组，我们使用$r_{i+1},r_{i+2}来表示r_i$，通过以上可知$r_i=r_i/r_{i+1}\cdot r_{i+1}+r_{i+2}$，将该式带入上式（1），并将两式合并可得：
+$$<br>X_i\cdot (r_i/r_{i+1}\cdot r_{i+1}+r_{i+2})+Y_i\cdot r_{i+1}=X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}
 $$
 进一步化简可得：
-$$ <br>
-(X_i\cdot r_i/r_{i+1}+Y_i)\cdot r_{i+1}+X_i\cdot r_{i+2}=X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}
+$$<br>(X_i\cdot r_i/r_{i+1}+Y_i)\cdot r_{i+1}+X_i\cdot r_{i+2}=X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}
 $$
 根据系数相等的原则可得：
 $$
 \begin{cases}
-X_i\cdot r_i/r_{i+1}+Y_i=X_{i+1}, &amp;\text{(1)}\<br>
-X_i=Y_{i+1},&amp;\text{(2)}
+X_i\cdot r_i/r_{i+1}+Y_i=X_{i+1}, &\text{(1)}\<br>X_i=Y_{i+1},&\text{(2)}
 \end{cases}
 $$
 以上就得到了$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，那么我们接下来的工作就是找到一对可以求出其值的$(X_i,Y_i)$，通过以上可知当出现某一次计算使得$r_{i}%r_{i+1}=0$时，我们可知对于$X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b)$，满足$gcd(a,b)=r_{i+1}$，那么很显然$X_i=0,Y_i=1$。于是我们就得到了一对$(X_i,Y_i)$的值，我们已经知道了最后一对$r_{i},r_{i+1}$所对应的$(X_i,Y_i)$才能够推知前面的值，所以我们的推导时从后往前推的，因此我们将上面的递推关系稍微变换一下形式：
 $$
 \begin{cases}
-X_i=Y_{i+1},&amp;\text{(1)}\<br>
-Y_i=X_{i+1}-Y_{i+1}\cdot r_i/r_{i+1}, &amp;\text{(2)}
+X_i=Y_{i+1},&\text{(1)}\<br>Y_i=X_{i+1}-Y_{i+1}\cdot r_i/r_{i+1}, &\text{(2)}
 \end{cases}
 $$
-此时我们就得到了推导关系和初值，通过计算我们就可以求得满足$Xa+Yb=gcd(a,b)$的$X,Y$值。下面通过代码对其进行实现：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;                    </span><span class="cp">
-</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>                   
+此时我们就得到了推导关系和初值，通过计算我们就可以求得满足$Xa+Yb=gcd(a,b)$的$X,Y$值。下面通过代码对其进行实现：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c++ data-lang=c++><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;                    </span><span class=cp>
+</span><span class=cp></span><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>                   
                                        
-<span class="kt">void</span> <span class="nf">extEuc</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
-<span class="p">{</span>                                      
-    <span class="kt">int</span> <span class="n">rx</span><span class="p">,</span><span class="n">ry</span><span class="p">;</span>                         
-    <span class="kt">int</span> <span class="n">r</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                          
-    <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>                        
-    <span class="p">{</span>                                  
-        <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>                       
-        <span class="k">return</span><span class="p">;</span>                        
-    <span class="p">}</span>                                  
-    <span class="k">else</span>                               
-    <span class="p">{</span>                                  
-        <span class="n">r</span> <span class="o">=</span> <span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">;</span>                       
-        <span class="n">extEuc</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">);</span>          
-        <span class="n">x</span> <span class="o">=</span> <span class="n">ry</span><span class="p">;</span>                        
-        <span class="n">y</span> <span class="o">=</span> <span class="n">rx</span> <span class="o">-</span> <span class="n">ry</span><span class="o">*</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">;</span>               
-        <span class="k">return</span><span class="p">;</span>                        
-    <span class="p">}</span>                                  
-<span class="p">}</span>                                      
+<span class=kt>void</span> <span class=nf>extEuc</span><span class=p>(</span><span class=kt>int</span> <span class=n>a</span><span class=p>,</span> <span class=kt>int</span> <span class=n>b</span><span class=p>,</span> <span class=kt>int</span><span class=o>&amp;</span><span class=n>x</span><span class=p>,</span> <span class=kt>int</span><span class=o>&amp;</span><span class=n>y</span><span class=p>)</span>
+<span class=p>{</span>                                      
+    <span class=kt>int</span> <span class=n>rx</span><span class=p>,</span><span class=n>ry</span><span class=p>;</span>                         
+    <span class=kt>int</span> <span class=n>r</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>                          
+    <span class=k>if</span> <span class=p>(</span><span class=n>a</span><span class=o>%</span><span class=n>b</span><span class=o>==</span><span class=mi>0</span><span class=p>)</span>                        
+    <span class=p>{</span>                                  
+        <span class=n>x</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>y</span><span class=o>=</span><span class=mi>1</span><span class=p>;</span>                       
+        <span class=k>return</span><span class=p>;</span>                        
+    <span class=p>}</span>                                  
+    <span class=k>else</span>                               
+    <span class=p>{</span>                                  
+        <span class=n>r</span> <span class=o>=</span> <span class=n>a</span><span class=o>%</span><span class=n>b</span><span class=p>;</span>                       
+        <span class=n>extEuc</span><span class=p>(</span><span class=n>b</span><span class=p>,</span> <span class=n>r</span><span class=p>,</span> <span class=n>rx</span><span class=p>,</span> <span class=n>ry</span><span class=p>);</span>          
+        <span class=n>x</span> <span class=o>=</span> <span class=n>ry</span><span class=p>;</span>                        
+        <span class=n>y</span> <span class=o>=</span> <span class=n>rx</span> <span class=o>-</span> <span class=n>ry</span><span class=o>*</span><span class=n>a</span><span class=o>/</span><span class=n>b</span><span class=p>;</span>               
+        <span class=k>return</span><span class=p>;</span>                        
+    <span class=p>}</span>                                  
+<span class=p>}</span>                                      
                                        
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>                             
-<span class="p">{</span>                                      
-    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>                           
-    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>                           
-    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>                     
-    <span class="n">extEuc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>                
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>       
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>                          
-<span class="p">}</span>                                      
-</code></pre></td></tr></table>
-</div>
-</div><blockquote>
-<p>输入42 2017可求得输出为-48，1。</p>
-</blockquote>
-<h3 id="迭代求解">迭代求解</h3>
-<p>较多的递归调用可能会影响计算速度，所以我们接下来推一下迭代的计算方式，已知上面表格中所列欧几里得算法的计算步骤。已知$gcd(a,b)$是满足该集合的最小值$\lbrace Xa+Yb | X,Y\in Z \rbrace$，已知对于每一步所产生的余数均能被$gcd(a,b)$整除，现在考虑每一步迭代所产生的余数满足的等式：
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>                             
+<span class=p>{</span>                                      
+    <span class=kt>int</span> <span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>;</span>                           
+    <span class=kt>int</span> <span class=n>x</span><span class=p>,</span><span class=n>y</span><span class=p>;</span>                           
+    <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>a</span> <span class=o>&gt;&gt;</span> <span class=n>b</span><span class=p>;</span>                     
+    <span class=n>extEuc</span><span class=p>(</span><span class=n>a</span><span class=p>,</span> <span class=n>b</span><span class=p>,</span> <span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>);</span>                
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>x</span> <span class=o>&lt;&lt;</span><span class=sc>&#39; &#39;</span><span class=o>&lt;&lt;</span> <span class=n>y</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>       
+    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>                          
+<span class=p>}</span>                                      
+</code></pre></td></tr></table></div></div><blockquote><p>输入42 2017可求得输出为-48，1。</p></blockquote><h3 id=迭代求解>迭代求解</h3><p>较多的递归调用可能会影响计算速度，所以我们接下来推一下迭代的计算方式，已知上面表格中所列欧几里得算法的计算步骤。已知$gcd(a,b)$是满足该集合的最小值$\lbrace Xa+Yb | X,Y\in Z \rbrace$，已知对于每一步所产生的余数均能被$gcd(a,b)$整除，现在考虑每一步迭代所产生的余数满足的等式：
 $$
 \begin{cases}
-r_i=X_i\cdot a+Y_i\cdot b \<br>
-r_{i+1}=X_{i+1}\cdot a + Y_{i+1}\cdot b
+r_i=X_i\cdot a+Y_i\cdot b \<br>r_{i+1}=X_{i+1}\cdot a + Y_{i+1}\cdot b
 \end{cases}
 $$
 且已知$r_i, r_{i+1}$满足$r_{i-1}=r_{i-1}/r_i\cdot r_i+r_{i+1}$，将上面两式代入到该式，可得：
@@ -424,172 +138,67 @@ r_{i-1}=(r_{i-1}/r_i\cdot X_i+X_{i+1})\cdot a+(r_{i-1}/r_i\cdot Y_i +Y_{i+1})\cd
 $$
 值得注意的是此处的$X_i,Y_i$与递归方法中的值含义不同。根据上式可推知以下递推关系：
 $$\begin{cases}
-X_{i+1}=X_{i-1}-r_{i-1}/r_i\cdot X_i \<br>
-Y_{i+1}=Y_{i-1}-r_{i-1}/r_i\cdot Y_i
+X_{i+1}=X_{i-1}-r_{i-1}/r_i\cdot X_i \<br>Y_{i+1}=Y_{i-1}-r_{i-1}/r_i\cdot Y_i
 \end{cases}$$
 已知中间的递推关系，关键是考虑如何判断循环的起始值和结束条件，对于$a,b$也可看做是余数$r_i$，那么对于$a,b$来说，其满足的值为：
 $$\begin{cases}
-a = a\cdot 1 + b\cdot 0\<br>
-b = a\cdot 0 + b\cdot 1
+a = a\cdot 1 + b\cdot 0\<br>b = a\cdot 0 + b\cdot 1
 \end{cases}$$
-所以就得到了两对$(X,Y)$的值，分别为$(1,0),(0,1)$，并且已知$r_i$之间的递推关系为$r_{i+1}=r_{i-1}%r_i$。我们也知道循环结束的条件为$r_i=gcd(a,b)$，其最后的形式为$Xa+Yb=gcd(a,b)$，其直接判断方式为$r_{i-1}%r_i=0$，然后我们就得到了最终的$X,Y$值，根据以上递推形式，我们有以下实现：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;             </span><span class="cp">
-</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>            
+所以就得到了两对$(X,Y)$的值，分别为$(1,0),(0,1)$，并且已知$r_i$之间的递推关系为$r_{i+1}=r_{i-1}%r_i$。我们也知道循环结束的条件为$r_i=gcd(a,b)$，其最后的形式为$Xa+Yb=gcd(a,b)$，其直接判断方式为$r_{i-1}%r_i=0$，然后我们就得到了最终的$X,Y$值，根据以上递推形式，我们有以下实现：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-c++ data-lang=c++><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;             </span><span class=cp>
+</span><span class=cp></span><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>            
                                 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>                      
-<span class="p">{</span>                               
-    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>                    
-    <span class="kt">int</span> <span class="n">x1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">y1</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">x2</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">y2</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>                   
-    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>              
-    <span class="k">while</span> <span class="p">(</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>              
-    <span class="p">{</span>                           
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">x2</span><span class="p">;</span>              
-        <span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="o">*</span><span class="n">x2</span><span class="p">;</span>       
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>              
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">y2</span><span class="p">;</span>              
-        <span class="n">y2</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">-</span> <span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="o">*</span><span class="n">y2</span><span class="p">;</span>       
-        <span class="n">y1</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>              
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">;</span>             
-        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>                  
-        <span class="n">b</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>               
-    <span class="p">}</span>                           
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x2</span> <span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="o">&lt;&lt;</span><span class="n">y2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span> 
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>                   
-<span class="p">}</span>                               
-</code></pre></td></tr></table>
-</div>
-</div><blockquote>
-<p>输入42 2017可求得输出为-48，1。</p>
-</blockquote>
-<p><a href="http://rosettacode.org/wiki/Modular_inverse#Python">这里</a>有一个用尽可能多的程序语言实现求逆元的网站，大家也可以参考这里的不同实现。</p>
-<p><em>参考文献</em></p>
-<blockquote>
-<p>[1] Katz J，Lindel Y．Introduction to Modern Cryptography—Principle and Protocol现代密码学——原理与协议【M】任伟．北京：国防工业出版社．2010：10-15．</p>
-</blockquote>
-
-    </div>
-
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">xinyu-yang</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">
-        2021-03-04
-        
-    </span>
-  </p>
-  
-  
-</div>
-<footer class="post-footer">
-      
-      <nav class="post-nav">
-        
-        <a class="next" href="/post/hello-world/">
-            <span class="next-text nav-default">Hello World</span>
-            <span class="next-text nav-mobile">下一篇</span>
-            <i class="iconfont icon-right"></i>
-          </a>
-      </nav>
-    </footer>
-  </article>
-        </div>
-        
-
-  
-
-  
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="social-links">
-      <a href="mailto:xinyu-ya18@mails.tsinghua.edu.cn" class="iconfont icon-email" title="email"></a>
-      <a href="https://github.com/xinyu-yang" class="iconfont icon-github" title="github"></a>
-      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
-  <a href="http://xinyu-yang.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
-</div>
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
-  </span>
-
-  
-
-  <span class="copyright-year">
-    &copy; 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>xinyu-yang</span>
-  </span>
-</div>
-
-    </footer>
-
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont icon-up"></i>
-    </div>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-
-
-
-<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
-  <script type="text/javascript">
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
-        }
-    };
-  </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
-
-
-
-
-
-
-
-
-</body>
-</html>
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>                      
+<span class=p>{</span>                               
+    <span class=kt>int</span> <span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>;</span>                    
+    <span class=kt>int</span> <span class=n>x1</span><span class=p>(</span><span class=mi>1</span><span class=p>),</span><span class=n>y1</span><span class=p>(</span><span class=mi>0</span><span class=p>),</span><span class=n>x2</span><span class=p>(</span><span class=mi>0</span><span class=p>),</span><span class=n>y2</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+    <span class=kt>int</span> <span class=n>temp</span><span class=p>;</span>                   
+    <span class=n>cin</span> <span class=o>&gt;&gt;</span> <span class=n>a</span> <span class=o>&gt;&gt;</span> <span class=n>b</span><span class=p>;</span>              
+    <span class=k>while</span> <span class=p>(</span><span class=n>a</span><span class=o>%</span><span class=n>b</span><span class=o>!=</span><span class=mi>0</span><span class=p>)</span>              
+    <span class=p>{</span>                           
+        <span class=n>temp</span> <span class=o>=</span> <span class=n>x2</span><span class=p>;</span>              
+        <span class=n>x2</span> <span class=o>=</span> <span class=n>x1</span> <span class=o>-</span> <span class=n>a</span><span class=o>/</span><span class=n>b</span><span class=o>*</span><span class=n>x2</span><span class=p>;</span>       
+        <span class=n>x1</span> <span class=o>=</span> <span class=n>temp</span><span class=p>;</span>              
+        <span class=n>temp</span> <span class=o>=</span> <span class=n>y2</span><span class=p>;</span>              
+        <span class=n>y2</span> <span class=o>=</span> <span class=n>y1</span> <span class=o>-</span> <span class=n>a</span><span class=o>/</span><span class=n>b</span><span class=o>*</span><span class=n>y2</span><span class=p>;</span>       
+        <span class=n>y1</span> <span class=o>=</span> <span class=n>temp</span><span class=p>;</span>              
+        <span class=n>temp</span> <span class=o>=</span> <span class=n>a</span><span class=o>%</span><span class=n>b</span><span class=p>;</span>             
+        <span class=n>a</span> <span class=o>=</span> <span class=n>b</span><span class=p>;</span>                  
+        <span class=n>b</span> <span class=o>=</span> <span class=n>temp</span><span class=p>;</span>               
+    <span class=p>}</span>                           
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>x2</span> <span class=o>&lt;&lt;</span><span class=sc>&#39; &#39;</span><span class=o>&lt;&lt;</span><span class=n>y2</span><span class=o>&lt;&lt;</span><span class=n>endl</span><span class=p>;</span> 
+    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>                   
+<span class=p>}</span>                               
+</code></pre></td></tr></table></div></div><blockquote><p>输入42 2017可求得输出为-48，1。</p></blockquote><p><a href=http://rosettacode.org/wiki/Modular_inverse#Python>这里</a>有一个用尽可能多的程序语言实现求逆元的网站，大家也可以参考这里的不同实现。</p><p><em>参考文献</em></p><blockquote><p>[1] Katz J，Lindel Y．Introduction to Modern Cryptography—Principle and Protocol现代密码学——原理与协议【M】任伟．北京：国防工业出版社．2010：10-15．</p></blockquote></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>xinyu-yang</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2021-03-04</span></p></div><footer class=post-footer><nav class=post-nav><a class=next href=/post/hello-world/><span class="next-text nav-default">Hello World</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:xinyu-ya18@mails.tsinghua.edu.cn class="iconfont icon-email" title=email></a><a href=https://github.com/xinyu-yang class="iconfont icon-github" title=github></a><a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a><a href=http://xinyu-yang.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
+<span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>xinyu-yang</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>
