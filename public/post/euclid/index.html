@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="xinyu-yang" /><meta name="description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭" />
+<meta name="author" content="Xinyu-Yang" /><meta name="description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 实现 拓展的欧几里得算法 原理 递归求解 迭" />
 
 
 
@@ -33,7 +33,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
@@ -136,7 +136,7 @@
         
           <span class="more-meta"> 约 2694 字 </span>
           <span class="more-meta"> 预计阅读 6 分钟 </span>
-        
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
 
@@ -312,7 +312,7 @@
 <p>我们试着寻找$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，由以上阐述可知:</p>
 <p>$$
 \begin{cases}
-X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b), &amp;\text{(1)} \<br>
+X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b), &amp;\text{(1)} \\<br>
 X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}=gcd(a,b),&amp;\text{(2)}
 \end{cases}
 $$</p>
@@ -327,14 +327,14 @@ $$
 根据系数相等的原则可得：
 $$
 \begin{cases}
-X_i\cdot r_i/r_{i+1}+Y_i=X_{i+1}, &amp;\text{(1)}\<br>
+X_i\cdot r_i/r_{i+1}+Y_i=X_{i+1}, &amp;\text{(1)}\\<br>
 X_i=Y_{i+1},&amp;\text{(2)}
 \end{cases}
 $$
 以上就得到了$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，那么我们接下来的工作就是找到一对可以求出其值的$(X_i,Y_i)$，通过以上可知当出现某一次计算使得$r_{i}%r_{i+1}=0$时，我们可知对于$X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b)$，满足$gcd(a,b)=r_{i+1}$，那么很显然$X_i=0,Y_i=1$。于是我们就得到了一对$(X_i,Y_i)$的值，我们已经知道了最后一对$r_{i},r_{i+1}$所对应的$(X_i,Y_i)$才能够推知前面的值，所以我们的推导时从后往前推的，因此我们将上面的递推关系稍微变换一下形式：
 $$
 \begin{cases}
-X_i=Y_{i+1},&amp;\text{(1)}\<br>
+X_i=Y_{i+1},&amp;\text{(1)}\\<br>
 Y_i=X_{i+1}-Y_{i+1}\cdot r_i/r_{i+1}, &amp;\text{(2)}
 \end{cases}
 $$
@@ -414,7 +414,7 @@ $$
 <p>较多的递归调用可能会影响计算速度，所以我们接下来推一下迭代的计算方式，已知上面表格中所列欧几里得算法的计算步骤。已知$gcd(a,b)$是满足该集合的最小值$\lbrace Xa+Yb | X,Y\in Z \rbrace$，已知对于每一步所产生的余数均能被$gcd(a,b)$整除，现在考虑每一步迭代所产生的余数满足的等式：
 $$
 \begin{cases}
-r_i=X_i\cdot a+Y_i\cdot b \<br>
+r_i=X_i\cdot a+Y_i\cdot b \\<br>
 r_{i+1}=X_{i+1}\cdot a + Y_{i+1}\cdot b
 \end{cases}
 $$
@@ -424,12 +424,12 @@ r_{i-1}=(r_{i-1}/r_i\cdot X_i+X_{i+1})\cdot a+(r_{i-1}/r_i\cdot Y_i +Y_{i+1})\cd
 $$
 值得注意的是此处的$X_i,Y_i$与递归方法中的值含义不同。根据上式可推知以下递推关系：
 $$\begin{cases}
-X_{i+1}=X_{i-1}-r_{i-1}/r_i\cdot X_i \<br>
+X_{i+1}=X_{i-1}-r_{i-1}/r_i\cdot X_i \\<br>
 Y_{i+1}=Y_{i-1}-r_{i-1}/r_i\cdot Y_i
 \end{cases}$$
 已知中间的递推关系，关键是考虑如何判断循环的起始值和结束条件，对于$a,b$也可看做是余数$r_i$，那么对于$a,b$来说，其满足的值为：
 $$\begin{cases}
-a = a\cdot 1 + b\cdot 0\<br>
+a = a\cdot 1 + b\cdot 0\\<br>
 b = a\cdot 0 + b\cdot 1
 \end{cases}$$
 所以就得到了两对$(X,Y)$的值，分别为$(1,0),(0,1)$，并且已知$r_i$之间的递推关系为$r_{i+1}=r_{i-1}%r_i$。我们也知道循环结束的条件为$r_i=gcd(a,b)$，其最后的形式为$Xa+Yb=gcd(a,b)$，其直接判断方式为$r_{i-1}%r_i=0$，然后我们就得到了最终的$X,Y$值，根据以上递推形式，我们有以下实现：</p>
@@ -501,7 +501,7 @@ b = a\cdot 0 + b\cdot 1
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">xinyu-yang</span>
+    <span class="item-content">Xinyu-Yang</span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -516,7 +516,11 @@ b = a\cdot 0 + b\cdot 1
 <footer class="post-footer">
       
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/pca/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">主成分分析原理与实现</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/hello-world/">
             <span class="next-text nav-default">Hello World</span>
             <span class="next-text nav-mobile">下一篇</span>
@@ -539,7 +543,6 @@ b = a\cdot 0 + b\cdot 1
       <div class="social-links">
       <a href="mailto:xinyu-ya18@mails.tsinghua.edu.cn" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/xinyu-yang" class="iconfont icon-github" title="github"></a>
-      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
   <a href="http://xinyu-yang.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
@@ -553,11 +556,15 @@ b = a\cdot 0 + b\cdot 1
     <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
 
   <span class="copyright-year">
     &copy; 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>xinyu-yang</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Xinyu-Yang</span>
   </span>
 </div>
 

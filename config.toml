@@ -21,7 +21,7 @@ googleAnalytics = ""      # UA-XXXXXXXX-X
 copyright = ""            # default: author.name ↓        # 默认为下面配置的author.name ↓
 
 [author]                  # essential                     # 必需
-  name = "xinyu-yang"
+  name = "Xinyu-Yang"
 
 [sitemap]                 # essential                     # 必需
   changefreq = "weekly"
@@ -171,7 +171,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     options = ""            # default: "{theme: 'simple'}"
 
   [params.busuanzi]         # count web traffic by busuanzi                             # 是否使用不蒜子统计站点访问量
-    enable = false
+    enable = true
     siteUV = true
     sitePV = true
     pagePV = true
@@ -191,7 +191,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     g-github = "https://github.com/xinyu-yang"
     # h-weibo = "http://localhost:1313"
     # i-zhihu = "http://localhost:1313"
-    j-douban = "http://localhost:1313"
+    # j-douban = "http://localhost:1313"
     # k-pocket = "http://localhost:1313"
     # l-tumblr = "http://localhost:1313"
     # m-instagram = "http://localhost:1313"
