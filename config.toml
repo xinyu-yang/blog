@@ -100,7 +100,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   livereUID = ""            # LiveRe UID                  # 来必力
 
   baiduPush = false        # baidu push                  # 百度
-  baiduAnalytics = ""      # Baidu Analytics
+  baiduAnalytics = "b72cf2095ce01c4c9d6392678286aafd"      # Baidu Analytics
   baiduVerification = ""   # Baidu Verification
   googleVerification = ""  # Google Verification         # 谷歌
 
