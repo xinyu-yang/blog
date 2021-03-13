@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>主成分分析原理与实现 - A Simple Blog Site.</title>
+  <title>主成分分析原理与实现 - Xinyu Yang&#39;s blog.</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Xinyu-Yang" /><meta name="description" content="主成分分析原理与实现 主成分分析是一种矩阵的压缩算法，在减少矩阵维数的同时尽可能的保留原矩阵的信息，简单来说就是将 $n×m$的矩阵转换成$n×" />
+<meta name="author" content="Xinyu Yang" /><meta name="description" content="主成分分析原理与实现 主成分分析是一种矩阵的压缩算法，在减少矩阵维数的同时尽可能的保留原矩阵的信息，简单来说就是将 $n×m$的矩阵转换成$n×" /><meta name="keywords" content="主成分分析" />
 
 
 
@@ -44,13 +44,13 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://xinyu-yang.github.io/post/pca/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-04T22:29:17&#43;08:00" />
-<meta property="article:modified_time" content="2021-03-04T22:29:17&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-05T00:17:24&#43;08:00" />
 
 <meta itemprop="name" content="主成分分析原理与实现">
 <meta itemprop="description" content="主成分分析原理与实现 主成分分析是一种矩阵的压缩算法，在减少矩阵维数的同时尽可能的保留原矩阵的信息，简单来说就是将 $n×m$的矩阵转换成$n×"><meta itemprop="datePublished" content="2021-03-04T22:29:17&#43;08:00" />
-<meta itemprop="dateModified" content="2021-03-04T22:29:17&#43;08:00" />
+<meta itemprop="dateModified" content="2021-03-05T00:17:24&#43;08:00" />
 <meta itemprop="wordCount" content="4225">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="math,algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="主成分分析原理与实现"/>
 <meta name="twitter:description" content="主成分分析原理与实现 主成分分析是一种矩阵的压缩算法，在减少矩阵维数的同时尽可能的保留原矩阵的信息，简单来说就是将 $n×m$的矩阵转换成$n×"/>
 
@@ -67,7 +67,7 @@
 <body>
   <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/" class="logo">Xinyu-Yang</a>
+    <a href="/" class="logo">Xinyu Yang&#39;s blog.</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -85,6 +85,8 @@
         <li class="mobile-menu-item">Tags</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
       </a>
   </ul>
 
@@ -96,7 +98,7 @@
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
-  <a href="/" class="logo">Xinyu-Yang</a>
+  <a href="/" class="logo">Xinyu Yang&#39;s blog.</a>
 </div>
 
 
@@ -113,6 +115,8 @@
         <a class="menu-item-link" href="/tags/">Tags</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
       </li>
   </ul>
 </nav>
@@ -129,7 +133,9 @@
 
       <div class="post-meta">
         <span class="post-time"> 2021-03-04 </span>
-        
+        <div class="post-category">
+            <a href="/categories/math/"> math </a>
+            </div>
           <span class="more-meta"> 约 4225 字 </span>
           <span class="more-meta"> 预计阅读 9 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
@@ -776,20 +782,26 @@ $$
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">Xinyu-Yang</span>
+    <span class="item-content">Xinyu Yang</span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2021-03-04
-        
+        2021-03-05
+        <a href="github.com/xinyu-yang/commit/d0d74f08a0ed4340517f0e4be4a6f21545efa06e" title="add pca.">(d0d74f0)</a>
     </span>
   </p>
   
-  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
 </div>
 <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="/tags/math/">math</a>
+          <a href="/tags/algorithm/">algorithm</a>
+          </div>
       <nav class="post-nav">
         
         <a class="next" href="/post/euclid/">
@@ -843,7 +855,7 @@ $$
 
   <span class="copyright-year">
     &copy; 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Xinyu-Yang</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Xinyu Yang</span>
   </span>
 </div>
 

@@ -2,6 +2,11 @@
 title: "Hello World"
 date: 2021-03-04T16:25:56+08:00
 draft: false
+keywords: ["hugo", "even"]
+description: ""
+tags: ["blog"]
+categories: ["record"]
+
 ---
 
 <!--# Hello World.-->
@@ -54,7 +59,7 @@ git submodule add https://github.com/olOwOlo/hugo-theme-even ./themes/even
 ### 写博客
 上面已经进行了大概的配置，下面将介绍怎么写一篇博客。首先使用
 ```
-hugo new blog post/hello-world
+hugo new post/hello-world
 ```
 创建一个新的博客，该命令将创建一个文件：`content/post/hello-world.md`。该文件会包含一个文件头
 ```

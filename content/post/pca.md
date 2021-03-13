@@ -2,6 +2,11 @@
 title: "主成分分析原理与实现"
 date: 2021-03-04T22:29:17+08:00
 draft: false
+keywords: ["主成分分析"]
+description: ""
+tags: ["math", "algorithm"]
+categories: ["math"]
+
 ---
 
 # <center>主成分分析原理与实现</center>

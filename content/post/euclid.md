@@ -2,20 +2,14 @@
 title: "Euclid Algorithm and Extended Euclid Algorithm."
 date: 2021-03-04T17:52:31+08:00
 draft: false
+keywords: ["欧几里得"]
+description: ""
+tags: ["math", "algorithm"]
+categories: ["math"]
+
 ---
 # 欧几里得（Euclid）与拓展的欧几里得算法
 
------ 
-- [欧几里得（Euclid）与拓展的欧几里得算法](#%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97euclid%e4%b8%8e%e6%8b%93%e5%b1%95%e7%9a%84%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95)
-  - [欧几里得算法](#%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95)
-    - [原理](#%e5%8e%9f%e7%90%86)
-    - [实现](#%e5%ae%9e%e7%8e%b0)
-  - [拓展的欧几里得算法](#%e6%8b%93%e5%b1%95%e7%9a%84%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95)
-    - [原理](#%e5%8e%9f%e7%90%86-1)
-    - [递归求解](#%e9%80%92%e5%bd%92%e6%b1%82%e8%a7%a3)
-    - [迭代求解](#%e8%bf%ad%e4%bb%a3%e6%b1%82%e8%a7%a3)
-
------
 ## 欧几里得算法
 
 ### 原理 
