@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Xinyu Yang&#39;s blog.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 21 Mar 2021 20:22:25 +0800</lastBuildDate><atom:link href="http://xinyu-yang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Apr 2021 20:14:43 +0800</lastBuildDate><atom:link href="http://xinyu-yang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Count-Min Sketch</title>
+      <link>http://xinyu-yang.github.io/post/21-04-06_count-min-sketch/</link>
+      <pubDate>Tue, 06 Apr 2021 20:14:43 +0800</pubDate>
+      
+      <guid>http://xinyu-yang.github.io/post/21-04-06_count-min-sketch/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>马尔可夫与切比雪夫不等式</title>
       <link>http://xinyu-yang.github.io/post/21-03-21_markov-and-chebyshev/</link>
