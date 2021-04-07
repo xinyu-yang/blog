@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://xinyu-yang.github.io/post/hello-world/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-04T16:25:56&#43;08:00" />
-<meta property="article:modified_time" content="2021-03-14T00:01:03&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-07T18:36:15&#43;08:00" />
 
 <meta itemprop="name" content="Hello World">
 <meta itemprop="description" content="The first blog. 博客搭建记录 在阅读了众多的博客搭建教程之后，最终选择了使用github &#43; hugo进行搭建，主题为even. 希望借此博客在互联网上留下一"><meta itemprop="datePublished" content="2021-03-04T16:25:56&#43;08:00" />
-<meta itemprop="dateModified" content="2021-03-14T00:01:03&#43;08:00" />
-<meta itemprop="wordCount" content="1746">
+<meta itemprop="dateModified" content="2021-04-07T18:36:15&#43;08:00" />
+<meta itemprop="wordCount" content="3085">
 <meta itemprop="keywords" content="blog," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hello World"/>
 <meta name="twitter:description" content="The first blog. 博客搭建记录 在阅读了众多的博客搭建教程之后，最终选择了使用github &#43; hugo进行搭建，主题为even. 希望借此博客在互联网上留下一"/>
@@ -136,8 +136,8 @@
         <div class="post-category">
             <a href="/categories/record/"> record </a>
             </div>
-          <span class="more-meta"> 约 1746 字 </span>
-          <span class="more-meta"> 预计阅读 4 分钟 </span>
+          <span class="more-meta"> 约 3085 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -221,7 +221,87 @@ themes
 </code></pre></td></tr></table>
 </div>
 </div><p>然后可以参考even主题的教程，将其配置文件进行拷贝和自行配置。其配置方面的文档较少，但好处是其配置文档中都使用了中文对其作用和用法进行了大概的注释，同样也可以根据需求进行增添内容，具体细节将后续进行学习。</p>
-<h3 id="写博客">写博客</h3>
+<p>&mdash;&mdash;&mdash;&mdash;21/04/07更新&mdash;&mdash;&mdash;&ndash;</p>
+<p>感觉even有些功能不理想，比如说分类和标签没有任何区分度，并且作者似乎已经停止开发了，所以准备转到LoveIt的继任者<a href="https://github.com/sunt-programator/CodeIT">CodeIT</a>上，不过even也有优点，就是作者是国人，所以一些特性（如百度统计、不蒜子等）还是挺符合国人习惯和应用需求的。
+但是写博客不就是为了折腾吗？😂，把仅有的几个博客来回迁移:laugh:。选定新的主题后，准备进行迁移，下面准备讲述更新过程。使用这两个主题的时候都会遇到一个问题，就是数学公式的显示问题，感觉两个主题都有一些不尽如人意的地方，接下来将讲述我遇到的问题，以及目前所采用的方式。希望以后能够有机会了解hugo的细节，从而更好的解决该问题。</p>
+<p>首先是even主题，该主题使用的是mathjax进行公式的渲染，经过网上了解，mathjax是一个很成熟的解决方案，所以其对数学公式的支持还是很完善的，但是在使用较复杂的数学公式环境过程中还是遇到了一个问题，如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">\begin{align}
+x <span class="err">&amp;</span>= y + 1 \\
+y <span class="err">&amp;</span>= z + 2
+\end{align}
+</code></pre></td></tr></table>
+</div>
+</div><p>在$\LaTeX$中是没有问题的，但是在hugo就无法被正确渲染，只有将换行符<code>\\</code>更改为<code>\\\\</code>才能正常工作，好像看到网上有相关的讨论（没有记录），说导致该问题的原因是markdown编译器在进行解析的时候会将第一斜杠解释为<em>转义</em>，那么最后的结果是只剩一个斜杠，所以如果想让其最后仍然有两个斜杠，则不得不用四个斜杠。虽说敲四个斜杠是麻烦了点，但是好歹问题算是大概解决了。</p>
+<p>后来试用CodeIT主题时则出现了更严重的问题，主要是因为该主题使用的是据说是性能更好的$KaTeX$渲染器。该渲染器作为托管在github的开源项目还是挺受欢迎的，但是katex对于公式的支持就不那么完善了，截止到目前的最新版本0.13.0，刚能够支持诸如<code>align,align*</code>等环境。而CodeIT使用的仍然是0.11.1的老版本，但这还不是主要问题，主要问题是原本在mathjax中可行的方案在katex中不可行了，比如根据<a href="https://katex.org/docs/0.11.1/supported.html">文档</a>katex v0.11.1中是支持<code>aligned</code>环境的，但是以下代码并不能够被正确渲染：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">\begin{aligned}
+x <span class="err">&amp;</span>= y + 1 \\\\
+y <span class="err">&amp;</span>= z + 2
+\end{aligned}
+</code></pre></td></tr></table>
+</div>
+</div><p>该代码可以在even主题下正常工作，但是无法在CodeIT在工作，经网上搜索，发现了该<a href="https://github.com/halogenica/beautifulhugo/issues/183">解决方案</a>，经该方案介绍，使用如下代码可正常工作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">\begin{aligned}
+x <span class="err">&amp;</span>= y + 1 \cr
+y <span class="err">&amp;</span>= z + 2
+\end{aligned}
+</code></pre></td></tr></table>
+</div>
+</div><p>其效果为：
+\begin{aligned}
+x &amp;= y + 1 \\<br>
+y &amp;= z + 2
+\end{aligned}
+主要改动为将斜杠更换为<code>\cr</code>，经测试可以正常工作，然后将该方式在even主题中测试也可以工作，所以就计划采用这种方式来代替双斜杠的功能，虽然感觉像是最后对问题的妥协，但是好歹是解决了该问题😂</p>
+<p>后来有对问题做进一步的探索，做法是在浏览器中查看网页的源代码，我发现使用斜杠做为换行符的方式都会在公式行的最后引入一个<code>&lt;br&gt;</code>标签，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html">\begin{aligned}
+x <span class="ni">&amp;amp;</span>= y + 1 \\ <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+y <span class="ni">&amp;amp;</span>= z + 2
+\end{aligned}
+</code></pre></td></tr></table>
+</div>
+</div><p>具有标签的代码在使用mathjax渲染器的时候是可以被正常渲染的，但是在katex中却不行。而使用<code>\cr</code>进行换行则不会引入<code>&lt;br&gt;</code>标签，因此在katex中可用。
+最后附上将换行符更改为<code>\cr</code>的命令:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;s/\\\\\\\\/\\cr/&#39;</span> <span class="o">[</span>blogname<span class="o">]</span>.md
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="写博客">写博客</h3>
 <p>上面已经进行了大概的配置，下面将介绍怎么写一篇博客。首先使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -267,7 +347,7 @@ draft: true
 </div><p>编译一下，至此已经可以实现基本的功能</p>
 <h3 id="使用github发布博客">使用github发布博客</h3>
 <p>首先要有一个github账号，然后创建一个新的仓库，其名字为：[your github id].github.io，关于这方面的教程非常多，也很简单，这里就不再赘述。然后其部署可参考<a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#build-hugo-with-github-action">https://gohugo.io/hosting-and-deployment/hosting-on-github/#build-hugo-with-github-action</a>。其操作非常方便，只需要创建一个文件，然后将一些github action代码复制进去就行了。具体原理后续研究&hellip;(这里不得不感叹一句，github的功能比我想象的要强大多了!)</p>
-<p>然后就是将本地文件(即blog/文件夹)push到所创建的仓库中。最后需要注意的是在上面所创建的仓库的设置页面要进行一定的设置，其位置为<code>setting-&gt;github pages-&gt;source</code>，需要将branch更改为<code>gh-pages</code>，路径为<code>root</code>，在这里还可以设置定制化的域名等，这里先暂时不研究。通过以上设置应该就可以成功访问页面了。如本博客主页为：http://xinyu-yang.github.io</p>
+<p>然后就是将本地文件(即blog/文件夹)push到所创建的仓库中。最后需要注意的是在上面所创建的仓库的设置页面要进行一定的设置，其位置为<code>setting-&gt;github pages-&gt;source</code>，需要将branch更改为<code>gh-pages</code>，路径为<code>root</code>，在这里还可以设置定制化的域名等，这里先暂时不研究。通过以上设置应该就可以成功访问页面了。如本博客主页为：<em><a href="http://xinyu-yang.github.io">http://xinyu-yang.github.io</a></em></p>
 <p>还有很多功能待后续学习更新&hellip;</p>
 
     </div>
@@ -280,8 +360,8 @@ draft: true
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2021-03-14
-        <a href="github.com/xinyu-yang/commit/51e3a0dc71beddcf3ffc052c5c68c30f7bc54d0f" title="add tags and categories, modify favicon.">(51e3a0d)</a>
+        2021-04-07
+        <a href="github.com/xinyu-yang/commit/452bf10cba15229147bca561ce466e5cbf6c4754" title="add a note about theme">(452bf10)</a>
     </span>
   </p>
   

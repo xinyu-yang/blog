@@ -77,7 +77,7 @@ int main()
 
 $$
 \begin{cases}
-X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b), &\text{(1)} \\\\
+X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b), &\text{(1)} \cr
 X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}=gcd(a,b),&\text{(2)}
 \end{cases}
 $$
@@ -93,14 +93,14 @@ $$
 根据系数相等的原则可得：
 $$
 \begin{cases}
-X_i\cdot r_i/r_{i+1}+Y_i=X_{i+1}, &\text{(1)}\\\\
+X_i\cdot r_i/r_{i+1}+Y_i=X_{i+1}, &\text{(1)}\cr
 X_i=Y_{i+1},&\text{(2)}
 \end{cases}
 $$
 以上就得到了$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，那么我们接下来的工作就是找到一对可以求出其值的$(X_i,Y_i)$，通过以上可知当出现某一次计算使得$r_{i}\%r_{i+1}=0$时，我们可知对于$X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b)$，满足$gcd(a,b)=r_{i+1}$，那么很显然$X_i=0,Y_i=1$。于是我们就得到了一对$(X_i,Y_i)$的值，我们已经知道了最后一对$r_{i},r_{i+1}$所对应的$(X_i,Y_i)$才能够推知前面的值，所以我们的推导时从后往前推的，因此我们将上面的递推关系稍微变换一下形式：
 $$
 \begin{cases}
-X_i=Y_{i+1},&\text{(1)}\\\\
+X_i=Y_{i+1},&\text{(1)}\cr
 Y_i=X_{i+1}-Y_{i+1}\cdot r_i/r_{i+1}, &\text{(2)}
 \end{cases}
 $$
@@ -145,7 +145,7 @@ int main()
 较多的递归调用可能会影响计算速度，所以我们接下来推一下迭代的计算方式，已知上面表格中所列欧几里得算法的计算步骤。已知$gcd(a,b)$是满足该集合的最小值$\lbrace Xa+Yb | X,Y\in Z \rbrace$，已知对于每一步所产生的余数均能被$gcd(a,b)$整除，现在考虑每一步迭代所产生的余数满足的等式：
 $$
 \begin{cases}
-r_i=X_i\cdot a+Y_i\cdot b \\\\
+r_i=X_i\cdot a+Y_i\cdot b \cr
 r_{i+1}=X_{i+1}\cdot a + Y_{i+1}\cdot b
 \end{cases}
 $$
@@ -155,12 +155,12 @@ r_{i-1}=(r_{i-1}/r_i\cdot X_i+X_{i+1})\cdot a+(r_{i-1}/r_i\cdot Y_i +Y_{i+1})\cd
 $$
 值得注意的是此处的$X_i,Y_i$与递归方法中的值含义不同。根据上式可推知以下递推关系：
 $$\begin{cases}
-X_{i+1}=X_{i-1}-r_{i-1}/r_i\cdot X_i \\\\
+X_{i+1}=X_{i-1}-r_{i-1}/r_i\cdot X_i \cr
 Y_{i+1}=Y_{i-1}-r_{i-1}/r_i\cdot Y_i
 \end{cases}$$
 已知中间的递推关系，关键是考虑如何判断循环的起始值和结束条件，对于$a,b$也可看做是余数$r_i$，那么对于$a,b$来说，其满足的值为：
 $$\begin{cases}
-a = a\cdot 1 + b\cdot 0\\\\
+a = a\cdot 1 + b\cdot 0\cr
 b = a\cdot 0 + b\cdot 1
 \end{cases}$$
 所以就得到了两对$(X,Y)$的值，分别为$(1,0),(0,1)$，并且已知$r_i$之间的递推关系为$r_{i+1}=r_{i-1}\%r_i$。我们也知道循环结束的条件为$r_i=gcd(a,b)$，其最后的形式为$Xa+Yb=gcd(a,b)$，其直接判断方式为$r_{i-1}\%r_i=0$，然后我们就得到了最终的$X,Y$值，根据以上递推形式，我们有以下实现：

@@ -75,7 +75,7 @@ $$\check{f_{q}}=min C_{j,h_{j}(q)},j\in [t]$$
 $$
 r_{i,j}=
 \begin{cases}
-    1, & \text{when collusion happen.} \\\\
+    1, & \text{when collusion happen.} \cr
     0, & \text{otherwise.}
 \end{cases}
 $$

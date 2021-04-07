@@ -58,8 +58,52 @@ git submodule add https://github.com/olOwOlo/hugo-theme-even ./themes/even
 
 ------------21/04/07更新-----------
 
-感觉even有些功能不理想，并且作者似乎已经停止开发了，所以准备转到LoveIt的继任者CodeIT上，下面准备讲述更新过程。其中有一个问题是数学公式的显示问题，两个主题都有一些问题，接下来将讲述我遇到的问题，以及目前所采用的方式。希望以后能够有机会了解hugo的细节，从而更好的解决该问题。
-TODO
+感觉even有些功能不理想，比如说分类和标签没有任何区分度，并且作者似乎已经停止开发了，所以准备转到LoveIt的继任者[CodeIT](https://github.com/sunt-programator/CodeIT)上，不过even也有优点，就是作者是国人，所以一些特性（如百度统计、不蒜子等）还是挺符合国人习惯和应用需求的。
+但是写博客不就是为了折腾吗？:joy:，把仅有的几个博客来回迁移:laugh:。选定新的主题后，准备进行迁移，下面准备讲述更新过程。使用这两个主题的时候都会遇到一个问题，就是数学公式的显示问题，感觉两个主题都有一些不尽如人意的地方，接下来将讲述我遇到的问题，以及目前所采用的方式。希望以后能够有机会了解hugo的细节，从而更好的解决该问题。
+
+首先是even主题，该主题使用的是mathjax进行公式的渲染，经过网上了解，mathjax是一个很成熟的解决方案，所以其对数学公式的支持还是很完善的，但是在使用较复杂的数学公式环境过程中还是遇到了一个问题，如:
+```markdown
+\begin{align}
+x &= y + 1 \\
+y &= z + 2
+\end{align}
+```
+在$\LaTeX$中是没有问题的，但是在hugo就无法被正确渲染，只有将换行符`\\`更改为`\\\\`才能正常工作，好像看到网上有相关的讨论（没有记录），说导致该问题的原因是markdown编译器在进行解析的时候会将第一斜杠解释为*转义*，那么最后的结果是只剩一个斜杠，所以如果想让其最后仍然有两个斜杠，则不得不用四个斜杠。虽说敲四个斜杠是麻烦了点，但是好歹问题算是大概解决了。
+
+后来试用CodeIT主题时则出现了更严重的问题，主要是因为该主题使用的是据说是性能更好的$KaTeX$渲染器。该渲染器作为托管在github的开源项目还是挺受欢迎的，但是katex对于公式的支持就不那么完善了，截止到目前的最新版本0.13.0，刚能够支持诸如`align,align*`等环境。而CodeIT使用的仍然是0.11.1的老版本，但这还不是主要问题，主要问题是原本在mathjax中可行的方案在katex中不可行了，比如根据[文档](https://katex.org/docs/0.11.1/supported.html)katex v0.11.1中是支持`aligned`环境的，但是以下代码并不能够被正确渲染：
+```markdown
+\begin{aligned}
+x &= y + 1 \\\\
+y &= z + 2
+\end{aligned}
+```
+该代码可以在even主题下正常工作，但是无法在CodeIT在工作，经网上搜索，发现了该[解决方案](https://github.com/halogenica/beautifulhugo/issues/183)，经该方案介绍，使用如下代码可正常工作：
+```markdown
+\begin{aligned}
+x &= y + 1 \cr
+y &= z + 2
+\end{aligned}
+```
+其效果为：
+\begin{aligned}
+x &= y + 1 \\\\
+y &= z + 2
+\end{aligned}
+主要改动为将斜杠更换为`\cr`，经测试可以正常工作，然后将该方式在even主题中测试也可以工作，所以就计划采用这种方式来代替双斜杠的功能，虽然感觉像是最后对问题的妥协，但是好歹是解决了该问题:joy:
+
+后来有对问题做进一步的探索，做法是在浏览器中查看网页的源代码，我发现使用斜杠做为换行符的方式都会在公式行的最后引入一个`<br>`标签，如下所示：
+```html
+\begin{aligned}
+x &amp;= y + 1 \\ <br>
+y &amp;= z + 2
+\end{aligned}
+```
+具有标签的代码在使用mathjax渲染器的时候是可以被正常渲染的，但是在katex中却不行。而使用`\cr`进行换行则不会引入`<br>`标签，因此在katex中可用。
+最后附上将换行符更改为`\cr`的命令:
+```shell
+sed -i 's/\\\\\\\\/\\cr/' [blogname].md
+```
+
 
 ### 写博客
 上面已经进行了大概的配置，下面将介绍怎么写一篇博客。首先使用
@@ -89,7 +133,7 @@ hugo -D
 ### 使用github发布博客
 首先要有一个github账号，然后创建一个新的仓库，其名字为：[your github id].github.io，关于这方面的教程非常多，也很简单，这里就不再赘述。然后其部署可参考[https://gohugo.io/hosting-and-deployment/hosting-on-github/#build-hugo-with-github-action](https://gohugo.io/hosting-and-deployment/hosting-on-github/#build-hugo-with-github-action)。其操作非常方便，只需要创建一个文件，然后将一些github action代码复制进去就行了。具体原理后续研究...(这里不得不感叹一句，github的功能比我想象的要强大多了!)
 
-然后就是将本地文件(即blog/文件夹)push到所创建的仓库中。最后需要注意的是在上面所创建的仓库的设置页面要进行一定的设置，其位置为`setting->github pages->source`，需要将branch更改为`gh-pages`，路径为`root`，在这里还可以设置定制化的域名等，这里先暂时不研究。通过以上设置应该就可以成功访问页面了。如本博客主页为：http://xinyu-yang.github.io
+然后就是将本地文件(即blog/文件夹)push到所创建的仓库中。最后需要注意的是在上面所创建的仓库的设置页面要进行一定的设置，其位置为`setting->github pages->source`，需要将branch更改为`gh-pages`，路径为`root`，在这里还可以设置定制化的域名等，这里先暂时不研究。通过以上设置应该就可以成功访问页面了。如本博客主页为：*http://xinyu-yang.github.io*
 
 
 还有很多功能待后续学习更新...

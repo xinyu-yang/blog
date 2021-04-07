@@ -76,10 +76,10 @@ $$
 以上只是我一开始的主观想象过程，下面介绍实际的证明：
 $$
 \begin{align}
-P(x>\alpha) & = \int_\alpha ^\infty f(x)dx \\\\
-            & = \frac{1}{\alpha}\int_\alpha^\infty \alpha f(x)dx \\\\
-            & < \frac{1}{\alpha}\int_\alpha^\infty xf(x)dx \\\\
-            & < \frac{1}{\alpha}\int_0^\infty xf(x)dx \\\\
+P(x>\alpha) & = \int_\alpha ^\infty f(x)dx \cr
+            & = \frac{1}{\alpha}\int_\alpha^\infty \alpha f(x)dx \cr
+            & < \frac{1}{\alpha}\int_\alpha^\infty xf(x)dx \cr
+            & < \frac{1}{\alpha}\int_0^\infty xf(x)dx \cr
             & = \frac{\mu}{\alpha}
 \end{align}
 $$
@@ -95,8 +95,8 @@ $$
 
 该式的证明也很简单，直接代入马尔可夫不等式就可证明：
 \begin{align}
-P(|x-\mu |>\alpha) & = P(|x-\mu |^2>\alpha ^2) \\\\
-                   & < \frac{E(|x-\mu|^2)}{\alpha ^2} \\\\
+P(|x-\mu |>\alpha) & = P(|x-\mu |^2>\alpha ^2) \cr
+                   & < \frac{E(|x-\mu|^2)}{\alpha ^2} \cr
                    & = \frac{\sigma ^2}{\alpha ^2}
 \end{align}
 上式中的第二步转化之所以成立，是因为$E(|x-\mu|^2)$恰好就是方差的定义啊。可见切比雪夫不等式其实就是对方差的另一种解释。不是方差恰好满足了这个式子，而是方差的定义使其一定满足该不等式。不难想象，如果方差改一下定义，那么切比雪夫不等式肯定以另一种形式出现。
@@ -104,10 +104,10 @@ P(|x-\mu |>\alpha) & = P(|x-\mu |^2>\alpha ^2) \\\\
 另外，我学的教材中还有对切比雪夫不等式的另一种证明：
 
 \begin{align}
-P(|x-\mu |>\alpha) & = P(|x-\mu |^2>\alpha ^2) \\\\
-                   & = \int_{|x-\mu |^2>\alpha ^2} f(x)dx \\\\
-                   & < \int_{|x-\mu |^2>\alpha ^2}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \\\\
-                   & < \int_{-\infty}^{\infty}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \\\\
+P(|x-\mu |>\alpha) & = P(|x-\mu |^2>\alpha ^2) \cr
+                   & = \int_{|x-\mu |^2>\alpha ^2} f(x)dx \cr
+                   & < \int_{|x-\mu |^2>\alpha ^2}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \cr
+                   & < \int_{-\infty}^{\infty}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \cr
                    & = \frac{\sigma ^2}{\alpha ^2}
 \end{align}
 

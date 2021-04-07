@@ -184,10 +184,10 @@ $$
 <p>以上只是我一开始的主观想象过程，下面介绍实际的证明：
 $$
 \begin{align}
-P(x&gt;\alpha) &amp; = \int_\alpha ^\infty f(x)dx \\<br>
-&amp; = \frac{1}{\alpha}\int_\alpha^\infty \alpha f(x)dx \\<br>
-&amp; &lt; \frac{1}{\alpha}\int_\alpha^\infty xf(x)dx \\<br>
-&amp; &lt; \frac{1}{\alpha}\int_0^\infty xf(x)dx \\<br>
+P(x&gt;\alpha) &amp; = \int_\alpha ^\infty f(x)dx \cr
+&amp; = \frac{1}{\alpha}\int_\alpha^\infty \alpha f(x)dx \cr
+&amp; &lt; \frac{1}{\alpha}\int_\alpha^\infty xf(x)dx \cr
+&amp; &lt; \frac{1}{\alpha}\int_0^\infty xf(x)dx \cr
 &amp; = \frac{\mu}{\alpha}
 \end{align}
 $$</p>
@@ -200,17 +200,17 @@ $$
 其中$\mu$为期望，$\sigma ^2$为方差。</p>
 <p>该式的证明也很简单，直接代入马尔可夫不等式就可证明：
 \begin{align}
-P(|x-\mu |&gt;\alpha) &amp; = P(|x-\mu |^2&gt;\alpha ^2) \\<br>
-&amp; &lt; \frac{E(|x-\mu|^2)}{\alpha ^2} \\<br>
+P(|x-\mu |&gt;\alpha) &amp; = P(|x-\mu |^2&gt;\alpha ^2) \cr
+&amp; &lt; \frac{E(|x-\mu|^2)}{\alpha ^2} \cr
 &amp; = \frac{\sigma ^2}{\alpha ^2}
 \end{align}
 上式中的第二步转化之所以成立，是因为$E(|x-\mu|^2)$恰好就是方差的定义啊。可见切比雪夫不等式其实就是对方差的另一种解释。不是方差恰好满足了这个式子，而是方差的定义使其一定满足该不等式。不难想象，如果方差改一下定义，那么切比雪夫不等式肯定以另一种形式出现。</p>
 <p>另外，我学的教材中还有对切比雪夫不等式的另一种证明：</p>
 <p>\begin{align}
-P(|x-\mu |&gt;\alpha) &amp; = P(|x-\mu |^2&gt;\alpha ^2) \\<br>
-&amp; = \int_{|x-\mu |^2&gt;\alpha ^2} f(x)dx \\<br>
-&amp; &lt; \int_{|x-\mu |^2&gt;\alpha ^2}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \\<br>
-&amp; &lt; \int_{-\infty}^{\infty}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \\<br>
+P(|x-\mu |&gt;\alpha) &amp; = P(|x-\mu |^2&gt;\alpha ^2) \cr
+&amp; = \int_{|x-\mu |^2&gt;\alpha ^2} f(x)dx \cr
+&amp; &lt; \int_{|x-\mu |^2&gt;\alpha ^2}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \cr
+&amp; &lt; \int_{-\infty}^{\infty}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \cr
 &amp; = \frac{\sigma ^2}{\alpha ^2}
 \end{align}</p>
 <p>以上为我学的教材上的证明方法，可见切比雪夫不等式中的$|x-\mu|$恰好可以和$f(x)$组成方差的计算公式。通过本博客希望自己对于上述两个不等式有更深的理解吧~😄</p>
