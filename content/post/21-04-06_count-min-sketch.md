@@ -5,8 +5,8 @@ lastmod: 2021-04-06T20:14:43+08:00
 draft: false
 keywords: ["sketch", "hash"]
 description: ""
-tags: ["math", "hash"]
-categories: ["math"]
+tags: ["algorithm", "math", "hash"]
+categories: ["algorithm"]
 author: ""
 
 # You can also close(false) or open(true) something for this content.

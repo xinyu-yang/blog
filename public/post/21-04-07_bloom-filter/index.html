@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Count-Min Sketch - Xinyu Yang&#39;s blog.</title>
+  <title>Bloom Filter - Xinyu Yang&#39;s blog.</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Xinyu Yang" /><meta name="description" content="" /><meta name="keywords" content="sketch, hash" />
+<meta name="author" content="Xinyu Yang" /><meta name="description" content="" /><meta name="keywords" content="algorithm, hash" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.81.0 with theme even" />
 
 
-<link rel="canonical" href="http://xinyu-yang.github.io/post/21-04-06_count-min-sketch/" />
+<link rel="canonical" href="http://xinyu-yang.github.io/post/21-04-07_bloom-filter/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,19 +39,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Count-Min Sketch" />
+<meta property="og:title" content="Bloom Filter" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://xinyu-yang.github.io/post/21-04-06_count-min-sketch/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-04-06T20:14:43&#43;08:00" />
-<meta property="article:modified_time" content="2021-04-06T22:46:47&#43;08:00" />
+<meta property="og:url" content="http://xinyu-yang.github.io/post/21-04-07_bloom-filter/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-04-07T09:31:54&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-07T09:31:54&#43;08:00" />
 
-<meta itemprop="name" content="Count-Min Sketch">
-<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-04-06T20:14:43&#43;08:00" />
-<meta itemprop="dateModified" content="2021-04-06T22:46:47&#43;08:00" />
-<meta itemprop="wordCount" content="1269">
-<meta itemprop="keywords" content="algorithm,math,hash," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Count-Min Sketch"/>
+<meta itemprop="name" content="Bloom Filter">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-04-07T09:31:54&#43;08:00" />
+<meta itemprop="dateModified" content="2021-04-07T09:31:54&#43;08:00" />
+<meta itemprop="wordCount" content="1317">
+<meta itemprop="keywords" content="math,algorithm,hash," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Bloom Filter"/>
 <meta name="twitter:description" content=""/>
 
 <!--[if lte IE 9]>
@@ -129,14 +129,14 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Count-Min Sketch</h1>
+      <h1 class="post-title">Bloom Filter</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2021-04-06 </span>
+        <span class="post-time"> 2021-04-07 </span>
         <div class="post-category">
             <a href="/categories/algorithm/"> algorithm </a>
             </div>
-          <span class="more-meta"> 约 1269 字 </span>
+          <span class="more-meta"> 约 1317 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -150,9 +150,9 @@
     <li>
       <ul>
         <li><a href="#摘要">摘要</a></li>
-        <li><a href="#算法介绍">算法介绍</a></li>
+        <li><a href="#算法">算法</a></li>
         <li><a href="#分析">分析</a></li>
-        <li><a href="#代码实现">代码实现</a></li>
+        <li><a href="#实现">实现</a></li>
         <li><a href="#参考文献">参考文献</a></li>
       </ul>
     </li>
@@ -162,71 +162,71 @@
 </div>
     <div class="post-content">
       <h2 id="摘要">摘要</h2>
-<p>本文主要介绍Count-Min Sketch，这是一种用来统计元素出现频率的数据结构，其基于hash函数进行构建，常用来解决&quot;Heavy-Hitter&quot;问题，即统计一个集合中经常出现的元素。本文除对算法原理进行介绍，更重要的是要对其进行数学分析，从而更好的理解该算法。</p>
-<h2 id="算法介绍">算法介绍</h2>
-<p>首先介绍算法的过程，初始化$t$个独立的hash函数$h_1, h_2, &hellip;,h_t$，每一个hash函数都是从集合$[n] \to [k]$的映射。然后初始化一个二维矩阵，如下图所示：</p>
-<center>
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/Sm77Xd9/image.png" alt="image" align="middle" border="0"></a>
-</center>
-<p>我们假设$t=log(1/\delta), k=2/\epsilon$，至于$\delta,\epsilon$是什么，为什么那么赋值后面会解释，先说一下结论：<strong>当$t,k$选择上述值时，假阳性的值大于$m\cdot \epsilon$的概率小于$\delta$。</strong></p>
-<p>对于具有m个元素的集合A，对其进行如下操作:</p>
+<p>该算法以hash函数为基础，主要用来解决<em>membership</em>问题，也就是判断某个元素在不在某个集合中，可以在常数时间进行判断，但是判断结果可能存在假阳性的问题，也就是一个元素不在集合中，但是却被误判为在。该算法的实现同样是采用了以减少精确度换取较小的空间开销的思想，具体损失多少精度，又能换回多少空间是本文要解决的问题。</p>
+<h2 id="算法">算法</h2>
+<p>该算法很简单且优美，下面对其进行简单描述，首先初始化一个长度为$m$的比特串$B$，并选择$k$个$[N]\to [m]$的hash函数，对于一个每一个元素都属于$[N]$的长度为$n$的集合$S$，对其进行如下操作：</p>
 <hr>
 <ul>
-<li>Set all $C_{i,j}=0$</li>
-<li>for i=0 to m do
+<li>Set B[.]=0</li>
+<li>for i=1 to n do
 <ul>
-<li>for j=0 to k do
+<li>for j=1 to k do
 <ul>
-<li>$C_{j,h_{j}(a_m)}$ += 1</li>
+<li>$B[h_j(S_i)]=1$</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <hr>
-<p>当查找一个元素出现的次数时，只需要计算
-$$\check{f_{q}}=min C_{j,h_{j}(q)},j\in [t]$$</p>
-<p>也就是说找到元素$q$映射到的位置当中的最小值，很明显通过此方法得到的值$\check{f_q}$值肯定是大于等于实际值$f_q$的，因为$q$对应的值有可能与其他的值碰撞，从而产生<strong>假阳性</strong>，但是肯定不会产生假阴性。
-那么到底会产生多少假阳性呢？</p>
+<p>算法很简单，就是对每一个元素，用所有的hash函数进行计算，并将所计算出的所有位置置1。查找也很简单，就是进行类似的操作，如果元素$q$的所有的hash值对应的值均为1，那么就判断元素在该集合中。
+显而易见，如果$q$真的在集合中，那么肯定能得到肯定的结果，但是得到肯定的结果不代表其一定位于集合中。因为会存在假阳性的问题，所以现在的问题就是如何评估假阳性出现的概率，以及如何选取$k$和$m$的值来使内存占用和准确度都能比较好呢？</p>
 <h2 id="分析">分析</h2>
-<p>我们希望最后的结果是能够以一定的概率保证$\check{f_q} &lt; f_q + w$，那么下面需要做的就是怎么确定这个概率和$w$之间的关系呢？其实我们在上面已经假设$w=m\cdot \epsilon$，那么我们就将去求其概率。</p>
-<p>首先我们假设一个符号$r_{i,j}$，表示由于$i$在hash函数$h_j$上导致的$q$的数量的增加，那么显然：
+<p>首先分析对于一个元素，其不在集合当中，但是将其判断为在集合当中的概率。假设该元素经过hash函数计算之后的值分别为$a_1, a_2, &hellip;, a_k$，对于任意一个$a_i$的值为0的概率为：
 $$
-r_{i,j}=
-\begin{cases}
-1, &amp; \text{when collusion happen.} \\<br>
-0, &amp; \text{otherwise.}
-\end{cases}
+P(B[a_i]=0) = (1-1/m)^{nk}
 $$
-也就是当碰撞发生时，其值为1，其他为0。如果我们想求出$r_{i,j}$的期望，就应该先求其概率。回顾该值的定义，该值定义为另外一个值$i$与$q$的碰撞所导致的值的增加，那么碰撞的概率是多少呢？如果所使用的hash函数理想的话，任意一个值与$q$的hash值相同的概率都为$1/k$。也就是说：
+因为假设所有的元素的hash值服从均匀分布，所以落到每一点是等概率的$1/m$，而只有当所有元素的所有hash值（共$nk$个）都没落到$a_i$点，其值才为$0$。</p>
+<p>然后计算一个元素假阳性的概率，其假阳性代表所有的hash值对应的点均为$1$，即：
 $$
-E(r_{i,j})=1/k
+P(\forall.i\ B[a_i]=1) = (1-(1-1/m)^{nk})^k
 $$
-那么容易求得：
+然后又根据当$m$的值较大时的近似公式：
 $$
-E(r_{.,j})=\sum_{i\neq q}^m E(r_{i,j})=\sum_{i\neq q}^m 1/k \approx m/k
-$$</p>
-<p>也就是说由在$h_j$处所产生的碰撞所导致的$C_{j,h_j(q)}$的值的增加&ndash;$r_{.,j}$的数学期望为$m/k$。那么根据<a href="../21-03-21_markov-and-chebyshev">马尔可夫不等式</a>可以得出：
+(1-1/m)^{nk}=e^{-nk/m}
 $$
-P(r_{.,j} &gt; w) &lt; E(r_{.,j})/w = m/kw
-$$</p>
-<p>回顾我们在一开始时设的$k=2/\epsilon$，并将$w=m\cdot \epsilon$代入，可得
+可以将上述公式化简为$(1-e^{-nk/m})^k$。我们希望该值尽可能的小，因此在$m,n$值确定的情况下，我们希望通过$k$值的选取使得其值尽可能的小，求$(1-e^{-nk/m})^k$的最小值就相当于求$k\cdot ln(1-e^{-nk/m})$的最小值。求导应该可以算出来，但这里有一个技巧，我们假设$p=e^{-nk/m}$，则上式可以化为：
+$$-\frac{m}{n} \ln p\ln(1-p)$$
+根据对称性，可知当$p$取$1/2$时，其值最小,此时k的值为$\frac{m}{n} \ln2$。<a href="http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html">该网站</a>有一个相应的对应表格，我们截取一部分如下图所示：</p>
+<center>
+<a href="https://ibb.co/1MRJ86r"><img src="https://i.ibb.co/QkYjrdP/image.png" alt="image" border="0"></a>
+</center>
+<p>从图中可以看出，当$m/n$比例一定时，假阳性的值随$k$先减小再增大，比如当$m/n=9$时，其最小值在$k=6$处取得。</p>
+<p>我们已经算出了$k$的最优取值，将其代入到假阳性计算公式中可得：
 $$
-P(r_{.,j} &gt; w) &lt; 1/2
+P = (1/2)^{\frac{m}{n} \ln2} \approx (0.6185)^{m/n}
 $$
-我们以上只是分析了由$h_j$碰撞所导致的假阳性，根据算法可知，最后取得$f_q$值为所计算的hash函数的最小值，也就是说$f_q$假阳性的值取决于由所有hash函数导致的假阳性值的最小值。如果$f_q$的假阳性大于$w$，那么：
+（居然是黄金比例0.618😮）</p>
+<p>如果我们想让其错误率小于$\epsilon$，就需要计算
 $$
-P(\bar{f_q} - f_q &gt; w) = P(\underset{j\in t}{min}\ r_{.,j} &gt; w) &lt; (1/2)^t
+(1/2)^{\frac{m}{n} \ln2} &lt; \epsilon
 $$
-又由上文可知，我们已经假设$t=log(1/\delta)$，所以最后的结果为：
+通过上式可得，$m$的取值范围为$m &gt; n\log e \log\frac{1}{\epsilon} \approx 1.44 n \log\frac{1}{\epsilon}$。所以该方法总的空间复杂度为$k$个hash函数和一个比特串的开销，即：
 $$
-P(\bar{f_q} - f_q &gt; w) &lt; \delta
+k \log n + n \log(1/\epsilon) = (n + \log n) \log(1/\epsilon)
 $$
-这也就解释了我们一开始对于$t,k$的选值原因。</p>
-<h2 id="代码实现">代码实现</h2>
-<p>TODO😄</p>
+感觉占用的空间也不小啊~</p>
+<p>以上就完成了大概的分析，但其实专业的分析好像很复杂，我尝试了一下，没看懂😂</p>
+<h2 id="实现">实现</h2>
+<p>TODO</p>
 <h2 id="参考文献">参考文献</h2>
-<p><a href="https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf">https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf</a></p>
+<ol>
+<li><a href="http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html">http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html</a></li>
+<li><a href="https://blog.csdn.net/jiaomeng/article/details/1495500">https://blog.csdn.net/jiaomeng/article/details/1495500</a></li>
+<li><a href="http://www.eecs.harvard.edu/~michaelm/postscripts/im2005b.pdf">http://www.eecs.harvard.edu/~michaelm/postscripts/im2005b.pdf</a></li>
+<li><a href="https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf">https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf</a></li>
+<li><a href="http://www.cs.jhu.edu/~fabian/courses/CS600.624/slides/bloomslides.pdf">http://www.cs.jhu.edu/~fabian/courses/CS600.624/slides/bloomslides.pdf</a></li>
+</ol>
     </div>
 
     <div class="post-copyright">
@@ -237,8 +237,8 @@ $$
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2021-04-06
-        <a href="github.com/xinyu-yang/commit/7b3d8608152678aa24df84f586941e1ef7e183ae" title="add count-min sketch.">(7b3d860)</a>
+        2021-04-07
+        
     </span>
   </p>
   
@@ -249,18 +249,14 @@ $$
 </div>
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/algorithm/">algorithm</a>
           <a href="/tags/math/">math</a>
+          <a href="/tags/algorithm/">algorithm</a>
           <a href="/tags/hash/">hash</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/21-04-07_bloom-filter/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Bloom Filter</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/21-03-21_markov-and-chebyshev/">
-            <span class="next-text nav-default">马尔可夫与切比雪夫不等式</span>
+        
+        <a class="next" href="/post/21-04-06_count-min-sketch/">
+            <span class="next-text nav-default">Count-Min Sketch</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -332,7 +328,6 @@ $$
     window.MathJax = {
       tex: {
         inlineMath: [['$','$'], ['\\(','\\)']],
-        tags: 'ams',
         }
     };
   </script>
