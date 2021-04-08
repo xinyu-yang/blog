@@ -58,7 +58,7 @@ sequenceDiagrams:
 ----------------
 * Set all $C_{i,j}=0$
 * for i=0 to m do
-    * for j=0 to k do
+    * for j=0 to t do
        * $C_{j,h_{j}(a_m)}$ += 1
 ----------------
 
@@ -105,7 +105,10 @@ $$
 $$
 P(\bar{f_q} - f_q > w) < \delta
 $$
-这也就解释了我们一开始对于$t,k$的选值原因。
+这也就解释了我们一开始对于$t,k$的选值原因。最后的空间复杂度为：
+$$
+t\cdot \log n + tk\cdot \log n = (\frac{2}{\epsilon} \log m + \log n)\log \frac{1}{\delta}
+$$
 
 ## 代码实现
 TODO:smile:
