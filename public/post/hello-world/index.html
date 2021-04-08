@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Hello World">
 <meta itemprop="description" content="The first blog. 博客搭建记录 在阅读了众多的博客搭建教程之后，最终选择了使用github &#43; hugo进行搭建，主题为even. 希望借此博客在互联网上留下一"><meta itemprop="datePublished" content="2021-03-04T16:25:56&#43;08:00" />
 <meta itemprop="dateModified" content="2021-04-07T21:49:46&#43;08:00" />
-<meta itemprop="wordCount" content="3085">
+<meta itemprop="wordCount" content="3585">
 <meta itemprop="keywords" content="blog," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hello World"/>
 <meta name="twitter:description" content="The first blog. 博客搭建记录 在阅读了众多的博客搭建教程之后，最终选择了使用github &#43; hugo进行搭建，主题为even. 希望借此博客在互联网上留下一"/>
@@ -136,8 +136,8 @@
         <div class="post-category">
             <a href="/categories/record/"> record </a>
             </div>
-          <span class="more-meta"> 约 3085 字 </span>
-          <span class="more-meta"> 预计阅读 7 分钟 </span>
+          <span class="more-meta"> 约 3585 字 </span>
+          <span class="more-meta"> 预计阅读 8 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -301,7 +301,11 @@ y <span class="ni">&amp;amp;</span>= z + 2
 <pre class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;s/\\\\\\\\/\\cr/&#39;</span> <span class="o">[</span>blogname<span class="o">]</span>.md
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="写博客">写博客</h3>
+</div><p>&mdash;&mdash;&mdash;&mdash;21/04/08更新&mdash;&mdash;&mdash;&ndash;</p>
+<p>除上述所示问题外，今天又遇到了另外一个问题，那就是在公式中使用特殊字符（如%）时需要进行转义，一般写为<code>\%</code>，但是这又会遇到一个问题，就是在$符号之间的字符不能够像在 ` 符号中那样被免于转义。也就是说<code>\%</code>中的斜杠会在markdown解析的过程中解析为转义字符，因此到公式解析器的时候剩下的就只剩一个%符号了，所以需要使用两个符号才行。关于这个问题，感觉主要问题还是在markdown解析器那里没有执行正确的解析。当然，以上只是我的猜想，有时间我会去验证的。</p>
+<p>知道问题之后的解决方式呢？如果实在不得不用特殊字符的转义，那就使用上述方法，可以解决。如果不是必要，比如我这里就是将%作为模运算符号，其实math里有专门的符号<code>\mod</code>表示该含义，所以出于兼容性期间，决定使用<code>\mod</code>符号，因为万一哪一天markdown解析器可以正常解析了，岂不是还要把两个斜线换成一个。</p>
+<p>同时这里有一个总结：<strong>在markdown的公式环境中尽量减少使用转义符👉<code>\</code>👈</strong></p>
+<h3 id="写博客">写博客</h3>
 <p>上面已经进行了大概的配置，下面将介绍怎么写一篇博客。首先使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -334,7 +338,7 @@ draft: true
 <pre class="chroma"><code class="language-fallback" data-lang="fallback">hugo server -D
 </code></pre></td></tr></table>
 </div>
-</div><p>该命令将启动一个本地服务，端口号为1313，在本地使用浏览器访问：<a href="http://localhost:1313">http://localhost:1313</a>即可在线预览自己的博客内容。每次保存文件时，hugo都会自动进行编译，速度很快，非常方便！</p>
+</div><p>该命令将启动一个本地服务，端口号为1313，在本地使用浏览器访问：<a href="http://localhost:1313">http://localhost:1313</a>即可在线预览自己的博客内容。每次保存文件时，hugo都会自动进行编译，速度很快，几乎实现了markdown的同步预览，非常方便！</p>
 <p>在发布之前应该使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Xinyu Yang" /><meta name="description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最" /><meta name="keywords" content="欧几里得" />
+<meta name="author" content="Xinyu Yang" /><meta name="description" content="欧几里得算法 原理 欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最大公约数表示为$gcd(a,b)$，根据欧几" /><meta name="keywords" content="欧几里得" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Euclid Algorithm and Extended Euclid Algorithm." />
-<meta property="og:description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最" />
+<meta property="og:description" content="欧几里得算法 原理 欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最大公约数表示为$gcd(a,b)$，根据欧几" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://xinyu-yang.github.io/post/euclid/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-04T17:52:31&#43;08:00" />
 <meta property="article:modified_time" content="2021-04-07T21:49:46&#43;08:00" />
 
 <meta itemprop="name" content="Euclid Algorithm and Extended Euclid Algorithm.">
-<meta itemprop="description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最"><meta itemprop="datePublished" content="2021-03-04T17:52:31&#43;08:00" />
+<meta itemprop="description" content="欧几里得算法 原理 欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最大公约数表示为$gcd(a,b)$，根据欧几"><meta itemprop="datePublished" content="2021-03-04T17:52:31&#43;08:00" />
 <meta itemprop="dateModified" content="2021-04-07T21:49:46&#43;08:00" />
-<meta itemprop="wordCount" content="2643">
+<meta itemprop="wordCount" content="2669">
 <meta itemprop="keywords" content="math,algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Euclid Algorithm and Extended Euclid Algorithm."/>
-<meta name="twitter:description" content="欧几里得（Euclid）与拓展的欧几里得算法 欧几里得算法 原理 欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最"/>
+<meta name="twitter:description" content="欧几里得算法 原理 欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最大公约数表示为$gcd(a,b)$，根据欧几"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -136,7 +136,7 @@
         <div class="post-category">
             <a href="/categories/math/"> math </a>
             </div>
-          <span class="more-meta"> 约 2643 字 </span>
+          <span class="more-meta"> 约 2669 字 </span>
           <span class="more-meta"> 预计阅读 6 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -147,7 +147,7 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#欧几里得euclid与拓展的欧几里得算法">欧几里得（Euclid）与拓展的欧几里得算法</a>
+    <li>
       <ul>
         <li><a href="#欧几里得算法">欧几里得算法</a>
           <ul>
@@ -169,24 +169,24 @@
   </div>
 </div>
     <div class="post-content">
-      <h1 id="欧几里得euclid与拓展的欧几里得算法">欧几里得（Euclid）与拓展的欧几里得算法</h1>
+      <!--# 欧几里得（Euclid）与拓展的欧几里得算法-->
 <h2 id="欧几里得算法">欧几里得算法</h2>
 <h3 id="原理">原理</h3>
-<p>欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最大公约数表示为$gcd(a,b)$，根据欧几里得算法，$gcd(a,b)=gcd(b,a%b)$。证明如下：</p>
+<p>欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最大公约数表示为$gcd(a,b)$，根据欧几里得算法，$gcd(a,b)=gcd(b,a\mod b)$ 。证明如下：</p>
 <blockquote>
-<p>如果$b&gt;a$，显然成立；因此只需考虑$b&lt;a$的情况。根据初等数学知识，可知$a,b$的关系可表示为$a=qb+r$，其中$q$为商，$r$为余数。</p>
+<p>如果$b&gt;a$，显然成立；因此只需考虑$b &lt; a$的情况。根据初等数学知识，可知$a,b$的关系可表示为$a=qb+r$，其中$q$为商，$r$为余数。</p>
 </blockquote>
 <blockquote>
-<p>对于$(a,b)$的最大公约数$g1=gcd(a,b)$，当然$g1|a,g1|b$（$g1|a$表示g1整除a），所以易知对于$r=a-qb$，同样满足$g1|r$；</p>
+<p>对于$(a,b)$的最大公约数$g1=gcd(a,b)$，当然$g1|a,g1|b$（$g1|a$表示$g1$整除$a$），所以易知对于$r=a-qb$，同样满足$g1|r$；</p>
 </blockquote>
 <blockquote>
-<p>又因为$a%b=r$，所以对于$a,b$的最大公约数g1，同样满足$g1|a%b,g1|b$，即$(b,a%b)$的最大公约数至少为$g1$，即$gcd(b,a%b)&gt;g1=gcd(a,b)$。</p>
+<p>又因为$a\mod b=r$，所以对于$a,b$的最大公约数$g1$，同样满足$g1|(a\mod b),g1|b$，即$(b,a\mod b)$的最大公约数至少为$g1$，即$gcd(b,a\mod b)&gt;g1=gcd(a,b)$。</p>
 </blockquote>
 <blockquote>
-<p>反过来，对于$(b,a%b)$的最大公约数$g2=gcd(b,a%b)$，同样满足$g2|a, g2|b$，即$gcd(a,b)&gt;g2=gcd(b,a%b)$。</p>
+<p>反过来，对于$(b,a\mod b)$的最大公约数$g2=gcd(b,a\mod b)$，同样满足$g2|a, g2|b$，即$gcd(a,b)&gt;g2=gcd(b,a\mod b)$。</p>
 </blockquote>
 <blockquote>
-<p>因此$gcd(a,b)=gcd(b,a%b)$证明成立。下面对该算法进行实现。</p>
+<p>因此$gcd(a,b)=gcd(b,a\mod b)$证明成立。下面对该算法进行实现。</p>
 </blockquote>
 <h3 id="实现">实现</h3>
 <div class="highlight"><div class="chroma">
@@ -243,7 +243,7 @@
 <blockquote>
 <p>对正整数a，b；总是存在一组整数X,Y，使得$Xa+Yb=gcd(a,b)$成立，且$gcd(a,b)$为满足这种条件的最小整数。</p>
 </blockquote>
-<p>这里不对该定理进行证明，欧几里得算法给出了在已知a，b的情况下求$gcd(a,b)$的方法，但是如果想要求得X，Y的值，就要求助于<strong>拓展的欧几里得算法</strong>。怎么才能从欧几里得算法的计算过程当中得到我们想要求解的值呢？我们再次详细回顾欧几里得算法的求解过程。</p>
+<p>这里不对该定理进行证明，欧几里得算法给出了在已知$a，b$的情况下求$gcd(a,b)$的方法，但是如果想要求得X，Y的值，就要求助于<strong>拓展的欧几里得算法</strong>。怎么才能从欧几里得算法的计算过程当中得到我们想要求解的值呢？我们再次详细回顾欧几里得算法的求解过程。</p>
 <p>对于已知整数$a,b$，我们的算法求解过程如下：</p>
 <table>
 <thead>
@@ -258,20 +258,20 @@
 <tr>
 <td>a</td>
 <td>b</td>
-<td>$r1=a%b$</td>
-<td>$q1=a/b$</td>
+<td>$r_1=a\mod b$</td>
+<td>$q_1=a/b$</td>
 </tr>
 <tr>
 <td>b</td>
-<td>r1</td>
-<td>$r2=b%r1$</td>
-<td>$q2=b/r1$</td>
+<td>$r_1$</td>
+<td>$r_2=b\mod r_1$</td>
+<td>$q_2=b/r_1$</td>
 </tr>
 <tr>
-<td>r1</td>
-<td>r2</td>
-<td>$r3=r1%r2$</td>
-<td>$q3=r1/r2$</td>
+<td>$r_1$</td>
+<td>$r_2$</td>
+<td>$r_3=r_1\mod r_2$</td>
+<td>$q_3=r_1/r_2$</td>
 </tr>
 <tr>
 <td>&hellip;</td>
@@ -282,12 +282,12 @@
 <tr>
 <td>$r_{n-1}$</td>
 <td>$r_n$</td>
-<td>$r_{n+1}=r_{n-1}%r_n$</td>
+<td>$r_{n+1}=r_{n-1}\mod r_n$</td>
 <td>$q_{n+1}=r_{n-1}/r_n$</td>
 </tr>
 </tbody>
 </table>
-<p>逐步计算，直到某一步出现$r_{n-1}%r_{n}=0$的情况，这时候就找到了最大公约数，最大公约数即为$r_n$，以上就是欧几里得算法的全过程。通过这个过程当中多产生的一些中间结果我们能不能求得$X,Y$的值呢？下面进行两种求解方法的推导。</p>
+<p>逐步计算，直到某一步出现$r_{n-1}\mod r_{n}=0$的情况，这时候就找到了最大公约数，最大公约数即为$r_n$，以上就是欧几里得算法的全过程。通过这个过程当中多产生的一些中间结果我们能不能求得$X,Y$的值呢？下面进行两种求解方法的推导。</p>
 <h3 id="递归求解">递归求解</h3>
 <p>根据上面的表格我知道，$Xa+Yb=gcd(a,b)$，并且对于中间所求解的每一步我们所得到的$r_i$都满足$X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b)$，因为很明显每一对$r_i,r_{i+1}$都满足最大公约数为$gcd(a,b)$，这也是欧几里得算法的原理。</p>
 <p>我们试着寻找$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，由以上阐述可知:</p>
@@ -312,7 +312,7 @@ X_i\cdot r_i/r_{i+1}+Y_i=X_{i+1}, &amp;\text{(1)}\cr
 X_i=Y_{i+1},&amp;\text{(2)}
 \end{cases}
 $$
-以上就得到了$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，那么我们接下来的工作就是找到一对可以求出其值的$(X_i,Y_i)$，通过以上可知当出现某一次计算使得$r_{i}%r_{i+1}=0$时，我们可知对于$X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b)$，满足$gcd(a,b)=r_{i+1}$，那么很显然$X_i=0,Y_i=1$。于是我们就得到了一对$(X_i,Y_i)$的值，我们已经知道了最后一对$r_{i},r_{i+1}$所对应的$(X_i,Y_i)$才能够推知前面的值，所以我们的推导时从后往前推的，因此我们将上面的递推关系稍微变换一下形式：
+以上就得到了$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，那么我们接下来的工作就是找到一对可以求出其值的$(X_i,Y_i)$，通过以上可知当出现某一次计算使得$r_{i}\mod r_{i+1}=0$时，我们可知对于$X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b)$，满足$gcd(a,b)=r_{i+1}$，那么很显然$X_i=0,Y_i=1$。于是我们就得到了一对$(X_i,Y_i)$的值，我们已经知道了最后一对$r_{i},r_{i+1}$所对应的$(X_i,Y_i)$才能够推知前面的值，所以我们的推导是从后往前推的，因此我们将上面的递推关系稍微变换一下形式：
 $$
 \begin{cases}
 X_i=Y_{i+1},&amp;\text{(1)}\cr
@@ -355,7 +355,7 @@ $$
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;                    </span><span class="cp">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;                    </span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>                   
                                        
 <span class="kt">void</span> <span class="nf">extEuc</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
@@ -413,7 +413,7 @@ $$\begin{cases}
 a = a\cdot 1 + b\cdot 0\cr
 b = a\cdot 0 + b\cdot 1
 \end{cases}$$
-所以就得到了两对$(X,Y)$的值，分别为$(1,0),(0,1)$，并且已知$r_i$之间的递推关系为$r_{i+1}=r_{i-1}%r_i$。我们也知道循环结束的条件为$r_i=gcd(a,b)$，其最后的形式为$Xa+Yb=gcd(a,b)$，其直接判断方式为$r_{i-1}%r_i=0$，然后我们就得到了最终的$X,Y$值，根据以上递推形式，我们有以下实现：</p>
+所以就得到了两对$(X,Y)$的值，分别为$(1,0),(0,1)$，并且已知$r_i$之间的递推关系为$r_{i+1}=r_{i-1}\mod r_i$。我们也知道循环结束的条件为$r_i=gcd(a,b)$，其最后的形式为$Xa+Yb=gcd(a,b)$，其直接判断方式为$r_{i-1}\mod r_i=0$，然后我们就得到了最终的$X,Y$值，根据以上递推形式，我们有以下实现：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -442,7 +442,7 @@ b = a\cdot 0 + b\cdot 1
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;             </span><span class="cp">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;             </span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>            
                                 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>                      
