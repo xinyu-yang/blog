@@ -1,13 +1,201 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Count-Min Sketch - Xinyu Yang's blog.</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Xinyu Yang"><meta name=description content><meta name=keywords content="sketch,hash"><meta name=generator content="Hugo 0.82.0 with theme even"><link rel=canonical href=http://xinyu-yang.github.io/post/21-04-06_count-min-sketch/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Count-Min Sketch"><meta property="og:description" content><meta property="og:type" content="article"><meta property="og:url" content="http://xinyu-yang.github.io/post/21-04-06_count-min-sketch/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-04-06T20:14:43+08:00"><meta property="article:modified_time" content="2021-04-08T11:00:11+08:00"><meta itemprop=name content="Count-Min Sketch"><meta itemprop=description content><meta itemprop=datePublished content="2021-04-06T20:14:43+08:00"><meta itemprop=dateModified content="2021-04-08T11:00:11+08:00"><meta itemprop=wordCount content="1296"><meta itemprop=keywords content="algorithm,math,hash,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Count-Min Sketch"><meta name=twitter:description content><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Xinyu Yang's blog.</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Xinyu Yang's blog.</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Count-Min Sketch</h1><div class=post-meta><span class=post-time>2021-04-06</span><div class=post-category><a href=/categories/algorithm/>algorithm</a></div><span class=more-meta>约 1296 字</span>
-<span class=more-meta>预计阅读 3 分钟</span>
-<span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#摘要>摘要</a></li><li><a href=#算法介绍>算法介绍</a></li><li><a href=#分析>分析</a></li><li><a href=#代码实现>代码实现</a></li><li><a href=#参考文献>参考文献</a></li></ul></li></ul></nav></div></div><div class=post-content><h2 id=摘要>摘要</h2><p>本文主要介绍Count-Min Sketch，这是一种用来统计元素出现频率的数据结构，其基于hash函数进行构建，常用来解决"Heavy-Hitter"问题，即统计一个集合中经常出现的元素。本文除对算法原理进行介绍，更重要的是要对其进行数学分析，从而更好的理解该算法。</p><h2 id=算法介绍>算法介绍</h2><p>首先介绍算法的过程，初始化$t$个独立的hash函数$h_1, h_2, &mldr;,h_t$，每一个hash函数都是从集合$[n] \to [k]$的映射。然后初始化一个二维矩阵，如下图所示：</p><center><a href=https://imgbb.com/><img src=https://i.ibb.co/Sm77Xd9/image.png alt=image align=middle border=0></a></center><p>我们假设$t=log(1/\delta), k=2/\epsilon$，至于$\delta,\epsilon$是什么，为什么那么赋值后面会解释，先说一下结论：<strong>当$t,k$选择上述值时，假阳性的值大于$m\cdot \epsilon$的概率小于$\delta$。</strong></p><p>对于具有m个元素的集合A，对其进行如下操作:</p><hr><ul><li>Set all $C_{i,j}=0$</li><li>for i=0 to m do<ul><li>for j=0 to t do<ul><li>$C_{j,h_{j}(a_m)}$ += 1</li></ul></li></ul></li></ul><hr><p>当查找一个元素出现的次数时，只需要计算
-$$\check{f_{q}}=min C_{j,h_{j}(q)},j\in [t]$$</p><p>也就是说找到元素$q$映射到的位置当中的最小值，很明显通过此方法得到的值$\check{f_q}$值肯定是大于等于实际值$f_q$的，因为$q$对应的值有可能与其他的值碰撞，从而产生<strong>假阳性</strong>，但是肯定不会产生假阴性。
-那么到底会产生多少假阳性呢？</p><h2 id=分析>分析</h2><p>我们希望最后的结果是能够以一定的概率保证$\check{f_q} &lt; f_q + w$，那么下面需要做的就是怎么确定这个概率和$w$之间的关系呢？其实我们在上面已经假设$w=m\cdot \epsilon$，那么我们就将去求其概率。</p><p>首先我们假设一个符号$r_{i,j}$，表示由于$i$在hash函数$h_j$上导致的$q$的数量的增加，那么显然：
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Count-Min Sketch - Xinyu Yang&#39;s blog.</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Xinyu Yang" /><meta name="description" content="" /><meta name="keywords" content="sketch, hash" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
+
+
+<link rel="canonical" href="http://xinyu-yang.github.io/post/21-04-06_count-min-sketch/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Count-Min Sketch" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xinyu-yang.github.io/post/21-04-06_count-min-sketch/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-04-06T20:14:43&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-08T11:00:11&#43;08:00" />
+
+<meta itemprop="name" content="Count-Min Sketch">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-04-06T20:14:43&#43;08:00" />
+<meta itemprop="dateModified" content="2021-04-08T11:00:11&#43;08:00" />
+<meta itemprop="wordCount" content="1296">
+<meta itemprop="keywords" content="algorithm,math,hash," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Count-Min Sketch"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xinyu Yang&#39;s blog.</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xinyu Yang&#39;s blog.</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Count-Min Sketch</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-04-06 </span>
+        <div class="post-category">
+            <a href="/categories/algorithm/"> algorithm </a>
+            </div>
+          <span class="more-meta"> 约 1296 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#摘要">摘要</a></li>
+        <li><a href="#算法介绍">算法介绍</a></li>
+        <li><a href="#分析">分析</a></li>
+        <li><a href="#代码实现">代码实现</a></li>
+        <li><a href="#参考文献">参考文献</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="摘要">摘要</h2>
+<p>本文主要介绍Count-Min Sketch，这是一种用来统计元素出现频率的数据结构，其基于hash函数进行构建，常用来解决&quot;Heavy-Hitter&quot;问题，即统计一个集合中经常出现的元素。本文除对算法原理进行介绍，更重要的是要对其进行数学分析，从而更好的理解该算法。</p>
+<h2 id="算法介绍">算法介绍</h2>
+<p>首先介绍算法的过程，初始化$t$个独立的hash函数$h_1, h_2, &hellip;,h_t$，每一个hash函数都是从集合$[n] \to [k]$的映射。然后初始化一个二维矩阵，如下图所示：</p>
+<center>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/Sm77Xd9/image.png" alt="image" align="middle" border="0"></a>
+</center>
+<p>我们假设$t=log(1/\delta), k=2/\epsilon$，至于$\delta,\epsilon$是什么，为什么那么赋值后面会解释，先说一下结论：<strong>当$t,k$选择上述值时，假阳性的值大于$m\cdot \epsilon$的概率小于$\delta$。</strong></p>
+<p>对于具有m个元素的集合A，对其进行如下操作:</p>
+<hr>
+<ul>
+<li>Set all $C_{i,j}=0$</li>
+<li>for i=0 to m do
+<ul>
+<li>for j=0 to t do
+<ul>
+<li>$C_{j,h_{j}(a_m)}$ += 1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>当查找一个元素出现的次数时，只需要计算
+$$\check{f_{q}}=min C_{j,h_{j}(q)},j\in [t]$$</p>
+<p>也就是说找到元素$q$映射到的位置当中的最小值，很明显通过此方法得到的值$\check{f_q}$值肯定是大于等于实际值$f_q$的，因为$q$对应的值有可能与其他的值碰撞，从而产生<strong>假阳性</strong>，但是肯定不会产生假阴性。
+那么到底会产生多少假阳性呢？</p>
+<h2 id="分析">分析</h2>
+<p>我们希望最后的结果是能够以一定的概率保证$\check{f_q} &lt; f_q + w$，那么下面需要做的就是怎么确定这个概率和$w$之间的关系呢？其实我们在上面已经假设$w=m\cdot \epsilon$，那么我们就将去求其概率。</p>
+<p>首先我们假设一个符号$r_{i,j}$，表示由于$i$在hash函数$h_j$上导致的$q$的数量的增加，那么显然：
 $$
 r_{i,j}=
 \begin{cases}
-1, & \text{when collusion happen.} \cr
-0, & \text{otherwise.}
+1, &amp; \text{when collusion happen.} \cr
+0, &amp; \text{otherwise.}
 \end{cases}
 $$
 也就是当碰撞发生时，其值为1，其他为0。如果我们想求出$r_{i,j}$的期望，就应该先求其概率。回顾该值的定义，该值定义为另外一个值$i$与$q$的碰撞所导致的值的增加，那么碰撞的概率是多少呢？如果所使用的hash函数理想的话，任意一个值与$q$的hash值相同的概率都为$1/k$。也就是说：
@@ -17,39 +205,168 @@ $$
 那么容易求得：
 $$
 E(r_{.,j})=\sum_{i\neq q}^m E(r_{i,j})=\sum_{i\neq q}^m 1/k \approx m/k
-$$</p><p>也就是说由在$h_j$处所产生的碰撞所导致的$C_{j,h_j(q)}$的值的增加&ndash;$r_{.,j}$的数学期望为$m/k$。那么根据<a href=../21-03-21_markov-and-chebyshev>马尔可夫不等式</a>可以得出：
+$$</p>
+<p>也就是说由在$h_j$处所产生的碰撞所导致的$C_{j,h_j(q)}$的值的增加&ndash;$r_{.,j}$的数学期望为$m/k$。那么根据<a href="../21-03-21_markov-and-chebyshev">马尔可夫不等式</a>可以得出：
 $$
-P(r_{.,j} > w) &lt; E(r_{.,j})/w = m/kw
-$$</p><p>回顾我们在一开始时设的$k=2/\epsilon$，并将$w=m\cdot \epsilon$代入，可得
+P(r_{.,j} &gt; w) &lt; E(r_{.,j})/w = m/kw
+$$</p>
+<p>回顾我们在一开始时设的$k=2/\epsilon$，并将$w=m\cdot \epsilon$代入，可得
 $$
-P(r_{.,j} > w) &lt; 1/2
+P(r_{.,j} &gt; w) &lt; 1/2
 $$
 我们以上只是分析了由$h_j$碰撞所导致的假阳性，根据算法可知，最后取得$f_q$值为所计算的hash函数的最小值，也就是说$f_q$假阳性的值取决于由所有hash函数导致的假阳性值的最小值。如果$f_q$的假阳性大于$w$，那么：
 $$
-P(\bar{f_q} - f_q > w) = P(\underset{j\in t}{min}\ r_{.,j} > w) &lt; (1/2)^t
+P(\bar{f_q} - f_q &gt; w) = P(\underset{j\in t}{min}\ r_{.,j} &gt; w) &lt; (1/2)^t
 $$
 又由上文可知，我们已经假设$t=log(1/\delta)$，所以最后的结果为：
 $$
-P(\bar{f_q} - f_q > w) &lt; \delta
+P(\bar{f_q} - f_q &gt; w) &lt; \delta
 $$
 这也就解释了我们一开始对于$t,k$的选值原因。最后的空间复杂度为：
 $$
 t\cdot \log n + tk\cdot \log n = (\frac{2}{\epsilon} \log m + \log n)\log \frac{1}{\delta}
-$$</p><h2 id=代码实现>代码实现</h2><p>TODO😄</p><h2 id=参考文献>参考文献</h2><p><a href=https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf>https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
-<span class=item-content>Xinyu Yang</span></p><p class=copyright-item><span class=item-title>上次更新</span>
-<span class=item-content>2021-04-08
-<a href=github.com/xinyu-yang/commit/a787f35cf250805bead2ff67715e40da7ed4aac0 title="update count min sketch">(a787f35)</a></span></p><p class=copyright-item><span class=item-title>许可协议</span>
-<span class=item-content>true</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/algorithm/>algorithm</a>
-<a href=/tags/math/>math</a>
-<a href=/tags/hash/>hash</a></div><nav class=post-nav><a class=prev href=/post/21-04-07_bloom-filter/><i class="iconfont icon-left"></i>
-<span class="prev-text nav-default">Bloom Filter</span>
-<span class="prev-text nav-mobile">上一篇</span></a>
-<a class=next href=/post/21-03-21_markov-and-chebyshev/><span class="next-text nav-default">马尔可夫与切比雪夫不等式</span>
-<span class="next-text nav-mobile">下一篇</span>
-<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=xinyu-yang/xinyu-yang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:xinyu-ya18@mails.tsinghua.edu.cn class="iconfont icon-email" title=email></a><a href=https://github.com/xinyu-yang class="iconfont icon-github" title=github></a><a href=http://xinyu-yang.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
-<span class=division>|</span>
-<span class=theme-info>主题 -
-<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span><div class=busuanzi-footer><span id=busuanzi_container_site_pv>本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次</span>
-<span class=division>|</span>
-<span id=busuanzi_container_site_uv>本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人</span></div><span class=copyright-year>&copy;
-2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Xinyu Yang</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-191462997-2','auto'),ga('set','anonymizeIp',!0),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script><script id=baidu_analytics>var _hmt=_hmt||[];(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement("script"),a.async=!0,a.src="https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></body></html>
+$$</p>
+<h2 id="代码实现">代码实现</h2>
+<p>TODO😄</p>
+<h2 id="参考文献">参考文献</h2>
+<p><a href="https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf">https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Xinyu Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-04-08
+        <a href="github.com/xinyu-yang/commit/a787f35cf250805bead2ff67715e40da7ed4aac0" title="update count min sketch">(a787f35)</a>
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content">true</span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/algorithm/">algorithm</a>
+          <a href="/tags/math/">math</a>
+          <a href="/tags/hash/">hash</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/21-04-07_bloom-filter/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Bloom Filter</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/21-03-21_markov-and-chebyshev/">
+            <span class="next-text nav-default">马尔可夫与切比雪夫不等式</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="xinyu-yang/xinyu-yang.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:xinyu-ya18@mails.tsinghua.edu.cn" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/xinyu-yang" class="iconfont icon-github" title="github"></a>
+  <a href="http://xinyu-yang.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Xinyu Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-191462997-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

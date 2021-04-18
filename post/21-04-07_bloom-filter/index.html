@@ -1,11 +1,193 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Bloom Filter - Xinyu Yang's blog.</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="Xinyu Yang"><meta name=description content><meta name=keywords content="algorithm,hash"><meta name=generator content="Hugo 0.82.0 with theme even"><link rel=canonical href=http://xinyu-yang.github.io/post/21-04-07_bloom-filter/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link href=/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Bloom Filter"><meta property="og:description" content><meta property="og:type" content="article"><meta property="og:url" content="http://xinyu-yang.github.io/post/21-04-07_bloom-filter/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-04-07T09:31:54+08:00"><meta property="article:modified_time" content="2021-04-07T16:45:40+08:00"><meta itemprop=name content="Bloom Filter"><meta itemprop=description content><meta itemprop=datePublished content="2021-04-07T09:31:54+08:00"><meta itemprop=dateModified content="2021-04-07T16:45:40+08:00"><meta itemprop=wordCount content="1317"><meta itemprop=keywords content="math,algorithm,hash,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Bloom Filter"><meta name=twitter:description content><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Xinyu Yang's blog.</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/about/><li class=mobile-menu-item>About</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Xinyu Yang's blog.</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/about/>About</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Bloom Filter</h1><div class=post-meta><span class=post-time>2021-04-07</span><div class=post-category><a href=/categories/algorithm/>algorithm</a></div><span class=more-meta>约 1317 字</span>
-<span class=more-meta>预计阅读 3 分钟</span>
-<span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#摘要>摘要</a></li><li><a href=#算法>算法</a></li><li><a href=#分析>分析</a></li><li><a href=#实现>实现</a></li><li><a href=#参考文献>参考文献</a></li></ul></li></ul></nav></div></div><div class=post-content><h2 id=摘要>摘要</h2><p>该算法以hash函数为基础，主要用来解决<em>membership</em>问题，也就是判断某个元素在不在某个集合中，可以在常数时间进行判断，但是判断结果可能存在假阳性的问题，也就是一个元素不在集合中，但是却被误判为在。该算法的实现同样是采用了以减少精确度换取较小的空间开销的思想，具体损失多少精度，又能换回多少空间是本文要解决的问题。</p><h2 id=算法>算法</h2><p>该算法很简单且优美，下面对其进行简单描述，首先初始化一个长度为$m$的比特串$B$，并选择$k$个$[N]\to [m]$的hash函数，对于一个每一个元素都属于$[N]$的长度为$n$的集合$S$，对其进行如下操作：</p><hr><ul><li>Set B[.]=0</li><li>for i=1 to n do<ul><li>for j=1 to k do<ul><li>$B[h_j(S_i)]=1$</li></ul></li></ul></li></ul><hr><p>算法很简单，就是对每一个元素，用所有的hash函数进行计算，并将所计算出的所有位置置1。查找也很简单，就是进行类似的操作，如果元素$q$的所有的hash值对应的值均为1，那么就判断元素在该集合中。
-显而易见，如果$q$真的在集合中，那么肯定能得到肯定的结果，但是得到肯定的结果不代表其一定位于集合中。因为会存在假阳性的问题，所以现在的问题就是如何评估假阳性出现的概率，以及如何选取$k$和$m$的值来使内存占用和准确度都能比较好呢？</p><h2 id=分析>分析</h2><p>首先分析对于一个元素，其不在集合当中，但是将其判断为在集合当中的概率。假设该元素经过hash函数计算之后的值分别为$a_1, a_2, &mldr;, a_k$，对于任意一个$a_i$的值为0的概率为：
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Bloom Filter - Xinyu Yang&#39;s blog.</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Xinyu Yang" /><meta name="description" content="" /><meta name="keywords" content="algorithm, hash" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.82.0 with theme even" />
+
+
+<link rel="canonical" href="http://xinyu-yang.github.io/post/21-04-07_bloom-filter/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Bloom Filter" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xinyu-yang.github.io/post/21-04-07_bloom-filter/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-04-07T09:31:54&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-07T16:45:40&#43;08:00" />
+
+<meta itemprop="name" content="Bloom Filter">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-04-07T09:31:54&#43;08:00" />
+<meta itemprop="dateModified" content="2021-04-07T16:45:40&#43;08:00" />
+<meta itemprop="wordCount" content="1317">
+<meta itemprop="keywords" content="math,algorithm,hash," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Bloom Filter"/>
+<meta name="twitter:description" content=""/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xinyu Yang&#39;s blog.</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xinyu Yang&#39;s blog.</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Bloom Filter</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-04-07 </span>
+        <div class="post-category">
+            <a href="/categories/algorithm/"> algorithm </a>
+            </div>
+          <span class="more-meta"> 约 1317 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#摘要">摘要</a></li>
+        <li><a href="#算法">算法</a></li>
+        <li><a href="#分析">分析</a></li>
+        <li><a href="#实现">实现</a></li>
+        <li><a href="#参考文献">参考文献</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="摘要">摘要</h2>
+<p>该算法以hash函数为基础，主要用来解决<em>membership</em>问题，也就是判断某个元素在不在某个集合中，可以在常数时间进行判断，但是判断结果可能存在假阳性的问题，也就是一个元素不在集合中，但是却被误判为在。该算法的实现同样是采用了以减少精确度换取较小的空间开销的思想，具体损失多少精度，又能换回多少空间是本文要解决的问题。</p>
+<h2 id="算法">算法</h2>
+<p>该算法很简单且优美，下面对其进行简单描述，首先初始化一个长度为$m$的比特串$B$，并选择$k$个$[N]\to [m]$的hash函数，对于一个每一个元素都属于$[N]$的长度为$n$的集合$S$，对其进行如下操作：</p>
+<hr>
+<ul>
+<li>Set B[.]=0</li>
+<li>for i=1 to n do
+<ul>
+<li>for j=1 to k do
+<ul>
+<li>$B[h_j(S_i)]=1$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>算法很简单，就是对每一个元素，用所有的hash函数进行计算，并将所计算出的所有位置置1。查找也很简单，就是进行类似的操作，如果元素$q$的所有的hash值对应的值均为1，那么就判断元素在该集合中。
+显而易见，如果$q$真的在集合中，那么肯定能得到肯定的结果，但是得到肯定的结果不代表其一定位于集合中。因为会存在假阳性的问题，所以现在的问题就是如何评估假阳性出现的概率，以及如何选取$k$和$m$的值来使内存占用和准确度都能比较好呢？</p>
+<h2 id="分析">分析</h2>
+<p>首先分析对于一个元素，其不在集合当中，但是将其判断为在集合当中的概率。假设该元素经过hash函数计算之后的值分别为$a_1, a_2, &hellip;, a_k$，对于任意一个$a_i$的值为0的概率为：
 $$
 P(B[a_i]=0) = (1-1/m)^{nk}
 $$
-因为假设所有的元素的hash值服从均匀分布，所以落到每一点是等概率的$1/m$，而只有当所有元素的所有hash值（共$nk$个）都没落到$a_i$点，其值才为$0$。</p><p>然后计算一个元素假阳性的概率，其假阳性代表所有的hash值对应的点均为$1$，即：
+因为假设所有的元素的hash值服从均匀分布，所以落到每一点是等概率的$1/m$，而只有当所有元素的所有hash值（共$nk$个）都没落到$a_i$点，其值才为$0$。</p>
+<p>然后计算一个元素假阳性的概率，其假阳性代表所有的hash值对应的点均为$1$，即：
 $$
 P(\forall.i\ B[a_i]=1) = (1-(1-1/m)^{nk})^k
 $$
@@ -15,30 +197,172 @@ $$
 $$
 可以将上述公式化简为$(1-e^{-nk/m})^k$。我们希望该值尽可能的小，因此在$m,n$值确定的情况下，我们希望通过$k$值的选取使得其值尽可能的小，求$(1-e^{-nk/m})^k$的最小值就相当于求$k\cdot ln(1-e^{-nk/m})$的最小值。求导应该可以算出来，但这里有一个技巧，我们假设$p=e^{-nk/m}$，则上式可以化为：
 $$-\frac{m}{n} \ln p\ln(1-p)$$
-根据对称性，可知当$p$取$1/2$时，其值最小,此时k的值为$\frac{m}{n} \ln2$。<a href=http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html>该网站</a>有一个相应的对应表格，我们截取一部分如下图所示：</p><center><a href=https://ibb.co/1MRJ86r><img src=https://i.ibb.co/QkYjrdP/image.png alt=image border=0></a></center><p>从图中可以看出，当$m/n$比例一定时，假阳性的值随$k$先减小再增大，比如当$m/n=9$时，其最小值在$k=6$处取得。</p><p>我们已经算出了$k$的最优取值，将其代入到假阳性计算公式中可得：
+根据对称性，可知当$p$取$1/2$时，其值最小,此时k的值为$\frac{m}{n} \ln2$。<a href="http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html">该网站</a>有一个相应的对应表格，我们截取一部分如下图所示：</p>
+<center>
+<a href="https://ibb.co/1MRJ86r"><img src="https://i.ibb.co/QkYjrdP/image.png" alt="image" border="0"></a>
+</center>
+<p>从图中可以看出，当$m/n$比例一定时，假阳性的值随$k$先减小再增大，比如当$m/n=9$时，其最小值在$k=6$处取得。</p>
+<p>我们已经算出了$k$的最优取值，将其代入到假阳性计算公式中可得：
 $$
 P = (1/2)^{\frac{m}{n} \ln2} \approx (0.6185)^{m/n}
 $$
-（居然是黄金比例0.618😮）</p><p>如果我们想让其错误率小于$\epsilon$，就需要计算
+（居然是黄金比例0.618😮）</p>
+<p>如果我们想让其错误率小于$\epsilon$，就需要计算
 $$
 (1/2)^{\frac{m}{n} \ln2} &lt; \epsilon
 $$
-通过上式可得，$m$的取值范围为$m > n\log e \log\frac{1}{\epsilon} \approx 1.44 n \log\frac{1}{\epsilon}$。所以该方法总的空间复杂度为$k$个hash函数和一个比特串的开销，即：
+通过上式可得，$m$的取值范围为$m &gt; n\log e \log\frac{1}{\epsilon} \approx 1.44 n \log\frac{1}{\epsilon}$。所以该方法总的空间复杂度为$k$个hash函数和一个比特串的开销，即：
 $$
 k \log n + n \log(1/\epsilon) = (n + \log n) \log(1/\epsilon)
 $$
-感觉占用的空间也不小啊~</p><p>以上就完成了大概的分析，但其实专业的分析好像很复杂，我尝试了一下，没看懂😂</p><h2 id=实现>实现</h2><p>TODO</p><h2 id=参考文献>参考文献</h2><ol><li><a href=http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html>http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html</a></li><li><a href=https://blog.csdn.net/jiaomeng/article/details/1495500>https://blog.csdn.net/jiaomeng/article/details/1495500</a></li><li><a href=http://www.eecs.harvard.edu/~michaelm/postscripts/im2005b.pdf>http://www.eecs.harvard.edu/~michaelm/postscripts/im2005b.pdf</a></li><li><a href=https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf>https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf</a></li><li><a href=http://www.cs.jhu.edu/~fabian/courses/CS600.624/slides/bloomslides.pdf>http://www.cs.jhu.edu/~fabian/courses/CS600.624/slides/bloomslides.pdf</a></li></ol></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
-<span class=item-content>Xinyu Yang</span></p><p class=copyright-item><span class=item-title>上次更新</span>
-<span class=item-content>2021-04-07
-<a href=github.com/xinyu-yang/commit/b38846dbb3bcfa9e9ba8cd0784781e8d045c0669 title="add bloom filter">(b38846d)</a></span></p><p class=copyright-item><span class=item-title>许可协议</span>
-<span class=item-content>true</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/math/>math</a>
-<a href=/tags/algorithm/>algorithm</a>
-<a href=/tags/hash/>hash</a></div><nav class=post-nav><a class=next href=/post/21-04-06_count-min-sketch/><span class="next-text nav-default">Count-Min Sketch</span>
-<span class="next-text nav-mobile">下一篇</span>
-<i class="iconfont icon-right"></i></a></nav></footer></article></div><script src=https://utteranc.es/client.js repo=xinyu-yang/xinyu-yang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:xinyu-ya18@mails.tsinghua.edu.cn class="iconfont icon-email" title=email></a><a href=https://github.com/xinyu-yang class="iconfont icon-github" title=github></a><a href=http://xinyu-yang.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
-<span class=division>|</span>
-<span class=theme-info>主题 -
-<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span><div class=busuanzi-footer><span id=busuanzi_container_site_pv>本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次</span>
-<span class=division>|</span>
-<span id=busuanzi_container_site_uv>本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人</span></div><span class=copyright-year>&copy;
-2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Xinyu Yang</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-191462997-2','auto'),ga('set','anonymizeIp',!0),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script><script id=baidu_analytics>var _hmt=_hmt||[];(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement("script"),a.async=!0,a.src="https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></body></html>
+感觉占用的空间也不小啊~</p>
+<p>以上就完成了大概的分析，但其实专业的分析好像很复杂，我尝试了一下，没看懂😂</p>
+<h2 id="实现">实现</h2>
+<p>TODO</p>
+<h2 id="参考文献">参考文献</h2>
+<ol>
+<li><a href="http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html">http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html</a></li>
+<li><a href="https://blog.csdn.net/jiaomeng/article/details/1495500">https://blog.csdn.net/jiaomeng/article/details/1495500</a></li>
+<li><a href="http://www.eecs.harvard.edu/~michaelm/postscripts/im2005b.pdf">http://www.eecs.harvard.edu/~michaelm/postscripts/im2005b.pdf</a></li>
+<li><a href="https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf">https://www.cs.utah.edu/~jeffp/teaching/cs5140-S16/cs5140/L12-Count-Min+Apriori.pdf</a></li>
+<li><a href="http://www.cs.jhu.edu/~fabian/courses/CS600.624/slides/bloomslides.pdf">http://www.cs.jhu.edu/~fabian/courses/CS600.624/slides/bloomslides.pdf</a></li>
+</ol>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Xinyu Yang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-04-07
+        <a href="github.com/xinyu-yang/commit/b38846dbb3bcfa9e9ba8cd0784781e8d045c0669" title="add bloom filter">(b38846d)</a>
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content">true</span>
+  </p>
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/math/">math</a>
+          <a href="/tags/algorithm/">algorithm</a>
+          <a href="/tags/hash/">hash</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/21-04-10_climate-change/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">当我们在谈论环境保护的时候我们在谈论什么？</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/21-04-06_count-min-sketch/">
+            <span class="next-text nav-default">Count-Min Sketch</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="xinyu-yang/xinyu-yang.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:xinyu-ya18@mails.tsinghua.edu.cn" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/xinyu-yang" class="iconfont icon-github" title="github"></a>
+  <a href="http://xinyu-yang.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Xinyu Yang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-191462997-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>
