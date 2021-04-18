@@ -606,7 +606,7 @@ ignoreErrors = ["error-remote-getjson"]
         clientSecret = ""
       # Valine comment config (https://github.com/xCss/Valine)
       [params.page.comment.valine]
-        enable = true
+        enable = false
         appId = "QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI"
         appKey = "WBmoGyJtbqUswvfLh6L8iEBr"
         placeholder = ""
@@ -647,9 +647,9 @@ ignoreErrors = ["error-remote-getjson"]
         enable = false
       # Utterances comment config (https://utteranc.es/)
       [params.page.comment.utterances]
-        enable = false
+        enable = true
         # owner/repo
-        repo = ""
+        repo = "xinyu-yang/xinyu-yang.github.io"
         issueTerm = "pathname"
         label = ""
         lightTheme = "github-light"
@@ -703,7 +703,7 @@ ignoreErrors = ["error-remote-getjson"]
 
   # Analytics config
   [params.analytics]
-    enable = false
+    enable = true
     [params.analytics.google]
       id = ""
       # whether to anonymize IP
