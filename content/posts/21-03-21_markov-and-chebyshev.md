@@ -7,37 +7,9 @@ keywords: ["马尔可夫不等式", "切比雪夫不等式"]
 description: ""
 tags: ["math", "statistics"]
 categories: ["math"]
-author: ""
 
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: true
-toc: true
-autoCollapseToc: false
-postMetaInFooter: true
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-<!--contentCopyright: true-->
-reward: false
-mathjax: true
-mathjaxEnableSingleDollar: true
-mathjaxEnableAutoNumber: true
-
-# You unlisted posts you might want not want the header or footer to show
-hideHeaderAndFooter: false
-
-# You can enable or disable out-of-date content warning for individual post.
-# Comment this out to use the global config.
-#enableOutdatedInfoWarning: false
-
-flowchartDiagrams:
-  enable: false
-  options: ""
-
-sequenceDiagrams: 
-  enable: false
-  options: ""
-
+math:
+    enable: true
 ---
 
 <!--more-->
@@ -62,9 +34,7 @@ $$
 根据图上所示，这明显“不对”啊，因为值主要分布在两端嘛，怎么可能大于$\alpha$的概率仅为1/10呢？
 
 例子如如下图（这里图画的可能不太准确，其实也不可能准确）:
-{{% center %}}
-![“反例”](https://i.ibb.co/rb7M9F6/image.png)
-{{% /center %}}
+![“反例”](https://i.ibb.co/rb7M9F6/image.png "“反例”")
 
 <!--<a href="https://imgbb.com/"><img src="https://i.ibb.co/rb7M9F6/image.png" alt="image" border="0"></a>-->
 
@@ -94,15 +64,17 @@ $$
 其中$\mu$为期望，$\sigma ^2$为方差。
 
 该式的证明也很简单，直接代入马尔可夫不等式就可证明：
+$$
 \begin{align}
 P(|x-\mu |>\alpha) & = P(|x-\mu |^2>\alpha ^2) \cr
                    & < \frac{E(|x-\mu|^2)}{\alpha ^2} \cr
                    & = \frac{\sigma ^2}{\alpha ^2}
 \end{align}
+$$
 上式中的第二步转化之所以成立，是因为$E(|x-\mu|^2)$恰好就是方差的定义啊。可见切比雪夫不等式其实就是对方差的另一种解释。不是方差恰好满足了这个式子，而是方差的定义使其一定满足该不等式。不难想象，如果方差改一下定义，那么切比雪夫不等式肯定以另一种形式出现。
 
 另外，我学的教材中还有对切比雪夫不等式的另一种证明：
-
+$$
 \begin{align}
 P(|x-\mu |>\alpha) & = P(|x-\mu |^2>\alpha ^2) \cr
                    & = \int_{|x-\mu |^2>\alpha ^2} f(x)dx \cr
@@ -110,5 +82,6 @@ P(|x-\mu |>\alpha) & = P(|x-\mu |^2>\alpha ^2) \cr
                    & < \int_{-\infty}^{\infty}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \cr
                    & = \frac{\sigma ^2}{\alpha ^2}
 \end{align}
+$$
 
 以上为我学的教材上的证明方法，可见切比雪夫不等式中的$|x-\mu|$恰好可以和$f(x)$组成方差的计算公式。通过本博客希望自己对于上述两个不等式有更深的理解吧~:smile:

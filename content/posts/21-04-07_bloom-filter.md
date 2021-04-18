@@ -9,34 +9,12 @@ tags: ["math", "algorithm", "hash"]
 categories: ["algorithm"]
 author: ""
 
-# You can also close(false) or open(true) something for this content.
-# P.S. comment can only be closed
-comment: true
-toc: true
-autoCollapseToc: false
-postMetaInFooter: true
-hiddenFromHomePage: false
-# You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
-contentCopyright: true
-reward: false
-mathjax: true
-mathjaxEnableSingleDollar: true
-mathjaxEnableAutoNumber: false
+toc:
+  enable: true
+math:
+  enable: true
 
-# You unlisted posts you might want not want the header or footer to show
-hideHeaderAndFooter: false
-
-# You can enable or disable out-of-date content warning for individual post.
-# Comment this out to use the global config.
-#enableOutdatedInfoWarning: false
-
-flowchartDiagrams:
-  enable: false
-  options: ""
-
-sequenceDiagrams: 
-  enable: false
-  options: ""
+lightgallery: false
 
 ---
 
@@ -78,8 +56,12 @@ $$
 $$-\frac{m}{n} \ln p\ln(1-p)$$
 根据对称性，可知当$p$取$1/2$时，其值最小,此时k的值为$\frac{m}{n} \ln2$。[该网站](http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html)有一个相应的对应表格，我们截取一部分如下图所示：
 
+<!--<center>-->
+<!--<img src="https://i.ibb.co/QkYjrdP/image.png" alt="image" border="0" width="50%" height="50%">-->
+<!--</center>-->
+
 <center>
-<a href="https://ibb.co/1MRJ86r"><img src="https://i.ibb.co/QkYjrdP/image.png" alt="image" border="0"></a>
+<img src="https://i.loli.net/2021/04/18/juWqTKa9SlxYyeP.png"/>
 </center>
 
 从图中可以看出，当$m/n$比例一定时，假阳性的值随$k$先减小再增大，比如当$m/n=9$时，其最小值在$k=6$处取得。

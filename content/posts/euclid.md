@@ -7,6 +7,9 @@ description: ""
 tags: ["math", "algorithm"]
 categories: ["math"]
 
+math:
+    enable: true
+
 ---
 <!--# 欧几里得（Euclid）与拓展的欧几里得算法-->
 
