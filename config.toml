@@ -705,9 +705,9 @@ ignoreErrors = ["error-remote-getjson"]
   [params.analytics]
     enable = true
     [params.analytics.google]
-      id = "269632116"
+      id = "G-NSNR248K3V"
       # whether to anonymize IP
-      anonymizeIP = true
+      anonymizeIP = false
 
     # Baidu Analytics
     [params.analytics.baidu]
