@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "About me"
 date: 2021-03-13T23:26:21+08:00
 lastmod: 2021-03-13T23:26:21+08:00
 draft: false
@@ -24,9 +24,9 @@ math:
 
 <!--more-->
 
-# 关于我
+# About me
 
-程序员，现研究生在读，即将毕业（如果顺利）:joy:
+A programmer, pursuing a master degree, will soon graduate if luck :joy:
 
 - `Linux` user
 - `Vim` user
