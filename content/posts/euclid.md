@@ -86,27 +86,35 @@ X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}=gcd(a,b),&\text{(2)}
 $$
 
 为了将上式转换成$r_i$的方程组，我们使用$r_{i+1},r_{i+2}来表示r_i$，通过以上可知$r_i=r_i/r_{i+1}\cdot r_{i+1}+r_{i+2}$，将该式带入上式（1），并将两式合并可得：
-$$    
+
+$$
 X_i\cdot (r_i/r_{i+1}\cdot r_{i+1}+r_{i+2})+Y_i\cdot r_{i+1}=X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}
 $$
+
 进一步化简可得：
-$$    
+
+$$
 (X_i\cdot r_i/r_{i+1}+Y_i)\cdot r_{i+1}+X_i\cdot r_{i+2}=X_{i+1}\cdot r_{i+1}+Y_{i+1}\cdot r_{i+2}
 $$
+
 根据系数相等的原则可得：
+
 $$
 \begin{cases}
 X_i\cdot r_i/r_{i+1}+Y_i=X_{i+1}, &\text{(1)}\cr
 X_i=Y_{i+1},&\text{(2)}
 \end{cases}
 $$
+
 以上就得到了$(X_i,Y_i),(X_{i+1},Y_{i+1})$之间的递推关系，那么我们接下来的工作就是找到一对可以求出其值的$(X_i,Y_i)$，通过以上可知当出现某一次计算使得$r_{i}\mod r_{i+1}=0$时，我们可知对于$X_i\cdot r_i+Y_i\cdot r_{i+1}=gcd(a,b)$，满足$gcd(a,b)=r_{i+1}$，那么很显然$X_i=0,Y_i=1$。于是我们就得到了一对$(X_i,Y_i)$的值，我们已经知道了最后一对$r_{i},r_{i+1}$所对应的$(X_i,Y_i)$才能够推知前面的值，所以我们的推导是从后往前推的，因此我们将上面的递推关系稍微变换一下形式：
+
 $$
 \begin{cases}
 X_i=Y_{i+1},&\text{(1)}\cr
 Y_i=X_{i+1}-Y_{i+1}\cdot r_i/r_{i+1}, &\text{(2)}
 \end{cases}
 $$
+
 此时我们就得到了推导关系和初值，通过计算我们就可以求得满足$Xa+Yb=gcd(a,b)$的$X,Y$值。下面通过代码对其进行实现：
 ```cpp
 #include <iostream>                    

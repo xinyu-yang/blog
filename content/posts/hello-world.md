@@ -10,6 +10,8 @@ categories: ["record"]
 math:
     enable: true
 
+lightgallery: true
+
 ---
 
 <!--# Hello World.-->

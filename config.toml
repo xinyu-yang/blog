@@ -5,7 +5,7 @@ defaultContentLanguage = "zh-cn"
 theme = "EnjoyIt"
 
 # website title
-title = "EnjoyIt"
+title = "🐏💗🐟's blog"
 
 # whether to use robots.txt
 enableRobotsTXT = true
@@ -29,7 +29,7 @@ ignoreErrors = ["error-remote-getjson"]
     # default amount of posts in each pages
     paginate = 12
     # [UA-XXXXXXXX-X] google analytics code
-    googleAnalytics = "UA-191462997-2"
+    #googleAnalytics = "UA-191462997-2"
     # copyright description used only for seo schema
     copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
     # Menu config
@@ -82,18 +82,18 @@ ignoreErrors = ["error-remote-getjson"]
         pre = "<i class='fab fa-github fa-fw'></i>"
         post = ""
         name = ""
-        url = "https://github.com/xinyu-yang/EnjoyIt"
+        url = "https://github.com/xinyu-yang/xinyu-yang.github.io"
         title = "GitHub"
         weight = 6
     [languages.en.params]
       # site description
-      description = "About EnjoyIt Theme"
+      description = "🐏💗🐟's blog"
       # site keywords
-      keywords = ["Theme", "Hugo"]
+      keywords = ["Blog", "Hugo"]
       # App icon config
       [languages.en.params.app]
         # optional site title override for the app when added to an iOS home screen or Android launcher
-        title = "EnjoyIt"
+        title = "🐏💗🐟's blog"
         # whether to omit favicon resource links
         noFavicon = false
         # modern SVG favicon to use in place of older style .png and .ico files
@@ -142,9 +142,9 @@ ignoreErrors = ["error-remote-getjson"]
           title = ""
           # subtitle shown in home page
           # {{< version 0.1.1 changed >}} (HTML format is supported)
-          subtitle = "A Simple Blog"
+          subtitle = "Life is Finite, Knowledge is Infinite<br>Pursuing Infinite Knowledge With Finite Life is Noxious"
           # whether to use typeit animation for subtitle
-          typeit = false
+          typeit = true
           # whether to show social links
           social = true
           # disclaimer (HTML format is supported)
@@ -156,7 +156,7 @@ ignoreErrors = ["error-remote-getjson"]
           paginate = 6
       # Social config in home page
       [languages.en.params.social]
-        GitHub = "https://github.com/xinyu-yang/"
+        GitHub = "xinyu-yang/"
         Linkedin = ""
         Twitter = ""
         Instagram = ""
@@ -220,8 +220,8 @@ ignoreErrors = ["error-remote-getjson"]
         Email = "yangxinyu75@live.com"
         RSS = true
         [languages.en.params.social.Mastodon]
-          id = "@xxxx"
-          prefix = "https://mastodon.technology/"
+          id = ""
+          #prefix = "https://mastodon.technology/"
 
   [languages.zh-cn]
     weight = 2
@@ -234,7 +234,7 @@ ignoreErrors = ["error-remote-getjson"]
     # 默认每页列表显示的文章数目
     paginate = 12
     # [UA-XXXXXXXX-X] 谷歌分析代号
-    googleAnalytics = "UA-191462997-2"
+    #googleAnalytics = "UA-191462997-2"
     # 版权描述，仅仅用于 SEO
     copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
     # 菜单配置
@@ -285,18 +285,18 @@ ignoreErrors = ["error-remote-getjson"]
         pre = "<i class='fab fa-github fa-fw'></i>"
         post = ""
         name = ""
-        url = "https://github.com/xinyu-yang/EnjoyIt"
+        url = "https://github.com/xinyu-yang/xinyu-yang.github.io"
         title = "GitHub"
         weight = 6
     [languages.zh-cn.params]
       # 网站描述
-      description = "关于 EnjoyIt 主题"
+      description = "🐏💗🐟's blog"
       # 网站关键词
-      keywords = ["Theme", "Hugo"]
+      keywords = ["Blog", "Hugo"]
       # 应用图标配置
       [languages.zh-cn.params.app]
         # 当添加到 iOS 主屏幕或者 Android 启动器时的标题, 覆盖默认标题
-        title = "EnjoyIt"
+        title = "🐏💗🐟's blog"
         # 是否隐藏网站图标资源链接
         noFavicon = false
         # 更现代的 SVG 网站图标, 可替代旧的 .png 和 .ico 文件
@@ -344,9 +344,9 @@ ignoreErrors = ["error-remote-getjson"]
           # 主页显示的网站标题 (支持 HTML 格式)
           title = ""
           # 主页显示的网站副标题
-          subtitle = "一个简单的博客"
+          subtitle = "人生也有涯，而知也无涯，以有涯随无涯，殆矣！"
           # 是否为副标题显示打字机动画
-          typeit = false
+          typeit = true
           # 是否显示社交账号
           social = true
           # 免责声明 (支持 HTML 格式)
@@ -358,7 +358,7 @@ ignoreErrors = ["error-remote-getjson"]
           paginate = 6
       # 主页的社交信息设置
       [languages.zh-cn.params.social]
-        GitHub = "https://github.com/xinyu-yang/"
+        GitHub = "xinyu-yang/"
         Linkedin = ""
         Twitter = ""
         Instagram = ""
@@ -429,7 +429,7 @@ ignoreErrors = ["error-remote-getjson"]
   # site default theme ("light", "dark", "auto")
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
-  gitRepo = "https://github.com/sunt-programator/EnjoyIt"
+  gitRepo = "https://github.com/xinyu-yang/EnjoyIt"
   # which hash function used for SRI, when empty, no SRI is used ("sha256", "sha384", "sha512", "md5")
   fingerprint = "sha256"
   # date format
@@ -448,7 +448,7 @@ ignoreErrors = ["error-remote-getjson"]
       # URL of the LOGO
       logo = ""
       # title name
-      name = "EnjoyIt"
+      name = "🐏💗🐟's blog"
       # you can add extra information before the name (HTML format is supported), such as icons
       pre = "<i class='fas fa-laptop-code fa-fw'></i>"
       # you can add extra information after the name (HTML format is supported), such as icons
@@ -705,7 +705,7 @@ ignoreErrors = ["error-remote-getjson"]
   [params.analytics]
     enable = true
     [params.analytics.google]
-      id = ""
+      id = "269632116"
       # whether to anonymize IP
       anonymizeIP = true
 
@@ -784,8 +784,8 @@ ignoreErrors = ["error-remote-getjson"]
 
 # Author config
 [author]
-  name = "EnjoyIt"
-  email = ""
+  name = "Xinyu Yang"
+  email = "yangxinyu75@live.com"
   link = ""
 
 # Sitemap config
