@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xinyu-yang.github.io\/posts\/21-04-12_count-sketch\/"
-        },"image": ["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hash, heavy hitter","wordcount":  17 ,
+        },"image": ["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "hash, heavy hitter","wordcount":  569 ,
         "url": "https:\/\/xinyu-yang.github.io\/posts\/21-04-12_count-sketch\/","datePublished": "2021-04-12T10:01:05+08:00","dateModified": "2021-04-19T00:23:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Count Sketch</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/algorithm/"><i class="far fa-folder fa-fw"></i>algorithm</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-12">2021-04-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 17 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-12">2021-04-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 569 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
                   <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -132,8 +132,37 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="算法介绍">算法介绍</h2>
+<p>按照出现时间，该算法比<a href="../21-04-06_count-min-sketch/" rel="">count-min sketch</a>出现的时间更早，但似乎没有count-min sketch应用广泛。该算法的大体思想与count-min sketch相似，只是有少许不同。
+首先介绍算法的过程，初始化$t$个独立的hash函数$h_1, h_2, &hellip;,h_t$，每一个hash函数都是从集合$[n] \to [k]$的映射。同时还要初始化$t$个符号函数$s_i : [n] \to [\pm 1]$，然后初始化一个二维矩阵，如下图所示：</p>
+<center>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/Sm77Xd9/image.png" alt="image" align="middle" border="0"></a>
+</center>
+<p>对于具有m个元素的集合A，对其进行如下操作:</p>
+<hr>
+<ul>
+<li>Set all $C_{i,j}=0$</li>
+<li>for i=0 to m do
+<ul>
+<li>for j=0 to t do
+<ul>
+<li>$C_{j,h_{j}(a_i)}$ += $s_j (a_i)$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>该操作与count-min sketch唯一不同的点在于，最后加的值有可能是1或者-1。</p>
+<p>当查找一个元素出现的次数时，只需要计算
+$$\check{f_{q}}=median\ C_{j,h_{j}(q)},\ j\in [t]$$</p>
+<p>这里与count-min sketch不同的是，本方法所产生的值有可能是正也有可能是负，有可能假阳也有可能假阴，而count-min sketch中只有正，所以一定会产生假阳性。仅从直觉上来判断，似乎选中间值是合理的，因为正负相互抵消，比较理想的情况就是恰好抵消完，那就没有误差了。</p>
 <h2 id="分析">分析</h2>
+<p>参考了几篇文章，甚至参考了作者的<a href="https://www.cs.rutgers.edu/~farach/pubs/FrequentStream.pdf" target="_blank" rel="noopener noreferrer">原文</a>，其证明方法都不太一样，尴尬的是我一个都没看懂😂，哎~等能看懂再补上吧。。。</p>
+<blockquote>
+<p>路漫漫其修远兮，吾将上下而求索啊</p>
+</blockquote>
 <h2 id="代码实现">代码实现</h2>
+<p>参考文献 <a href="https://wangshusen.github.io/code/countsketch.html">https://wangshusen.github.io/code/countsketch.html</a> 中就有一个代码实现，而且有动态图展示。</p>
 <h2 id="参考文献">参考文献</h2>
 <ol>
 <li><a href="https://web.stanford.edu/class/cs369g/files/lectures/lec8.pdf">https://web.stanford.edu/class/cs369g/files/lectures/lec8.pdf</a></li>
