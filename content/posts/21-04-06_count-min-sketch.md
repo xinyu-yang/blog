@@ -3,9 +3,8 @@ title: "Count-Min Sketch"
 date: 2021-04-06T20:14:43+08:00
 lastmod: 2021-04-06T20:14:43+08:00
 draft: false
-keywords: ["sketch", "hash"]
 description: ""
-tags: ["math", "algorithm", "hash"]
+tags: ["hash"]
 categories: ["algorithm"]
 author: ""
 

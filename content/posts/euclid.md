@@ -4,7 +4,7 @@ date: 2021-03-04T17:52:31+08:00
 draft: false
 keywords: ["欧几里得"]
 description: ""
-tags: ["math", "algorithm"]
+tags: ["math"]
 categories: ["math"]
 
 math:

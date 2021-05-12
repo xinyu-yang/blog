@@ -5,7 +5,7 @@ lastmod: 2021-04-07T09:31:54+08:00
 draft: false
 keywords: ["algorithm", "hash"]
 description: ""
-tags: ["math", "algorithm", "hash"]
+tags: ["hash"]
 categories: ["algorithm"]
 author: ""
 

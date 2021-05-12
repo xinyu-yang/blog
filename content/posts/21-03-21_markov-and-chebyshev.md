@@ -5,7 +5,7 @@ lastmod: 2021-03-21T20:22:25+08:00
 draft: false
 keywords: ["马尔可夫不等式", "切比雪夫不等式"]
 description: ""
-tags: ["math", "statistics"]
+tags: ["statistics"]
 categories: ["math"]
 
 math:
