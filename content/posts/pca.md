@@ -4,7 +4,7 @@ date: 2021-03-04T22:29:17+08:00
 draft: false
 keywords: ["主成分分析"]
 description: ""
-tags: ["math", "algorithm"]
+tags: ["ML", "statistics"]
 categories: ["math"]
 
 ---
