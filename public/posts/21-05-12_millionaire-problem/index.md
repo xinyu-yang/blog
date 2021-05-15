@@ -1,32 +1,5 @@
----
-title: "百万富翁问题"
-subtitle: ""
-date: 2021-05-12T23:50:52+08:00
-lastmod: 2021-05-12T23:50:52+08:00
-draft: false
-author: ""
-authorLink: ""
-description: ""
+# 百万富翁问题
 
-tags: ["ZK"]
-categories: ["math"]
-
-hiddenFromHomePage: false
-hiddenFromSearch: false
-
-featuredImage: ""
-featuredImagePreview: ""
-
-toc:
-  enable: true
-math:
-  enable: true
-comment:
-  enable: true
-
-lightgallery: false
-license: ""
----
 
 <!--more-->
 
@@ -68,3 +41,4 @@ A将该数组和$p$发送给B。
 [1] [A. C. Yao, “Protocols for Secure Computations,” ](https://research.cs.wisc.edu/areas/sec/yao1982-ocr.pdf)
 
 [2] https://zhiqiang.org/cs/yao-millionaires-problem.html
+
