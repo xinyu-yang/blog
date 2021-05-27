@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://xinyu-yang.github.io/categories/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://xinyu-yang.github.io/categories/</loc><lastmod>2021-05-27T23:22:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://xinyu-yang.github.io/en/categories/"
@@ -11,8 +11,7 @@
                     hreflang="zh-cn"
                     href="https://xinyu-yang.github.io/categories/"
                     /></url><url>
-            <loc>https://xinyu-yang.github.io/categories/math/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/posts/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://xinyu-yang.github.io/posts/</loc><lastmod>2021-05-27T23:22:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://xinyu-yang.github.io/en/posts/"
@@ -21,18 +20,9 @@
                     hreflang="zh-cn"
                     href="https://xinyu-yang.github.io/posts/"
                     /></url><url>
-            <loc>https://xinyu-yang.github.io/tags/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://xinyu-yang.github.io/en/tags/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="https://xinyu-yang.github.io/tags/"
-                    /></url><url>
-            <loc>https://xinyu-yang.github.io/tags/zk/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/posts/21-05-12_millionaire-problem/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://xinyu-yang.github.io/categories/%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F/</loc><lastmod>2021-05-27T23:22:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://xinyu-yang.github.io/posts/21-05-27_self-intro/</loc><lastmod>2021-05-27T23:22:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://xinyu-yang.github.io/</loc><lastmod>2021-05-27T23:22:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://xinyu-yang.github.io/en/"
@@ -41,17 +31,29 @@
                     hreflang="zh-cn"
                     href="https://xinyu-yang.github.io/"
                     /></url><url>
-            <loc>https://xinyu-yang.github.io/categories/algorithm/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/posts/21-04-12_count-sketch/</loc><lastmod>2021-05-01T22:59:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://xinyu-yang.github.io/tags/hash/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/tags/heavy-hitter/</loc><lastmod>2021-05-01T22:59:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://xinyu-yang.github.io/categories/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/</loc><lastmod>2021-04-24T21:48:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://xinyu-yang.github.io/posts/21-04-10_climate-change/</loc><lastmod>2021-04-24T21:48:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://xinyu-yang.github.io/posts/21-04-07_bloom-filter/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/posts/21-04-06_count-min-sketch/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/tags/statistics/</loc><lastmod>2021-05-13T00:14:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/posts/21-03-21_markov-and-chebyshev/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/about/</loc><lastmod>2021-05-02T00:31:57&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><xhtml:link
+            <loc>https://xinyu-yang.github.io/categories/math/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://xinyu-yang.github.io/tags/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://xinyu-yang.github.io/en/tags/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="https://xinyu-yang.github.io/tags/"
+                    /></url><url>
+            <loc>https://xinyu-yang.github.io/tags/zk/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://xinyu-yang.github.io/posts/21-05-12_millionaire-problem/</loc><lastmod>2021-05-15T19:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://xinyu-yang.github.io/categories/algorithm/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/posts/21-04-12_count-sketch/</loc><lastmod>2021-05-01T22:59:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://xinyu-yang.github.io/tags/hash/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/tags/heavy-hitter/</loc><lastmod>2021-05-01T22:59:30&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://xinyu-yang.github.io/categories/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/</loc><lastmod>2021-04-24T21:48:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xinyu-yang.github.io/posts/21-04-10_climate-change/</loc><lastmod>2021-04-24T21:48:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://xinyu-yang.github.io/posts/21-04-07_bloom-filter/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/posts/21-04-06_count-min-sketch/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/tags/statistics/</loc><lastmod>2021-05-13T00:14:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/posts/21-03-21_markov-and-chebyshev/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/about/</loc><lastmod>2021-05-02T00:31:57&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://xinyu-yang.github.io/en/about/"
@@ -60,11 +62,11 @@
                     hreflang="zh-cn"
                     href="https://xinyu-yang.github.io/about/"
                     /></url><url>
-            <loc>https://xinyu-yang.github.io/tags/ml/</loc><lastmod>2021-05-13T00:14:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/posts/pca/</loc><lastmod>2021-05-13T00:14:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/posts/euclid/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/tags/math/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://xinyu-yang.github.io/tags/blog/</loc><lastmod>2021-04-21T00:07:11&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority><xhtml:link
+            <loc>https://xinyu-yang.github.io/tags/ml/</loc><lastmod>2021-05-13T00:14:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/posts/pca/</loc><lastmod>2021-05-13T00:14:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/posts/euclid/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/tags/math/</loc><lastmod>2021-05-12T23:59:54&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://xinyu-yang.github.io/tags/blog/</loc><lastmod>2021-04-21T00:07:11&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://xinyu-yang.github.io/en/tags/blog/"
@@ -73,7 +75,7 @@
                     hreflang="zh-cn"
                     href="https://xinyu-yang.github.io/tags/blog/"
                     /></url><url>
-            <loc>https://xinyu-yang.github.io/posts/hello-world/</loc><lastmod>2021-04-21T00:07:11&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority><xhtml:link
+            <loc>https://xinyu-yang.github.io/posts/hello-world/</loc><lastmod>2021-04-21T00:07:11&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://xinyu-yang.github.io/en/posts/hello-world/"
@@ -82,8 +84,8 @@
                     hreflang="zh-cn"
                     href="https://xinyu-yang.github.io/posts/hello-world/"
                     /></url><url>
-            <loc>https://xinyu-yang.github.io/test/hello-world/</loc><lastmod>2021-04-19T00:23:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://xinyu-yang.github.io/categories/record/</loc><lastmod>2021-04-21T00:07:11&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority><xhtml:link
+            <loc>https://xinyu-yang.github.io/test/hello-world/</loc><lastmod>2021-04-19T00:23:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://xinyu-yang.github.io/categories/record/</loc><lastmod>2021-04-21T00:07:11&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://xinyu-yang.github.io/en/categories/record/"
@@ -92,4 +94,4 @@
                     hreflang="zh-cn"
                     href="https://xinyu-yang.github.io/categories/record/"
                     /></url><url>
-            <loc>https://xinyu-yang.github.io/test/</loc><lastmod>2021-04-19T00:23:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url></urlset>
+            <loc>https://xinyu-yang.github.io/test/</loc><lastmod>2021-04-19T00:23:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
