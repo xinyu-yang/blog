@@ -5,7 +5,7 @@ defaultContentLanguage = "zh-cn"
 theme = "EnjoyIt"
 
 # website title
-title = "🐏💗🐟's blog"
+title = "麋鹿博客"
 
 # whether to use robots.txt
 enableRobotsTXT = true
@@ -87,13 +87,13 @@ ignoreErrors = ["error-remote-getjson"]
         weight = 6
     [languages.en.params]
       # site description
-      description = "🐏💗🐟's blog"
+      description = "麋鹿博客"
       # site keywords
       keywords = ["Blog", "Hugo"]
       # App icon config
       [languages.en.params.app]
         # optional site title override for the app when added to an iOS home screen or Android launcher
-        title = "🐏💗🐟's blog"
+        title = "麋鹿博客"
         # whether to omit favicon resource links
         noFavicon = false
         # modern SVG favicon to use in place of older style .png and .ico files
@@ -290,13 +290,13 @@ ignoreErrors = ["error-remote-getjson"]
         weight = 6
     [languages.zh-cn.params]
       # 网站描述
-      description = "🐏💗🐟's blog"
+      description = "麋鹿博客"
       # 网站关键词
       keywords = ["Blog", "Hugo"]
       # 应用图标配置
       [languages.zh-cn.params.app]
         # 当添加到 iOS 主屏幕或者 Android 启动器时的标题, 覆盖默认标题
-        title = "🐏💗🐟's blog"
+        title = "麋鹿博客"
         # 是否隐藏网站图标资源链接
         noFavicon = false
         # 更现代的 SVG 网站图标, 可替代旧的 .png 和 .ico 文件
@@ -448,7 +448,7 @@ ignoreErrors = ["error-remote-getjson"]
       # URL of the LOGO
       logo = ""
       # title name
-      name = "🐏💗🐟's blog"
+      name = "麋鹿博客"
       # you can add extra information before the name (HTML format is supported), such as icons
       #pre = "<i class='fas fa-laptop-code fa-fw'></i>"
       # you can add extra information after the name (HTML format is supported), such as icons

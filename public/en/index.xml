@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>🐏💗🐟&#39;s blog</title>
+        <title>麋鹿博客</title>
         <link>https://xinyu-yang.github.io/en/</link>
-        <description>🐏💗🐟&#39;s blog</description>
+        <description>麋鹿博客</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>yangxinyu75@live.com (Xinyu Yang)</managingEditor>
             <webMaster>yangxinyu75@live.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Mar 2021 16:25:56 &#43;0800</lastBuildDate>
             <atom:link href="https://xinyu-yang.github.io/en/index.xml" rel="self" type="application/rss+xml" />
