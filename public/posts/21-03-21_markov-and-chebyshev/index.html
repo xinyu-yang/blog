@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xinyu-yang.github.io\/posts\/21-03-21_markov-and-chebyshev\/"
-        },"image": ["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "statistics","wordcount":  1297 ,
+        },"image": ["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "statistics","wordcount":  1361 ,
         "url": "https:\/\/xinyu-yang.github.io\/posts\/21-03-21_markov-and-chebyshev\/","datePublished": "2021-03-21T20:22:25+08:00","dateModified": "2021-05-12T23:59:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -115,7 +115,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">马尔可夫与切比雪夫不等式</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/math/"><i class="far fa-folder fa-fw"></i>math</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-21">2021-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1297 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-21">2021-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1361 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
                   <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -130,9 +130,9 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><!--# 马尔可夫与切比雪夫不等式-->
-<p>最近在学习的时候遇到了一些数学证明，本身并不难，其中用到了马尔可夫不等式，但是不知道没有还是忘了，所以准备借此机会复习一下马尔可夫不等式和切比雪夫不等式（这个肯定学过）。针对这两则定理的证明网上很多很好的博客，包括维基百科，本文更像是重复造轮子😂。</p>
+<p>最近在学习的时候遇到了一些数学证明，本身并不难，其中用到了马尔可夫不等式，但是不知道没有还是忘了，所以准备借此机会复习一下马尔可夫不等式和切比雪夫不等式（这个肯定学过）。针对这两则定理的证明网上很多很好的博客，包括维基百科，本文虽然是重复造轮子😂，但主要是为了把思考过程记录下来。</p>
 <h2 id="马尔可夫不等式">马尔可夫不等式</h2>
-<p>首先先把该不等式写下来：
+<p>首先把该不等式写下来：
 $$
 P(x&gt;\alpha) &lt;\frac{\mu}{\alpha}, (x&gt;0)
 $$
@@ -143,7 +143,7 @@ $$
 $$
 P (x&gt;\alpha) &lt;\frac{1}{10}
 $$
-根据图上所示，这明显“不对”啊，因为值主要分布在两端嘛，怎么可能大于$\alpha$的概率仅为1/10呢？</p>
+根据前面所做的设想，这明显“不对”啊，因为值主要分布在两端嘛，怎么可能大于$\alpha$的概率仅为1/10呢？应该是1/2左右吧。</p>
 <p>例子如如下图（这里图画的可能不太准确，其实也不可能准确）:
 <figure><a class="lightgallery" href="https://i.ibb.co/rb7M9F6/image.png" title="“反例”" data-thumbnail="https://i.ibb.co/rb7M9F6/image.png" data-sub-html="<h2>“反例”</h2><p>“反例”</p>">
         <img
@@ -156,9 +156,9 @@ $$
     </a><figcaption class="image-caption">“反例”</figcaption>
     </figure></p>
 <!--<a href="https://imgbb.com/"><img src="https://i.ibb.co/rb7M9F6/image.png" alt="image" border="0"></a>-->
-<p>仔细思考后发现该想法是不对的，因为像是这样的图形是画不出来的。假如两边的两个峰值各占一半，那么其期望不可能特别小，其期望的值应该恰好在两个峰值之间，那么马尔可夫不等式的计算结果为1/2，好像符合实际情况😮</p>
-<p>再假设其期望就是特别小，比如说1，然后两个峰值相差很大分别为0.1，10。那么根据杠杆原理（乱入😁），两个峰值的数据量之比肯定为10:1。那么根据马尔可夫不等式计算出的值1/10好像又是对的😮。
-感觉不对，但是为啥举的例子又都是对的呢？后来仔细想想，应该是其条件限制了x的取值范围大于0，期望就相当于支点，距离支点越远，力矩越大，所以需要的力越小，嗯~~~听起来挺合理😁</p>
+<p>仔细思考后发现该想法是不对的，因为上述想象的图形是画不出来的。假如两边的两个峰值各占一半，那么其期望不可能特别小，其期望的值应该恰好在两个峰值之间，那么马尔可夫不等式的计算结果为1/2，好像符合实际情况😮</p>
+<p>再假设其期望就是特别小，比如说1，然后两个峰值相差很大分别为0.1，10。那么根据杠杆原理（乱入😁），期望相当于支点，则两个峰值的数据量之比肯定为10:1。那么根据马尔可夫不等式计算出的值1/10好像又是对的😮。
+虽然感觉定理不对，但是为啥举的例子又都是对的呢？后来仔细想想，应该是其条件限制了x的取值范围大于0，期望就相当于支点，距离支点越远，力矩越大，所以需要的力越小，即点的数量也就越少，因此可以得到一个概率范围，嗯~~~听起来挺合理😁</p>
 <p>以上只是我一开始的主观想象过程，下面介绍实际的证明：
 $$
 \begin{align}
