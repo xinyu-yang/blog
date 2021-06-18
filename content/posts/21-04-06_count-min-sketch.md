@@ -26,7 +26,7 @@ hiddenFromHomePage: false
 首先介绍算法的过程，初始化$t$个独立的hash函数$h_1, h_2, ...,h_t$，每一个hash函数都是从集合$[n] \to [k]$的映射。然后初始化一个二维矩阵，如下图所示：
 
 <center>
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/Sm77Xd9/image.png" alt="image" align="middle" border="0"></a>
+<a><img src="https://i.loli.net/2021/06/18/3zKatdnRrbDgxeO.png" alt="image" align="middle" border="0"></a>
 </center>
 
 我们假设$t=log(1/\delta), k=2/\epsilon$，至于$\delta,\epsilon$是什么，为什么那么赋值后面会解释，先说一下结论：**当$t,k$选择上述值时，假阳性的值大于$m\cdot \epsilon$的概率小于$\delta$。**

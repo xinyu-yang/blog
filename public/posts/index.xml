@@ -4,7 +4,21 @@
         <link>https://xinyu-yang.github.io/posts/</link>
         <description>所有文章 | 麋鹿博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@live.com (Xinyu Yang)</managingEditor>
-            <webMaster>yangxinyu75@live.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 27 May 2021 23:22:26 &#43;0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yangxinyu75@live.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 14 Jun 2021 19:49:23 &#43;0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>西北游记</title>
+    <link>https://xinyu-yang.github.io/posts/21-06-14_journey-to-northwest/</link>
+    <pubDate>Mon, 14 Jun 2021 19:49:23 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xinyu-yang.github.io/posts/21-06-14_journey-to-northwest/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>AES算法详解</title>
+    <link>https://xinyu-yang.github.io/posts/aes/</link>
+    <pubDate>Sat, 05 Jun 2021 11:19:13 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xinyu-yang.github.io/posts/aes/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>记一篇英文自我介绍</title>
     <link>https://xinyu-yang.github.io/posts/21-05-27_self-intro/</link>
     <pubDate>Thu, 27 May 2021 23:22:26 &#43;0800</pubDate>
@@ -60,19 +74,5 @@
     <author>作者</author>
     <guid>https://xinyu-yang.github.io/posts/pca/</guid>
     <description><![CDATA[主成分分析原理与实现-- 主成分分析是一种矩阵的压缩算法，在减少矩阵维数的同时尽可能的保留原矩阵的信息，简单来说就是将 $n×m$的矩阵转换成$]]></description>
-</item><item>
-    <title>Euclid Algorithm and Extended Euclid Algorithm.</title>
-    <link>https://xinyu-yang.github.io/posts/euclid/</link>
-    <pubDate>Thu, 04 Mar 2021 17:52:31 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/euclid/</guid>
-    <description><![CDATA[欧几里得算法 原理 欧几里得算法是一种快速计算最大公约数的算法，对于任意的两个数$(a,b)$，其最大公约数表示为$gcd(a,b)$，根据欧几]]></description>
-</item><item>
-    <title>Hello World</title>
-    <link>https://xinyu-yang.github.io/posts/hello-world/</link>
-    <pubDate>Thu, 04 Mar 2021 16:25:56 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/hello-world/</guid>
-    <description><![CDATA[The first blog. 博客搭建记录 在阅读了众多的博客搭建教程之后，最终选择了使用github + hugo进行搭建，主题为even. 希望借此博客在互联网上留下一]]></description>
 </item></channel>
 </rss>
