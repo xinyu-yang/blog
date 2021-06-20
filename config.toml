@@ -429,7 +429,7 @@ ignoreErrors = ["error-remote-getjson"]
   # site default theme ("light", "dark", "auto")
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
-  gitRepo = "https://github.com/xinyu-yang/EnjoyIt"
+  gitRepo = "https://github.com/xinyu-yang/xinyu-yang.github.io"
   # which hash function used for SRI, when empty, no SRI is used ("sha256", "sha384", "sha512", "md5")
   fingerprint = "sha256"
   # date format
