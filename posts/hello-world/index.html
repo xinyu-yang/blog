@@ -1,96 +1,361 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Hello World - 麋鹿博客</title><meta name=description content="麋鹿博客"><meta property="og:title" content="Hello World"><meta property="og:description" content="The first blog. 博客搭建记录 在阅读了众多的博客搭建教程之后，最终选择了使用github + hugo进行搭建，主题为even. 希望借此博客在互联网上留下一"><meta property="og:type" content="article"><meta property="og:url" content="https://xinyu-yang.github.io/posts/hello-world/"><meta property="og:image" content="https://xinyu-yang.github.io/logo.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-03-04T16:25:56+08:00"><meta property="article:modified_time" content="2021-04-21T00:07:11+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://xinyu-yang.github.io/logo.png"><meta name=twitter:title content="Hello World"><meta name=twitter:description content="The first blog. 博客搭建记录 在阅读了众多的博客搭建教程之后，最终选择了使用github + hugo进行搭建，主题为even. 希望借此博客在互联网上留下一"><meta name=application-name content="麋鹿博客"><meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/posts/hello-world/><link rel=next href=https://xinyu-yang.github.io/posts/euclid/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.7c109789d1634c2b13017e89b274cc1d968471d213abac9cacad47deca582a11.css integrity="sha256-fBCXidFjTCsTAX6JsnTMHZaEcdITq6ycrK1H3spYKhE="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Hello World","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/posts\/hello-world\/"},"image":["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"blog","wordcount":4115,"url":"https:\/\/xinyu-yang.github.io\/posts\/hello-world\/","datePublished":"2021-03-04T16:25:56+08:00","dateModified":"2021-04-21T00:07:11+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=麋鹿博客>麋鹿博客</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/xinyu-yang/xinyu-yang.github.io title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Hello World - 麋鹿博客</title><meta name=description content="麋鹿博客"><meta property="og:title" content="Hello World">
+<meta property="og:description" content="The first blog. 博客搭建记录 在阅读了众多的博客搭建教程之后，最终选择了使用github + hugo进行搭建，主题为even. 希望借此博客在互联网上留下一">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xinyu-yang.github.io/posts/hello-world/"><meta property="og:image" content="https://xinyu-yang.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-03-04T16:25:56+08:00">
+<meta property="article:modified_time" content="2021-04-21T00:07:11+08:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://xinyu-yang.github.io/logo.png">
+<meta name=twitter:title content="Hello World">
+<meta name=twitter:description content="The first blog. 博客搭建记录 在阅读了众多的博客搭建教程之后，最终选择了使用github + hugo进行搭建，主题为even. 希望借此博客在互联网上留下一">
+<meta name=application-name content="麋鹿博客">
+<meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/posts/hello-world/><link rel=next href=https://xinyu-yang.github.io/posts/euclid/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.7c109789d1634c2b13017e89b274cc1d968471d213abac9cacad47deca582a11.css integrity="sha256-fBCXidFjTCsTAX6JsnTMHZaEcdITq6ycrK1H3spYKhE="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Hello World","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/posts\/hello-world\/"},"image":["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"blog","wordcount":4115,"url":"https:\/\/xinyu-yang.github.io\/posts\/hello-world\/","datePublished":"2021-03-04T16:25:56+08:00","dateModified":"2021-04-21T00:07:11+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=麋鹿博客>麋鹿博客</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> 所有文章 </a><a class=menu-item href=/tags/> 标签 </a><a class=menu-item href=/categories/> 分类 </a><a class=menu-item href=/about/> 关于 </a><a class=menu-item href=https://github.com/xinyu-yang/xinyu-yang.github.io title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
 <select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/en/posts/hello-world/>English</option><option value=/posts/hello-world/ selected>简体中文</option></select>
-</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a>
-<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a>
-<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
-</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=麋鹿博客>麋鹿博客</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a>
-<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a>
-<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/ title>所有文章</a><a class=menu-item href=/tags/ title>标签</a><a class=menu-item href=/categories/ title>分类</a><a class=menu-item href=/about/ title>关于</a><a class=menu-item href=https://github.com/xinyu-yang/xinyu-yang.github.io title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+</a><span class="menu-item search" id=search-desktop>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=麋鹿博客>麋鹿博客</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+取消
+</a>
+</div><a class=menu-item href=/posts/ title>所有文章</a><a class=menu-item href=/tags/ title>标签</a><a class=menu-item href=/categories/ title>分类</a><a class=menu-item href=/about/ title>关于</a><a class=menu-item href=https://github.com/xinyu-yang/xinyu-yang.github.io title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
 <i class="fas fa-adjust fa-fw"></i>
 </a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
-<select class=language-select onchange="location=this.value"><option value=/en/posts/hello-world/>English</option><option value=/posts/hello-world/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Hello World</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/record/><i class="far fa-folder fa-fw"></i>record</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-03-04>2021-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4115 字&nbsp;
+<select class=language-select onchange="location=this.value"><option value=/en/posts/hello-world/>English</option><option value=/posts/hello-world/ selected>简体中文</option></select>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>目录</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Hello World</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/record/><i class="far fa-folder fa-fw"></i>record</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-03-04>2021-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4115 字&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
-<span id=busuanzi_container_page_pv class=more-meta><span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#博客搭建记录>博客搭建记录</a><ul><li><a href=#软件安装>软件安装</a></li><li><a href=#网站和主题配置>网站和主题配置</a></li><li><a href=#写博客>写博客</a></li><li><a href=#使用github发布博客>使用github发布博客</a></li><li><a href=#图床>图床</a></li></ul></li></ul></nav></div></div><div class=content id=content><!--# Hello World.--><hr><p>The first blog.</p><hr><h2 id=博客搭建记录>博客搭建记录</h2><p>在阅读了众多的博客搭建教程之后，最终选择了使用<code>github</code> + <a href=gohugo.io rel>hugo</a>进行搭建，主题为<a href=https://hugo-theme-even.netlify.app/ target=_blank rel="noopener noreferrer">even</a>. 希望借此博客在互联网上留下一点有价值的东西，同时作为自己的学习笔记，温故而知新。</p><h3 id=软件安装>软件安装</h3><p>首先进行相应软件的安装，具体可以参考官方文档的安装步骤。本文以ubuntu举例说明。在ubuntu上可直接使用<code>apt</code>进行安装，但是使用该方法安装的hugo软件版本过低，会导致本文所使用的主题even无法使用（我所使用的even要求最低版本为0.60），而且这个问题可能在其他主题上也存在。总而言之，建议直接安装最新版本，可直接到<a href=https://github.com/gohugoio/hugo/releases target=_blank rel="noopener noreferrer">release</a>下载。</p><h3 id=网站和主题配置>网站和主题配置</h3><p>软件安装好了之后，可以创建一个文件夹作为根目录(如<code>mkdir blog</code>)并使用<code>git init</code>进行初始化，然后在该目录下进行hugo的初始化，初始化操作为</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>hugo new site <span class=o>[</span>blogs name<span class=o>]</span>
-</code></pre></td></tr></table></div></div><p>然后在该目录下就会创建一些文件夹，如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#博客搭建记录>博客搭建记录</a>
+<ul>
+<li><a href=#软件安装>软件安装</a></li>
+<li><a href=#网站和主题配置>网站和主题配置</a></li>
+<li><a href=#写博客>写博客</a></li>
+<li><a href=#使用github发布博客>使用github发布博客</a></li>
+<li><a href=#图床>图床</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><!--# Hello World.-->
+<hr>
+<p>The first blog.</p>
+<hr>
+<h2 id=博客搭建记录>博客搭建记录</h2>
+<p>在阅读了众多的博客搭建教程之后，最终选择了使用<code>github</code> + <a href=gohugo.io rel>hugo</a>进行搭建，主题为<a href=https://hugo-theme-even.netlify.app/ target=_blank rel="noopener noreferrer">even</a>. 希望借此博客在互联网上留下一点有价值的东西，同时作为自己的学习笔记，温故而知新。</p>
+<h3 id=软件安装>软件安装</h3>
+<p>首先进行相应软件的安装，具体可以参考官方文档的安装步骤。本文以ubuntu举例说明。在ubuntu上可直接使用<code>apt</code>进行安装，但是使用该方法安装的hugo软件版本过低，会导致本文所使用的主题even无法使用（我所使用的even要求最低版本为0.60），而且这个问题可能在其他主题上也存在。总而言之，建议直接安装最新版本，可直接到<a href=https://github.com/gohugoio/hugo/releases target=_blank rel="noopener noreferrer">release</a>下载。</p>
+<h3 id=网站和主题配置>网站和主题配置</h3>
+<p>软件安装好了之后，可以创建一个文件夹作为根目录(如<code>mkdir blog</code>)并使用<code>git init</code>进行初始化，然后在该目录下进行hugo的初始化，初始化操作为</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>hugo new site <span class=o>[</span>blogs name<span class=o>]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后在该目录下就会创建一些文件夹，如：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
 </span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>README.md  
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>README.md  
 archetypes 
 config.toml
 content    
 public     
 resources  
 themes     
-</code></pre></td></tr></table></div></div><p>文件夹的具体作用我正在继续摸索，现在大概知道<code>config.toml</code>是全局配置文件；<code>content</code>文件夹中放置的是博客的内容，如本博客的路径就是<code>content/post/hello-world</code>；<code>themes</code>中所存放的就是主题文件，文件夹下可有多个主题，但是在使用的时候只能指定其中一个；<code>public</code>中所存放的是一些经过编译的网页内容，即使用markdown编写的博客经过编译以后会放到这个文件夹里，但具体的组织结构还没搞明白，待后续研究；<code>archetypes</code>中存放的好像是模板之类的东西，同样待后续研究。</p><p>接下来讨论怎么设置主题，经过一段时间纠结的筛选后，决定暂时使用<code>even</code>主题，主要原因有：</p><ul><li>主题看来还算简洁</li><li>维护还算活跃</li><li>该主题是一个博客性质的主题，比较符合目前需求</li><li>该主题的开发者是国人同胞，可能比较符合国人的应用习惯</li></ul><p>选定主题后，就将该<a href=https://github.com/olOwOlo/hugo-theme-even target=_blank rel="noopener noreferrer">主题</a>clone到themes文件夹下并命名为even。然后将该仓库添加为本仓库的子模块。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>git submodule add https://github.com/olOwOlo/hugo-theme-even ./themes/even
-</code></pre></td></tr></table></div></div><p>然后可以参考even主题的教程，将其配置文件进行拷贝和自行配置。其配置方面的文档较少，但好处是其配置文档中都使用了中文对其作用和用法进行了大概的注释，同样也可以根据需求进行增添内容，具体细节将后续进行学习。</p><p>&mdash;&mdash;&mdash;&mdash;21/04/07更新&mdash;&mdash;&mdash;&ndash;</p><p>感觉even有些功能不理想，比如说分类和标签没有任何区分度，并且作者似乎已经停止开发了，所以准备转到LoveIt的继任者<a href=https://github.com/sunt-programator/CodeIT target=_blank rel="noopener noreferrer">CodeIT</a>上，不过even也有优点，就是作者是国人，所以一些特性（如百度统计、不蒜子等）还是挺符合国人习惯和应用需求的。
-但是写博客不就是为了折腾吗？😂，把仅有的几个博客来回迁移:laugh:。选定新的主题后，准备进行迁移，下面准备讲述更新过程。使用这两个主题的时候都会遇到一个问题，就是数学公式的显示问题，感觉两个主题都有一些不尽如人意的地方，接下来将讲述我遇到的问题，以及目前所采用的方式。希望以后能够有机会了解hugo的细节，从而更好的解决该问题。</p><p>首先是even主题，该主题使用的是mathjax进行公式的渲染，经过网上了解，mathjax是一个很成熟的解决方案，所以其对数学公式的支持还是很完善的，但是在使用较复杂的数学公式环境过程中还是遇到了一个问题，如:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>文件夹的具体作用我正在继续摸索，现在大概知道<code>config.toml</code>是全局配置文件；<code>content</code>文件夹中放置的是博客的内容，如本博客的路径就是<code>content/post/hello-world</code>；<code>themes</code>中所存放的就是主题文件，文件夹下可有多个主题，但是在使用的时候只能指定其中一个；<code>public</code>中所存放的是一些经过编译的网页内容，即使用markdown编写的博客经过编译以后会放到这个文件夹里，但具体的组织结构还没搞明白，待后续研究；<code>archetypes</code>中存放的好像是模板之类的东西，同样待后续研究。</p>
+<p>接下来讨论怎么设置主题，经过一段时间纠结的筛选后，决定暂时使用<code>even</code>主题，主要原因有：</p>
+<ul>
+<li>主题看来还算简洁</li>
+<li>维护还算活跃</li>
+<li>该主题是一个博客性质的主题，比较符合目前需求</li>
+<li>该主题的开发者是国人同胞，可能比较符合国人的应用习惯</li>
+</ul>
+<p>选定主题后，就将该<a href=https://github.com/olOwOlo/hugo-theme-even target=_blank rel="noopener noreferrer">主题</a>clone到themes文件夹下并命名为even。然后将该仓库添加为本仓库的子模块。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>git submodule add https://github.com/olOwOlo/hugo-theme-even ./themes/even
+</code></pre></td></tr></table>
+</div>
+</div><p>然后可以参考even主题的教程，将其配置文件进行拷贝和自行配置。其配置方面的文档较少，但好处是其配置文档中都使用了中文对其作用和用法进行了大概的注释，同样也可以根据需求进行增添内容，具体细节将后续进行学习。</p>
+<p>&mdash;&mdash;&mdash;&mdash;21/04/07更新&mdash;&mdash;&mdash;&ndash;</p>
+<p>感觉even有些功能不理想，比如说分类和标签没有任何区分度，并且作者似乎已经停止开发了，所以准备转到LoveIt的继任者<a href=https://github.com/sunt-programator/CodeIT target=_blank rel="noopener noreferrer">CodeIT</a>上，不过even也有优点，就是作者是国人，所以一些特性（如百度统计、不蒜子等）还是挺符合国人习惯和应用需求的。
+但是写博客不就是为了折腾吗？😂，把仅有的几个博客来回迁移:laugh:。选定新的主题后，准备进行迁移，下面准备讲述更新过程。使用这两个主题的时候都会遇到一个问题，就是数学公式的显示问题，感觉两个主题都有一些不尽如人意的地方，接下来将讲述我遇到的问题，以及目前所采用的方式。希望以后能够有机会了解hugo的细节，从而更好的解决该问题。</p>
+<p>首先是even主题，该主题使用的是mathjax进行公式的渲染，经过网上了解，mathjax是一个很成熟的解决方案，所以其对数学公式的支持还是很完善的，但是在使用较复杂的数学公式环境过程中还是遇到了一个问题，如:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>\begin{align}
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown>\begin{align}
 x <span class=err>&amp;</span>= y + 1 \\
 y <span class=err>&amp;</span>= z + 2
 \end{align}
-</code></pre></td></tr></table></div></div><p>在$\LaTeX$中是没有问题的，但是在hugo就无法被正确渲染，只有将换行符<code>\\</code>更改为<code>\\\\</code>才能正常工作，好像看到网上有相关的讨论（没有记录），说导致该问题的原因是markdown编译器在进行解析的时候会将第一斜杠解释为<em>转义</em>，那么最后的结果是只剩一个斜杠，所以如果想让其最后仍然有两个斜杠，则不得不用四个斜杠。虽说敲四个斜杠是麻烦了点，但是好歹问题算是大概解决了。</p><p>后来试用CodeIT主题时则出现了更严重的问题，主要是因为该主题使用的是据说是性能更好的$KaTeX$渲染器。该渲染器作为托管在github的开源项目还是挺受欢迎的，但是katex对于公式的支持就不那么完善了，截止到目前的最新版本0.13.0，刚能够支持诸如<code>align,align*</code>等环境。而CodeIT使用的仍然是0.11.1的老版本，但这还不是主要问题，主要问题是原本在mathjax中可行的方案在katex中不可行了，比如根据<a href=https://katex.org/docs/0.11.1/supported.html target=_blank rel="noopener noreferrer">文档</a>katex v0.11.1中是支持<code>aligned</code>环境的，但是以下代码并不能够被正确渲染：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>在$\LaTeX$中是没有问题的，但是在hugo就无法被正确渲染，只有将换行符<code>\\</code>更改为<code>\\\\</code>才能正常工作，好像看到网上有相关的讨论（没有记录），说导致该问题的原因是markdown编译器在进行解析的时候会将第一斜杠解释为<em>转义</em>，那么最后的结果是只剩一个斜杠，所以如果想让其最后仍然有两个斜杠，则不得不用四个斜杠。虽说敲四个斜杠是麻烦了点，但是好歹问题算是大概解决了。</p>
+<p>后来试用CodeIT主题时则出现了更严重的问题，主要是因为该主题使用的是据说是性能更好的$KaTeX$渲染器。该渲染器作为托管在github的开源项目还是挺受欢迎的，但是katex对于公式的支持就不那么完善了，截止到目前的最新版本0.13.0，刚能够支持诸如<code>align,align*</code>等环境。而CodeIT使用的仍然是0.11.1的老版本，但这还不是主要问题，主要问题是原本在mathjax中可行的方案在katex中不可行了，比如根据<a href=https://katex.org/docs/0.11.1/supported.html target=_blank rel="noopener noreferrer">文档</a>katex v0.11.1中是支持<code>aligned</code>环境的，但是以下代码并不能够被正确渲染：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>\begin{aligned}
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown>\begin{aligned}
 x <span class=err>&amp;</span>= y + 1 \\\\
 y <span class=err>&amp;</span>= z + 2
 \end{aligned}
-</code></pre></td></tr></table></div></div><p>该代码可以在even主题下正常工作，但是无法在CodeIT在工作，经网上搜索，发现了该<a href=https://github.com/halogenica/beautifulhugo/issues/183 target=_blank rel="noopener noreferrer">解决方案</a>，经该方案介绍，使用如下代码可正常工作：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>该代码可以在even主题下正常工作，但是无法在CodeIT在工作，经网上搜索，发现了该<a href=https://github.com/halogenica/beautifulhugo/issues/183 target=_blank rel="noopener noreferrer">解决方案</a>，经该方案介绍，使用如下代码可正常工作：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>\begin{aligned}
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown>\begin{aligned}
 x <span class=err>&amp;</span>= y + 1 \cr
 y <span class=err>&amp;</span>= z + 2
 \end{aligned}
-</code></pre></td></tr></table></div></div><p>其效果为：
+</code></pre></td></tr></table>
+</div>
+</div><p>其效果为：
 $$
 \begin{aligned}
 x &= y + 1 \cr
 y &= z + 2
 \end{aligned}
-$$</p><p>主要改动为将斜杠更换为<code>\cr</code>，经测试可以正常工作，然后将该方式在even主题中测试也可以工作，所以就计划采用这种方式来代替双斜杠的功能，虽然感觉像是最后对问题的妥协，但是好歹是解决了该问题😂</p><p>后来有对问题做进一步的探索，做法是在浏览器中查看网页的源代码，我发现使用斜杠做为换行符的方式都会在公式行的最后引入一个<code>&lt;br></code>标签，如下所示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+$$</p>
+<p>主要改动为将斜杠更换为<code>\cr</code>，经测试可以正常工作，然后将该方式在even主题中测试也可以工作，所以就计划采用这种方式来代替双斜杠的功能，虽然感觉像是最后对问题的妥协，但是好歹是解决了该问题😂</p>
+<p>后来有对问题做进一步的探索，做法是在浏览器中查看网页的源代码，我发现使用斜杠做为换行符的方式都会在公式行的最后引入一个<code>&lt;br></code>标签，如下所示：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>\begin{aligned}
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-html data-lang=html>\begin{aligned}
 x <span class=ni>&amp;amp;</span>= y + 1 \\ <span class=p>&lt;</span><span class=nt>br</span><span class=p>&gt;</span>
 y <span class=ni>&amp;amp;</span>= z + 2
 \end{aligned}
-</code></pre></td></tr></table></div></div><p>具有标签的代码在使用mathjax渲染器的时候是可以被正常渲染的，但是在katex中却不行。而使用<code>\cr</code>进行换行则不会引入<code>&lt;br></code>标签，因此在katex中可用。
-最后附上将换行符更改为<code>\cr</code>的命令:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-shell data-lang=shell>sed -i <span class=s1>&#39;s/\\\\\\\\/\\cr/&#39;</span> <span class=o>[</span>blogname<span class=o>]</span>.md
-</code></pre></td></tr></table></div></div><p>&mdash;&mdash;&mdash;&mdash;21/04/08更新&mdash;&mdash;&mdash;&ndash;</p><p>除上述所示问题外，今天又遇到了另外一个问题，那就是在公式中使用特殊字符（如%）时需要进行转义，一般写为<code>\%</code>，但是这又会遇到一个问题，就是在$符号之间的字符不能够像在 ` 符号中那样被免于转义。也就是说<code>\%</code>中的斜杠会在markdown解析的过程中解析为转义字符，因此到公式解析器的时候剩下的就只剩一个%符号了，所以需要使用两个符号才行。关于这个问题，感觉主要问题还是在markdown解析器那里没有执行正确的解析。当然，以上只是我的猜想，有时间我会去验证的。</p><p>知道问题之后的解决方式呢？如果实在不得不用特殊字符的转义，那就使用上述方法，可以解决。如果不是必要，比如我这里就是将%作为模运算符号，其实math里有专门的符号<code>\mod</code>表示该含义，所以出于兼容性期间，决定使用<code>\mod</code>符号，因为万一哪一天markdown解析器可以正常解析了，岂不是还要把两个斜线换成一个。</p><p>同时这里有一个总结：<strong>在markdown的公式环境中尽量减少使用转义符👉<code>\</code>👈</strong></p><h3 id=写博客>写博客</h3><p>上面已经进行了大概的配置，下面将介绍怎么写一篇博客。首先使用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>hugo new post/hello-world
-</code></pre></td></tr></table></div></div><p>创建一个新的博客，该命令将创建一个文件：<code>content/post/hello-world.md</code>。该文件会包含一个文件头</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>具有标签的代码在使用mathjax渲染器的时候是可以被正常渲染的，但是在katex中却不行。而使用<code>\cr</code>进行换行则不会引入<code>&lt;br></code>标签，因此在katex中可用。
+最后附上将换行符更改为<code>\cr</code>的命令:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>sed -i <span class=s1>&#39;s/\\\\\\\\/\\cr/&#39;</span> <span class=o>[</span>blogname<span class=o>]</span>.md
+</code></pre></td></tr></table>
+</div>
+</div><p>&mdash;&mdash;&mdash;&mdash;21/04/08更新&mdash;&mdash;&mdash;&ndash;</p>
+<p>除上述所示问题外，今天又遇到了另外一个问题，那就是在公式中使用特殊字符（如%）时需要进行转义，一般写为<code>\%</code>，但是这又会遇到一个问题，就是在$符号之间的字符不能够像在 ` 符号中那样被免于转义。也就是说<code>\%</code>中的斜杠会在markdown解析的过程中解析为转义字符，因此到公式解析器的时候剩下的就只剩一个%符号了，所以需要使用两个符号才行。关于这个问题，感觉主要问题还是在markdown解析器那里没有执行正确的解析。当然，以上只是我的猜想，有时间我会去验证的。</p>
+<p>知道问题之后的解决方式呢？如果实在不得不用特殊字符的转义，那就使用上述方法，可以解决。如果不是必要，比如我这里就是将%作为模运算符号，其实math里有专门的符号<code>\mod</code>表示该含义，所以出于兼容性期间，决定使用<code>\mod</code>符号，因为万一哪一天markdown解析器可以正常解析了，岂不是还要把两个斜线换成一个。</p>
+<p>同时这里有一个总结：<strong>在markdown的公式环境中尽量减少使用转义符👉<code>\</code>👈</strong></p>
+<h3 id=写博客>写博客</h3>
+<p>上面已经进行了大概的配置，下面将介绍怎么写一篇博客。首先使用</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>hugo new post/hello-world
+</code></pre></td></tr></table>
+</div>
+</div><p>创建一个新的博客，该命令将创建一个文件：<code>content/post/hello-world.md</code>。该文件会包含一个文件头</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>title: ***
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>title: ***
 date: 202***
 draft: true
-</code></pre></td></tr></table></div></div><p>draft一栏默认为<code>true</code>，如果想要发布该博客，需要将其修改为<code>false</code>。</p><p>hugo的一个好处就是可以边写博客边进行调试，其具体操作为：在主目录下（即blog/）运行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>hugo server -D
-</code></pre></td></tr></table></div></div><p>该命令将启动一个本地服务，端口号为1313，在本地使用浏览器访问：<a href=http://localhost:1313 target=_blank rel="noopener noreferrer">http://localhost:1313</a>即可在线预览自己的博客内容。每次保存文件时，hugo都会自动进行编译，速度很快，几乎实现了markdown的同步预览，非常方便！</p><p>在发布之前应该使用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>hugo -D
-</code></pre></td></tr></table></div></div><p>编译一下，至此已经可以实现基本的功能</p><h3 id=使用github发布博客>使用github发布博客</h3><p>首先要有一个github账号，然后创建一个新的仓库，其名字为：[your github id].github.io，关于这方面的教程非常多，也很简单，这里就不再赘述。然后其部署可参考<a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/#build-hugo-with-github-action target=_blank rel="noopener noreferrer">https://gohugo.io/hosting-and-deployment/hosting-on-github/#build-hugo-with-github-action</a>。其操作非常方便，只需要创建一个文件，然后将一些github action代码复制进去就行了。具体原理后续研究&mldr;(这里不得不感叹一句，github的功能比我想象的要强大多了!)</p><p>然后就是将本地文件(即blog/文件夹)push到所创建的仓库中。最后需要注意的是在上面所创建的仓库的设置页面要进行一定的设置，其位置为<code>setting->github pages->source</code>，需要将branch更改为<code>gh-pages</code>，路径为<code>root</code>，在这里还可以设置定制化的域名等，这里先暂时不研究。通过以上设置应该就可以成功访问页面了。如本博客主页为：<em><a href=http://xinyu-yang.github.io>http://xinyu-yang.github.io</a></em></p><p>还有很多功能待后续学习更新&mldr;</p><h3 id=图床>图床</h3><p>以前用CSDN和博客园写的时候根本不用考虑这个问题，但是现在自己搭建博客的时候就需要好好考虑一下这个问题。一开始惊喜的发现有很多的免费图床网站（比如imgbb），开心的以为这个问题解决了，后来发现没那么简单。因为这些免费的图床往往有很多限制，比如上面举例说的这个imgbb，该网站一开始用着还行，可是过几天再在博客里加载图片时只能加载出缩略图了。
+</code></pre></td></tr></table>
+</div>
+</div><p>draft一栏默认为<code>true</code>，如果想要发布该博客，需要将其修改为<code>false</code>。</p>
+<p>hugo的一个好处就是可以边写博客边进行调试，其具体操作为：在主目录下（即blog/）运行</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>hugo server -D
+</code></pre></td></tr></table>
+</div>
+</div><p>该命令将启动一个本地服务，端口号为1313，在本地使用浏览器访问：<a href=http://localhost:1313 target=_blank rel="noopener noreferrer">http://localhost:1313</a>即可在线预览自己的博客内容。每次保存文件时，hugo都会自动进行编译，速度很快，几乎实现了markdown的同步预览，非常方便！</p>
+<p>在发布之前应该使用</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>hugo -D
+</code></pre></td></tr></table>
+</div>
+</div><p>编译一下，至此已经可以实现基本的功能</p>
+<h3 id=使用github发布博客>使用github发布博客</h3>
+<p>首先要有一个github账号，然后创建一个新的仓库，其名字为：[your github id].github.io，关于这方面的教程非常多，也很简单，这里就不再赘述。然后其部署可参考<a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/#build-hugo-with-github-action target=_blank rel="noopener noreferrer">https://gohugo.io/hosting-and-deployment/hosting-on-github/#build-hugo-with-github-action</a>。其操作非常方便，只需要创建一个文件，然后将一些github action代码复制进去就行了。具体原理后续研究&mldr;(这里不得不感叹一句，github的功能比我想象的要强大多了!)</p>
+<p>然后就是将本地文件(即blog/文件夹)push到所创建的仓库中。最后需要注意的是在上面所创建的仓库的设置页面要进行一定的设置，其位置为<code>setting->github pages->source</code>，需要将branch更改为<code>gh-pages</code>，路径为<code>root</code>，在这里还可以设置定制化的域名等，这里先暂时不研究。通过以上设置应该就可以成功访问页面了。如本博客主页为：<em><a href=http://xinyu-yang.github.io target=_blank rel="noopener noreferrer">http://xinyu-yang.github.io</a></em></p>
+<p>还有很多功能待后续学习更新&mldr;</p>
+<h3 id=图床>图床</h3>
+<p>以前用CSDN和博客园写的时候根本不用考虑这个问题，但是现在自己搭建博客的时候就需要好好考虑一下这个问题。一开始惊喜的发现有很多的免费图床网站（比如imgbb），开心的以为这个问题解决了，后来发现没那么简单。因为这些免费的图床往往有很多限制，比如上面举例说的这个imgbb，该网站一开始用着还行，可是过几天再在博客里加载图片时只能加载出缩略图了。
 后来就寻求解决方案，最后的决定是仍然使用开源的代码托管网站托管图片，把白嫖进行到底😂。最终我决定使用<a href=https://picgo.github.io/ target=_blank rel="noopener noreferrer">PicGo</a>+(Gitee/Gitlab/Github)实现。
-因为Gitee是国内的网站，加载较快，另外就是还没有使用Gitee托管代码的打算，所以不如注册个账号专门用来托管图片，综合以上原因，最终使用了Gitee。但是Gitee也有很多缺点，缺点之一就是空间太小了（这里不得不吐槽一句，本来就是模仿者，又那么小气，没有任何优势，难怪没人用啊~）。</p><p>下图是Gitee示例：</p><p><figure><a class=lightgallery href=https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg title=测试 data-thumbnail=https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg data-sub-html="<h2>测试图片</h2><p>测试</p>"><img class=lazyload src=/svg/loading.min.svg data-src=https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg data-srcset="https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg, https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg 1.5x, https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg 2x" data-sizes=auto alt=https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg></a><figcaption class=image-caption>测试图片</figcaption></figure></p><p>最后不得不说一下，感觉PicGo真的是开源代码的典范，自己提供一个框架和一套接口，其他人可以按照接口开发各种各样的代码。我感觉对于实用性的工具应用，这种开发方式非常合适。
-功能强大，但不臃肿，用户有足够多的定制选择权。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2021-04-21&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/xinyu-yang.github.io/commit/5fecef24c352e5e1291a2355c668661ecd57a63c target=_blank rel="noopener noreferrer" title="commit by yxy.gram(yangxinyu75@live.com) 5fecef24c352e5e1291a2355c668661ecd57a63c: add some en files, update favicons.">
-<i class="fas fa-hashtag fa-fw"></i>5fecef2</a></span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/posts/hello-world/index.md target=_blank rel="noopener noreferrer">阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://xinyu-yang.github.io/posts/hello-world/ data-title="Hello World" data-hashtags=blog><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://xinyu-yang.github.io/posts/hello-world/ data-hashtag=blog><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://xinyu-yang.github.io/posts/hello-world/ data-title="Hello World"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://xinyu-yang.github.io/posts/hello-world/ data-title="Hello World"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://xinyu-yang.github.io/posts/hello-world/ data-title="Hello World"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/blog/>blog</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/euclid/ class=next rel=next title="Euclid Algorithm and Extended Euclid Algorithm.">Euclid Algorithm and Extended Euclid Algorithm.<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=utterances></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><span id=busuanzi_container_site_pv>本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次</span>
+因为Gitee是国内的网站，加载较快，另外就是还没有使用Gitee托管代码的打算，所以不如注册个账号专门用来托管图片，综合以上原因，最终使用了Gitee。但是Gitee也有很多缺点，缺点之一就是空间太小了（这里不得不吐槽一句，本来就是模仿者，又那么小气，没有任何优势，难怪没人用啊~）。</p>
+<p>下图是Gitee示例：</p>
+<p><figure><a class=lightgallery href=https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg title=测试 data-thumbnail=https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg data-sub-html="<h2>测试图片</h2><p>测试</p>">
+<img class=lazyload src=/svg/loading.min.svg data-src=https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg data-srcset="https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg, https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg 1.5x, https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg 2x" data-sizes=auto alt=https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg>
+</a><figcaption class=image-caption>测试图片</figcaption>
+</figure></p>
+<p>最后不得不说一下，感觉PicGo真的是开源代码的典范，自己提供一个框架和一套接口，其他人可以按照接口开发各种各样的代码。我感觉对于实用性的工具应用，这种开发方式非常合适。
+功能强大，但不臃肿，用户有足够多的定制选择权。</p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>更新于 2021-04-21&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/xinyu-yang.github.io/commit/5fecef24c352e5e1291a2355c668661ecd57a63c target=_blank rel="noopener noreferrer" title="commit by yxy.gram(yangxinyu75@live.com) 5fecef24c352e5e1291a2355c668661ecd57a63c: add some en files, update favicons.">
+<i class="fas fa-hashtag fa-fw"></i>5fecef2</a></span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/posts/hello-world/index.md target=_blank rel="noopener noreferrer">阅读原始文档</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://xinyu-yang.github.io/posts/hello-world/ data-title="Hello World" data-hashtags=blog><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://xinyu-yang.github.io/posts/hello-world/ data-hashtag=blog><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://xinyu-yang.github.io/posts/hello-world/ data-title="Hello World"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://xinyu-yang.github.io/posts/hello-world/ data-title="Hello World"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://xinyu-yang.github.io/posts/hello-world/ data-title="Hello World"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/blog/>blog</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
+</section>
+</div>
+<div class=post-nav>
+<a href=/posts/euclid/ class=next rel=next title="Euclid Algorithm and Extended Euclid Algorithm.">Euclid Algorithm and Extended Euclid Algorithm.<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
 <span class=division>•</span>
-<span id=busuanzi_container_site_uv>本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人</span></div><div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreferrer" title="Hugo 0.85.0">Hugo</a> - <a href=https://github.com/xinyu-yang/EnjoyIt target=_blank rel="noopener noreferrer" title="EnjoyIt 0.0.1"><i class="fas fa-heart fa-fw"></i> EnjoyIt</a><span class=division> •</span>
-<i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank rel="noopener noreferrer">Xinyu Yang</a></span>&nbsp;•&nbsp;<span class=license><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i>
-</a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:10},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"xinyu-yang/xinyu-yang.github.io"}},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{algoliaAppID:"PASDMWALPK",algoliaIndex:"index.zh-cn",algoliaSearchKey:"b42948e51daaa93df92381c8e2ac0f93",highlightTag:"em",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"algolia"}}</script><script type=text/javascript src=/js/theme.min.d1b26d23ac62a6d4bfafb3292c82d97770d7585d5c60e8d254d46fd9555fc69b.js integrity="sha256-0bJtI6xiptS/r7MpLILZd3DXWF1cYOjSVNRv2VVfxps="></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-NSNR248K3V')</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-NSNR248K3V" async></script><script id=baidu_analytics type=text/javascript>var _hmt=_hmt||[];(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement("script"),a.async=!0,a.src="https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></body></html>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreferrer" title="Hugo 0.88.1">Hugo</a> - <a href=https://github.com/xinyu-yang/EnjoyIt target=_blank rel="noopener noreferrer" title="EnjoyIt 0.0.1"><i class="fas fa-heart fa-fw"></i> EnjoyIt</a><span class=division> • </span>
+<i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank rel="noopener noreferrer">Xinyu Yang</a></span>&nbsp;•&nbsp;<span class=license><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论>
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:10},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"xinyu-yang/xinyu-yang.github.io"}},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{algoliaAppID:"PASDMWALPK",algoliaIndex:"index.zh-cn",algoliaSearchKey:"b42948e51daaa93df92381c8e2ac0f93",highlightTag:"em",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"algolia"}}</script><script type=text/javascript src=/js/theme.min.d1b26d23ac62a6d4bfafb3292c82d97770d7585d5c60e8d254d46fd9555fc69b.js integrity="sha256-0bJtI6xiptS/r7MpLILZd3DXWF1cYOjSVNRv2VVfxps="></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-NSNR248K3V')</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-NSNR248K3V" async></script><script id=baidu_analytics type=text/javascript>var _hmt=_hmt||[];(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement("script"),a.async=!0,a.src="https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></body>
+</html>
