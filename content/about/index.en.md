@@ -35,4 +35,6 @@ A programmer, ~~pursuing a master degree, will soon graduate if luck :joy:~~, a 
 
 Although there is an English option, most of the content of this blog will be in Simplified Chinese, for now at least.
 
-[TODO List](../../test/todo/) of this blog.
+This blog will inregularly update based on time, :point_right:[TODO List](../../test/todo/) of this blog.
+
+Welcome friendly comments :point_down:
