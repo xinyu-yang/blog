@@ -8,7 +8,7 @@ author: ""
 authorLink: ""
 description: ""
 
-tags: ["picture bed"]
+tags: ["blog"]
 categories: ["record"]
 
 hiddenFromHomePage: false
