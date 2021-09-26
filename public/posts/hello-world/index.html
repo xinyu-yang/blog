@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xinyu-yang.github.io\/posts\/hello-world\/"
-        },"image": ["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "blog","wordcount":  4115 ,
+        },"image": ["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "blog","wordcount":  3900 ,
         "url": "https:\/\/xinyu-yang.github.io\/posts\/hello-world\/","datePublished": "2021-03-04T16:25:56+08:00","dateModified": "2021-04-21T00:07:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": {
@@ -115,8 +115,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Hello World</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/record/"><i class="far fa-folder fa-fw"></i>record</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-04">2021-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4115 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-04">2021-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3900 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
                   <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -328,22 +328,9 @@ draft: true
 <p>然后就是将本地文件(即blog/文件夹)push到所创建的仓库中。最后需要注意的是在上面所创建的仓库的设置页面要进行一定的设置，其位置为<code>setting-&gt;github pages-&gt;source</code>，需要将branch更改为<code>gh-pages</code>，路径为<code>root</code>，在这里还可以设置定制化的域名等，这里先暂时不研究。通过以上设置应该就可以成功访问页面了。如本博客主页为：<em><a href="http://xinyu-yang.github.io">http://xinyu-yang.github.io</a></em></p>
 <p>还有很多功能待后续学习更新&hellip;</p>
 <h3 id="图床">图床</h3>
-<p>以前用CSDN和博客园写的时候根本不用考虑这个问题，但是现在自己搭建博客的时候就需要好好考虑一下这个问题。一开始惊喜的发现有很多的免费图床网站（比如imgbb），开心的以为这个问题解决了，后来发现没那么简单。因为这些免费的图床往往有很多限制，比如上面举例说的这个imgbb，该网站一开始用着还行，可是过几天再在博客里加载图片时只能加载出缩略图了。
-后来就寻求解决方案，最后的决定是仍然使用开源的代码托管网站托管图片，把白嫖进行到底😂。最终我决定使用<a href="https://picgo.github.io/" target="_blank" rel="noopener noreferrer">PicGo</a>+(Gitee/Gitlab/Github)实现。
-因为Gitee是国内的网站，加载较快，另外就是还没有使用Gitee托管代码的打算，所以不如注册个账号专门用来托管图片，综合以上原因，最终使用了Gitee。但是Gitee也有很多缺点，缺点之一就是空间太小了（这里不得不吐槽一句，本来就是模仿者，又那么小气，没有任何优势，难怪没人用啊~）。</p>
-<p>下图是Gitee示例：</p>
-<p><figure><a class="lightgallery" href="https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg" title="测试" data-thumbnail="https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg" data-sub-html="<h2>测试图片</h2><p>测试</p>">
-        <img
-            class="lazyload"
-            src="/svg/loading.min.svg"
-            data-src="https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg"
-            data-srcset="https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg, https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg 1.5x, https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg 2x"
-            data-sizes="auto"
-            alt="https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg" />
-    </a><figcaption class="image-caption">测试图片</figcaption>
-    </figure></p>
-<p>最后不得不说一下，感觉PicGo真的是开源代码的典范，自己提供一个框架和一套接口，其他人可以按照接口开发各种各样的代码。我感觉对于实用性的工具应用，这种开发方式非常合适。
-功能强大，但不臃肿，用户有足够多的定制选择权。</p>
+<p>以前用CSDN和博客园写的时候根本不用考虑这个问题，但是现在自己搭建博客的时候就需要好好考虑一下这个问题。一开始惊喜的发现有很多的免费图床网站（比如imgbb），开心的以为这个问题解决了，后来发现没那么简单。因为这些免费的图床往往有很多限制，比如上面举例说的这个imgbb，该网站一开始用着还行，可是过几天再在博客里加载图片时只能加载出缩略图了。</p>
+<p>后来就寻求解决方案，最后的决定是仍然使用开源的代码托管网站托管图片，把白嫖进行到底😂。最终我决定使用<a href="https://picgo.github.io/" target="_blank" rel="noopener noreferrer">PicGo</a>+(Gitee/Gitlab/Github)实现。</p>
+<p>图床部分本来只有简单介绍，后来觉得各种东西都放在同一篇博客就显得太混杂了，因此另起了一篇新的博客进行介绍——<a href="../21-09-09_picture-bed/" rel="">文章地址</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
