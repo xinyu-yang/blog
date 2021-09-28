@@ -9,7 +9,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://xinyu-yang.github.io/posts/21-09-09_picture-bed/"><meta property="og:image" content="https://xinyu-yang.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-09-09T11:05:02+08:00">
-<meta property="article:modified_time" content="2021-09-26T23:39:01+08:00">
+<meta property="article:modified_time" content="2021-09-28T15:05:02+08:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://xinyu-yang.github.io/logo.png">
 <meta name=twitter:title content="可同步图床配置——PicGo+Gitee/Github/Gitlab+Onedrive">
@@ -17,7 +17,7 @@
 <meta name=application-name content="麋鹿博客">
 <meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/posts/21-09-09_picture-bed/><link rel=prev href=https://xinyu-yang.github.io/posts/21-06-14_journey-to-northwest/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.7c109789d1634c2b13017e89b274cc1d968471d213abac9cacad47deca582a11.css integrity="sha256-fBCXidFjTCsTAX6JsnTMHZaEcdITq6ycrK1H3spYKhE="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"可同步图床配置——PicGo+Gitee/Github/Gitlab+Onedrive","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/posts\/21-09-09_picture-bed\/"},"image":["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"blog","wordcount":2364,"url":"https:\/\/xinyu-yang.github.io\/posts\/21-09-09_picture-bed\/","datePublished":"2021-09-09T11:05:02+08:00","dateModified":"2021-09-26T23:39:01+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/posts/21-09-09_picture-bed/><link rel=prev href=https://xinyu-yang.github.io/posts/21-06-14_journey-to-northwest/><link rel=next href=https://xinyu-yang.github.io/posts/21-09-28_vim-learning/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.7c109789d1634c2b13017e89b274cc1d968471d213abac9cacad47deca582a11.css integrity="sha256-fBCXidFjTCsTAX6JsnTMHZaEcdITq6ycrK1H3spYKhE="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"可同步图床配置——PicGo+Gitee/Github/Gitlab+Onedrive","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/posts\/21-09-09_picture-bed\/"},"image":["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"blog","wordcount":2362,"url":"https:\/\/xinyu-yang.github.io\/posts\/21-09-09_picture-bed\/","datePublished":"2021-09-09T11:05:02+08:00","dateModified":"2021-09-28T15:05:02+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -89,7 +89,7 @@
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">可同步图床配置——PicGo+Gitee/Github/Gitlab+Onedrive</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/record/><i class="far fa-folder fa-fw"></i>record</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-09>2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2364 字&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-09>2021-09-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2362 字&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
 <span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
@@ -109,17 +109,17 @@
 </div><div class=content id=content><h2 id=介绍>介绍</h2>
 <p>本文主要用来记录图床的搭建过程，在写博客的过程中不可避免的可能会用到一些图片，因此图片的保存位置就成了一个需要思考的问题，这个问题在使用博客网站CSDN、博客园等是不存在的，因为在使用这些网站时，只需要把图片传上去就行，图片会自行保存在这些平台所提供的图床上。曾经尝试着在本博客里直接引用博客园和CSDN中的图片，不出意外，果然加载不出来，可能是因为这些网站在处理请求的时候会检查<code>Referer</code>字段吧，如果仅是这种检查的话似乎可以避开，但是终究不是长久之计。</p>
 <p>一开始惊喜的发现有很多的免费图床网站（比如imgbb），开心的以为这个问题解决了，后来发现没那么简单。因为这些免费的图床往往有很多限制，比如上面举例说的这个imgbb，该网站一开始用着还行，可是过几天再在博客里加载图片时只能加载出缩略图了。</p>
-<p>因此就又在网上搜索解决之道，经琢磨了多篇解决方案之后，决定选择可能目前最合适的方案：使用PicGo作为图床管理软件，Gitee、SM.MS等作为存储平台，并且使用Onedrive来同步PicGo的配置文件和数据库（这是PicGo 2.3版本以来的新功能👏），以实现备份和同步。接下来将就该方案进行介绍：</p>
+<p>因此就又在网上搜索解决之道，经琢磨了多篇解决方案之后，决定选择可能目前最合适的方案：使用PicGo作为图床管理软件，Gitee、SM.MS等作为存储平台，并且使用Onedrive来同步PicGo的配置文件和数据库（这是<code>PicGo 2.3</code>版本以来的新功能👏），以实现备份和同步。接下来将就该方案进行介绍：</p>
 <h2 id=申请gitee账号创建仓库>申请Gitee账号，创建仓库</h2>
 <p>因为Gitee是国内的网站，加载较快，另外就是还没有使用Gitee托管代码的打算，所以不如注册个账号专门用来托管图片，综合以上原因，最终使用了Gitee。但是Gitee也有很多缺点，缺点之一就是空间太小了（这里不得不吐槽一句，本来就是模仿者，又那么小气，没有任何优势，难怪没人用啊~）。</p>
 <p>如果没有Gitee账号的话，就去申请一个。账号申请就按照步骤来就行，没什么可说的。我申请的时候发现我在github上使用的ID居然还没被别人占用，就果断申请了该ID，在Github、Gitlab和Gitee上做到了统一。</p>
 <p>申请完账号后，登录，然后进入个人信息界面，随后点击左侧栏中的仓库空间管理，随后右上角会出现“新建仓库”的按钮。此时就可以新建仓库了，取名随意，但仓库必须得是公有的。</p>
-<p>然后下一步是创建私人令牌，以保证PicGo可以控制该仓库。同样在个人设置界面的左侧“安全设置”栏下有一个“私人令牌”选项，找到并点击。然后点击右上角的生成新令牌，填写描述信息，然后选择权限，我只选择了前三个权限——user_info, projects, pull_requests。
+<p>然后下一步是创建私人令牌，以保证PicGo可以控制该仓库。同样在个人设置界面的左侧“安全设置”栏下有一个“私人令牌”选项，找到并点击。然后点击右上角的生成新令牌，填写描述信息，然后选择权限，我只选择了前三个权限——<code>user_info, projects, pull_requests</code>。
 我感觉这些应该就够了，最后点击提交，然后会生成一个token，暂时用记事本等保存该token，因为它不会再次出现。</p>
 <h2 id=picgo端配置>PicGo端配置</h2>
 <p>生成并保存完token之后，就可以进行PicGo端配置了。因为该软件不默认支持Gitee图床，所以只能通过安装插件来支持，在插件设置的搜索栏里搜索gitee-uploader，然后点击安装。安装完之后点击插件图标右下角的设置按钮，找到“配置uploader-gitee”，点击之后会出现一个界面，主要会出现以下几条待填信息：</p>
 <ul>
-<li>repo (就是刚才所创建的仓库，不过这里的格式是“<sup>your id</sup>/<sub>repo name</sub>”，前面的gitee.com就不要填了)</li>
+<li>repo (就是刚才所创建的仓库，不过这里的格式是<code><sup>your id</sup>/<sub>repo name</sub></code>，前面的<code>gitee.com</code>就不要填了)</li>
 <li>branch (一般为master)</li>
 <li>token (这就是刚才所保存的token)</li>
 <li>path (文件的保存路径，可以自行设置，我的设置是“img/$customPath”)</li>
@@ -137,7 +137,7 @@
 但是这些解决方案都太麻烦了，而我又是一个比较懒的人。</p>
 <p>目前最新的PicGo 2.3.0 仍然不能解决该问题(事实上让一个开源软件作者来搭建服务器并提供同步功能确实有点苛刻)，但是该版本提供了自定义配置文件路径的功能，为解决同步问题提供了可能。
 我所采用的方案是将PicGo的配置文件所在的文件夹使用第三方云同步平台进行同步，这样就实现了同步功能。</p>
-<p>可行的同步平台有很多，如 Onedrive、Dropbox、Google Drive、serfile (如果有的话)等。甚至Baidu云盘好像最近也免费提供了类似的服务“同步空间”，虽然每月只有1G的免费流量，但总比没有强。</p>
+<p>可行的同步平台有很多，如 Onedrive、Dropbox、Google Drive、seafile (如果有的话)等。甚至Baidu云盘好像最近也免费提供了类似的服务“同步空间”，虽然每月只有1G的免费流量，但总比没有强。</p>
 <blockquote>
 <p>说到这里岔个题，我一直感觉用户对百度网盘的要求过于苛刻了，对于一样免费的产品，百度云盘是唯一一个能够为我提供2T免费存储空间的平台，这一点迄今还找不到替代者。至于很多用户一直以来报怨的下载速度慢的问题，我只想说反正都是白嫖的，还要啥自行车。从我自己的使用角度来讲，平时用百度网盘保存同步或者是备份一些不经常用的文件，如照片、打包的文档资料等，还是挺好的。</p>
 </blockquote>
@@ -160,8 +160,8 @@
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>更新于 2021-09-26&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/xinyu-yang.github.io/commit/57082a132b00d3ba2d8a9ea5daee8ab50ee78e2e target=_blank rel="noopener noreferrer" title="commit by yxy.gram(yangxinyu75@live.com) 57082a132b00d3ba2d8a9ea5daee8ab50ee78e2e: complete picture bed">
-<i class="fas fa-hashtag fa-fw"></i>57082a1</a></span>
+<span>更新于 2021-09-28&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/xinyu-yang.github.io/commit/313a347538429c1b3c3fcf0f2e5e2ff177cb36e7 target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) 313a347538429c1b3c3fcf0f2e5e2ff177cb36e7: add vim learning">
+<i class="fas fa-hashtag fa-fw"></i>313a347</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
@@ -180,7 +180,8 @@
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/posts/21-06-14_journey-to-northwest/ class=prev rel=prev title=西北游记><i class="fas fa-angle-left fa-fw"></i>西北游记</a></div>
+<div class=post-nav><a href=/posts/21-06-14_journey-to-northwest/ class=prev rel=prev title=西北游记><i class="fas fa-angle-left fa-fw"></i>西北游记</a>
+<a href=/posts/21-09-28_vim-learning/ class=next rel=next title=Vim学习记录>Vim学习记录<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id=comments><div id=utterances></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
