@@ -29,17 +29,10 @@
     <description><![CDATA[]]></description>
 </item><item>
     <title>AES算法详解</title>
-    <link>https://xinyu-yang.github.io/posts/aes/</link>
+    <link>https://xinyu-yang.github.io/posts/00-00-01_aes/</link>
     <pubDate>Sat, 05 Jun 2021 11:19:13 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/aes/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>记一篇英文自我介绍</title>
-    <link>https://xinyu-yang.github.io/posts/21-05-27_self-intro/</link>
-    <pubDate>Thu, 27 May 2021 23:22:26 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-05-27_self-intro/</guid>
+    <guid>https://xinyu-yang.github.io/posts/00-00-01_aes/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>百万富翁问题</title>
@@ -75,6 +68,13 @@
     <pubDate>Tue, 06 Apr 2021 20:14:43 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://xinyu-yang.github.io/posts/21-04-06_count-min-sketch/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>马尔可夫与切比雪夫不等式</title>
+    <link>https://xinyu-yang.github.io/posts/21-03-21_markov-and-chebyshev/</link>
+    <pubDate>Sun, 21 Mar 2021 20:22:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xinyu-yang.github.io/posts/21-03-21_markov-and-chebyshev/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
