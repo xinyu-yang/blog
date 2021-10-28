@@ -9,7 +9,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://xinyu-yang.github.io/posts/21-09-28_vim-learning/"><meta property="og:image" content="https://xinyu-yang.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-09-28T10:34:49+08:00">
-<meta property="article:modified_time" content="2021-09-28T15:05:02+08:00">
+<meta property="article:modified_time" content="2021-10-28T09:26:56+08:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://xinyu-yang.github.io/logo.png">
 <meta name=twitter:title content="Vim学习记录">
@@ -17,7 +17,7 @@
 <meta name=application-name content="麋鹿博客">
 <meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/posts/21-09-28_vim-learning/><link rel=prev href=https://xinyu-yang.github.io/posts/21-09-09_picture-bed/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.7c109789d1634c2b13017e89b274cc1d968471d213abac9cacad47deca582a11.css integrity="sha256-fBCXidFjTCsTAX6JsnTMHZaEcdITq6ycrK1H3spYKhE="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Vim学习记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/posts\/21-09-28_vim-learning\/"},"image":["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"vim","wordcount":1911,"url":"https:\/\/xinyu-yang.github.io\/posts\/21-09-28_vim-learning\/","datePublished":"2021-09-28T10:34:49+08:00","dateModified":"2021-09-28T15:05:02+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/posts/21-09-28_vim-learning/><link rel=prev href=https://xinyu-yang.github.io/posts/21-09-09_picture-bed/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.49ba53d0ac63eac012a8da252d63436a956092c2bd062bf872c3736db5363535.css integrity="sha256-SbpT0Kxj6sASqNolLWNDapVgksK9Biv4csNzbbU2NTU="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Vim学习记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/posts\/21-09-28_vim-learning\/"},"image":["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"vim","wordcount":3438,"url":"https:\/\/xinyu-yang.github.io\/posts\/21-09-28_vim-learning\/","datePublished":"2021-09-28T10:34:49+08:00","dateModified":"2021-10-28T09:26:56+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -89,8 +89,8 @@
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Vim学习记录</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/record/><i class="far fa-folder fa-fw"></i>record</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-28>2021-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1911 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-28>2021-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3438 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
 <span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -105,12 +105,13 @@
 <li><a href=#vimtutor>Vimtutor</a></li>
 <li><a href=#其他入门教程>其他入门教程</a></li>
 <li><a href=#vim从入门到精通vim-galore-zh_cnhttpsgithubcomwsdjegvim-galore-zh_cn><a href=https://github.com/wsdjeg/vim-galore-zh_cn>《Vim从入门到精通（vim-galore-zh_cn）》</a></a></li>
-<li><a href=#vim学习笔记httpsyyq123githubiolearn-vim><a href=https://yyq123.github.io/learn-vim/>Vim学习笔记</a></a></li>
+<li><a href=#vim学习笔记httpsyyq123githubiolearn-vim><a href=https://yyq123.github.io/learn-vim/>《Vim学习笔记》</a></a></li>
 </ul>
 </li>
 <li><a href=#插件>插件</a>
 <ul>
-<li><a href=#所需即所获像-ide-一样使用-vimhttpsgithubcomyangyangwithgnuuse_vim_as_ide><a href=https://github.com/yangyangwithgnu/use_vim_as_ide>《所需即所获：像 IDE 一样使用 vim》</a></a></li>
+<li><a href=#配置教程>配置教程</a></li>
+<li><a href=#插件推荐>插件推荐</a></li>
 </ul>
 </li>
 </ul>
@@ -121,6 +122,8 @@
 另一方面是因为随着学习的深入，我也接触到了很多优秀的博客文章，值得仔细研读。同时也意识到自己的水平跟这些文章的作者相去甚远，想要达到同等水平况且需要些时日，更不用说写出更有深度的东西了。</p>
 <p>鉴于以上原因，我决定首先将我学习过程中所参考的优秀学习资料进行汇总和简介。如果初学者能看到本文，并因此在学习中少走些弯路，那便是本文的价值。
 另外，我应该不会写偏向于大而全的Vim介绍博客，至少目前不会。但是我可能会写一些关于某些功能点的深入学习和记录的文章，我认为在当前网络中所能搜索到的文章中，这类更有价值。</p>
+<p>目前本人主要使用的是Vim，但是目前Neovim似乎后来居上，大有取而代之之势，并且github上有很多优秀活跃的Neovim插件在开发。从长久趋势来看，新的东西总是基于已有设计，总结经验，克服弊端，并最终淘汰旧的。从传承上来看，Neovim不过是对Vim的推倒重建式的重构，亦如当年Vim对于Vi编辑器的改良一般。</p>
+<p>据称Neovim完全兼容Vim的功能和配置，并提供了额外的功能，从其风靡程度来看，我也相信这一点。但至少从目前来看，我还没有足够的理由和动机去使用它。也许还是缺少一个契机。这个契机就是遇到Vim无法或很难解决的痛点，并且Neovim可以很容易解决。而在这之前，则需要对Vim更加熟练的使用。</p>
 <h2 id=综合教程>综合教程</h2>
 <h3 id=vimtutor>Vimtutor</h3>
 <p>Vimtutor作为自带的官方教程，其作为入门教程的权威性自然不言而喻。当然，除了其明面上的地位之外，其作为一个入门教程，给初学者提供了一个很好的实际操作体验，该教程会提供一些例子供阅读者进行实际的操作，比起仅仅列举式的功能介绍，该导论还是挺容易被初学者接受的。
@@ -213,16 +216,45 @@
 <p>相对于上面所提到的入门教程，该文章提供了更加深入的介绍，但同时也不那么容易阅读，需要反复咀嚼才能将其学透。
 我在第一次看该教程的时候，已经读了上面那些教程，并且有了一段时间的Vim使用经验，但是还是有很多地方读不懂和不理解。后来慢慢的对于里面的内容有了认识（比如那么多的寄存器），但是还是有些不太懂。
 所以建议初学者可以先不要读此教程，待有了一定的基础之后再来阅读，当然该教程也需要反复复习。越是经典的教程越是值得我们反复咀嚼，并且每次阅读都会有新的收获。</p>
-<h3 id=vim学习笔记httpsyyq123githubiolearn-vim><a href=https://yyq123.github.io/learn-vim/ target=_blank rel="noopener noreferrer">Vim学习笔记</a></h3>
+<h3 id=vim学习笔记httpsyyq123githubiolearn-vim><a href=https://yyq123.github.io/learn-vim/ target=_blank rel="noopener noreferrer">《Vim学习笔记》</a></h3>
 <p>这是一个颇为低调的学习笔记，如果不是偶然看到，可能很难搜索到该教程，该教程所对应的github博客主页甚至都是空白的。据作者称，这是他从一本书整理而来。</p>
 <h2 id=插件>插件</h2>
-<h3 id=所需即所获像-ide-一样使用-vimhttpsgithubcomyangyangwithgnuuse_vim_as_ide><a href=https://github.com/yangyangwithgnu/use_vim_as_ide target=_blank rel="noopener noreferrer">《所需即所获：像 IDE 一样使用 vim》</a></h3>
-<p>这是我阅读的第一篇关于Vim插件配置的文章，主要是我在搜索关于Vim配置的文章的时候，这篇文章高居搜索引擎榜首。虽然已经五年没有更新了，但仍然在github上有9k Star。</p></div><div class=post-footer id=post-footer>
+<h3 id=配置教程>配置教程</h3>
+<ul>
+<li><a href=https://github.com/yangyangwithgnu/use_vim_as_ide target=_blank rel="noopener noreferrer">《所需即所获：像 IDE 一样使用 vim》</a></li>
+</ul>
+<p>这是我阅读的第一篇关于Vim插件配置的文章，主要是我在搜索关于Vim配置的文章的时候，这篇文章高居搜索引擎榜首。虽然已经五年没有更新了，但仍然在github上有9k Star。
+这是我读到并且跟着操作的第一篇关于插件配置的博客，该博客涉及的内容很多，以至于很难短时间内搞明白所有的内容，事实上我到现在还搞不明白有些插件的用处。因此需要在实际操作中逐渐摸索。
+因为时间原因，文中有些插件早已经被开发者放弃或者被其他的插件所代替。因为不同的人需求也不尽相同，所以有很多文中列举的插件其他使用者可能会觉得根本没有必要。</p>
+<p>考虑到以上原因，我采用的方法是首先将所有的配置文件直接拷贝下来，然后逐渐学习和摸索每个插件的用处，然后增删改查，最后打造属于自己的配置。
+直接使用现成配置的好处是增加学习过程中的收获感，因为配置完成之后直接就可以看到最终的效果，虽然这个阶段对每一个功能都一脸茫然，但是仍然可以增加自己的成就感。而如果从头开始摸索的话，则可能因为工作量太大并且久久看不到自己想要的效果而丧失学习乐趣。</p>
+<p>逐渐摸索下来之后便可对插件进行逐一学习和探索，并且你会逐渐发现这项工作深不见底。因为从对已有插件简单的使用到掌握复杂的配置已经是一个颇为困难的过程，更不用说你甚至可以直接写自己所需的插件。真是学海无涯啊~</p>
+<p>这里同样推荐一些成熟配置以供参考，当然关于Vim的配置在网上一搜一大堆，在github的topics中也能找到很多高star<a href=https://github.com/topics/vimrc target=_blank rel="noopener noreferrer">仓库</a>，以下是摘录的几个：</p>
+<ul>
+<li><a href=https://spacevim.org/ target=_blank rel="noopener noreferrer">SpaceVim</a></li>
+</ul>
+<p>该项目也许是最有名的Vim配置，在github的<code>vimrc</code>话题中高居榜首，其甚至有<a href=https://spacevim.org/cn/ target=_blank rel="noopener noreferrer">中文文档</a>（后来才知道该项目原来就是由国人发起的👍）。官网称自己为Vim发布（Vim distribution），感觉就像BSD是作为Linux操作系统的一个发布一样。该发布非常成熟，当然也比较复杂。
+我没用过，但是感觉入门成本应该比较低，按照成熟的官方文档进行配置应该没啥问题。因此该配置对于想直接使用Vim配置完全体的用户来说比较友好。</p>
+<p>但是我本人没有用该配置的原因也是如此，该配置太成熟和复杂了，以至于很难入手去学习。对我自己而言，一个简易配置，并且容易上手鼓捣的版本才比较适合我。
+因为这样可以很好的折中使用体验和入门成本，这也是我选择上述文章学习的原因。</p>
+<p>另外要说的一点，当自己逐渐熟悉Vim的配置流程之后，会发现SpaceVim的源码是一个很好的学习材料。</p>
+<ul>
+<li><a href=https://github.com/wklken/k-vim target=_blank rel="noopener noreferrer">k-vim</a></li>
+</ul>
+<p>该配置在github上也有高star，并且作者是国人。该配置的说明文档不是特别详细，但是问题不大，因为该配置并不是特别复杂，并且在配置文件中有很好的注释。虽然感觉项目稍老，而且开发也不是特别活跃，但是是一个很好的入门和学习素材。</p>
+<p>另外作者还开发了一个简化版的<a href=https://github.com/wklken/vim-for-server target=_blank rel="noopener noreferrer">vim-for-server</a>版本，用于不太方便安装插件的场景，对我很有启发，我决定也要搞这么一个东西。</p>
+<ul>
+<li><a href=https://github.com/xinyu-yang/myvim target=_blank rel="noopener noreferrer">myvim</a></li>
+</ul>
+<p>最后允许我厚颜无耻的放上我自己的Vim配置</p>
+<p>在某博客上读到一句话，感觉比较赞同，大概意思是应该将Vim打造成适合自己的方式，而不是自己去适应已有的配置。这也可能也是大多数人一直乐此不疲折腾的原因吧。
+所以以上参考都只是参考和学习资料，毕竟什么配置最合适只有自己知道。</p>
+<h3 id=插件推荐>插件推荐</h3></div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>更新于 2021-09-28&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/xinyu-yang.github.io/commit/313a347538429c1b3c3fcf0f2e5e2ff177cb36e7 target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) 313a347538429c1b3c3fcf0f2e5e2ff177cb36e7: add vim learning">
-<i class="fas fa-hashtag fa-fw"></i>313a347</a></span>
+<span>更新于 2021-10-28&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/xinyu-yang.github.io/commit/a7d9337261f4b0fbb8dfbb0b4991751d3919bd29 target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) a7d9337261f4b0fbb8dfbb0b4991751d3919bd29: update some content, delete public/post/, add toefl">
+<i class="fas fa-hashtag fa-fw"></i>a7d9337</a></span>
 </div>
 <div class=post-info-license></div>
 </div>

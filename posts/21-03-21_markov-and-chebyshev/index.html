@@ -9,7 +9,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://xinyu-yang.github.io/posts/21-03-21_markov-and-chebyshev/"><meta property="og:image" content="https://xinyu-yang.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-03-21T20:22:25+08:00">
-<meta property="article:modified_time" content="2021-05-30T22:49:32+08:00">
+<meta property="article:modified_time" content="2021-10-28T09:26:56+08:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://xinyu-yang.github.io/logo.png">
 <meta name=twitter:title content="马尔可夫与切比雪夫不等式">
@@ -17,7 +17,7 @@
 <meta name=application-name content="麋鹿博客">
 <meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/posts/21-03-21_markov-and-chebyshev/><link rel=prev href=https://xinyu-yang.github.io/posts/pca/><link rel=next href=https://xinyu-yang.github.io/posts/21-04-06_count-min-sketch/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.7c109789d1634c2b13017e89b274cc1d968471d213abac9cacad47deca582a11.css integrity="sha256-fBCXidFjTCsTAX6JsnTMHZaEcdITq6ycrK1H3spYKhE="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"马尔可夫与切比雪夫不等式","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/posts\/21-03-21_markov-and-chebyshev\/"},"image":["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"statistics","wordcount":1361,"url":"https:\/\/xinyu-yang.github.io\/posts\/21-03-21_markov-and-chebyshev\/","datePublished":"2021-03-21T20:22:25+08:00","dateModified":"2021-05-30T22:49:32+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/posts/21-03-21_markov-and-chebyshev/><link rel=prev href=https://xinyu-yang.github.io/posts/00-00-03_pca/><link rel=next href=https://xinyu-yang.github.io/posts/21-04-06_count-min-sketch/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.49ba53d0ac63eac012a8da252d63436a956092c2bd062bf872c3736db5363535.css integrity="sha256-SbpT0Kxj6sASqNolLWNDapVgksK9Biv4csNzbbU2NTU="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"马尔可夫与切比雪夫不等式","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/posts\/21-03-21_markov-and-chebyshev\/"},"image":["https:\/\/xinyu-yang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"statistics","wordcount":1361,"url":"https:\/\/xinyu-yang.github.io\/posts\/21-03-21_markov-and-chebyshev\/","datePublished":"2021-03-21T20:22:25+08:00","dateModified":"2021-10-28T09:26:56+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -119,8 +119,8 @@ P (x>\alpha) &lt;\frac{1}{10}
 $$
 根据前面所做的设想，这明显“不对”啊，因为值主要分布在两端嘛，怎么可能大于$\alpha$的概率仅为1/10呢？应该是1/2左右吧。</p>
 <p>例子如如下图（这里图画的可能不太准确，其实也不可能准确）:
-<figure><a class=lightgallery href=https://i.ibb.co/rb7M9F6/image.png title=“反例” data-thumbnail=https://i.ibb.co/rb7M9F6/image.png data-sub-html="<h2>“反例”</h2><p>“反例”</p>">
-<img class=lazyload src=/svg/loading.min.svg data-src=https://i.ibb.co/rb7M9F6/image.png data-srcset="https://i.ibb.co/rb7M9F6/image.png, https://i.ibb.co/rb7M9F6/image.png 1.5x, https://i.ibb.co/rb7M9F6/image.png 2x" data-sizes=auto alt=https://i.ibb.co/rb7M9F6/image.png>
+<figure><a class=lightgallery href=https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png title=“反例” data-thumbnail=https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png data-sub-html="<h2>“反例”</h2><p>“反例”</p>">
+<img class=lazyload src=/svg/loading.min.svg data-src=https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png data-srcset="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png, https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png 1.5x, https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png 2x" data-sizes=auto alt=https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png>
 </a><figcaption class=image-caption>“反例”</figcaption>
 </figure></p>
 <p>仔细思考后发现该想法是不对的，因为上述想象的图形是画不出来的。假如两边的两个峰值各占一半，那么其期望不可能特别小，其期望的值应该恰好在两个峰值之间，那么马尔可夫不等式的计算结果为1/2，好像符合实际情况😮</p>
@@ -166,8 +166,8 @@ $$</p>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>更新于 2021-05-30&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/xinyu-yang.github.io/commit/fa4fa8223d4b24f94f8c5093f6f64d1794b077e4 target=_blank rel="noopener noreferrer" title="commit by yxy.gram(yangxinyu75@live.com) fa4fa8223d4b24f94f8c5093f6f64d1794b077e4: do some modification to markov and millionaire">
-<i class="fas fa-hashtag fa-fw"></i>fa4fa82</a></span>
+<span>更新于 2021-10-28&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/xinyu-yang.github.io/commit/a7d9337261f4b0fbb8dfbb0b4991751d3919bd29 target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) a7d9337261f4b0fbb8dfbb0b4991751d3919bd29: update some content, delete public/post/, add toefl">
+<i class="fas fa-hashtag fa-fw"></i>a7d9337</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
@@ -186,7 +186,7 @@ $$</p>
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/posts/pca/ class=prev rel=prev title=主成分分析原理与实现><i class="fas fa-angle-left fa-fw"></i>主成分分析原理与实现</a>
+<div class=post-nav><a href=/posts/00-00-03_pca/ class=prev rel=prev title=主成分分析原理与实现><i class="fas fa-angle-left fa-fw"></i>主成分分析原理与实现</a>
 <a href=/posts/21-04-06_count-min-sketch/ class=next rel=next title="Count-Min Sketch">Count-Min Sketch<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id=comments><div id=utterances></div><noscript>
