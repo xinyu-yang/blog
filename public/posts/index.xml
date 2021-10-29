@@ -4,7 +4,14 @@
         <link>https://xinyu-yang.github.io/posts/</link>
         <description>所有文章 | 麋鹿博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@live.com (Xinyu Yang)</managingEditor>
-            <webMaster>yangxinyu75@live.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Sep 2021 10:34:49 &#43;0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yangxinyu75@live.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 27 Oct 2021 10:34:07 &#43;0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>托福考试总结</title>
+    <link>https://xinyu-yang.github.io/posts/21-10-27_toefl-summary/</link>
+    <pubDate>Wed, 27 Oct 2021 10:34:07 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xinyu-yang.github.io/posts/21-10-27_toefl-summary/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>Vim学习记录</title>
     <link>https://xinyu-yang.github.io/posts/21-09-28_vim-learning/</link>
     <pubDate>Tue, 28 Sep 2021 10:34:49 &#43;0800</pubDate>
@@ -33,6 +40,13 @@
     <guid>https://xinyu-yang.github.io/posts/00-00-01_aes/</guid>
     <description><![CDATA[]]></description>
 </item><item>
+    <title>记一篇英文自我介绍</title>
+    <link>https://xinyu-yang.github.io/posts/21-05-27_self-intro/</link>
+    <pubDate>Thu, 27 May 2021 23:22:26 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xinyu-yang.github.io/posts/21-05-27_self-intro/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>百万富翁问题</title>
     <link>https://xinyu-yang.github.io/posts/21-05-12_millionaire-problem/</link>
     <pubDate>Wed, 12 May 2021 23:50:52 &#43;0800</pubDate>
@@ -59,20 +73,6 @@
     <pubDate>Wed, 07 Apr 2021 09:31:54 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://xinyu-yang.github.io/posts/21-04-07_bloom-filter/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Count-Min Sketch</title>
-    <link>https://xinyu-yang.github.io/posts/21-04-06_count-min-sketch/</link>
-    <pubDate>Tue, 06 Apr 2021 20:14:43 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-04-06_count-min-sketch/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>马尔可夫与切比雪夫不等式</title>
-    <link>https://xinyu-yang.github.io/posts/21-03-21_markov-and-chebyshev/</link>
-    <pubDate>Sun, 21 Mar 2021 20:22:25 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-03-21_markov-and-chebyshev/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
