@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.min.css",
-	"sourceRoot": "/home/runner/work/xinyu-yang.github.io/xinyu-yang.github.io",
+	"sourceRoot": "/home/runner/work/blog/blog",
 	"sources": [
 		"themes/EnjoyIt/assets/css/style.scss",
 		"themes/EnjoyIt/assets/css/_variables.scss",
