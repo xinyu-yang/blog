@@ -1,78 +1,78 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>所有文章 - 麋鹿博客</title>
-        <link>https://xinyu-yang.github.io/posts/</link>
+        <link>https://xinyu-yang.github.io/blog/posts/</link>
         <description>所有文章 | 麋鹿博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@live.com (Xinyu Yang)</managingEditor>
-            <webMaster>yangxinyu75@live.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 27 Oct 2021 10:34:07 &#43;0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>yangxinyu75@live.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 27 Oct 2021 10:34:07 &#43;0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/posts/" rel="self" type="application/rss+xml" /><item>
     <title>托福考试总结</title>
-    <link>https://xinyu-yang.github.io/posts/21-10-27_toefl-summary/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/21-10-27_toefl-summary/</link>
     <pubDate>Wed, 27 Oct 2021 10:34:07 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-10-27_toefl-summary/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/21-10-27_toefl-summary/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Vim学习记录</title>
-    <link>https://xinyu-yang.github.io/posts/21-09-28_vim-learning/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/21-09-28_vim-learning/</link>
     <pubDate>Tue, 28 Sep 2021 10:34:49 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-09-28_vim-learning/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/21-09-28_vim-learning/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>可同步图床配置——PicGo&#43;Gitee/Github/Gitlab&#43;Onedrive</title>
-    <link>https://xinyu-yang.github.io/posts/21-09-09_picture-bed/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/21-09-09_picture-bed/</link>
     <pubDate>Thu, 09 Sep 2021 11:05:02 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-09-09_picture-bed/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/21-09-09_picture-bed/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>西北游记</title>
-    <link>https://xinyu-yang.github.io/posts/21-06-14_journey-to-northwest/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/21-06-14_journey-to-northwest/</link>
     <pubDate>Mon, 14 Jun 2021 19:49:23 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-06-14_journey-to-northwest/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/21-06-14_journey-to-northwest/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>AES算法详解</title>
-    <link>https://xinyu-yang.github.io/posts/00-00-01_aes/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/00-00-01_aes/</link>
     <pubDate>Sat, 05 Jun 2021 11:19:13 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/00-00-01_aes/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/00-00-01_aes/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>记一篇英文自我介绍</title>
-    <link>https://xinyu-yang.github.io/posts/21-05-27_self-intro/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/21-05-27_self-intro/</link>
     <pubDate>Thu, 27 May 2021 23:22:26 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-05-27_self-intro/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/21-05-27_self-intro/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>百万富翁问题</title>
-    <link>https://xinyu-yang.github.io/posts/21-05-12_millionaire-problem/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/21-05-12_millionaire-problem/</link>
     <pubDate>Wed, 12 May 2021 23:50:52 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-05-12_millionaire-problem/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/21-05-12_millionaire-problem/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Count Sketch</title>
-    <link>https://xinyu-yang.github.io/posts/21-04-12_count-sketch/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/21-04-12_count-sketch/</link>
     <pubDate>Mon, 12 Apr 2021 10:01:05 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-04-12_count-sketch/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/21-04-12_count-sketch/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>当我们在谈论环境保护的时候我们在谈论什么？</title>
-    <link>https://xinyu-yang.github.io/posts/21-04-10_climate-change/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/21-04-10_climate-change/</link>
     <pubDate>Sat, 10 Apr 2021 23:30:33 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-04-10_climate-change/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/21-04-10_climate-change/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Bloom Filter</title>
-    <link>https://xinyu-yang.github.io/posts/21-04-07_bloom-filter/</link>
+    <link>https://xinyu-yang.github.io/blog/posts/21-04-07_bloom-filter/</link>
     <pubDate>Wed, 07 Apr 2021 09:31:54 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://xinyu-yang.github.io/posts/21-04-07_bloom-filter/</guid>
+    <guid>https://xinyu-yang.github.io/blog/posts/21-04-07_bloom-filter/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
