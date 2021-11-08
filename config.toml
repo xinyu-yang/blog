@@ -41,7 +41,7 @@ ignoreErrors = ["error-remote-getjson"]
         # you can add extra information after the name (HTML format is supported), such as icons
         post = ""
         name = "Posts"
-        url = "/posts/"
+        url = "../en/posts/"
         # title will be shown when you hover on this menu link.
         title = ""
         weight = 1
@@ -50,7 +50,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         post = ""
         name = "Tags"
-        url = "/tags/"
+        url = "../en/tags/"
         title = ""
         weight = 2
       [[languages.en.menu.main]]
@@ -58,7 +58,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         post = ""
         name = "Categories"
-        url = "/categories/"
+        url = "../en/categories/"
         title = ""
         weight = 3
       #[[languages.en.menu.main]]
@@ -74,7 +74,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         post = ""
         name = "About"
-        url = "/about/"
+        url = "../en/about/"
         title = ""
         weight = 5
       [[languages.en.menu.main]]
@@ -246,7 +246,7 @@ ignoreErrors = ["error-remote-getjson"]
         # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
         post = ""
         name = "所有文章"
-        url = "/posts/"
+        url = "../blog/posts/"
         title = ""
         weight = 1
       [[languages.zh-cn.menu.main]]
@@ -254,7 +254,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         post = ""
         name = "标签"
-        url = "/tags/"
+        url = "../blog/tags/"
         title = ""
         weight = 2
       [[languages.zh-cn.menu.main]]
@@ -262,7 +262,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         post = ""
         name = "分类"
-        url = "/categories/"
+        url = "../blog/categories/"
         title = ""
         weight = 3
       #[[languages.zh-cn.menu.main]]
@@ -277,7 +277,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         post = ""
         name = "关于"
-        url = "/about/"
+        url = "../blog/about/"
         title = ""
         weight = 5
       [[languages.zh-cn.menu.main]]
