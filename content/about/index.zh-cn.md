@@ -28,4 +28,6 @@ math:
 
 根据时间安排，本博客不定期更新:point_right:[TODO List](../test/todo/)
 
+# 友链
+
 欢迎友好交流 :point_down:
