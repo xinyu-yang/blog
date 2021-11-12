@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>马尔可夫与切比雪夫不等式 - 麋鹿博客</title><meta name="description" content="麋鹿博客 -- 一个分享知识和乐趣的地方"><meta property="og:title" content="马尔可夫与切比雪夫不等式" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xinyu-yang.github.io/blog/2021/21-03-21_markov-and-chebyshev/" /><meta property="og:image" content="https://xinyu-yang.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-21T20:22:25&#43;08:00" />
+<meta property="article:modified_time" content="2021-10-28T09:26:56&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://xinyu-yang.github.io/logo.png"/>
+
+<meta name="twitter:title" content="马尔可夫与切比雪夫不等式"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="麋鹿博客">
+<meta name="apple-mobile-web-app-title" content="麋鹿博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xinyu-yang.github.io/blog/2021/21-03-21_markov-and-chebyshev/" /><link rel="prev" href="https://xinyu-yang.github.io/blog/2021/00-00-03_pca/" /><link rel="next" href="https://xinyu-yang.github.io/blog/2021/21-04-06_count-min-sketch/" /><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/blog/css/style.min.49ba53d0ac63eac012a8da252d63436a956092c2bd062bf872c3736db5363535.css" integrity="sha256-SbpT0Kxj6sASqNolLWNDapVgksK9Biv4csNzbbU2NTU="><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "马尔可夫与切比雪夫不等式",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xinyu-yang.github.io\/blog\/2021\/21-03-21_markov-and-chebyshev\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png",
+                            "width":  230 ,
+                            "height":  215 
+                        }],"genre": "posts","keywords": "statistics","wordcount":  1361 ,
+        "url": "https:\/\/xinyu-yang.github.io\/blog\/2021\/21-03-21_markov-and-chebyshev\/","datePublished": "2021-03-21T20:22:25+08:00","dateModified": "2021-10-28T09:26:56+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Xinyu Yang","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png",
+                    "width":  230 ,
+                    "height":  215 
+                }},"author": {
+                "@type": "Person",
+                "name": "Xinyu Yang"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/blog/" title="麋鹿博客">麋鹿博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/blog/posts/"> 文章 </a><a class="menu-item" href="/blog/tags/"> 标签 </a><a class="menu-item" href="/blog/categories/"> 分类 </a><a class="menu-item" href="/blog/about/"> 关于 </a><a class="menu-item" href="https://github.com/xinyu-yang/blog" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/blog/2021/21-03-21_markov-and-chebyshev/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/blog/" title="麋鹿博客">麋鹿博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/blog/posts/" title="">文章</a><a class="menu-item" href="/blog/tags/" title="">标签</a><a class="menu-item" href="/blog/categories/" title="">分类</a><a class="menu-item" href="/blog/about/" title="">关于</a><a class="menu-item" href="https://github.com/xinyu-yang/blog" title="GitHub" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/blog/2021/21-03-21_markov-and-chebyshev/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">马尔可夫与切比雪夫不等式</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://xinyu-yang.github.io" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class="post-category">收录于 <a href="/blog/categories/math/"><i class="far fa-folder fa-fw"></i>math</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-21">2021-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1361 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/blog/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#马尔可夫不等式">马尔可夫不等式</a></li>
+    <li><a href="#切比雪夫不等式">切比雪夫不等式</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><!--# 马尔可夫与切比雪夫不等式-->
+<p>最近在学习的时候遇到了一些数学证明，本身并不难，其中用到了马尔可夫不等式，但是不知道没有还是忘了，所以准备借此机会复习一下马尔可夫不等式和切比雪夫不等式（这个肯定学过）。针对这两则定理的证明网上很多很好的博客，包括维基百科，本文虽然是重复造轮子😂，但主要是为了把思考过程记录下来。</p>
+<h2 id="马尔可夫不等式">马尔可夫不等式</h2>
+<p>首先把该不等式写下来：
+$$
+P(x&gt;\alpha) &lt;\frac{\mu}{\alpha}, (x&gt;0)
+$$
+其中x的取值范围为$x&gt;0$，$\mu$为x的数学期望。</p>
+<p>看到这个公式，我的第一感觉是这个公式不对吧，公式里连方差都没有，也就是连离散程度都没有涉及怎么能够直接判定其范围呢？我甚至可以直接举出一个“反例”。
+试着想象一下：假设x的分布像一条小船，中间概率小，几乎为0，两边大，几乎各占一半。$\alpha$的值比较大，这里假设为10，并且假设在靠近0的地方x的概率密度很大，所以最后的结果是其期望为一个比较小的值，这里假设为1。</p>
+<p>之所以认为其是反例的原因是，那么根据马尔可夫不等式，x大于$\alpha$的概率为
+$$
+P (x&gt;\alpha) &lt;\frac{1}{10}
+$$
+根据前面所做的设想，这明显“不对”啊，因为值主要分布在两端嘛，怎么可能大于$\alpha$的概率仅为1/10呢？应该是1/2左右吧。</p>
+<p>例子如如下图（这里图画的可能不太准确，其实也不可能准确）:
+<figure><a class="lightgallery" href="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png" title="“反例”" data-thumbnail="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png" data-sub-html="<h2>“反例”</h2><p>“反例”</p>">
+        <img
+            class="lazyload"
+            src="/blog/svg/loading.min.svg"
+            data-src="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png"
+            data-srcset="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png, https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png 1.5x, https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png 2x"
+            data-sizes="auto"
+            alt="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png" />
+    </a><figcaption class="image-caption">“反例”</figcaption>
+    </figure></p>
+<!--<a href="https://imgbb.com/"><img src="https://i.ibb.co/rb7M9F6/image.png" alt="image" border="0"></a>-->
+<p>仔细思考后发现该想法是不对的，因为上述想象的图形是画不出来的。假如两边的两个峰值各占一半，那么其期望不可能特别小，其期望的值应该恰好在两个峰值之间，那么马尔可夫不等式的计算结果为1/2，好像符合实际情况😮</p>
+<p>再假设其期望就是特别小，比如说1，然后两个峰值相差很大分别为0.1，10。那么根据杠杆原理（乱入😁），期望相当于支点，则两个峰值的数据量之比肯定为10:1。那么根据马尔可夫不等式计算出的值1/10好像又是对的😮。
+虽然感觉定理不对，但是为啥举的例子又都是对的呢？后来仔细想想，应该是其条件限制了x的取值范围大于0，期望就相当于支点，距离支点越远，力矩越大，所以需要的力越小，即点的数量也就越少，因此可以得到一个概率范围，嗯~~~听起来挺合理😁</p>
+<p>以上只是我一开始的主观想象过程，下面介绍实际的证明：
+$$
+\begin{align}
+P(x&gt;\alpha) &amp; = \int_\alpha ^\infty f(x)dx \cr
+&amp; = \frac{1}{\alpha}\int_\alpha^\infty \alpha f(x)dx \cr
+&amp; &lt; \frac{1}{\alpha}\int_\alpha^\infty xf(x)dx \cr
+&amp; &lt; \frac{1}{\alpha}\int_0^\infty xf(x)dx \cr
+&amp; = \frac{\mu}{\alpha}
+\end{align}
+$$</p>
+<p>其数学证明很简单，值得说明的是该上界经过几次放缩，所以估计的很粗略，相对而言切比雪夫不等式就要准确一些。</p>
+<h2 id="切比雪夫不等式">切比雪夫不等式</h2>
+<p>因为切比雪夫中引入了方差，所以感觉看着就比马尔可夫要靠谱些😂
+$$
+P(|x-\mu |&gt;\alpha) &lt; \frac{\sigma ^2}{\alpha ^2}
+$$
+其中$\mu$为期望，$\sigma ^2$为方差。</p>
+<p>该式的证明也很简单，直接代入马尔可夫不等式就可证明：
+$$
+\begin{align}
+P(|x-\mu |&gt;\alpha) &amp; = P(|x-\mu |^2&gt;\alpha ^2) \cr
+&amp; &lt; \frac{E(|x-\mu|^2)}{\alpha ^2} \cr
+&amp; = \frac{\sigma ^2}{\alpha ^2}
+\end{align}
+$$
+上式中的第二步转化之所以成立，是因为$E(|x-\mu|^2)$恰好就是方差的定义啊。可见切比雪夫不等式其实就是对方差的另一种解释。不是方差恰好满足了这个式子，而是方差的定义使其一定满足该不等式。不难想象，如果方差改一下定义，那么切比雪夫不等式肯定以另一种形式出现。</p>
+<p>另外，我学的教材中还有对切比雪夫不等式的另一种证明：
+$$
+\begin{align}
+P(|x-\mu |&gt;\alpha) &amp; = P(|x-\mu |^2&gt;\alpha ^2) \cr
+&amp; = \int_{|x-\mu |^2&gt;\alpha ^2} f(x)dx \cr
+&amp; &lt; \int_{|x-\mu |^2&gt;\alpha ^2}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \cr
+&amp; &lt; \int_{-\infty}^{\infty}\frac{(x-\mu)^2}{\alpha ^2} f(x)dx \cr
+&amp; = \frac{\sigma ^2}{\alpha ^2}
+\end{align}
+$$</p>
+<p>以上为我学的教材上的证明方法，可见切比雪夫不等式中的$|x-\mu|$恰好可以和$f(x)$组成方差的计算公式。通过本博客希望自己对于上述两个不等式有更深的理解吧~😄</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-10-28&nbsp;<a class="git-hash" href="https://github.com/xinyu-yang/blog/commit/a7d9337261f4b0fbb8dfbb0b4991751d3919bd29" target="_blank" rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) a7d9337261f4b0fbb8dfbb0b4991751d3919bd29: update some content, delete public/post/, add toefl">
+                                    <i class="fas fa-hashtag fa-fw"></i>a7d9337</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/blog/2021/21-03-21_markov-and-chebyshev/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://xinyu-yang.github.io/blog/2021/21-03-21_markov-and-chebyshev/" data-title="马尔可夫与切比雪夫不等式" data-hashtags="statistics"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://xinyu-yang.github.io/blog/2021/21-03-21_markov-and-chebyshev/" data-hashtag="statistics"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://xinyu-yang.github.io/blog/2021/21-03-21_markov-and-chebyshev/" data-title="马尔可夫与切比雪夫不等式"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://xinyu-yang.github.io/blog/2021/21-03-21_markov-and-chebyshev/" data-title="马尔可夫与切比雪夫不等式"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://xinyu-yang.github.io/blog/2021/21-03-21_markov-and-chebyshev/" data-title="马尔可夫与切比雪夫不等式"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/blog/tags/statistics/">statistics</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/blog/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/blog/2021/00-00-03_pca/" class="prev" rel="prev" title="主成分分析原理与实现"><i class="fas fa-angle-left fa-fw"></i>主成分分析原理与实现</a>
+            <a href="/blog/2021/21-04-06_count-min-sketch/" class="next" rel="next" title="Count-Min Sketch">Count-Min Sketch<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/blog/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+                    <span class="division">•</span>
+                    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/blog/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+                </div>
+
+            <div class="footer-line"><a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.82.0">Hugo</a> - <a href="https://github.com/xinyu-yang/EnjoyIt" target="_blank" rel="noopener noreferrer" title="EnjoyIt 0.0.1"><i class="fas fa-heart fa-fw"></i>EnjoyIt</a><span class="division"> • </span>
+                    <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://xinyu-yang.github.io" target="_blank" rel="noopener noreferrer">Xinyu Yang</a></span>&nbsp;•&nbsp;<span class="license"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/blog/lib/lunr/lunr.stemmer.support.min.d083e6109310cfdc62d9b0e85b94a19ef28a25e2cd65e0f0ddb5925e82dff646.js" integrity="sha256-0IPmEJMQz9xi2bDoW5ShnvKKJeLNZeDw3bWSXoLf9kY="></script><script type="text/javascript" src="/blog/lib/lunr/lunr.zh.min.a3f9c6f4c2a9e8a2568064c63f055e265fa73b19e1464e5dfdf0ded3fe016987.js" integrity="sha256-o/nG9MKp6KJWgGTGPwVeJl&#43;nOxnhRk5d/fDe0/4BaYc="></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"pathname","label":"","lightTheme":"github-light","repo":"xinyu-yang/blog"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/blog/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/blog/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/blog/js/theme.min.d1b26d23ac62a6d4bfafb3292c82d97770d7585d5c60e8d254d46fd9555fc69b.js" integrity="sha256-0bJtI6xiptS/r7MpLILZd3DXWF1cYOjSVNRv2VVfxps="></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-NSNR248K3V');
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-NSNR248K3V" async></script><script id="baidu_analytics" type="text/javascript">
+      var _hmt = _hmt || [];
+      (function() {
+        if (window.location.hostname === 'localhost') return;
+        var hm = document.createElement("script"); hm.async = true;
+        hm.src = "https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script></body>
+</html>

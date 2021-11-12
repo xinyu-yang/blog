@@ -4,16 +4,18 @@ subtitle: ""
 date: {{ .Date }}
 lastmod: {{ .Date }}
 draft: true
-author: ""
+author: "Xinyu Yang"
 authorLink: ""
+
+keywords: []
 description: ""
+images: []
 
 tags: []
 categories: []
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
-
 featuredImage: ""
 featuredImagePreview: ""
 

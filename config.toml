@@ -34,7 +34,7 @@ ignoreErrors = ["error-remote-getjson"]
     copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
     # Menu config
     [languages.en.menu]
-      [[languages.en.menu.main]]
+       [[languages.en.menu.main]]
         identifier = "posts"
         # you can add extra information before the name (HTML format is supported), such as icons
         pre = ""
@@ -82,18 +82,18 @@ ignoreErrors = ["error-remote-getjson"]
         pre = "<i class='fab fa-github fa-fw'></i>"
         post = ""
         name = ""
-        url = "https://github.com/xinyu-yang/xinyu-yang.github.io"
+        url = "https://github.com/xinyu-yang/blog"
         title = "GitHub"
         weight = 6
     [languages.en.params]
       # site description
-      description = "麋鹿博客"
+      description = "elk blog -- A place to share knowledge and fun"
       # site keywords
-      keywords = ["Blog", "Hugo"]
+      keywords = ["blog", "xinyu yang"]
       # App icon config
       [languages.en.params.app]
         # optional site title override for the app when added to an iOS home screen or Android launcher
-        title = "麋鹿博客"
+        title = "elk blog"
         # whether to omit favicon resource links
         noFavicon = false
         # modern SVG favicon to use in place of older style .png and .ico files
@@ -108,7 +108,7 @@ ignoreErrors = ["error-remote-getjson"]
       [languages.en.params.search]
         enable = true
         # type of search engine ("lunr", "algolia")
-        type = "algolia"
+        type = "lunr"
         # max index length of the chunked content
         contentLength = 4000
         # placeholder of the search bar
@@ -120,7 +120,8 @@ ignoreErrors = ["error-remote-getjson"]
         # HTML tag name of the highlight part in results
         highlightTag = "em"
         # whether to use the absolute URL based on the baseURL in search index
-        absoluteURL = false
+        absoluteURL = true
+        [languages.en.params.search.lunr]
         [languages.en.params.search.algolia]
           index = "index.en"
           appID = "PASDMWALPK"
@@ -245,7 +246,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
         post = ""
-        name = "所有文章"
+        name = "文章"
         url = "../blog/posts/"
         title = ""
         weight = 1
@@ -285,14 +286,14 @@ ignoreErrors = ["error-remote-getjson"]
         pre = "<i class='fab fa-github fa-fw'></i>"
         post = ""
         name = ""
-        url = "https://github.com/xinyu-yang/xinyu-yang.github.io"
+        url = "https://github.com/xinyu-yang/blog"
         title = "GitHub"
         weight = 6
     [languages.zh-cn.params]
       # 网站描述
-      description = "麋鹿博客"
+      description = "麋鹿博客 -- 一个分享知识和乐趣的地方"
       # 网站关键词
-      keywords = ["blog", "xinyu-yang"]
+      keywords = ["blog", "xinyu yang"]
       # 应用图标配置
       [languages.zh-cn.params.app]
         # 当添加到 iOS 主屏幕或者 Android 启动器时的标题, 覆盖默认标题
@@ -311,7 +312,7 @@ ignoreErrors = ["error-remote-getjson"]
       [languages.zh-cn.params.search]
         enable = true
         # 搜索引擎的类型 ("lunr", "algolia")
-        type = "algolia"
+        type = "lunr"
         # 文章内容最长索引长度
         contentLength = 4000
         # 搜索框的占位提示语
@@ -429,7 +430,7 @@ ignoreErrors = ["error-remote-getjson"]
   # site default theme ("light", "dark", "auto")
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
-  gitRepo = "https://github.com/xinyu-yang/xinyu-yang.github.io"
+  gitRepo = "https://github.com/xinyu-yang/blog"
   # which hash function used for SRI, when empty, no SRI is used ("sha256", "sha384", "sha512", "md5")
   fingerprint = "sha256"
   # date format
@@ -649,7 +650,7 @@ ignoreErrors = ["error-remote-getjson"]
       [params.page.comment.utterances]
         enable = true
         # owner/repo
-        repo = "xinyu-yang/xinyu-yang.github.io"
+        repo = "xinyu-yang/blog"
         issueTerm = "pathname"
         label = ""
         lightTheme = "github-light"
@@ -672,7 +673,7 @@ ignoreErrors = ["error-remote-getjson"]
       images = []
       # Publisher info
       [params.page.seo.publisher]
-        name = "xxxx"
+        name = "Xinyu Yang"
         logoUrl = "/images/avatar.png"
 
   # TypeIt config
@@ -697,9 +698,9 @@ ignoreErrors = ["error-remote-getjson"]
   # Site SEO config
   [params.seo]
     # image URL
-    image = "/images/Apple-Devices-Preview.png"
+    image = "/images/avatar.png"
     # thumbnail URL
-    thumbnailUrl = "/images/screenshot.png"
+    thumbnailUrl = "/images/avatar.png"
 
   # Analytics config
   [params.analytics]
@@ -786,7 +787,7 @@ ignoreErrors = ["error-remote-getjson"]
 [author]
   name = "Xinyu Yang"
   email = "yangxinyu75@live.com"
-  link = ""
+  link = "https://xinyu-yang.github.io"
 
 # Sitemap config
 [sitemap]
@@ -797,7 +798,7 @@ ignoreErrors = ["error-remote-getjson"]
 # Permalinks config (https://gohugo.io/content-management/urls/#permalinks)
 [Permalinks]
   # posts = ":year/:month/:filename"
-  posts = "posts/:filename"
+  posts = ":year/:filename"
 
 # Privacy config (https://gohugo.io/about/hugo-and-gdpr/)
 [privacy]
