@@ -1,0 +1,305 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Vim学习记录 - 麋鹿博客</title><meta name=description content="麋鹿博客 -- 一个分享知识和乐趣的地方"><meta property="og:title" content="Vim学习记录">
+<meta property="og:description" content>
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/"><meta property="og:image" content="https://xinyu-yang.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-09-28T10:34:49+08:00">
+<meta property="article:modified_time" content="2021-11-05T19:28:12+08:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://xinyu-yang.github.io/logo.png">
+<meta name=twitter:title content="Vim学习记录">
+<meta name=twitter:description content>
+<meta name=application-name content="麋鹿博客">
+<meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/><link rel=prev href=https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/blog/css/style.min.49ba53d0ac63eac012a8da252d63436a956092c2bd062bf872c3736db5363535.css integrity="sha256-SbpT0Kxj6sASqNolLWNDapVgksK9Biv4csNzbbU2NTU="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Vim学习记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-09-28_vim-learning\/"},"image":[{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}],"genre":"posts","keywords":"vim","wordcount":3754,"url":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-09-28_vim-learning\/","datePublished":"2021-09-28T10:34:49+08:00","dateModified":"2021-11-05T19:28:12+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Xinyu Yang","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/blog/ title=麋鹿博客>麋鹿博客</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/blog/posts/> 文章 </a><a class=menu-item href=/blog/tags/> 标签 </a><a class=menu-item href=/blog/categories/> 分类 </a><a class=menu-item href=/blog/about/> 关于 </a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/blog/2021/21-09-28_vim-learning/ selected>简体中文</option></select>
+</a><span class="menu-item search" id=search-desktop>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/blog/ title=麋鹿博客>麋鹿博客</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+取消
+</a>
+</div><a class=menu-item href=/blog/posts/ title>文章</a><a class=menu-item href=/blog/tags/ title>标签</a><a class=menu-item href=/blog/categories/ title>分类</a><a class=menu-item href=/blog/about/ title>关于</a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i>
+</a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select onchange="location=this.value"><option value=/blog/2021/21-09-28_vim-learning/ selected>简体中文</option></select>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>目录</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Vim学习记录</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=https://xinyu-yang.github.io title=Author target=_blank rel="noopener noreferrer author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/blog/categories/record/><i class="far fa-folder fa-fw"></i>record</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-28>2021-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3754 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#介绍>介绍</a></li>
+<li><a href=#综合教程>综合教程</a>
+<ul>
+<li><a href=#vimtutor>Vimtutor</a></li>
+<li><a href=#其他入门教程>其他入门教程</a></li>
+<li><a href=#vim从入门到精通vim-galore-zh_cnhttpsgithubcomwsdjegvim-galore-zh_cn><a href=https://github.com/wsdjeg/vim-galore-zh_cn>《Vim从入门到精通（vim-galore-zh_cn）》</a></a></li>
+<li><a href=#vim学习笔记httpsyyq123githubiolearn-vim><a href=https://yyq123.github.io/learn-vim/>《Vim学习笔记》</a></a></li>
+</ul>
+</li>
+<li><a href=#插件>插件</a>
+<ul>
+<li><a href=#配置教程>配置教程</a></li>
+<li><a href=#插件推荐>插件推荐</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=介绍>介绍</h2>
+<p>很久以来，一直想写一些关于Vim的使用博客。但是随着对Vim的了解加深，我意识到自己还达不到创作文章介绍Vim的能力。
+一方面是因为自己对Vim的了解实在是有限，很多东西都只是鹦鹉学舌，了解简单的用法，而介绍这些基本用法的博客文章等浩如烟海，因此没有重复赘述的必要。
+另一方面是因为随着学习的深入，我也接触到了很多优秀的博客文章，值得仔细研读。同时也意识到自己的水平跟这些文章的作者相去甚远，想要达到同等水平况且需要些时日，更不用说写出更有深度的东西了。</p>
+<p>鉴于以上原因，我决定首先将我学习过程中所参考的优秀学习资料进行汇总和简介。如果初学者能看到本文，并因此在学习中少走些弯路，那便是本文的价值。
+另外，我应该不会写偏向于大而全的Vim介绍博客，至少目前不会。但是我可能会写一些关于某些功能点的深入学习和记录的文章，我认为在当前网络中所能搜索到的文章中，这类更有价值。</p>
+<p>目前本人主要使用的是Vim，但是目前Neovim似乎后来居上，大有取而代之之势，并且github上有很多优秀活跃的Neovim插件在开发。从长久趋势来看，新的东西总是基于已有设计，总结经验，克服弊端，并最终淘汰旧的。从传承上来看，Neovim不过是对Vim的推倒重建式的重构，亦如当年Vim对于Vi编辑器的改良一般。</p>
+<p>据称Neovim完全兼容Vim的功能和配置，并提供了额外的功能，从其风靡程度来看，我也相信这一点。但至少从目前来看，我还没有足够的理由和动机去使用它。也许还是缺少一个契机。这个契机就是遇到Vim无法或很难解决的痛点，并且Neovim可以很容易解决。而在这之前，则需要对Vim更加熟练的使用。</p>
+<h2 id=综合教程>综合教程</h2>
+<h3 id=vimtutor>Vimtutor</h3>
+<p>Vimtutor作为自带的官方教程，其作为入门教程的权威性自然不言而喻。当然，除了其明面上的地位之外，其作为一个入门教程，给初学者提供了一个很好的实际操作体验，该教程会提供一些例子供阅读者进行实际的操作，比起仅仅列举式的功能介绍，该导论还是挺容易被初学者接受的。
+下面是截取的一部分例子：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><span class=err>
+</span><span class=err></span>                     <span class=nx>Lesson</span> <span class=m>1</span>.<span class=m>3</span>: <span class=nx>TEXT</span> <span class=nx>EDITING</span> <span class=p>-</span> <span class=nx>DELETION</span><span class=err>
+</span><span class=err>
+</span><span class=err>
+</span><span class=err></span>           ** <span class=nx>Press</span>  <span class=nx>x</span>  <span class=nx>to</span> <span class=nx>delete</span> <span class=nx>the</span> <span class=nx>character</span> <span class=nx>under</span> <span class=nx>the</span> <span class=nx>cursor</span>. **<span class=err>
+</span><span class=err>
+</span><span class=err></span>  <span class=m>1</span>. <span class=nx>Move</span> <span class=nx>the</span> <span class=nx>cursor</span> <span class=nx>to</span> <span class=nx>the</span> <span class=nx>line</span> <span class=nx>below</span> <span class=nx>marked</span> <span class=p>---&gt;</span>.<span class=err>
+</span><span class=err>
+</span><span class=err></span>  <span class=m>2</span>. <span class=nx>To</span> <span class=nx>fix</span> <span class=nx>the</span> <span class=nx>errors</span><span class=p>,</span> <span class=nx>move</span> <span class=nx>the</span> <span class=nx>cursor</span> <span class=nx>until</span> <span class=nx>it</span> <span class=nx>is</span> <span class=nx>on</span> <span class=nx>top</span> <span class=nx>of</span> <span class=nx>the</span><span class=err>
+</span><span class=err></span>     <span class=nx>character</span> <span class=nx>to</span> <span class=nx>be</span> <span class=nx>deleted</span>.<span class=err>
+</span><span class=err>
+</span><span class=err></span>  <span class=m>3</span>. <span class=nx>Press</span> <span class=nx>the</span>  <span class=nx>x</span>  <span class=nx>key</span> <span class=nx>to</span> <span class=nx>delete</span> <span class=nx>the</span> <span class=nx>unwanted</span> <span class=nx>character</span>.<span class=err>
+</span><span class=err>
+</span><span class=err></span>  <span class=m>4</span>. <span class=nx>Repeat</span> <span class=nx>steps</span> <span class=m>2</span> <span class=nx>through</span> <span class=m>4</span> <span class=nx>until</span> <span class=nx>the</span> <span class=nx>sentence</span> <span class=nx>is</span> <span class=nx>correct</span>.<span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=p>---&gt;</span> <span class=nx>The</span> <span class=nx>ccow</span> <span class=nx>jumpedd</span> <span class=nx>ovverr</span> <span class=nx>thhe</span> <span class=nx>mooon</span>.<span class=err>
+</span><span class=err>
+</span><span class=err></span>  <span class=m>5</span>. <span class=nx>Now</span> <span class=nx>that</span> <span class=nx>the</span> <span class=nx>line</span> <span class=nx>is</span> <span class=nx>correct</span><span class=p>,</span> <span class=nx>go</span> <span class=nx>on</span> <span class=nx>to</span> <span class=nx>lesson</span> <span class=m>1</span>.<span class=m>4</span>.<span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=nx>NOTE</span>: <span class=nx>As</span> <span class=nx>you</span> <span class=nx>go</span> <span class=nx>through</span> <span class=nx>this</span> <span class=nx>tutor</span><span class=p>,</span> <span class=nx>do</span> <span class=nx>not</span> <span class=nx>try</span> <span class=nx>to</span> <span class=nx>memorize</span><span class=p>,</span> <span class=nx>learn</span> <span class=nx>by</span> <span class=nx>usage</span>.<span class=err>
+</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><span class=err>
+</span></code></pre></td></tr></table>
+</div>
+</div><p>整篇教程不长，一小时之内就能读完，然后就能够对平时经常用到的绝大部分功能有一个大概的认识。如果想要熟练掌握，还是要勤加练习，并且强迫自己用不同的方式实现某一功能。</p>
+<p>该教程是随Vim一块安装的，打开方式很简单，只需在终端敲入<code>vimtutor</code>：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ vimtutor
+</code></pre></td></tr></table>
+</div>
+</div><p>如果想打开中文版（对，居然自带中文版😃），可以使用<code>vimtutor zh_cn</code>命令。
+当然，该文档也可以从Vim中打开，在<code>normal</code>模式敲入：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=p>:</span><span class=nx>e</span> $<span class=nx>VIMRUNTIME</span><span class=sr>/vim/</span><span class=nx>tutor</span>/<span class=nx>tutor</span>.<span class=nx>zh_cn</span>.<span class=nx>utf</span><span class=m>-8</span><span class=err>
+</span></code></pre></td></tr></table>
+</div>
+</div><p>不过还是推荐使用<code>vimtutor</code>进行打开，因为在使用该命令时，<code>Vim</code>会自动把原文档复制一份成临时文件然后打开。因此，对通过该方式打开的文档进行操作不会改变原文档。这样使用者就可以放心操作了。</p>
+<h3 id=其他入门教程>其他入门教程</h3>
+<p><a href=https://coolshell.cn/articles/5426.html target=_blank rel="noopener noreferrer">《简明Vim练级攻略》</a></p>
+<p>这是一篇11年的教程，虽然时间稍早，但是排版易读，语言诙谐，并且加入了很多图片和动图，对读者比较友好。目前该文已有超多120万的阅读量👍。
+这篇教程整体内容跟Vimtutor差不多，可以看成是Vimtutor的补充，读完Vimtutor之后可以读下这篇，跟着操作一遍，可以起到复习的效果。</p>
+<p><a href=https://www.bookstack.cn/read/learn-vim/README.md target=_blank rel="noopener noreferrer">《Vim实操教程》</a></p>
+<p>文如其名，这同样是一份注重实际操作的教程，整体内容也跟上两个文档差不多，可以作为补充一块阅读。
+该教程的优点是排版较好，有着类似于书籍的章节排版，逻辑清晰。而且相对上两篇而言，比较新一些，同时有一些关于插件的简单介绍。</p>
+<p><a href=https://liuzhijun.iteye.com/category/270228 target=_blank rel="noopener noreferrer">《每日一vim》</a></p>
+<p>这是一个教程系列，共计30篇，每篇介绍一个功能，篇幅较短，阅读的时候不会有心里负担，当然对于功能的介绍也是浅尝辄止，读者可以根据需要有选择性的阅读。</p>
+<h3 id=vim从入门到精通vim-galore-zh_cnhttpsgithubcomwsdjegvim-galore-zh_cn><a href=https://github.com/wsdjeg/vim-galore-zh_cn target=_blank rel="noopener noreferrer">《Vim从入门到精通（vim-galore-zh_cn）》</a></h3>
+<p>当搜索Vim的学习教程时，很多人都推荐《Vim galore》，这篇文章就是其中文翻译。虽然中文翻译有点俗套的编程语言教程内味，但是并不影响这是一篇很好的Vim教程。</p>
+<p>该仓库下就链接了其他语言的版本，英文好的可以读英文原版，不太好的可以读中文，并且该教程还有日语、西班牙语和俄语选项，都是开源社区贡献的，这也从侧面印证了该教程的牛x。</p>
+<p>相对于上面所提到的入门教程，该文章提供了更加深入的介绍，但同时也不那么容易阅读，需要反复咀嚼才能将其学透。
+我在第一次看该教程的时候，已经读了上面那些教程，并且有了一段时间的Vim使用经验，但是还是有很多地方读不懂和不理解。后来慢慢的对于里面的内容有了认识（比如那么多的寄存器），但是还是有些不太懂。
+所以建议初学者可以先不要读此教程，待有了一定的基础之后再来阅读，当然该教程也需要反复复习。越是经典的教程越是值得我们反复咀嚼，并且每次阅读都会有新的收获。</p>
+<h3 id=vim学习笔记httpsyyq123githubiolearn-vim><a href=https://yyq123.github.io/learn-vim/ target=_blank rel="noopener noreferrer">《Vim学习笔记》</a></h3>
+<p>这是一个颇为低调的学习笔记，如果不是偶然看到，可能很难搜索到该教程，该教程所对应的github博客主页甚至都是空白的。据作者称，这是他从一本书整理而来。
+经过简单浏览我发现这本书还是不错的，介绍深入浅出，不会只简单介绍基本操作，而是对Vim有较为高级的介绍。
+博客内容很丰富，感觉有时间可以学习学习。</p>
+<h2 id=插件>插件</h2>
+<h3 id=配置教程>配置教程</h3>
+<ul>
+<li><a href=https://github.com/yangyangwithgnu/use_vim_as_ide target=_blank rel="noopener noreferrer">《所需即所获：像 IDE 一样使用 vim》</a></li>
+</ul>
+<p>这是我阅读的第一篇关于Vim插件配置的文章，主要是我在搜索关于Vim配置的文章的时候，这篇文章高居搜索引擎榜首。虽然已经五年没有更新了，但仍然在github上有9k Star。
+这是我读到并且跟着操作的第一篇关于插件配置的博客，该博客涉及的内容很多，以至于很难短时间内搞明白所有的内容，事实上我到现在还搞不明白有些插件的用处。因此需要在实际操作中逐渐摸索。
+因为时间原因，文中有些插件早已经被开发者放弃或者被其他的插件所代替。因为不同的人需求也不尽相同，所以有很多文中列举的插件其他使用者可能会觉得根本没有必要。</p>
+<p>考虑到以上原因，我采用的方法是首先将所有的配置文件直接拷贝下来，然后逐渐学习和摸索每个插件的用处，然后增删改查，最后打造属于自己的配置。
+直接使用现成配置的好处是增加学习过程中的收获感，因为配置完成之后直接就可以看到最终的效果，虽然这个阶段对每一个功能都一脸茫然，但是仍然可以增加自己的成就感。而如果从头开始摸索的话，则可能因为工作量太大并且久久看不到自己想要的效果而丧失学习乐趣。</p>
+<p>逐渐摸索下来之后便可对插件进行逐一学习和探索，并且你会逐渐发现这项工作深不见底。因为从对已有插件简单的使用到掌握复杂的配置已经是一个颇为困难的过程，更不用说你甚至可以直接写自己所需的插件。真是学海无涯啊~</p>
+<p>这里同样推荐一些成熟配置以供参考，当然关于Vim的配置在网上一搜一大堆，在github的topics中也能找到很多高star<a href=https://github.com/topics/vimrc target=_blank rel="noopener noreferrer">仓库</a>，以下是摘录的几个：</p>
+<ul>
+<li><a href=https://spacevim.org/ target=_blank rel="noopener noreferrer">SpaceVim</a></li>
+</ul>
+<p>该项目也许是最有名的Vim配置，在github的<code>vimrc</code>话题中高居榜首，其甚至有<a href=https://spacevim.org/cn/ target=_blank rel="noopener noreferrer">中文文档</a>（后来才知道该项目原来就是由国人发起的👍）。官网称自己为Vim发布（Vim distribution），感觉就像BSD是作为Linux操作系统的一个发布一样。该发布非常成熟，当然也比较复杂。
+我没用过，但是感觉入门成本应该比较低，按照成熟的官方文档进行配置应该没啥问题。因此该配置对于想直接使用Vim配置完全体的用户来说比较友好。</p>
+<p>但是我本人没有用该配置的原因也是如此，该配置太成熟和复杂了，以至于很难入手去学习。对我自己而言，一个简易配置，并且容易上手鼓捣的版本才比较适合我。
+因为这样可以很好的折中使用体验和入门成本，这也是我选择上述文章学习的原因。</p>
+<p>另外要说的一点，当自己逐渐熟悉Vim的配置流程之后，会发现SpaceVim的源码是一个很好的学习材料。</p>
+<ul>
+<li><a href=https://github.com/wklken/k-vim target=_blank rel="noopener noreferrer">k-vim</a></li>
+</ul>
+<p>该配置在github上也有高star，并且作者是国人。该配置的说明文档不是特别详细，但是问题不大，因为该配置并不是特别复杂，并且在配置文件中有很好的注释。虽然感觉项目稍老，而且开发也不是特别活跃，但是是一个很好的入门和学习素材。</p>
+<p>另外作者还开发了一个简化版的<a href=https://github.com/wklken/vim-for-server target=_blank rel="noopener noreferrer">vim-for-server</a>版本，用于不太方便安装插件的场景，对我很有启发，我决定也要搞这么一个东西。</p>
+<ul>
+<li><a href=https://github.com/xinyu-yang/myvim target=_blank rel="noopener noreferrer">myvim</a></li>
+</ul>
+<p>最后允许我厚颜无耻的放上我自己的Vim配置</p>
+<p>在某博客上读到一句话，感觉比较赞同，大概意思是应该将Vim打造成适合自己的方式，而不是自己去适应已有的配置。这也可能也是大多数人一直乐此不疲折腾的原因吧。
+所以以上参考都只是参考和学习资料，毕竟什么配置最合适只有自己知道。</p>
+<h3 id=插件推荐>插件推荐</h3>
+<p>关于插件的推荐，网上同样有很多相关的教程。同时，也可以经常看<a href=https://vimawesome.com/ target=_blank rel="noopener noreferrer">这个网站</a>。这个网站有很多流行的插件推荐，可以根据自己的需要进行摸索。
+这里我根据自己的使用情况介绍几个个人感觉比较重要的：</p>
+<p>我认为首先需要做的是一些美化工作，这包括找一个合适的主题，还有漂亮的状态显示工具。
+当然，在最开始之前，最好安装一个插件管理程序，以便于管理。</p>
+<p>关于这方面的插件有几个不错的，其中包括<code>Vundle</code>, <code>vim-plug</code>, <code>dein</code>。这几个插件的评分都挺高的，而且功能也相近。</p>
+<p>其中<a href rel>Vundle</a>是一个比较老的插件，同时可能也是最流行的一个。</p></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>更新于 2021-11-05&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/blog/commit/80fcafd0eb04652c0affb715f868e1883041f68a target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) 80fcafd0eb04652c0affb715f868e1883041f68a: update content of vim learning">
+<i class="fas fa-hashtag fa-fw"></i>80fcafd</a></span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/blog/2021/21-09-28_vim-learning/index.md target=_blank rel="noopener noreferrer">阅读原始文档</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/ data-title=Vim学习记录 data-hashtags=vim><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/ data-hashtag=vim><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/ data-title=Vim学习记录><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/ data-title=Vim学习记录><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/ data-title=Vim学习记录><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/blog/tags/vim/>vim</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/blog/>主页</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/blog/2021/21-09-09_picture-bed/ class=prev rel=prev title=可同步图床配置——PicGo+Gitee/Github/Gitlab+Onedrive><i class="fas fa-angle-left fa-fw"></i>可同步图床配置——PicGo+Gitee/Github/Gitlab+Onedrive</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>•</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreferrer" title="Hugo 0.89.2">Hugo</a> - <a href=https://github.com/xinyu-yang/EnjoyIt target=_blank rel="noopener noreferrer" title="EnjoyIt 0.0.1"><i class="fas fa-heart fa-fw"></i>EnjoyIt</a><span class=division> • </span>
+<i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://xinyu-yang.github.io target=_blank rel="noopener noreferrer">Xinyu Yang</a></span>&nbsp;•&nbsp;<span class=license><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论>
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/blog/lib/lunr/lunr.stemmer.support.min.d083e6109310cfdc62d9b0e85b94a19ef28a25e2cd65e0f0ddb5925e82dff646.js integrity="sha256-0IPmEJMQz9xi2bDoW5ShnvKKJeLNZeDw3bWSXoLf9kY="></script><script type=text/javascript src=/blog/lib/lunr/lunr.zh.min.a3f9c6f4c2a9e8a2568064c63f055e265fa73b19e1464e5dfdf0ded3fe016987.js integrity="sha256-o/nG9MKp6KJWgGTGPwVeJl+nOxnhRk5d/fDe0/4BaYc="></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:10},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"xinyu-yang/blog"}},search:{highlightTag:"em",lunrIndexURL:"/blog/index.json",lunrLanguageCode:"zh",lunrSegmentitURL:"/blog/lib/lunr/lunr.segmentit.js",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"lunr"}}</script><script type=text/javascript src=/blog/js/theme.min.d1b26d23ac62a6d4bfafb3292c82d97770d7585d5c60e8d254d46fd9555fc69b.js integrity="sha256-0bJtI6xiptS/r7MpLILZd3DXWF1cYOjSVNRv2VVfxps="></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-NSNR248K3V')</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-NSNR248K3V" async></script><script id=baidu_analytics type=text/javascript>var _hmt=_hmt||[];(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement("script"),a.async=!0,a.src="https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></body>
+</html>
