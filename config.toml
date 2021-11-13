@@ -52,7 +52,7 @@ ignoreErrors = ["error-remote-getjson"]
         name = "Tags"
         url = "../en/tags/"
         title = ""
-        weight = 2
+        weight = 3
       [[languages.en.menu.main]]
         identifier = "categories"
         pre = ""
@@ -60,7 +60,7 @@ ignoreErrors = ["error-remote-getjson"]
         name = "Categories"
         url = "../en/categories/"
         title = ""
-        weight = 3
+        weight = 2
       #[[languages.en.menu.main]]
         #identifier = "documentation"
         #pre = ""
@@ -256,7 +256,7 @@ ignoreErrors = ["error-remote-getjson"]
         name = "标签"
         url = "../blog/tags/"
         title = ""
-        weight = 2
+        weight = 3
       [[languages.zh-cn.menu.main]]
         identifier = "categories"
         pre = ""
@@ -264,7 +264,7 @@ ignoreErrors = ["error-remote-getjson"]
         name = "分类"
         url = "../blog/categories/"
         title = ""
-        weight = 3
+        weight = 2
       #[[languages.zh-cn.menu.main]]
         #identifier = "documentation"
         #pre = ""
@@ -706,7 +706,7 @@ ignoreErrors = ["error-remote-getjson"]
     enable = true
     siteUV = true
     sitePV = true
-    pagePV = true
+    pagePV = false          # Overlap with Valine
 
 
   # Cookie consent config
