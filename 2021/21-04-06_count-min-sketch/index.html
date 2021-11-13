@@ -9,7 +9,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://xinyu-yang.github.io/blog/2021/21-04-06_count-min-sketch/"><meta property="og:image" content="https://xinyu-yang.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-04-06T20:14:43+08:00">
-<meta property="article:modified_time" content="2021-09-17T14:00:49+08:00">
+<meta property="article:modified_time" content="2021-11-13T10:30:50+08:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://xinyu-yang.github.io/logo.png">
 <meta name=twitter:title content="Count-Min Sketch">
@@ -17,7 +17,7 @@
 <meta name=application-name content="麋鹿博客">
 <meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/blog/2021/21-04-06_count-min-sketch/><link rel=prev href=https://xinyu-yang.github.io/blog/2021/21-03-21_markov-and-chebyshev/><link rel=next href=https://xinyu-yang.github.io/blog/2021/21-04-07_bloom-filter/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/blog/css/style.min.49ba53d0ac63eac012a8da252d63436a956092c2bd062bf872c3736db5363535.css integrity="sha256-SbpT0Kxj6sASqNolLWNDapVgksK9Biv4csNzbbU2NTU="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Count-Min Sketch","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-06_count-min-sketch\/"},"image":[{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}],"genre":"posts","keywords":"hash","wordcount":1296,"url":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-06_count-min-sketch\/","datePublished":"2021-04-06T20:14:43+08:00","dateModified":"2021-09-17T14:00:49+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Xinyu Yang","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/blog/2021/21-04-06_count-min-sketch/><link rel=prev href=https://xinyu-yang.github.io/blog/2021/21-03-21_markov-and-chebyshev/><link rel=next href=https://xinyu-yang.github.io/blog/2021/21-04-07_bloom-filter/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/blog/css/style.min.89795fae450338be753168e7663511eb5e6fd18cc6e1dd62e07d1653e83328de.css integrity="sha256-iXlfrkUDOL51MWjnZjUR615v0YzG4d1i4H0WU+gzKN4="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Count-Min Sketch","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-06_count-min-sketch\/"},"image":[{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}],"genre":"posts","keywords":"hash","wordcount":1296,"url":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-06_count-min-sketch\/","datePublished":"2021-04-06T20:14:43+08:00","dateModified":"2021-11-13T10:30:50+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Xinyu Yang","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -25,7 +25,7 @@
 <a href=/blog/ title=麋鹿博客>麋鹿博客</a>
 </div>
 <div class=menu>
-<div class=menu-inner><a class=menu-item href=/blog/posts/> 文章 </a><a class=menu-item href=/blog/tags/> 标签 </a><a class=menu-item href=/blog/categories/> 分类 </a><a class=menu-item href=/blog/about/> 关于 </a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<div class=menu-inner><a class=menu-item href=/blog/posts/> 文章 </a><a class=menu-item href=/blog/categories/> 分类 </a><a class=menu-item href=/blog/tags/> 标签 </a><a class=menu-item href=/blog/about/> 关于 </a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
 <select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/blog/2021/21-04-06_count-min-sketch/ selected>简体中文</option></select>
 </a><span class="menu-item search" id=search-desktop>
 <input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
@@ -70,7 +70,7 @@
 <a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
 取消
 </a>
-</div><a class=menu-item href=/blog/posts/ title>文章</a><a class=menu-item href=/blog/tags/ title>标签</a><a class=menu-item href=/blog/categories/ title>分类</a><a class=menu-item href=/blog/about/ title>关于</a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+</div><a class=menu-item href=/blog/posts/ title>文章</a><a class=menu-item href=/blog/categories/ title>分类</a><a class=menu-item href=/blog/tags/ title>标签</a><a class=menu-item href=/blog/about/ title>关于</a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
 <i class="fas fa-adjust fa-fw"></i>
 </a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
 <select class=language-select onchange="location=this.value"><option value=/blog/2021/21-04-06_count-min-sketch/ selected>简体中文</option></select>
@@ -90,8 +90,7 @@
 </div><article class="page single"><h1 class="single-title animated flipInX">Count-Min Sketch</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://xinyu-yang.github.io title=Author target=_blank rel="noopener noreferrer author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/blog/categories/algorithm/><i class="far fa-folder fa-fw"></i>algorithm</a></span></div>
 <div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-04-06>2021-04-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1296 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
-<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;<span id=/blog/2021/21-04-06_count-min-sketch/ class=leancloud_visitors data-flag-title="Count-Min Sketch">
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id=/blog/2021/21-04-06_count-min-sketch/ class=leancloud_visitors data-flag-title="Count-Min Sketch">
 <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
 </span>&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
@@ -180,8 +179,8 @@ $$</p>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>更新于 2021-09-17&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/blog/commit/93b7d646371499b932d07711b9b2afb237656181 target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) 93b7d646371499b932d07711b9b2afb237656181: fix some config errors, test actions x3">
-<i class="fas fa-hashtag fa-fw"></i>93b7d64</a></span>
+<span>更新于 2021-11-13&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/blog/commit/cc6addcd52001e7227bde91ec6450aba3e6f32d9 target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) cc6addcd52001e7227bde91ec6450aba3e6f32d9: regulate directory structure">
+<i class="fas fa-hashtag fa-fw"></i>cc6addc</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
