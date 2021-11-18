@@ -217,7 +217,7 @@ ignoreErrors = ["error-remote-getjson"]
         XMPP = ""
         Matrix = ""
         Bilibili = ""
-        Email = "yangxinyu75@live.com"
+        Email = "yangxinyu75@qq.com"
         RSS = true
         [languages.en.params.social.Mastodon]
           #id = ""
@@ -420,7 +420,7 @@ ignoreErrors = ["error-remote-getjson"]
         XMPP = ""
         Matrix = ""
         Bilibili = ""
-        Email = "yangxinyu75@live.com"
+        Email = "yangxinyu75@qq.com"
         RSS = true
 
 [params]
@@ -618,6 +618,7 @@ ignoreErrors = ["error-remote-getjson"]
         recordIP = true
         highlight = true
         enableQQ = true
+        requiredFields = ['nick', 'mail']
         #serverURLs = "https://leancloud.hugoEnjoyIt.com"
         # emoji data file name, default is "google.yml"
         # ("apple.yml", "google.yml", "facebook.yml", "twitter.yml")
@@ -765,7 +766,7 @@ ignoreErrors = ["error-remote-getjson"]
 # Author config
 [author]
   name = "Xinyu Yang"
-  email = "yangxinyu75@live.com"
+  email = "yangxinyu75@qq.com"
   link = "https://xinyu-yang.github.io"
 
 # Sitemap config
