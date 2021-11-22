@@ -4,20 +4,20 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title>Vim学习记录 - 麋鹿博客</title><meta name=description content="麋鹿博客 -- 一个分享知识和乐趣的地方"><meta property="og:title" content="Vim学习记录">
-<meta property="og:description" content>
+<title>Vim学习记录 - 麋鹿博客</title><meta name=description content="本文是本人在使用 Vim 时的配置经验和总结"><meta property="og:title" content="Vim学习记录">
+<meta property="og:description" content="本文是本人在使用 Vim 时的配置经验和总结">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/"><meta property="og:image" content="https://xinyu-yang.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-09-28T10:34:49+08:00">
-<meta property="article:modified_time" content="2021-11-18T23:06:55+08:00">
+<meta property="article:modified_time" content="2021-11-22T22:47:09+08:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://xinyu-yang.github.io/logo.png">
 <meta name=twitter:title content="Vim学习记录">
-<meta name=twitter:description content>
+<meta name=twitter:description content="本文是本人在使用 Vim 时的配置经验和总结">
 <meta name=application-name content="麋鹿博客">
 <meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/><link rel=prev href=https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/blog/css/style.min.457b41f3877ae4698fed78d872da4da64fa4f2b3d27162707df2dcb9141a227f.css integrity="sha256-RXtB84d65GmP7XjYctpNpk+k8rPScWJwffLcuRQaIn8="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Vim学习记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-09-28_vim-learning\/"},"image":[{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}],"genre":"posts","keywords":"vim","wordcount":4973,"url":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-09-28_vim-learning\/","datePublished":"2021-09-28T10:34:49+08:00","dateModified":"2021-11-18T23:06:55+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Xinyu Yang","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/><link rel=prev href=https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/blog/css/style.min.457b41f3877ae4698fed78d872da4da64fa4f2b3d27162707df2dcb9141a227f.css integrity="sha256-RXtB84d65GmP7XjYctpNpk+k8rPScWJwffLcuRQaIn8="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Vim学习记录","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-09-28_vim-learning\/"},"image":[{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}],"genre":"posts","keywords":"vim","wordcount":5247,"url":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-09-28_vim-learning\/","datePublished":"2021-09-28T10:34:49+08:00","dateModified":"2021-11-22T22:47:09+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Xinyu Yang","logo":{"@type":"ImageObject","url":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png","width":230,"height":215}},"author":{"@type":"Person","name":"Xinyu Yang"},"description":"本文是本人在使用 Vim 时的配置经验和总结"}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -89,8 +89,8 @@
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Vim学习记录</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://xinyu-yang.github.io title=Author target=_blank rel="noopener noreferrer author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/blog/categories/record/><i class="far fa-folder fa-fw"></i>record</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-28>2021-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4973 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id=/blog/2021/21-09-28_vim-learning/ class=leancloud_visitors data-flag-title=Vim学习记录>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-28>2021-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5247 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id=/blog/2021/21-09-28_vim-learning/ class=leancloud_visitors data-flag-title=Vim学习记录>
 <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
 </span>&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
@@ -119,15 +119,15 @@
 </nav></div>
 </div><div class=content id=content><h2 id=介绍>介绍</h2>
 <p>很久以来，一直想写一些关于 Vim 的使用博客。但是随着对 Vim 的了解加深，我意识到自己还达不到创作文章介绍Vim的能力。
-一方面是因为自己对Vim的了解实在是有限，很多东西都只是鹦鹉学舌，了解简单的用法，而介绍这些基本用法的博客文章等浩如烟海，因此没有重复赘述的必要。
+一方面是因为自己对 Vim 的了解实在是有限，很多东西都只是鹦鹉学舌，了解简单的用法，而介绍这些基本用法的博客文章等浩如烟海，因此没有重复赘述的必要。
 另一方面是因为随着学习的深入，我也接触到了很多优秀的博客文章，值得仔细研读。同时也意识到自己的水平跟这些文章的作者相去甚远，想要达到同等水平况且需要些时日，更不用说写出更有深度的东西了。</p>
 <p>鉴于以上原因，我决定首先将我学习过程中所参考的优秀学习资料进行汇总和简介。如果初学者能看到本文，并因此在学习中少走些弯路，那便是本文的价值。
-另外，我应该不会写偏向于大而全的Vim介绍博客，至少目前不会。但是我可能会写一些关于某些功能点的深入学习和记录的文章，我认为在当前网络中所能搜索到的文章中，这类更有价值。</p>
-<p>目前本人主要使用的是Vim，但是目前Neovim似乎后来居上，大有取而代之之势，并且github上有很多优秀活跃的Neovim插件在开发。从长久趋势来看，新的东西总是基于已有设计，总结经验，克服弊端，并最终淘汰旧的。从传承上来看，Neovim不过是对Vim的推倒重建式的重构，亦如当年Vim对于Vi编辑器的改良一般。</p>
-<p>据称Neovim完全兼容Vim的功能和配置，并提供了额外的功能，从其风靡程度来看，我也相信这一点。但至少从目前来看，我还没有足够的理由和动机去使用它。也许还是缺少一个契机。这个契机就是遇到Vim无法或很难解决的痛点，并且Neovim可以很容易解决。而在这之前，则需要对Vim更加熟练的使用。</p>
+另外，我应该不会写偏向于大而全的 Vim 介绍博客，至少目前不会。但是我可能会写一些关于某些功能点的深入学习和记录的文章，我认为在当前网络中所能搜索到的文章中，这类更有价值。</p>
+<p>目前本人主要使用的是 Vim ，但是目前 Neovim 似乎后来居上，大有取而代之之势，并且 github 上有很多优秀活跃的 Neovim 插件在开发。从长久趋势来看，新的东西总是基于已有设计，总结经验，克服弊端，并最终淘汰旧的。从传承上来看， Neovim 不过是对 Vim 的推倒重建式的重构，亦如当年 Vim 对于 Vi 编辑器的改良一般。</p>
+<p>据称 Neovim 完全兼容 Vim 的功能和配置，并提供了额外的功能，从其风靡程度来看，我也相信这一点。但至少从目前来看，我还没有足够的理由和动机去使用它。也许还是缺少一个契机。这个契机就是遇到 Vim 无法或很难解决的痛点，并且 Neovim 可以很容易解决。而在这之前，则需要对 Vim 更加熟练的使用。</p>
 <h2 id=综合教程>综合教程</h2>
 <h3 id=入门教程-vimtutor>入门教程: Vimtutor</h3>
-<p>Vimtutor作为自带的官方教程，其作为入门教程的权威性自然不言而喻。当然，除了其明面上的地位之外，其作为一个入门教程，给初学者提供了一个很好的实际操作体验，该教程会提供一些例子供阅读者进行实际的操作，比起仅仅列举式的功能介绍，该导论还是挺容易被初学者接受的。
+<p>Vimtutor 作为自带的官方教程，其作为入门教程的权威性自然不言而喻。当然，除了其明面上的地位之外，其作为一个入门教程，给初学者提供了一个很好的实际操作体验，该教程会提供一些例子供阅读者进行实际的操作，比起仅仅列举式的功能介绍，该导论还是挺容易被初学者接受的。
 下面是截取的一部分例子：</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -264,13 +264,15 @@
 <p>也许等我安装的插件比较多，需要这么一个懒加载插件管理器来提升速度，或者想要尝试一下新的功能的时候，我会试着学习下该插件，但目前似乎还不是时候。</p>
 <p><code>dein</code>的功能不是特别了解，但感觉应该会跟<code>vim-plug</code>差不多。这三个插件选择一个即可。</p>
 <p>另外，本人最近又读到了一些文章，提倡尽量简化配置，尽量多用vim自带的功能来代替那些可有可无的插件，即 <strong>“如非必要，勿增实体”</strong> 。而据说<code>vim 8.0</code>之后的版本自带插件的管理功能，关于这点，留待以后学习研究。目前还是用些易用的管理插件比较好，这同样也是基于折腾成本与获得感的考虑。</p>
+<figure><img src=https://i.loli.net/2021/11/22/wNt5PvpkadhErHq.png alt=vim_screen_shot_tagged width=100% height=100%><figcaption><h4>Vim 截图</h4></figcaption> </figure>
 <p>下面开始推荐我认为有必要安装的插件：</p>
 <ul>
 <li><code>gruvbox</code>主题</li>
 </ul>
 <p>对于一个编辑器来说，好用自然是第一要素，但是颜值也是不可或缺的重要因素。漂亮的界面让人看起来心情愉悦，只有这样才能写出好的程序（或者任何东西）。
 关于颜值，那么就不得不说主题了，一个主题相当于一个人的穿着，决定着整体形象。</p>
-<p>我选择了比较流行，但更重要的是自己比较喜欢的<a href=https://github.com/morhetz/gruvbox target=_blank rel="noopener noreferrer">gruvbox</a>主题。我感觉该主题看起来比较舒服，而这个结论是我经过多个主题的实际安装对比得出来的，可能会有其他更漂亮和科学的主题，但是目前我选择了这个我已经比较满意的。</p>
+<p>我选择了比较流行，但更重要的是自己比较喜欢的<a href=https://github.com/morhetz/gruvbox target=_blank rel="noopener noreferrer">gruvbox</a>主题。我感觉该主题看起来比较舒服，而这个结论是我经过多个主题的实际安装对比得出来的，可能会有其他更漂亮和科学的主题，但是目前我选择了这个我已经比较满意的。
+该主题的整体配色如上图所示。</p>
 <p>同时我建议大家在选择自己的主题之前，一定要自己多多对比，然后选择自己看起来比较舒服的主题。这个就像买衣服一样，合不合适只有自己知道。（发现上面举得穿着的例子还挺合适😂）</p>
 <ul>
 <li><code>vim-airline</code>状态栏</li>
@@ -278,17 +280,37 @@
 <p>如果说主题是编辑器的穿着的话，那么<a href=https://github.com/vim-airline/vim-airline target=_blank rel="noopener noreferrer">vim-airline</a>就像是装饰品，可以起到画龙点睛的作用。
 即使不从美观角度来考虑，通过将自己经常需要敲命令查看的东西放在我们易于看到的地方，也会给效率带来巨大的提升。
 而该插件可能就是目前这方面做的最好的一个。</p>
-<p>该插件目前仍然在不断开发和维护当中，该插件不仅提供底部状态栏，而且还有顶部标签栏，并且提供了很多选项供使用者进行配置。当然，对于不需要深度定制的用户，简单使用默认配置即可。我就曾经在这个插件上花了很长的时间，几乎阅读了所有的文档。当最终结果还是很好的，正是有了这个插件，我才真正看到了现代编辑器应该有的样子。</p>
+<p>该插件目前仍然在不断开发和维护当中，该插件不仅提供底部状态栏（上图 A2 部分），而且还有顶部标签栏（上图 A1 部分所示），并且提供了很多选项供使用者进行配置。当然，对于不需要深度定制的用户，简单使用默认配置即可。我就曾经在这个插件上花了很长的时间，几乎阅读了所有的文档。当最终结果还是很好的，正是有了这个插件，我才真正看到了现代编辑器应该有的样子。</p>
 <p>另外，主题和状态栏的兼容还是挺重要的，幸运的是目前我用的主题和该插件是兼容的。
 事实上，稍微成熟些的主题一般都会选择跟该插件进行兼容，毕竟这个插件几乎是这方面的标杆。</p>
 <ul>
 <li><code>tagbar</code>概要</li>
+</ul>
+<p>该插件主要提供文件的概览，就是代码的目录，可以浏览和跳转。就像 VS Code 中的 outline 那样，当然基本上所有的 IDE 都提供类似的功能。而 Vim 中该功能就由 tagbar 来实现。但是仅靠 tagbar 还不够，还需要另外一个工具的支持，该工具就是 ctags，虽然我们在 Vim 中看不到它的体现，但是 ctags 非常重要，事实上很多插件和功能都要基于它来做。</p>
+<p>关于 tagbar 我并没有过多的进行配置，直接把别人的配置拿过来，能显示就行了，研究过多花里胡哨的功能即浪费时间也没必要。</p>
+<ul>
+<li><code>NERDTree</code> 文件导航</li>
+</ul>
+<p>该插件是 vimawesome 上最流行的插件之一，但是后来我感觉没啥用，更重要的是能够找到很好的替代品，所以就废除了。</p>
+<ul>
+<li>
+<p><code>YouCompleteme</code>自动补全</p>
+</li>
+<li>
+<p><code>UltiSnip</code>代码段补全</p>
+</li>
+<li>
+<p><code>Ctags</code>标签生成</p>
+</li>
+<li>
+<p><code>lf</code> 导航</p>
+</li>
 </ul></div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>更新于 2021-11-18&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/blog/commit/51a13f2af1a39b1bbf26c70b0bb293e69df556e1 target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) 51a13f2af1a39b1bbf26c70b0bb293e69df556e1: update valine setting, add some content">
-<i class="fas fa-hashtag fa-fw"></i>51a13f2</a></span>
+<span>更新于 2021-11-22&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/blog/commit/eeac08852bbc8732ecf13f649d439572f8ea06fc target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) eeac08852bbc8732ecf13f649d439572f8ea06fc: update vim, toefl. Insert vim screenshot">
+<i class="fas fa-hashtag fa-fw"></i>eeac088</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
