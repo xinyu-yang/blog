@@ -7,6 +7,8 @@
 
 在阅读了众多的博客搭建教程之后，最终选择了使用`github` + [hugo](gohugo.io) 进行搭建，主题为 [even](https://hugo-theme-even.netlify.app/). 希望借此博客在互联网上留下一点有价值的东西，同时作为自己的学习笔记，温故而知新。
 
+![testImg](test.png "Image test")
+
 ### 软件安装
 首先进行相应软件的安装，具体可以参考官方文档的安装步骤。本文以 ubuntu 举例说明。在 ubuntu 上可直接使用`apt`进行安装，但是使用该方法安装的 hugo 软件版本过低，会导致本文所使用的主题 even 无法使用（我所使用的 even 要求最低版本为 0.60），而且这个问题可能在其他主题上也存在。总而言之，建议直接安装最新版本，可直接到 [release](https://github.com/gohugoio/hugo/releases) 下载。
 
@@ -178,6 +180,7 @@ resources 目录没搞明白，不过看起来像是存了一些自动生成的�
 |-- taxonomy
 ```
 其中，重点的配置主要都集中在 partials 目录，该部分定义了博客的 header, footer, comment 等，同时针对不同的界面 home, single 等也可以有不同的配置。所有的这些配置采用了 hugo 的语法进行编写，所以如果想要自己定制的话，需要先学习下相应的语法知识。
+
 
 ### 评论系统
 
