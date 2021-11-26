@@ -25,8 +25,8 @@ math:
   enable: false
 comment:
   enable: true
-
 lightgallery: false
+
 license: ""
 ---
 

@@ -8,7 +8,7 @@ tags: ["blog"]
 categories: ["record"]
 
 math:
-    enable: true
+  enable: true
 
 lightgallery: true
 

@@ -3,21 +3,28 @@
         <title>所有文章 - 麋鹿博客</title>
         <link>https://xinyu-yang.github.io/blog/posts/</link>
         <description>所有文章 | 麋鹿博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@live.com (Xinyu Yang)</managingEditor>
-            <webMaster>yangxinyu75@live.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 27 Oct 2021 10:34:07 &#43;0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor>
+            <webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 24 Nov 2021 20:21:38 &#43;0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>乘坐北京地铁有感</title>
+    <link>https://xinyu-yang.github.io/blog/2021/21-11-24_beijing-subway/</link>
+    <pubDate>Wed, 24 Nov 2021 20:21:38 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xinyu-yang.github.io/blog/2021/21-11-24_beijing-subway/</guid>
+    <description><![CDATA[今天有幸再次乘坐了一次北京早高峰地铁，有感而记]]></description>
+</item><item>
     <title>托福考试总结</title>
     <link>https://xinyu-yang.github.io/blog/2021/21-10-27_toefl-summary/</link>
     <pubDate>Wed, 27 Oct 2021 10:34:07 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://xinyu-yang.github.io/blog/2021/21-10-27_toefl-summary/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[本文主要记录自己托福的备考和考试经历]]></description>
 </item><item>
     <title>Vim学习记录</title>
     <link>https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/</link>
     <pubDate>Tue, 28 Sep 2021 10:34:49 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[本文是本人在使用 Vim 时的配置经验和总结]]></description>
 </item><item>
     <title>可同步图床配置——PicGo&#43;Gitee/Github/Gitlab&#43;Onedrive</title>
     <link>https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/</link>
@@ -66,13 +73,6 @@
     <pubDate>Sat, 10 Apr 2021 23:30:33 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://xinyu-yang.github.io/blog/2021/21-04-10_climate-change/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Bloom Filter</title>
-    <link>https://xinyu-yang.github.io/blog/2021/21-04-07_bloom-filter/</link>
-    <pubDate>Wed, 07 Apr 2021 09:31:54 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://xinyu-yang.github.io/blog/2021/21-04-07_bloom-filter/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
