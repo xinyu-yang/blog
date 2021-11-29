@@ -16,7 +16,7 @@ featuredImage: ""
 featuredImagePreview: ""
 
 toc:
-  enable: true
+  enable: false
 math:
   enable: false
 comment:
