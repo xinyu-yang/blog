@@ -135,7 +135,7 @@ ignoreErrors = ["error-remote-getjson"]
           # Gravatar Email for preferred avatar in home page
           gravatarEmail = ""
           # URL of avatar shown in home page
-          avatarURL = "/images/avatar.png"
+          avatarURL = "/blog/images/avatar.png"
           # {{< version 0.1.1 >}} Alt text for avatar (default is the author name)
           avatarAlt = ""
           # title shown in home page (HTML format is supported)
@@ -338,7 +338,7 @@ ignoreErrors = ["error-remote-getjson"]
           # Gravatar 邮箱，用于优先在主页显示的头像
           gravatarEmail = ""
           # 主页显示头像的 URL
-          avatarURL = "/images/avatar.png"
+          avatarURL = "/blog/images/avatar.png"
           # {{< version 0.1.1 >}} Alt text for avatar (default is the author name)
           avatarAlt = ""
           # 主页显示的网站标题 (支持 HTML 格式)
@@ -650,11 +650,11 @@ ignoreErrors = ["error-remote-getjson"]
     # Page SEO config
     [params.page.seo]
       # image URL
-      images = []
+      images = ["/blog/images/avatar.png"]
       # Publisher info
       [params.page.seo.publisher]
         name = "Xinyu Yang"
-        logoUrl = "/images/avatar.png"
+        logoUrl = "/blog/images/avatar.png"
 
   # TypeIt config
   [params.typeit]
@@ -678,9 +678,9 @@ ignoreErrors = ["error-remote-getjson"]
   # Site SEO config
   [params.seo]
     # image URL
-    image = "/images/avatar.png"
+    image = "/blog/images/avatar.png"
     # thumbnail URL
-    thumbnailUrl = "/images/avatar.png"
+    thumbnailUrl = "/blog/images/avatar.png"
 
   # Analytics config
   [params.analytics]

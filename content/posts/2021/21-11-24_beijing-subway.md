@@ -11,7 +11,7 @@ keywords: ["北京", "交通", "地铁"]
 description: "今天有幸再次乘坐了一次北京早高峰地铁，有感而记"
 images: []
 
-tags: ["北京"]
+tags: []
 categories: ["信口开河"]
 
 hiddenFromHomePage: true
