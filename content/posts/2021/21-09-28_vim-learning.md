@@ -8,7 +8,7 @@ author: "Xinyu Yang"
 authorLink: ""
 description: "本文是本人在使用 Vim 时的配置经验和总结"
 
-tags: ["vim"]
+tags: ["vim", "配置"]
 categories: ["record"]
 
 hiddenFromHomePage: false
@@ -24,7 +24,7 @@ math:
 comment:
   enable: true
 
-lightgallery: false
+lightgallery: true
 license: ""
 ---
 
@@ -180,7 +180,7 @@ $ vimtutor
 
 另外，本人最近又读到了一些文章，提倡尽量简化配置，尽量多用vim自带的功能来代替那些可有可无的插件，即 **“如非必要，勿增实体”** 。而据说`vim 8.0`之后的版本自带插件的管理功能，关于这点，留待以后学习研究。目前还是用些易用的管理插件比较好，这同样也是基于折腾成本与获得感的考虑。
 
-<figure><img src="https://i.loli.net/2021/11/22/wNt5PvpkadhErHq.png" alt="vim_screen_shot_tagged" width="100%" height="100%" /><figcaption><h4>Vim 截图</h4></figcaption> </figure>
+![vim screenshot](https://i.loli.net/2021/11/22/wNt5PvpkadhErHq.png "Vim 截图")
 
 下面开始推荐我认为有必要安装的插件：
 
