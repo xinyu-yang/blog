@@ -19,6 +19,7 @@ math:
 - [ ] C language logging
 - [x] Vim configures
 - [ ] Replacing NERDTree in Vim
-- [ ] TOEFL experience
+- [x] TOEFL experience
+- [ ] Intro of EnjoyIt
 - [ ] TODO
 
