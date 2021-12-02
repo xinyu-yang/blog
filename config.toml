@@ -158,7 +158,7 @@ ignoreErrors = ["error-remote-getjson"]
       [languages.en.params.social]
         GitHub = "xinyu-yang/"
         Linkedin = ""
-        Twitter = ""
+        Twitter = "xinyuyang18"
         Instagram = ""
         Facebook = ""
         Telegram = ""
@@ -360,7 +360,7 @@ ignoreErrors = ["error-remote-getjson"]
       [languages.zh-cn.params.social]
         GitHub = "xinyu-yang/"
         Linkedin = ""
-        Twitter = ""
+        Twitter = "xinyuyang18"
         Instagram = ""
         Facebook = ""
         Telegram = ""
@@ -512,7 +512,7 @@ ignoreErrors = ["error-remote-getjson"]
     # whether to show link to Raw Markdown content of the content
     linkToMarkdown = true
     # whether to show the full text content in RSS
-    rssFullText = false
+    rssFullText = true
     # Table of the contents config
     [params.page.toc]
       # whether to enable the table of the contents
@@ -520,7 +520,7 @@ ignoreErrors = ["error-remote-getjson"]
       # whether to keep the static table of the contents in front of the post
       keepStatic = false
       # whether to make the table of the contents in the sidebar automatically collapsed
-      auto = true
+      auto = false
 
     # Code config
     [params.page.code]
@@ -573,7 +573,7 @@ ignoreErrors = ["error-remote-getjson"]
       VK = false
       Buffer = false
       Xing = false
-      Line = true
+      Line = false
       Instapaper = false
       Pocket = false
       Digg = false
@@ -606,7 +606,7 @@ ignoreErrors = ["error-remote-getjson"]
         clientSecret = ""
       # Valine comment config (https://github.com/xCss/Valine)
       [params.page.comment.valine]
-        enable = true
+        enable = false
         appId = "ytPQJNT1fmCrhYfCQq5GbAdB-MdYXbMMI"
         appKey = "e7TSxe9axFTQUVB6gliAvlBV"
         placeholder = ""
@@ -626,6 +626,14 @@ ignoreErrors = ["error-remote-getjson"]
         # you can store your own data files in the same path under your project:
         # "assets/data/emoji/"
         emoji = ""
+      # Twikoo comment config (https://twikoo.js.org)
+      [params.page.comment.twikoo]
+        enable = true
+        envId = "https://twikoo-comment-xinyu-yang.vercel.app/"
+        el = "#tcomment"
+        #region = "ap-shanghai"
+        #path = "window.location.pathname"
+        #lang = "zh-CN"
       # Utterances comment config (https://utteranc.es/)
       [params.page.comment.utterances]
         enable = false
@@ -707,7 +715,7 @@ ignoreErrors = ["error-remote-getjson"]
     enable = true
     siteUV = true
     sitePV = true
-    pagePV = false          # Overlap with Valine
+    pagePV = true          # Overlap with Valine
 
 
   # Cookie consent config
