@@ -7,7 +7,7 @@
 
 A common programmer, more than half half years old, have nothing.
 
-I hope I will have a meaningful life and I will work hard for it.
+Goals: Do useful things and be a useful man.
 
 Other tags:
 
