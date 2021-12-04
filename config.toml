@@ -5,7 +5,7 @@ defaultContentLanguage = "zh-cn"
 theme = "EnjoyIt"
 
 # website title
-title = "麋鹿博客"
+title = "麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方"
 
 # whether to use robots.txt
 enableRobotsTXT = true
@@ -87,13 +87,13 @@ ignoreErrors = ["error-remote-getjson"]
         weight = 6
     [languages.en.params]
       # site description
-      description = "elk blog -- A place to share knowledge and fun"
+      description = "Elk blog -- A place to share knowledge and fun"
       # site keywords
       keywords = ["blog", "xinyu yang"]
       # App icon config
       [languages.en.params.app]
         # optional site title override for the app when added to an iOS home screen or Android launcher
-        title = "elk blog"
+        title = "Elk blog"
         # whether to omit favicon resource links
         noFavicon = false
         # modern SVG favicon to use in place of older style .png and .ico files
@@ -247,7 +247,7 @@ ignoreErrors = ["error-remote-getjson"]
         post = ""
         name = "文章"
         url = "../blog/posts/"
-        title = ""
+        title = "文章列表"
         weight = 1
       [[languages.zh-cn.menu.main]]
         identifier = "tags"
@@ -446,7 +446,7 @@ ignoreErrors = ["error-remote-getjson"]
     # Header title config
     [params.header.title]
       # URL of the LOGO
-      logo = ""
+      logo = "/blog/images/avatar.png"
       # title name
       name = "麋鹿博客"
       # you can add extra information before the name (HTML format is supported), such as icons

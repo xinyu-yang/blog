@@ -8,7 +8,7 @@ author: "Xinyu Yang"
 authorLink: ""
 description: "本文是本人在使用 Vim 时的配置经验和总结"
 
-tags: ["vim", "配置"]
+tags: ["vim", "config"]
 categories: ["record"]
 
 hiddenFromHomePage: false
