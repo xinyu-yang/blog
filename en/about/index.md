@@ -7,7 +7,7 @@
 
 A common programmer, more than half half years old, have nothing.
 
-Goals: Do useful things and be a useful man.
+Motto: Do useful things and be a useful man.
 
 Other tags:
 
