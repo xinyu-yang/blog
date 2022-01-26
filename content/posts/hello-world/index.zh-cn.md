@@ -7,6 +7,9 @@ description: "本博客第一篇文章，主要记录本博客搭建和配置的
 tags: ["blog", "config"]
 categories: ["record"]
 
+featuredImage: ""
+featuredImagePreview: "test.png"
+
 math:
   enable: true
 

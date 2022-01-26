@@ -15,7 +15,7 @@ hiddenFromHomePage: false
 hiddenFromSearch: false
 
 featuredImage: ""
-featuredImagePreview: ""
+featuredImagePreview: "https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg"
 
 toc:
   enable: true

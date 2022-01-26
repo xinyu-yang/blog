@@ -15,7 +15,7 @@ hiddenFromHomePage: false
 hiddenFromSearch: false
 
 featuredImage: ""
-featuredImagePreview: ""
+featuredImagePreview: "https://s2.loli.net/2021/12/27/xZjkEPtIYeG8HqQ.jpg"
 
 toc:
   enable: true

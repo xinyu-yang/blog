@@ -8,6 +8,9 @@ description: ""
 tags: ["statistics"]
 categories: ["math"]
 
+featuredImage: ""
+featuredImagePreview: ""
+
 math:
     enable: true
 ---
