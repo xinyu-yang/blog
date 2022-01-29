@@ -21,5 +21,6 @@ math:
 - [ ] Replacing NERDTree in Vim
 - [x] TOEFL experience
 - [ ] Intro of EnjoyIt
+- [ ] Zotero setting
 - [ ] TODO
 
