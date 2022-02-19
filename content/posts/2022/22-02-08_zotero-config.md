@@ -3,16 +3,16 @@ title: "Zotero 配置记录"
 subtitle: ""
 date: 2022-02-08T22:21:16+08:00
 lastmod: 2022-02-08T22:21:16+08:00
-draft: true
+draft: false
 author: "Xinyu Yang"
 authorLink: ""
 
-keywords: []
-description: ""
+keywords: ["zotero"]
+description: "该博客记录了本人所使用的 Zotero 配置"
 images: []
 
-tags: []
-categories: []
+tags: ["config"]
+categories: ["record"]
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
@@ -108,3 +108,7 @@ license: ""
     - Fields -> Fields to omit ...: `abstract,file,note,keywords`
 
 关于这部分可参考上述下载地址。
+
+### delitem 插件
+该插件可以删除链接文件：[下载](https://github.com/redleafnew/delitemwithatt)，是 ZotFile 插件的一个功能补充。
+
