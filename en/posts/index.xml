@@ -13,8 +13,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">hugo new site <span class="o">[</span>blogs name<span class="o">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new site <span class="o">[</span>blogs name<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后在该目录下就会创建一些文件夹，如：</p>
 <div class="highlight"><div class="chroma">
@@ -28,14 +28,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">README.md  
-archetypes 
-config.toml
-content    
-public     
-resources  
-themes     
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">README.md  
+</span></span><span class="line"><span class="cl">archetypes 
+</span></span><span class="line"><span class="cl">config.toml
+</span></span><span class="line"><span class="cl">content    
+</span></span><span class="line"><span class="cl">public     
+</span></span><span class="line"><span class="cl">resources  
+</span></span><span class="line"><span class="cl">themes     
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>文件夹的具体作用我正在继续摸索，现在大概知道<code>config.toml</code>是全局配置文件；<code>content</code>文件夹中放置的是博客的内容，如本博客的路径就是<code>content/post/hello-world</code>；<code>themes</code>中所存放的就是主题文件，文件夹下可有多个主题，但是在使用的时候只能指定其中一个；<code>public</code>中所存放的是一些经过编译的网页内容，即使用markdown编写的博客经过编译以后会放到这个文件夹里，但具体的组织结构还没搞明白，待后续研究；<code>archetypes</code>中存放的好像是模板之类的东西，同样待后续研究。</p>
 <p>接下来讨论怎么设置主题，经过一段时间纠结的筛选后，决定暂时使用<code>even</code>主题，主要原因有：</p>
@@ -51,8 +51,8 @@ themes
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">git submodule add https://github.com/olOwOlo/hugo-theme-even ./themes/even
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git submodule add https://github.com/olOwOlo/hugo-theme-even ./themes/even
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后可以参考even主题的教程，将其配置文件进行拷贝和自行配置。其配置方面的文档较少，但好处是其配置文档中都使用了中文对其作用和用法进行了大概的注释，同样也可以根据需求进行增添内容，具体细节将后续进行学习。</p>
 <p>&mdash;&mdash;&mdash;&mdash;21/04/07更新&mdash;&mdash;&mdash;&ndash;</p>
@@ -67,11 +67,11 @@ themes
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">\begin{align}
-x <span class="err">&amp;</span>= y + 1 \\
-y <span class="err">&amp;</span>= z + 2
-\end{align}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">\begin{align}
+</span></span><span class="line"><span class="cl">x <span class="err">&amp;</span>= y + 1 \\
+</span></span><span class="line"><span class="cl">y <span class="err">&amp;</span>= z + 2
+</span></span><span class="line"><span class="cl">\end{align}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在$\LaTeX$中是没有问题的，但是在hugo就无法被正确渲染，只有将换行符<code>\\</code>更改为<code>\\\\</code>才能正常工作，好像看到网上有相关的讨论（没有记录），说导致该问题的原因是markdown编译器在进行解析的时候会将第一斜杠解释为<em>转义</em>，那么最后的结果是只剩一个斜杠，所以如果想让其最后仍然有两个斜杠，则不得不用四个斜杠。虽说敲四个斜杠是麻烦了点，但是好歹问题算是大概解决了。</p>
 <p>后来试用CodeIT主题时则出现了更严重的问题，主要是因为该主题使用的是据说是性能更好的$KaTeX$渲染器。该渲染器作为托管在github的开源项目还是挺受欢迎的，但是katex对于公式的支持就不那么完善了，截止到目前的最新版本0.13.0，刚能够支持诸如<code>align,align*</code>等环境。而CodeIT使用的仍然是0.11.1的老版本，但这还不是主要问题，主要问题是原本在mathjax中可行的方案在katex中不可行了，比如根据<a href="https://katex.org/docs/0.11.1/supported.html" target="_blank" rel="noopener noreferrer">文档</a>katex v0.11.1中是支持<code>aligned</code>环境的，但是以下代码并不能够被正确渲染：</p>
@@ -83,11 +83,11 @@ y <span class="err">&amp;</span>= z + 2
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">\begin{aligned}
-x <span class="err">&amp;</span>= y + 1 \\\\
-y <span class="err">&amp;</span>= z + 2
-\end{aligned}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">\begin{aligned}
+</span></span><span class="line"><span class="cl">x <span class="err">&amp;</span>= y + 1 \\\\
+</span></span><span class="line"><span class="cl">y <span class="err">&amp;</span>= z + 2
+</span></span><span class="line"><span class="cl">\end{aligned}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>该代码可以在even主题下正常工作，但是无法在CodeIT在工作，经网上搜索，发现了该<a href="https://github.com/halogenica/beautifulhugo/issues/183" target="_blank" rel="noopener noreferrer">解决方案</a>，经该方案介绍，使用如下代码可正常工作：</p>
 <div class="highlight"><div class="chroma">
@@ -98,11 +98,11 @@ y <span class="err">&amp;</span>= z + 2
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">\begin{aligned}
-x <span class="err">&amp;</span>= y + 1 \cr
-y <span class="err">&amp;</span>= z + 2
-\end{aligned}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">\begin{aligned}
+</span></span><span class="line"><span class="cl">x <span class="err">&amp;</span>= y + 1 \cr
+</span></span><span class="line"><span class="cl">y <span class="err">&amp;</span>= z + 2
+</span></span><span class="line"><span class="cl">\end{aligned}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其效果为：
 $$
@@ -121,11 +121,11 @@ $$</p>
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">\begin{aligned}
-x <span class="ni">&amp;amp;</span>= y + 1 \\ <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-y <span class="ni">&amp;amp;</span>= z + 2
-\end{aligned}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">\begin{aligned}
+</span></span><span class="line"><span class="cl">x <span class="ni">&amp;amp;</span>= y + 1 \\ <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">y <span class="ni">&amp;amp;</span>= z + 2
+</span></span><span class="line"><span class="cl">\end{aligned}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>具有标签的代码在使用mathjax渲染器的时候是可以被正常渲染的，但是在katex中却不行。而使用<code>\cr</code>进行换行则不会引入<code>&lt;br&gt;</code>标签，因此在katex中可用。
 最后附上将换行符更改为<code>\cr</code>的命令:</p>
@@ -134,8 +134,8 @@ y <span class="ni">&amp;amp;</span>= z + 2
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sed -i <span class="s1">&#39;s/\\\\\\\\/\\cr/&#39;</span> <span class="o">[</span>blogname<span class="o">]</span>.md
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sed -i <span class="s1">&#39;s/\\\\\\\\/\\cr/&#39;</span> <span class="o">[</span>blogname<span class="o">]</span>.md
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>&mdash;&mdash;&mdash;&mdash;21/04/08更新&mdash;&mdash;&mdash;&ndash;</p>
 <p>除上述所示问题外，今天又遇到了另外一个问题，那就是在公式中使用特殊字符（如%）时需要进行转义，一般写为<code>\%</code>，但是这又会遇到一个问题，就是在$符号之间的字符不能够像在 ` 符号中那样被免于转义。也就是说<code>\%</code>中的斜杠会在markdown解析的过程中解析为转义字符，因此到公式解析器的时候剩下的就只剩一个%符号了，所以需要使用两个符号才行。关于这个问题，感觉主要问题还是在markdown解析器那里没有执行正确的解析。当然，以上只是我的猜想，有时间我会去验证的。</p>
@@ -148,8 +148,8 @@ y <span class="ni">&amp;amp;</span>= z + 2
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">hugo new post/hello-world
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo new post/hello-world
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>创建一个新的博客，该命令将创建一个文件：<code>content/post/hello-world.md</code>。该文件会包含一个文件头</p>
 <div class="highlight"><div class="chroma">
@@ -159,10 +159,10 @@ y <span class="ni">&amp;amp;</span>= z + 2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">title: ***
-date: 202***
-draft: true
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">title: ***
+</span></span><span class="line"><span class="cl">date: 202***
+</span></span><span class="line"><span class="cl">draft: true
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>draft一栏默认为<code>true</code>，如果想要发布该博客，需要将其修改为<code>false</code>。</p>
 <p>hugo的一个好处就是可以边写博客边进行调试，其具体操作为：在主目录下（即blog/）运行</p>
@@ -171,8 +171,8 @@ draft: true
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">hugo server -D
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo server -D
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>该命令将启动一个本地服务，端口号为1313，在本地使用浏览器访问：<a href="http://localhost:1313" target="_blank" rel="noopener noreferrer">http://localhost:1313</a>即可在线预览自己的博客内容。每次保存文件时，hugo都会自动进行编译，速度很快，几乎实现了markdown的同步预览，非常方便！</p>
 <p>在发布之前应该使用</p>
@@ -181,8 +181,8 @@ draft: true
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">hugo -D
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo -D
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>编译一下，至此已经可以实现基本的功能</p>
 <h3 id="使用github发布博客">使用github发布博客</h3>

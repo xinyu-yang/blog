@@ -17,14 +17,12 @@
 <meta name=application-name content="麋鹿博客">
 <meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/blog/2021/21-04-12_count-sketch/><link rel=prev href=https://xinyu-yang.github.io/blog/2021/21-04-10_climate-change/><link rel=next href=https://xinyu-yang.github.io/blog/2021/21-05-12_millionaire-problem/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/blog/css/style.min.457b41f3877ae4698fed78d872da4da64fa4f2b3d27162707df2dcb9141a227f.css integrity="sha256-RXtB84d65GmP7XjYctpNpk+k8rPScWJwffLcuRQaIn8="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Count Sketch","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-12_count-sketch\/"},"image":["https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png"],"genre":"posts","keywords":"hash, heavy hitter","wordcount":569,"url":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-12_count-sketch\/","datePublished":"2021-04-12T10:01:05+08:00","dateModified":"2021-11-13T10:30:50+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Xinyu Yang","logo":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png"},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
-<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/blog/2021/21-04-12_count-sketch/><link rel=prev href=https://xinyu-yang.github.io/blog/2021/21-04-10_climate-change/><link rel=next href=https://xinyu-yang.github.io/blog/2021/21-05-12_millionaire-problem/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/blog/css/style.min.457b41f3877ae4698fed78d872da4da64fa4f2b3d27162707df2dcb9141a227f.css integrity="sha256-RXtB84d65GmP7XjYctpNpk+k8rPScWJwffLcuRQaIn8="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Count Sketch","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-12_count-sketch\/"},"image":["https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png"],"genre":"posts","keywords":"hash, heavy hitter","wordcount":569,"url":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-12_count-sketch\/","datePublished":"2021-04-12T10:01:05+08:00","dateModified":"2021-11-13T10:30:50+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Xinyu Yang","logo":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png"},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
 <div class=header-title>
 <a href=/blog/ title="麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方"><img class="lazyload logo" src=/blog/svg/loading.min.svg data-src=/blog/images/avatar.png data-srcset="/blog/images/avatar.png, /blog/images/avatar.png 1.5x, /blog/images/avatar.png 2x" data-sizes=auto alt=/blog/images/avatar.png title=/blog/images/avatar.png>麋鹿博客</a>
-</div>
-<div class=menu>
+</div><div class=menu>
 <div class=menu-inner><a class=menu-item href=/blog/posts/ title=文章列表> 文章 </a><a class=menu-item href=/blog/categories/> 分类 </a><a class=menu-item href=/blog/tags/> 标签 </a><a class=menu-item href=/blog/about/> 关于 </a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
 <select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/blog/2021/21-04-12_count-sketch/ selected>简体中文</option></select>
 </a><span class="menu-item search" id=search-desktop>
@@ -41,20 +39,14 @@
 </span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
 <i class="fas fa-adjust fa-fw"></i>
 </a>
-</div>
-</div>
-</div>
-</header><header class=mobile id=header-mobile>
+</div></div></div></header><header class=mobile id=header-mobile>
 <div class=header-container>
 <div class=header-wrapper>
 <div class=header-title>
 <a href=/blog/ title="麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方"><img class="lazyload logo" src=/blog/svg/loading.min.svg data-src=/blog/images/avatar.png data-srcset="/blog/images/avatar.png, /blog/images/avatar.png 1.5x, /blog/images/avatar.png 2x" data-sizes=auto alt=/blog/images/avatar.png title=/blog/images/avatar.png>麋鹿博客</a>
-</div>
-<div class=menu-toggle id=menu-toggle-mobile>
+</div><div class=menu-toggle id=menu-toggle-mobile>
 <span></span><span></span><span></span>
-</div>
-</div>
-<div class=menu id=menu-mobile><div class=search-wrapper>
+</div></div><div class=menu id=menu-mobile><div class=search-wrapper>
 <div class="search mobile" id=search-mobile>
 <input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
 <a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
@@ -66,126 +58,66 @@
 <span class="search-button search-loading" id=search-loading-mobile>
 <i class="fas fa-spinner fa-fw fa-spin"></i>
 </span>
-</div>
-<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+</div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
 取消
 </a>
 </div><a class=menu-item href=/blog/posts/ title=文章列表>文章</a><a class=menu-item href=/blog/categories/ title>分类</a><a class=menu-item href=/blog/tags/ title>标签</a><a class=menu-item href=/blog/about/ title>关于</a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
 <i class="fas fa-adjust fa-fw"></i>
 </a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
 <select class=language-select onchange="location=this.value"><option value=/blog/2021/21-04-12_count-sketch/ selected>简体中文</option></select>
-</a></div>
-</div>
-</header>
-<div class="search-dropdown desktop">
-<div id=search-dropdown-desktop></div>
-</div>
-<div class="search-dropdown mobile">
-<div id=search-dropdown-mobile></div>
-</div>
-<main class=main>
+</a></div></div></header><div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div></div><main class=main>
 <div class=container><div class=toc id=toc-auto>
-<h2 class=toc-title>目录</h2>
-<div class="toc-content always-active" id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animated flipInX">Count Sketch</h1><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=https://xinyu-yang.github.io title=Author target=_blank rel="noopener noreferrer author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/blog/categories/algorithm/><i class="far fa-folder fa-fw"></i>algorithm</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-04-12>2021-04-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 569 字&nbsp;
+<h2 class=toc-title>目录</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Count Sketch</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=https://xinyu-yang.github.io title=Author target=_blank rel="noopener noreferrer author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/blog/categories/algorithm/><i class="far fa-folder fa-fw"></i>algorithm</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-04-12>2021-04-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 569 字&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
-<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;</div>
-</div><div class="details toc" id=toc-static kept>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;</div></div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>目录</span>
 <span><i class="details-icon fas fa-angle-right"></i></span>
-</div>
-<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+</div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#算法介绍>算法介绍</a></li>
-<li><a href=#分析>分析</a></li>
-<li><a href=#代码实现>代码实现</a></li>
-<li><a href=#参考文献>参考文献</a></li>
-</ul>
-</nav></div>
-</div><div class=content id=content><h2 id=算法介绍>算法介绍</h2>
-<p>按照出现时间，该算法比<a href=../21-04-06_count-min-sketch/ rel>count-min sketch</a>出现的时间更早，但似乎没有count-min sketch应用广泛。该算法的大体思想与count-min sketch相似，只是有少许不同。
-首先介绍算法的过程，初始化$t$个独立的hash函数$h_1, h_2, &mldr;,h_t$，每一个hash函数都是从集合$[n] \to [k]$的映射。同时还要初始化$t$个符号函数$s_i : [n] \to [\pm 1]$，然后初始化一个二维矩阵，如下图所示：</p>
-<center>
+<li><a href=#算法介绍>算法介绍</a></li><li><a href=#分析>分析</a></li><li><a href=#代码实现>代码实现</a></li><li><a href=#参考文献>参考文献</a></li></ul></nav></div></div><div class=content id=content><h2 id=算法介绍>算法介绍</h2><p>按照出现时间，该算法比<a href=../21-04-06_count-min-sketch/ rel>count-min sketch</a>出现的时间更早，但似乎没有count-min sketch应用广泛。该算法的大体思想与count-min sketch相似，只是有少许不同。
+首先介绍算法的过程，初始化$t$个独立的hash函数$h_1, h_2, &mldr;,h_t$，每一个hash函数都是从集合$[n] \to [k]$的映射。同时还要初始化$t$个符号函数$s_i : [n] \to [\pm 1]$，然后初始化一个二维矩阵，如下图所示：</p><center>
 <a><img src=https://i.loli.net/2021/06/18/3zKatdnRrbDgxeO.png alt=image align=middle border=0></a>
 </center>
-<p>对于具有m个元素的集合A，对其进行如下操作:</p>
-<hr>
+<p>对于具有m个元素的集合A，对其进行如下操作:</p><hr>
 <ul>
-<li>Set all $C_{i,j}=0$</li>
-<li>for i=0 to m do
+<li>Set all $C_{i,j}=0$</li><li>for i=0 to m do
 <ul>
 <li>for j=0 to t do
 <ul>
-<li>$C_{j,h_{j}(a_i)}$ += $s_j (a_i)$</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>该操作与count-min sketch唯一不同的点在于，最后加的值有可能是1或者-1。</p>
-<p>当查找一个元素出现的次数时，只需要计算
-$$\check{f_{q}}=median\ C_{j,h_{j}(q)},\ j\in [t]$$</p>
-<p>这里与count-min sketch不同的是，本方法所产生的值有可能是正也有可能是负，有可能假阳也有可能假阴，而count-min sketch中只有正，所以一定会产生假阳性。仅从直觉上来判断，似乎选中间值是合理的，因为正负相互抵消，比较理想的情况就是恰好抵消完，那就没有误差了。</p>
-<h2 id=分析>分析</h2>
-<p>参考了几篇文章，甚至参考了作者的<a href=https://www.cs.rutgers.edu/~farach/pubs/FrequentStream.pdf target=_blank rel="noopener noreferrer">原文</a>，其证明方法都不太一样，尴尬的是我一个都没看懂😂，哎~等能看懂再补上吧。。。</p>
-<blockquote>
-<p>路漫漫其修远兮，吾将上下而求索啊</p>
-</blockquote>
-<h2 id=代码实现>代码实现</h2>
-<p>参考文献 <a href=https://wangshusen.github.io/code/countsketch.html target=_blank rel="noopener noreferrer">https://wangshusen.github.io/code/countsketch.html</a> 中就有一个代码实现，而且有动态图展示。</p>
-<h2 id=参考文献>参考文献</h2>
-<ol>
-<li><a href=https://web.stanford.edu/class/cs369g/files/lectures/lec8.pdf target=_blank rel="noopener noreferrer">https://web.stanford.edu/class/cs369g/files/lectures/lec8.pdf</a></li>
-<li><a href=https://www.cs.rutgers.edu/~farach/pubs/FrequentStream.pdf target=_blank rel="noopener noreferrer">https://www.cs.rutgers.edu/~farach/pubs/FrequentStream.pdf</a></li>
-<li><a href=https://wangshusen.github.io/code/countsketch.html target=_blank rel="noopener noreferrer">https://wangshusen.github.io/code/countsketch.html</a></li>
-</ol></div><div class=post-footer id=post-footer>
+<li>$C_{j,h_{j}(a_i)}$ += $s_j (a_i)$</li></ul></li></ul></li></ul><hr>
+<p>该操作与count-min sketch唯一不同的点在于，最后加的值有可能是1或者-1。</p><p>当查找一个元素出现的次数时，只需要计算
+$$\check{f_{q}}=median\ C_{j,h_{j}(q)},\ j\in [t]$$</p><p>这里与count-min sketch不同的是，本方法所产生的值有可能是正也有可能是负，有可能假阳也有可能假阴，而count-min sketch中只有正，所以一定会产生假阳性。仅从直觉上来判断，似乎选中间值是合理的，因为正负相互抵消，比较理想的情况就是恰好抵消完，那就没有误差了。</p><h2 id=分析>分析</h2><p>参考了几篇文章，甚至参考了作者的<a href=https://www.cs.rutgers.edu/~farach/pubs/FrequentStream.pdf target=_blank rel="noopener noreferrer">原文</a>，其证明方法都不太一样，尴尬的是我一个都没看懂😂，哎~等能看懂再补上吧。。。</p><blockquote>
+<p>路漫漫其修远兮，吾将上下而求索啊</p></blockquote><h2 id=代码实现>代码实现</h2><p>参考文献 <a href=https://wangshusen.github.io/code/countsketch.html target=_blank rel="noopener noreferrer">https://wangshusen.github.io/code/countsketch.html</a> 中就有一个代码实现，而且有动态图展示。</p><h2 id=参考文献>参考文献</h2><ol>
+<li><a href=https://web.stanford.edu/class/cs369g/files/lectures/lec8.pdf target=_blank rel="noopener noreferrer">https://web.stanford.edu/class/cs369g/files/lectures/lec8.pdf</a></li><li><a href=https://www.cs.rutgers.edu/~farach/pubs/FrequentStream.pdf target=_blank rel="noopener noreferrer">https://www.cs.rutgers.edu/~farach/pubs/FrequentStream.pdf</a></li><li><a href=https://wangshusen.github.io/code/countsketch.html target=_blank rel="noopener noreferrer">https://wangshusen.github.io/code/countsketch.html</a></li></ol></div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
 <span>更新于 2021-11-13&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/blog/commit/cc6addcd52001e7227bde91ec6450aba3e6f32d9 target=_blank rel="noopener noreferrer" title="commit by netlab-yang(yangxinyu75@live.com) cc6addcd52001e7227bde91ec6450aba3e6f32d9: regulate directory structure">
 <i class="fas fa-hashtag fa-fw"></i>cc6addc</a></span>
-</div>
-<div class=post-info-license></div>
-</div>
-<div class=post-info-line>
+</div><div class=post-info-license></div></div><div class=post-info-line>
 <div class=post-info-md><span>
 <a class=link-to-markdown href=/blog/2021/21-04-12_count-sketch/index.md target=_blank rel="noopener noreferrer">阅读原始文档</a>
-</span></div>
-<div class=post-info-share>
+</span></div><div class=post-info-share>
 <span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://xinyu-yang.github.io/blog/2021/21-04-12_count-sketch/ data-title="Count Sketch" data-via=xinyuyang18 data-hashtags="hash,heavy hitter"><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://xinyu-yang.github.io/blog/2021/21-04-12_count-sketch/ data-hashtag=hash><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://xinyu-yang.github.io/blog/2021/21-04-12_count-sketch/ data-title="Count Sketch"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://xinyu-yang.github.io/blog/2021/21-04-12_count-sketch/ data-title="Count Sketch"><i class="fab fa-weibo fa-fw"></i></a></span>
-</div>
-</div>
-</div>
-<div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/blog/tags/hash/>hash</a>,&nbsp;<a href=/blog/tags/heavy-hitter/>heavy hitter</a></section>
-<section>
+</div></div></div><div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/blog/tags/hash/>hash</a>,&nbsp;<a href=/blog/tags/heavy-hitter/>heavy hitter</a></section><section>
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/blog/>主页</a></span>
-</section>
-</div>
-<div class=post-nav><a href=/blog/2021/21-04-10_climate-change/ class=prev rel=prev title=当我们在谈论环境保护的时候我们在谈论什么？><i class="fas fa-angle-left fa-fw"></i>当我们在谈论环境保护的时候我们在谈论什么？</a>
-<a href=/blog/2021/21-05-12_millionaire-problem/ class=next rel=next title=百万富翁问题>百万富翁问题<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id=comments><div id=tcomment></div><noscript>
+</section></div><div class=post-nav><a href=/blog/2021/21-04-10_climate-change/ class=prev rel=prev title=当我们在谈论环境保护的时候我们在谈论什么？><i class="fas fa-angle-left fa-fw"></i>当我们在谈论环境保护的时候我们在谈论什么？</a>
+<a href=/blog/2021/21-05-12_millionaire-problem/ class=next rel=next title=百万富翁问题>百万富翁问题<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=tcomment></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://twikoo.js.org/>Twikoo</a>.
-</noscript></div></article></div>
-</main><footer class=footer>
+</noscript></div></article></div></main><footer class=footer>
 <div class=footer-container><div class=footer-line>
 <span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 次 </span>
 <span class=division>•</span>
 <span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 人 </span>
-</div>
-<div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreferrer" title="Hugo 0.92.2">Hugo</a> - <a href=https://github.com/xinyu-yang/EnjoyIt target=_blank rel="noopener noreferrer" title="EnjoyIt 0.0.1"><i class="fas fa-heart fa-fw"></i>EnjoyIt</a><span class=division> • </span>
-<i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2021 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://xinyu-yang.github.io target=_blank rel="noopener noreferrer">Xinyu Yang</a></span>&nbsp;•&nbsp;<span class=license><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
-</div>
-</footer></div>
-<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+</div><div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreferrer" title="Hugo 0.93.0">Hugo</a> - <a href=https://github.com/xinyu-yang/EnjoyIt target=_blank rel="noopener noreferrer" title="EnjoyIt 0.0.1"><i class="fas fa-heart fa-fw"></i>EnjoyIt</a><span class=division> • </span>
+<i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2021 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://xinyu-yang.github.io target=_blank rel="noopener noreferrer">Xinyu Yang</a></span>&nbsp;•&nbsp;<span class=license><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
 <i class="fas fa-arrow-up fa-fw"></i>
 </a><a href=# id=view-comments class=fixed-button title=查看评论>
 <i class="fas fa-comment fa-fw"></i>
 </a>
-</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/twikoo@1.4.11/dist/twikoo.all.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/blog/lib/lunr/lunr.stemmer.support.min.d083e6109310cfdc62d9b0e85b94a19ef28a25e2cd65e0f0ddb5925e82dff646.js integrity="sha256-0IPmEJMQz9xi2bDoW5ShnvKKJeLNZeDw3bWSXoLf9kY="></script><script type=text/javascript src=/blog/lib/lunr/lunr.multi.min.cefa9a416dd7cdb1b8b3d873fb4cdc5247789316e11b58f790be0b65d7119cfd.js integrity="sha256-zvqaQW3XzbG4s9hz+0zcUkd4kxbhG1j3kL4LZdcRnP0="></script><script type=text/javascript src=/blog/lib/lunr/lunr.zh.min.a3f9c6f4c2a9e8a2568064c63f055e265fa73b19e1464e5dfdf0ded3fe016987.js integrity="sha256-o/nG9MKp6KJWgGTGPwVeJl+nOxnhRk5d/fDe0/4BaYc="></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:10},comment:{twikoo:{el:"#tcomment",envId:"https://twikoo-comment-xinyu-yang.vercel.app/"}},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/blog/index.json",lunrLanguageCode:"zh",lunrSegmentitURL:"/blog/lib/lunr/lunr.segmentit.js",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"lunr"}}</script><script type=text/javascript src=/blog/js/theme.a63aa926c3cd8d6695367caa381f19bdaa78efc1bd87b33c0a4968ca187b5c7f.js integrity="sha256-pjqpJsPNjWaVNnyqOB8Zvap478G9h7M8Ckloyhh7XH8="></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-NSNR248K3V')</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-NSNR248K3V" async></script><script id=baidu_analytics type=text/javascript>var _hmt=_hmt||[];(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement("script"),a.async=!0,a.src="https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></body>
-</html>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/twikoo@1.4.15/dist/twikoo.all.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/blog/lib/lunr/lunr.stemmer.support.min.e3c3004c7f09196dd53ffe374b7a2275104b3514d495245d869dc43df2a185e1.js integrity="sha256-48MATH8JGW3VP/43S3oidRBLNRTUlSRdhp3EPfKhheE="></script><script type=text/javascript src=/blog/lib/lunr/lunr.multi.min.7fe5e28e9e2ec0ecb084cf617dd5cc83889f8da29747c1207b4ac0af0e65d369.js integrity="sha256-f+Xijp4uwOywhM9hfdXMg4ifjaKXR8Ege0rArw5l02k="></script><script type=text/javascript src=/blog/lib/lunr/lunr.zh.min.7fc53951c80e744b60fcd3fc57ac8c88dd6381cc8dbf956aaee17a062a558f12.js integrity="sha256-f8U5UcgOdEtg/NP8V6yMiN1jgcyNv5VqruF6BipVjxI="></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:10},comment:{twikoo:{el:"#tcomment",envId:"https://twikoo-comment-xinyu-yang.vercel.app/"}},lightGallery:{actualSize:!1,exThumbImage:"data-thumbnail",hideBarsDelay:2e3,selector:".lightgallery",speed:400,thumbContHeight:80,thumbWidth:80,thumbnail:!0},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{highlightTag:"em",lunrIndexURL:"/blog/index.json",lunrLanguageCode:"zh",lunrSegmentitURL:"/blog/lib/lunr/lunr.segmentit.js",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"lunr"}}</script><script type=text/javascript src=/blog/js/theme.a63aa926c3cd8d6695367caa381f19bdaa78efc1bd87b33c0a4968ca187b5c7f.js integrity="sha256-pjqpJsPNjWaVNnyqOB8Zvap478G9h7M8Ckloyhh7XH8="></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-NSNR248K3V")</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-NSNR248K3V" async></script><script id=baidu_analytics type=text/javascript>var _hmt=_hmt||[];(function(){if(window.location.hostname==="localhost")return;var e=document.createElement("script"),t;e.async=!0,e.src="https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd",t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>

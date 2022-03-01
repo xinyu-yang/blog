@@ -17,14 +17,12 @@
 <meta name=application-name content="麋鹿博客">
 <meta name=apple-mobile-web-app-title content="麋鹿博客"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/blog/2021/21-04-10_climate-change/><link rel=prev href=https://xinyu-yang.github.io/blog/2021/21-04-07_bloom-filter/><link rel=next href=https://xinyu-yang.github.io/blog/2021/21-04-12_count-sketch/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/blog/css/style.min.457b41f3877ae4698fed78d872da4da64fa4f2b3d27162707df2dcb9141a227f.css integrity="sha256-RXtB84d65GmP7XjYctpNpk+k8rPScWJwffLcuRQaIn8="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"当我们在谈论环境保护的时候我们在谈论什么？","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-10_climate-change\/"},"image":["https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png"],"genre":"posts","wordcount":893,"url":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-10_climate-change\/","datePublished":"2021-04-10T23:30:33+08:00","dateModified":"2021-11-30T00:50:50+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Xinyu Yang","logo":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png"},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head>
-<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://xinyu-yang.github.io/blog/2021/21-04-10_climate-change/><link rel=prev href=https://xinyu-yang.github.io/blog/2021/21-04-07_bloom-filter/><link rel=next href=https://xinyu-yang.github.io/blog/2021/21-04-12_count-sketch/><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/blog/css/style.min.457b41f3877ae4698fed78d872da4da64fa4f2b3d27162707df2dcb9141a227f.css integrity="sha256-RXtB84d65GmP7XjYctpNpk+k8rPScWJwffLcuRQaIn8="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"当我们在谈论环境保护的时候我们在谈论什么？","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-10_climate-change\/"},"image":["https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png"],"genre":"posts","wordcount":893,"url":"https:\/\/xinyu-yang.github.io\/blog\/2021\/21-04-10_climate-change\/","datePublished":"2021-04-10T23:30:33+08:00","dateModified":"2021-11-30T00:50:50+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Xinyu Yang","logo":"https:\/\/xinyu-yang.github.io\/blog\/images\/avatar.png"},"author":{"@type":"Person","name":"Xinyu Yang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
 <div class=header-title>
 <a href=/blog/ title="麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方"><img class="lazyload logo" src=/blog/svg/loading.min.svg data-src=/blog/images/avatar.png data-srcset="/blog/images/avatar.png, /blog/images/avatar.png 1.5x, /blog/images/avatar.png 2x" data-sizes=auto alt=/blog/images/avatar.png title=/blog/images/avatar.png>麋鹿博客</a>
-</div>
-<div class=menu>
+</div><div class=menu>
 <div class=menu-inner><a class=menu-item href=/blog/posts/ title=文章列表> 文章 </a><a class=menu-item href=/blog/categories/> 分类 </a><a class=menu-item href=/blog/tags/> 标签 </a><a class=menu-item href=/blog/about/> 关于 </a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
 <select class=language-select id=language-select-desktop onchange="location=this.value"><option value=/blog/2021/21-04-10_climate-change/ selected>简体中文</option></select>
 </a><span class="menu-item search" id=search-desktop>
@@ -41,20 +39,14 @@
 </span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
 <i class="fas fa-adjust fa-fw"></i>
 </a>
-</div>
-</div>
-</div>
-</header><header class=mobile id=header-mobile>
+</div></div></div></header><header class=mobile id=header-mobile>
 <div class=header-container>
 <div class=header-wrapper>
 <div class=header-title>
 <a href=/blog/ title="麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方"><img class="lazyload logo" src=/blog/svg/loading.min.svg data-src=/blog/images/avatar.png data-srcset="/blog/images/avatar.png, /blog/images/avatar.png 1.5x, /blog/images/avatar.png 2x" data-sizes=auto alt=/blog/images/avatar.png title=/blog/images/avatar.png>麋鹿博客</a>
-</div>
-<div class=menu-toggle id=menu-toggle-mobile>
+</div><div class=menu-toggle id=menu-toggle-mobile>
 <span></span><span></span><span></span>
-</div>
-</div>
-<div class=menu id=menu-mobile><div class=search-wrapper>
+</div></div><div class=menu id=menu-mobile><div class=search-wrapper>
 <div class="search mobile" id=search-mobile>
 <input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
 <a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索>
@@ -66,80 +58,48 @@
 <span class="search-button search-loading" id=search-loading-mobile>
 <i class="fas fa-spinner fa-fw fa-spin"></i>
 </span>
-</div>
-<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+</div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
 取消
 </a>
 </div><a class=menu-item href=/blog/posts/ title=文章列表>文章</a><a class=menu-item href=/blog/categories/ title>分类</a><a class=menu-item href=/blog/tags/ title>标签</a><a class=menu-item href=/blog/about/ title>关于</a><a class=menu-item href=https://github.com/xinyu-yang/blog title=GitHub rel="noopener noreferrer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
 <i class="fas fa-adjust fa-fw"></i>
 </a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
 <select class=language-select onchange="location=this.value"><option value=/blog/2021/21-04-10_climate-change/ selected>简体中文</option></select>
-</a></div>
-</div>
-</header>
-<div class="search-dropdown desktop">
-<div id=search-dropdown-desktop></div>
-</div>
-<div class="search-dropdown mobile">
-<div id=search-dropdown-mobile></div>
-</div>
-<main class=main>
+</a></div></div></header><div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div></div><main class=main>
 <div class=container><article class="page single"><h1 class="single-title animated flipInX">当我们在谈论环境保护的时候我们在谈论什么？</h1><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=https://xinyu-yang.github.io title=Author target=_blank rel="noopener noreferrer author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/blog/categories/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/><i class="far fa-folder fa-fw"></i>信口开河</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-04-10>2021-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 893 字&nbsp;
+<div class=post-meta-line><span class=post-author><a href=https://xinyu-yang.github.io title=Author target=_blank rel="noopener noreferrer author" class=author><i class="fas fa-user-circle fa-fw"></i>Xinyu Yang</a></span>&nbsp;<span class=post-category>收录于 <a href=/blog/categories/%E4%BF%A1%E5%8F%A3%E5%BC%80%E6%B2%B3/><i class="far fa-folder fa-fw"></i>信口开河</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-04-10>2021-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 893 字&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<i class="fas fa-eye fa-fw"></i>&nbsp;
-<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;</div>
-</div><div class=content id=content><p>  最近看了一些科普方面的文章和视频，所以对气候变化这件事情有了一些思考，特此记录。因为只是作为个人天马行空思考的记录，所以并无科学严谨性可言，因此几乎不会引用任何的专业文献和专业数据。</p>
-<p>  我们现在在讨论气候变化的时候，总是在说由于人类活动的原因，使得全球气候变暖，或者森林遭到砍伐，土地荒漠化等。这些环境的变化在人类生存的历史上也许是重大的环境变迁，但是如果纵观地球的发展史，就会发现，相对于地球环境变化的惊涛骇浪，现在我们所经历的变化不过是平静湖面上的微波涟漪。
-那么为什么我们会对现在的环境变化如此担忧呢？我感觉答案正如某院士（记不清楚名字）在采访时所说的那样，人类不是在保护环境，人类只不过是在保护自己。</p>
-<p>  地球的环境一直都处在变化当中，其中不乏有极端夸张的气候环境，极寒或者极热，但是地球也没出问题，所以现在地球出现的这点变化，还轮不到人类去拯救的地步。因此是不是可以理解为人类所拯救的那个“地球”只不过是人类所适宜生存的那个地球状态。
-毕竟相对于地球气候变化的幅度，人类所能适宜生存的气候范围实在是太小了，人类的历史相对于地球生命的历史也不过是短短一瞬。</p>
-<p>  不得不感叹人类在大自然面前如此渺小，即使人类已经在科技方面取得了重大进步，已经具备了一定的抵御自然灾害的能力，甚至有时会产生人类已经战胜大自然的错觉。但是当我们面临大自然的时候，显得是那么的无能为力。人类毫无疑问是大自然的一部分，也就是从某种意义上讲人类能够对大自然所做的一切，也都是大自然的命运安排。这种宿命论似乎有些悲观，因为人类看似具备自我思考的能力，但很可能永远无法突破大自然的限制。但并不是说人类的探索都是没有意义的，毕竟不去探索，我们永远无法知道自己可以做到什么。</p>
-<p>  个人感觉人类应当具备适应环境变化的能力，而不是一直待在舒适圈里。因为也许人类的出现将不可避免地导致大自然朝向某个方向变化，即使人类真的能保护现有环境，抑制全球变暖，使这些较为明显的环境因素保持稳定，但是我们对地球地改变将潜移默化地从很多方面体现出来，也许是人类想象不到的方面。
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>&nbsp;</div></div><div class=content id=content><p>  最近看了一些科普方面的文章和视频，所以对气候变化这件事情有了一些思考，特此记录。因为只是作为个人天马行空思考的记录，所以并无科学严谨性可言，因此几乎不会引用任何的专业文献和专业数据。</p><p>  我们现在在讨论气候变化的时候，总是在说由于人类活动的原因，使得全球气候变暖，或者森林遭到砍伐，土地荒漠化等。这些环境的变化在人类生存的历史上也许是重大的环境变迁，但是如果纵观地球的发展史，就会发现，相对于地球环境变化的惊涛骇浪，现在我们所经历的变化不过是平静湖面上的微波涟漪。
+那么为什么我们会对现在的环境变化如此担忧呢？我感觉答案正如某院士（记不清楚名字）在采访时所说的那样，人类不是在保护环境，人类只不过是在保护自己。</p><p>  地球的环境一直都处在变化当中，其中不乏有极端夸张的气候环境，极寒或者极热，但是地球也没出问题，所以现在地球出现的这点变化，还轮不到人类去拯救的地步。因此是不是可以理解为人类所拯救的那个“地球”只不过是人类所适宜生存的那个地球状态。
+毕竟相对于地球气候变化的幅度，人类所能适宜生存的气候范围实在是太小了，人类的历史相对于地球生命的历史也不过是短短一瞬。</p><p>  不得不感叹人类在大自然面前如此渺小，即使人类已经在科技方面取得了重大进步，已经具备了一定的抵御自然灾害的能力，甚至有时会产生人类已经战胜大自然的错觉。但是当我们面临大自然的时候，显得是那么的无能为力。人类毫无疑问是大自然的一部分，也就是从某种意义上讲人类能够对大自然所做的一切，也都是大自然的命运安排。这种宿命论似乎有些悲观，因为人类看似具备自我思考的能力，但很可能永远无法突破大自然的限制。但并不是说人类的探索都是没有意义的，毕竟不去探索，我们永远无法知道自己可以做到什么。</p><p>  个人感觉人类应当具备适应环境变化的能力，而不是一直待在舒适圈里。因为也许人类的出现将不可避免地导致大自然朝向某个方向变化，即使人类真的能保护现有环境，抑制全球变暖，使这些较为明显的环境因素保持稳定，但是我们对地球地改变将潜移默化地从很多方面体现出来，也许是人类想象不到的方面。
 如果人类不能适应现有生存环境之外的环境，那么终将有一天会被能够适应的其他生命所代替。</p></div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
 <span>更新于 2021-11-30&nbsp;<a class=git-hash href=https://github.com/xinyu-yang/blog/commit/dd32d8e7e417da85765bb329e414217fbc653346 target=_blank rel="noopener noreferrer" title="commit by yxy.gram(yangxinyu75@live.com) dd32d8e7e417da85765bb329e414217fbc653346: update some minors">
 <i class="fas fa-hashtag fa-fw"></i>dd32d8e</a></span>
-</div>
-<div class=post-info-license></div>
-</div>
-<div class=post-info-line>
+</div><div class=post-info-license></div></div><div class=post-info-line>
 <div class=post-info-md><span>
 <a class=link-to-markdown href=/blog/2021/21-04-10_climate-change/index.md target=_blank rel="noopener noreferrer">阅读原始文档</a>
-</span></div>
-<div class=post-info-share>
+</span></div><div class=post-info-share>
 <span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://xinyu-yang.github.io/blog/2021/21-04-10_climate-change/ data-title=当我们在谈论环境保护的时候我们在谈论什么？ data-via=xinyuyang18><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://xinyu-yang.github.io/blog/2021/21-04-10_climate-change/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://xinyu-yang.github.io/blog/2021/21-04-10_climate-change/ data-title=当我们在谈论环境保护的时候我们在谈论什么？><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://xinyu-yang.github.io/blog/2021/21-04-10_climate-change/ data-title=当我们在谈论环境保护的时候我们在谈论什么？><i class="fab fa-weibo fa-fw"></i></a></span>
-</div>
-</div>
-</div>
-<div class=post-info-more>
-<section class=post-tags></section>
-<section>
+</div></div></div><div class=post-info-more>
+<section class=post-tags></section><section>
 <span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/blog/>主页</a></span>
-</section>
-</div>
-<div class=post-nav><a href=/blog/2021/21-04-07_bloom-filter/ class=prev rel=prev title="Bloom Filter"><i class="fas fa-angle-left fa-fw"></i>Bloom Filter</a>
-<a href=/blog/2021/21-04-12_count-sketch/ class=next rel=next title="Count Sketch">Count Sketch<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id=comments><div id=tcomment></div><noscript>
+</section></div><div class=post-nav><a href=/blog/2021/21-04-07_bloom-filter/ class=prev rel=prev title="Bloom Filter"><i class="fas fa-angle-left fa-fw"></i>Bloom Filter</a>
+<a href=/blog/2021/21-04-12_count-sketch/ class=next rel=next title="Count Sketch">Count Sketch<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=tcomment></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://twikoo.js.org/>Twikoo</a>.
-</noscript></div></article></div>
-</main><footer class=footer>
+</noscript></div></article></div></main><footer class=footer>
 <div class=footer-container><div class=footer-line>
 <span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 次 </span>
 <span class=division>•</span>
 <span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/blog/img/spinner.svg alt=spinner.svg></span> 人 </span>
-</div>
-<div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreferrer" title="Hugo 0.92.2">Hugo</a> - <a href=https://github.com/xinyu-yang/EnjoyIt target=_blank rel="noopener noreferrer" title="EnjoyIt 0.0.1"><i class="fas fa-heart fa-fw"></i>EnjoyIt</a><span class=division> • </span>
-<i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2021 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://xinyu-yang.github.io target=_blank rel="noopener noreferrer">Xinyu Yang</a></span>&nbsp;•&nbsp;<span class=license><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
-</div>
-</footer></div>
-<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
+</div><div class=footer-line><a href=https://gohugo.io/ target=_blank rel="noopener noreferrer" title="Hugo 0.93.0">Hugo</a> - <a href=https://github.com/xinyu-yang/EnjoyIt target=_blank rel="noopener noreferrer" title="EnjoyIt 0.0.1"><i class="fas fa-heart fa-fw"></i>EnjoyIt</a><span class=division> • </span>
+<i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2021 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://xinyu-yang.github.io target=_blank rel="noopener noreferrer">Xinyu Yang</a></span>&nbsp;•&nbsp;<span class=license><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部>
 <i class="fas fa-arrow-up fa-fw"></i>
 </a><a href=# id=view-comments class=fixed-button title=查看评论>
 <i class="fas fa-comment fa-fw"></i>
 </a>
-</div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/twikoo@1.4.11/dist/twikoo.all.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/blog/lib/lunr/lunr.stemmer.support.min.d083e6109310cfdc62d9b0e85b94a19ef28a25e2cd65e0f0ddb5925e82dff646.js integrity="sha256-0IPmEJMQz9xi2bDoW5ShnvKKJeLNZeDw3bWSXoLf9kY="></script><script type=text/javascript src=/blog/lib/lunr/lunr.multi.min.cefa9a416dd7cdb1b8b3d873fb4cdc5247789316e11b58f790be0b65d7119cfd.js integrity="sha256-zvqaQW3XzbG4s9hz+0zcUkd4kxbhG1j3kL4LZdcRnP0="></script><script type=text/javascript src=/blog/lib/lunr/lunr.zh.min.a3f9c6f4c2a9e8a2568064c63f055e265fa73b19e1464e5dfdf0ded3fe016987.js integrity="sha256-o/nG9MKp6KJWgGTGPwVeJl+nOxnhRk5d/fDe0/4BaYc="></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:10},comment:{twikoo:{el:"#tcomment",envId:"https://twikoo-comment-xinyu-yang.vercel.app/"}},search:{highlightTag:"em",lunrIndexURL:"/blog/index.json",lunrLanguageCode:"zh",lunrSegmentitURL:"/blog/lib/lunr/lunr.segmentit.js",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"lunr"}}</script><script type=text/javascript src=/blog/js/theme.a63aa926c3cd8d6695367caa381f19bdaa78efc1bd87b33c0a4968ca187b5c7f.js integrity="sha256-pjqpJsPNjWaVNnyqOB8Zvap478G9h7M8Ckloyhh7XH8="></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-NSNR248K3V')</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-NSNR248K3V" async></script><script id=baidu_analytics type=text/javascript>var _hmt=_hmt||[];(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement("script"),a.async=!0,a.src="https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></body>
-</html>
+</div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/twikoo@1.4.15/dist/twikoo.all.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/blog/lib/lunr/lunr.stemmer.support.min.e3c3004c7f09196dd53ffe374b7a2275104b3514d495245d869dc43df2a185e1.js integrity="sha256-48MATH8JGW3VP/43S3oidRBLNRTUlSRdhp3EPfKhheE="></script><script type=text/javascript src=/blog/lib/lunr/lunr.multi.min.7fe5e28e9e2ec0ecb084cf617dd5cc83889f8da29747c1207b4ac0af0e65d369.js integrity="sha256-f+Xijp4uwOywhM9hfdXMg4ifjaKXR8Ege0rArw5l02k="></script><script type=text/javascript src=/blog/lib/lunr/lunr.zh.min.7fc53951c80e744b60fcd3fc57ac8c88dd6381cc8dbf956aaee17a062a558f12.js integrity="sha256-f8U5UcgOdEtg/NP8V6yMiN1jgcyNv5VqruF6BipVjxI="></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:10},comment:{twikoo:{el:"#tcomment",envId:"https://twikoo-comment-xinyu-yang.vercel.app/"}},search:{highlightTag:"em",lunrIndexURL:"/blog/index.json",lunrLanguageCode:"zh",lunrSegmentitURL:"/blog/lib/lunr/lunr.segmentit.js",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"lunr"}}</script><script type=text/javascript src=/blog/js/theme.a63aa926c3cd8d6695367caa381f19bdaa78efc1bd87b33c0a4968ca187b5c7f.js integrity="sha256-pjqpJsPNjWaVNnyqOB8Zvap478G9h7M8Ckloyhh7XH8="></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-NSNR248K3V")</script><script type=text/javascript src="https://www.googletagmanager.com/gtag/js?id=G-NSNR248K3V" async></script><script id=baidu_analytics type=text/javascript>var _hmt=_hmt||[];(function(){if(window.location.hostname==="localhost")return;var e=document.createElement("script"),t;e.async=!0,e.src="https://hm.baidu.com/hm.js?b72cf2095ce01c4c9d6392678286aafd",t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>
