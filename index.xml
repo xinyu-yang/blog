@@ -1,4 +1,372 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 08 Feb 2022 22:21:16 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Zotero 配置记录</title><link>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</link><pubDate>Tue, 08 Feb 2022 22:21:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</guid><description><![CDATA[<h2 id="zotero-配置记录">Zotero 配置记录</h2>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 18 May 2022 22:05:01 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Python relative import 详解</title><link>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</link><pubDate>Wed, 18 May 2022 22:05:01 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</guid><description><![CDATA[<p>随着程序的复杂，会逐渐将不同的功能放置在不同的文件中。项目也从简单脚本的单一文件转变为更加复杂的文件结构，这就涉及到不同文件的导入问题。</p>
+<p>以前写的程序都比较简单，即使有多个文件，但也是单层次的扁平结构，操作起来也比较简单，尝试一下就可以正确导入。</p>
+<p>但是当文件有了更复杂的层次之后，发现文件导入并没有自己想象的那么简单。每次都是盲人摸象般的盲目尝试，直到程序不会报错。靠着这种开盲盒般的操作方式，即使最后得出正确结果，也不知道怎么回事。</p>
+<p>也看过一些关于文件导入的文章，但一是没有自己的实际操作；二是很多文章讲的比较肤浅，不涉及本质；甚至有的文章还会给读者错误的导向，害人不浅（这一点后面会说）。</p>
+<h2 id="从-modulenotfounderror-说起">从 <code>ModuleNotFoundError</code> 说起</h2>
+<p>一般报该错误，常见的有两个原因：</p>
+<ol>
+<li>如果是第三方包，那么是相应的模块没有安装，直接 <code>pip install *</code> 安装即可。</li>
+<li>如果自己写的程序，那么就是包导入的路径不对。本文主要关注的也是该问题。</li>
+</ol>
+<p>如上所述，如果是第二种情况，即包导入的位置不对。那么我们就应该添加包的查询位置，<code>sys.path</code> 就是用来指定包查找位置的列表。</p>
+<p>下面将以下述文件结构举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">src
+</span></span><span class="line"><span class="cl">	├── foo
+</span></span><span class="line"><span class="cl">	│   ├── foo.py
+</span></span><span class="line"><span class="cl">	│   ├── bar.py
+</span></span><span class="line"><span class="cl">	│   ├── __init__.py
+</span></span><span class="line"><span class="cl">	├── hello.py
+</span></span><span class="line"><span class="cl">	├── main.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里 <code>hello.py</code> 中的代码为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">helloworld</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;hello world&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>bar.py</code>中的代码为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">bar</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;This is in bar&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下来试图从<code>foo.py</code> 中导入该函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># foo.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hello</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hello</span><span class="o">.</span><span class="n">helloworld</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该程序理所当然报 <code>ModuleNotFoundError</code>，这是因为包的位置没有被添加到导入路径中，前面也提到，<code>sys.path</code>其实是一个列表，所以我们只需将需要的路径添加到该列表中即可。接下来修改代码如下（很多博客中写的都是此方法）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># foo.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&#34;..&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hello</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hello</span><span class="o">.</span><span class="n">helloworld</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果我们在路径 <code>foo</code> 下运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ python foo.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么程序可以顺利执行。<strong>但是</strong>如果我们在程序根目录下执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ python ./foo/foo.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么依然会报 <code>ModuleNotFoundError</code> 。经过分析，发现这是因为我们在添加文件路径到 <code>sys.path</code> 的时候，加入的只是相对路径。</p>
+<p>而相对路径是相对于现在的执行路径而言的，当前的执行目录为根目录，根目录的上一层当然没有要找的 <code>hello</code>模块，所以程序当然报错。</p>
+<p>所以合理的方式是直接导入绝对路径，那么无论在哪里运行，都是可以找到相应的模块的，具体代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># foo.py</span>
+</span></span><span class="line"><span class="cl">import sys, os
+</span></span><span class="line"><span class="cl">sys.path.append<span class="o">(</span>os.path.join<span class="o">(</span>sys.path<span class="o">[</span>0<span class="o">]</span>, <span class="s2">&#34;..&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">import hello
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hello.helloworld<span class="o">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中<code>sys.path[0]</code>通过阅读<a href="https://docs.python.org/3/library/sys.html" target="_blank" rel="noopener noreferrer">官方文档</a>可以得知，其代表启动 Python 解释器的脚本的目录路径。</p>
+<p>这里就把文件的绝对路径以相对路径（<code>&quot;..&quot;</code>）的方式添加到了查找列表中。添加后的 <code>sys.path</code> 如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span><span class="s1">&#39;**/src/foo&#39;</span>, <span class="s1">&#39;/usr/local/lib/python38.zip&#39;</span>, <span class="s1">&#39;/usr/local/lib/python3.8&#39;</span>, <span class="s1">&#39;/usr/local/lib/python3.8/lib-dynload&#39;</span>, <span class="s1">&#39;/home/yang/ML/py4flink/lib/python3.8/site-packages&#39;</span>, <span class="s1">&#39;**/src/foo/..&#39;</span><span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="相对导入-relative-import">相对导入 Relative Import</h2>
+<p>按照上述方式可以将模块整个导入，但是有时候我们并不想直接导入整个包，而只想导入包的一部分，比如 <code>hello.py</code>文件下 <code>helloworld</code> 函数。那么我们那么尝试着只导入该函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># foo.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&#34;..&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">hello</span> <span class="kn">import</span> <span class="n">helloworld</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">helloworld</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过测试发现，不管是在根目录还是在 <code>foo</code>目录下都可以正常运行。</p>
+<p>接下来我们尝试着从<code>bar.py</code>中导入<code>bar</code> 函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># foo.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bar</span> <span class="kn">import</span> <span class="n">bar</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bar</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同样，不管从根目录还是从 <code>foo</code> 目录下运行 <code>foo.py</code>都是没有问题的。</p>
+<p>此时我们尝试另外一种操作，假设在根目录下的 <code>main.py</code> 文件中需要调用 <code>foo.py</code>中的某个函数 <code>foo</code> ，其代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># foo.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&#34;..&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">bar</span> <span class="kn">import</span> <span class="n">bar</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bar</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;This is in foo&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是一个很常见的操作，我们需要在 <code>main</code>文件下调用包里的某个文件，然后包里的文件又是相互调用的关系。然后我们尝试在 <code>main</code> 文件中导入该函数，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># main.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">foo</span> <span class="kn">import</span> <span class="n">foo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">foo</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后程序居然会报如下错误：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> File <span class="s2">&#34;**src/foo/foo.py&#34;</span>, line 6, in foo
+</span></span><span class="line"><span class="cl">    from bar import bar
+</span></span><span class="line"><span class="cl">ModuleNotFoundError: No module named <span class="s1">&#39;bar&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是为什么呢？按理说 <code>foo.py</code>和 <code>bar.py</code>同属一个目录，直接从本目录下导入应该没有问题吧，为解决该问题，我们先打印出一些信息，在<code>foo.py</code>中添加一些调试代码，同时将导入<code>bar</code>的操作后移：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># foo.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&#34;..&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;This is in foo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">, __file__: </span><span class="si">{</span><span class="vm">__file__</span><span class="si">}</span><span class="s1">, __package__: </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">__package__</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">from</span> <span class="nn">bar</span> <span class="kn">import</span> <span class="n">bar</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bar</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再次执行 <code>main</code> 程序，在报错之前，打印出如下结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span><span class="s1">&#39;**/src&#39;</span>, <span class="s1">&#39;/usr/local/lib/python38.zip&#39;</span>, <span class="s1">&#39;/usr/local/lib/python3.8&#39;</span>, <span class="s1">&#39;/usr/local/lib/python3.8/lib-dynload&#39;</span>, <span class="s1">&#39;/home/yang/ML/py4flink/lib/python3.8/site-packages&#39;</span>, <span class="s1">&#39;**/src/..&#39;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">__main__, __file__: **/src/foo/foo.py, __package__: <span class="s1">&#39;foo&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现导入文件的路径变成了根目录，所以无法找到<code>bar</code>文件的路径了。为了验证该猜想，我们手动在<code>main</code>文件中把<code>bar</code>文件的导入路径加上：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># main.py</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&#34;foo&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">foo</span> <span class="kn">import</span> <span class="n">foo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">foo</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行 <code>main</code> 程序，顺利执行！</p>
+<p>但是在写程序的时候，我们不可能像这样把所有包中的文件绝对引用路径全都加上。我们还是希望不管被哪个程序导入，包里所有文件的相对引用位置是不变的。</p>
+<p>通过阅读官方文档得知，我们可以采用包相对导入来解决这个问题。相对导入的形式类似于<code>bash</code>中的相对路径，通过在包前面加<code>.</code>来表示相对位置，一个代表本目录，两个代表上级目录，三个代表。。。</p>
+<p>根据该方案，我们将 <code>foo.py</code>中的导入操作修改如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">.bar</span> <span class="kn">import</span> <span class="n">bar</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再次运行 <code>main</code> 程序，顺利执行！</p>
+<p>此时好像一切都没有问题了，然后我们尝试着再次执行 <code>foo.py</code> ，发现居然又报错了，这次错误变成了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">File <span class="s2">&#34;foo/foo.py&#34;</span>, line 8, in foo
+</span></span><span class="line"><span class="cl">    from .bar import bar
+</span></span><span class="line"><span class="cl">ImportError: attempted relative import with no known parent package
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>加上一个点之后居然就导入不了了！经过网上搜索，找到了一些解决方案【<a href="https://stackoverflow.com/a/28154841" target="_blank" rel="noopener noreferrer">1</a>】【<a href="https://iq-inc.com/importerror-attempted-relative-import/" target="_blank" rel="noopener noreferrer">2</a>】。</p>
+<p>但是还是不太懂根本原因，后来看了<a href="https://docs.python.org/3/reference/import.html" target="_blank" rel="noopener noreferrer">官方文档</a>和<a href="https://stackoverflow.com/a/21233334" target="_blank" rel="noopener noreferrer">该回答</a>中关于<code>__package__</code>变量的解释，我才大概搞明白是怎么回事。其中一些重要的摘录如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">__package__:
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">This attribute is used instead of __name__ to calculate explicit relative imports for main modules, as defined in PEP 366. It is expected to have the same value as __spec__.parent.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Changed in version 3.6: The value of __package__ is expected to be the same as __spec__.parent.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>大概意思就是该变量用于计算相对导入的位置，并且该变量的值必须和<code>__spec__.parent</code>的值相同。</p>
+<p>根据上文可知，当我们执行<code>main.py</code>的时候，我们所打印出的<code>__package__</code>值为<code>'foo'</code> 而当我们单独执行 <code>foo.py</code>的时候，其打印出的值为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">__main__, __file__: foo/foo.py, __package__: None
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以我认为根本的原因是：当单独执行<code>foo.py</code>的时候，其所在目录下的文件并不被当作 python module，而只是被当成是普通的脚本进行执行。因此相应的<code>__package__</code>值为<code>None</code> ，进而进行relative import的时候，因不满足上述条件，所以报错。</p>
+<p>而当从<code>main.py</code>中导入的时候，<code>foo.py</code>目录中的文件都被当成是<code>foo</code>包的一部分，所以可以使用relative import导入成功。</p>
+<p>那么能不能以模块的方式运行<code>foo.py</code>呢？答案是可以的，只需要在执行的时候加上<code>-m</code>选项，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ python -m foo.foo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么<code>foo.py</code>就会被当成一个模块来执行。同时我还从<a href="https://stackoverflow.com/a/28151907" target="_blank" rel="noopener noreferrer">该回答</a>中学到一种方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="nv">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span>:
+</span></span><span class="line"><span class="cl">    from bar import bar
+</span></span><span class="line"><span class="cl"><span class="k">else</span>:
+</span></span><span class="line"><span class="cl">    from .bar import bar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就可以避免出错了。</p>
+<p>至此，大功告成！</p>
+<h2 id="总结">总结</h2>
+<p>最后说些总结：</p>
+<p>对于相同路径下的文件，一定要根据是否封装为模块选择合适的导入方式，或者是像上述所说，加上一个判断。</p>]]></description></item><item><title>Zotero 配置记录</title><link>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</link><pubDate>Tue, 08 Feb 2022 22:21:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</guid><description><![CDATA[<h2 id="zotero-配置记录">Zotero 配置记录</h2>
 <p>随着所读论文的增多，渐渐觉得有必要对读过的论文进行整理归类。而之前所用的方法可以称之为“文件夹管理”，即通过文件夹对论文进行分类存放。
 但感觉这种方式不够灵活专业，更重要的是在写论文的时候还得一个个手动查找添加 bib 文件。
 工具都是为需求而生的，以前没读过几篇论文的时候一直 get 不到文献管理工具的意义。
@@ -389,7 +757,7 @@ $$</p>
 <ul>
 <li>不能逃避问题，就像我一直在逃避学习英语，但最终也逃不掉。</li>
 <li>勇敢的迈出第一步，会发现有的问题可能并没有想象中那么无法完成。</li>
-</ul>]]></description></item><item><title>Vim学习记录</title><link>https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/</link><pubDate>Tue, 28 Sep 2021 10:34:49 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/</guid><description><![CDATA[<h2 id="介绍">介绍</h2>
+</ul>]]></description></item><item><title>Vim 学习记录</title><link>https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/</link><pubDate>Tue, 28 Sep 2021 10:34:49 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/</guid><description><![CDATA[<h2 id="介绍">介绍</h2>
 <p>很久以来，一直想写一些关于 Vim 的使用博客。但是随着对 Vim 的了解加深，我意识到自己还达不到创作文章介绍Vim的能力。
 一方面是因为自己对 Vim 的了解实在是有限，很多东西都只是鹦鹉学舌，了解简单的用法，而介绍这些基本用法的博客文章等浩如烟海，因此没有重复赘述的必要。
 另一方面是因为随着学习的深入，我也接触到了很多优秀的博客文章，值得仔细研读。同时也意识到自己的水平跟这些文章的作者相去甚远，想要达到同等水平况且需要些时日，更不用说写出更有深度的东西了。</p>
@@ -811,42 +1179,4 @@ $$</p>
 <li>
 <p><a href="https://www.cnblogs.com/xinyuyang/p/11439638.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/xinyuyang/p/11439638.html</a></p>
 </li>
-</ol>]]></description></item><item><title>百万富翁问题</title><link>https://xinyu-yang.github.io/blog/2021/21-05-12_millionaire-problem/</link><pubDate>Wed, 12 May 2021 23:50:52 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/21-05-12_millionaire-problem/</guid><description><![CDATA[<h2 id="问题概述">问题概述</h2>
-<p>该问题由第一位也是唯一一位华人图灵奖得主姚期智先生于1982年提出，问题很简单：</p>
-<blockquote>
-<p>在缺少第三方公信平台的情况下，有两个百万富翁希望比较财富的高低，但是又不想让对方知道自己的具体的财富有多少。</p>
-</blockquote>
-<p>该问题是另外一个通用问题的特殊形式，即：</p>
-<blockquote>
-<p>$a_1, a_2 &hellip; a_n$分别拥有值$x_1, x_2 &hellip; x_n$，如何在互相不泄露这些值的情况下计算$F(x_1, x_2 &hellip; x_n)$</p>
-</blockquote>
-<p>姚期智的<a href="https://research.cs.wisc.edu/areas/sec/yao1982-ocr.pdf" target="_blank" rel="noopener noreferrer">这篇论文</a>就是讨论了以上问题，对于百万富翁问题，记得有人提出可以采用称重的方法，即将富翁所有的财富转换成金子，并放置在不透明的盒子里，然后用一个天平来测量哪一个盒子更重。这是一个不错的方案，但是还是隐含借助了第三方的可信机构，抛开天平的可信性不谈，给富翁兑换金子的人（即使是多个）总是知道富翁财产的。</p>
-<h2 id="解决方案">解决方案</h2>
-<p>那能不能借助科学的力量解决该问题呢？姚期智在他的论文里给出了肯定答案，论文中提到其一共提出了三种解决方案，但是限于篇幅只介绍了其中一种，本文也主要介绍该方法，该方法非常巧妙，让人拍案称绝，也让我感受到了图灵奖实力的冰山一角。</p>
-<p>该方法主要借助公钥加密和单向函数来实现双方对对方消息的不可知。
-具体内容如下：</p>
-<ol>
-<li>
-<p>假设双方为A和B，财产分别为a和b，财产范围为[0, N]。首先由A生成一对公私钥对$(PK,P)$（不失一般性），然后将公$PK$发送给B。B选择一个随机数r，然后计算$n=Enc(PK,r)-b$，并将$n$发送给A。</p>
-</li>
-<li>
-<p>A收到之后便使用$n+i,\ i\in [0,N]$构造一个数组，并使用私钥进行加密，最终的结果为：$(Enc(P,n),Enc(P,n+1)&hellip;Enc(P,n+N))$，其中有一个$i$的值为A的财产a，即有一个$n+i$的值为$Enc(PK,r)$，但是和明显A并不知道是哪一个。</p>
-</li>
-<li>
-<p>接下来A进行进一步操作，其将数组中序号大于其财产的值加一，即最终值为$Enc(P,n+i)+1,\text{if i &gt; a}$。然后选取一个位于财产范围内的素数$p$，将数组中的所有数值对$p$取余。最终得到：
-$$
-(Enc(P,n)\mod p, Enc(P,n+1)\mod p, &hellip;
-$$
-$$
-(Enc(P,n+a)+1)\mod p, &hellip; (Enc(P,n+N)+1)\mod p)
-$$
-A将该数组和$p$发送给B。</p>
-</li>
-<li>
-<p>B收到该数组之后，使用PK对公式中的每一项进行解密，如果第b项的值为$r\mod p$，那么说明A的财富值大于B的财富值，否则，A的财富值小于等于B的财富值。因为，如果A的财富值大于B的财富值，则数组中的第b项为$Enc(P,n+b)\mod p = Enc(P, Enc(PK, r))\mod p$，否则该值将为$Enc(P,n+b)+1\mod p$。</p>
-</li>
-</ol>
-<p>通过以上方式可以实现在不互相泄露信息的情况下比较财富的数值，其中加一和取余是核心操作，尤其是取余，因为其相当于一个单向函数，所以可以向B隐藏A的信息，如果没有该步骤，那么A的信息将很容易被泄露。</p>
-<h2 id="参考文献">参考文献</h2>
-<p>[1] <a href="https://research.cs.wisc.edu/areas/sec/yao1982-ocr.pdf" target="_blank" rel="noopener noreferrer">A. C. Yao, “Protocols for Secure Computations,” </a></p>
-<p>[2] <a href="https://zhiqiang.org/cs/yao-millionaires-problem.html" target="_blank" rel="noopener noreferrer">https://zhiqiang.org/cs/yao-millionaires-problem.html</a></p>]]></description></item></channel></rss>
+</ol>]]></description></item></channel></rss>
