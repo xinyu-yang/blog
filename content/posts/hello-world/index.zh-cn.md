@@ -8,7 +8,7 @@ tags: ["blog", "config"]
 categories: ["record"]
 
 featuredImage: ""
-featuredImagePreview: "test.png"
+featuredImagePreview: "../../2021/hello-world/test.png"
 
 math:
   enable: true
