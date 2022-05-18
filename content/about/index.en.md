@@ -15,13 +15,13 @@ math:
 
 <!--more-->
 
-# About me
+<!--# About me-->
 
-A common programmer, more than half half years old, have nothing.
+<!--A common programmer, more than half half years old, have nothing.-->
 
-Motto: Do useful things and be a useful man.
+**Motto:** *Do useful things and be a useful man.*
 
-Other tags:
+**Other tags:**
 
 - `Linux` user
 - `Vim` user

@@ -17,7 +17,7 @@ categories: ["record"]
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: ""
+featuredImagePreview: "https://pic.imgdb.cn/item/62853a460947543129f3afc6.jpg"
 
 toc:
   enable: false
