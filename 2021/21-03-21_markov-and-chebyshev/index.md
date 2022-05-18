@@ -23,7 +23,7 @@ $$
 根据前面所做的设想，这明显“不对”啊，因为值主要分布在两端嘛，怎么可能大于$\alpha$的概率仅为1/10呢？应该是1/2左右吧。
 
 例子如如下图（这里图画的可能不太准确，其实也不可能准确）:
-![“反例”](https://gitee.com/xinyu-yang/pic/raw/master/img/2021/drawing.png "“反例”")
+![“反例”](https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/markov_draw.png "“反例”")
 
 <!--<a href="https://imgbb.com/"><img src="https://i.ibb.co/rb7M9F6/image.png" alt="image" border="0"></a>-->
 

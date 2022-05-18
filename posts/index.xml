@@ -932,11 +932,24 @@ $$</p>
 <p>这主要体现在两方面，首先是依赖非常多，而且对很多软件的依赖精确到版本。另外一个问题是，如果没有科学上网的话，在编译的时候有些包会下载失败。</p>
 <h4 id="ultisnip-代码段补全"><code>UltiSnip</code> 代码段补全</h4>
 <h4 id="ctags-标签生成"><code>Ctags</code> 标签生成</h4>
-<h4 id="lf-导航"><code>lf</code> 导航</h4>]]></description></item><item><title>可同步图床配置——PicGo+Gitee/Github/Gitlab+Onedrive</title><link>https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/</link><pubDate>Thu, 09 Sep 2021 11:05:02 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/</guid><description><![CDATA[<h2 id="介绍">介绍</h2>
+<h4 id="lf-导航"><code>lf</code> 导航</h4>]]></description></item><item><title>可同步图床配置——PicGo+Github/Gitlab+Onedrive</title><link>https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/</link><pubDate>Thu, 09 Sep 2021 11:05:02 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/</guid><description><![CDATA[<h2 id="介绍">介绍</h2>
 <p>本文主要用来记录图床的搭建过程，在写博客的过程中不可避免的可能会用到一些图片，因此图片的保存位置就成了一个需要思考的问题，这个问题在使用博客网站 CSDN、博客园等是不存在的，因为在使用这些网站时，只需要把图片传上去就行，图片会自行保存在这些平台所提供的图床上。曾经尝试着在本博客里直接引用博客园和 CSDN 中的图片，不出意外，果然加载不出来，可能是因为这些网站在处理请求的时候会检查<code>Referer</code>字段吧，如果仅是这种检查的话似乎可以避开，但是终究不是长久之计。</p>
 <p>一开始惊喜的发现有很多的免费图床网站（比如imgbb），开心的以为这个问题解决了，后来发现没那么简单。因为这些免费的图床往往有很多限制，比如上面举例说的这个imgbb，该网站一开始用着还行，可是过几天再在博客里加载图片时只能加载出缩略图了。</p>
 <p>因此就又在网上搜索解决之道，经琢磨了多篇解决方案之后，决定选择可能目前最合适的方案：使用 PicGo 作为图床管理软件，Gitee、SM.MS 等作为存储平台，并且使用 Onedrive 来同步 PicGo 的配置文件和数据库（这是<code>PicGo 2.3</code>版本以来的新功能👏），以实现备份和同步。接下来将就该方案进行介绍：</p>
 <h2 id="申请-gitee-账号创建仓库">申请 Gitee 账号，创建仓库</h2>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>Gitee is Dead (May. 2022)<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Gitee 已经不允许做图床了，可以切换到 Github 和 Gitlab。</p>
+<blockquote>
+<p>当前仓库 Web 页面仅限仓库成员可访问。如需转为公开仓库，需 点此绑定手机 后通过仓库设置提交公开申请，我们将尽快为您处理。</p>
+<p>&ndash; 上述通知来自 Gitee</p>
+</blockquote>
+</div>
+        </div>
+    </div>
 <p>因为 Gitee 是国内的网站，加载较快，另外就是还没有使用 Gitee 托管代码的打算，所以不如注册个账号专门用来托管图片，综合以上原因，最终使用了 Gitee。但是 Gitee 也有很多缺点，缺点之一就是空间太小了（这里不得不吐槽一句，本来就是模仿者，又那么小气，没有任何优势，难怪没人用啊~）。</p>
 <p>如果没有 Gitee 账号的话，就去申请一个。账号申请就按照步骤来就行，没什么可说的。我申请的时候发现我在 github 上使用的 ID 居然还没被别人占用，就果断申请了该 ID，在 Github、Gitlab 和 Gitee 上做到了统一。</p>
 <p>申请完账号后，登录，然后进入个人信息界面，随后点击左侧栏中的仓库空间管理，随后右上角会出现“新建仓库”的按钮。此时就可以新建仓库了，取名随意，但仓库必须得是公有的。</p>
@@ -954,7 +967,7 @@ $$</p>
 </ul>
 <p>到这里，差不多就配置好了，可以随便上传一张图片试试能不能用，我这里上传了一张蜗壳的照片。
 下图是Gitee示例：</p>
-<p><figure><a class="lightgallery" href="https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg" title="测试" data-thumbnail="https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg" data-sub-html="<h2>测试图片</h2><p>测试</p>">
+<p><figure><a class="lightgallery" href="https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/Kobe.jpg" title="测试" data-thumbnail="https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/Kobe.jpg" data-sub-html="<h2>测试图片</h2><p>测试</p>">
         
     </a><figcaption class="image-caption">测试图片</figcaption>
     </figure></p>
@@ -1078,7 +1091,7 @@ $$</p>
 <p>回想这一路，绝大部分时间都待在车里，因为担心会晕车，所以我不敢长时间看手机（以至于剧本杀也不敢玩），因此只好找一个不需要看手机的方式来打发时间。车内有蓝牙音响，且成哥喜欢播放音乐，因此我就提出用我的手机连接蓝牙放歌，所以随后的几天，我基本掌握了车里的点歌权。有时大家一块唱，便用我的手机轮流点歌，但我点的居多，且大部分时间都是我自己在点，几天过后，我的歌单几乎播放了一遍，导致大家对我的音乐爱好有了确切的掌握。因为一路上戈壁居多，且考虑到前有“沙漠蹦迪”，那么且将这个过程称为“戈壁KTV”吧。因为开头写唱歌，最后就也以此结尾吧，首尾呼应一下。差点忘了，最后得感谢<a href="https://github.com/lyswhut/lx-music-mobile" target="_blank" rel="noopener noreferrer">洛雪音乐移动端</a>提供海量无版权音乐，另外洛雪音乐还有桌面版可供使用，开源免费，简洁轻量，真的是居家旅行必备之音乐播放器。</p>
 <p>最后是成哥的微信二维码（头像更换之前）：</p>
 
-<p><em>2021年6月5日——6月12日 青甘大环线 一路花香一路唱</em></p>]]></description></item><item><title>AES算法详解</title><link>https://xinyu-yang.github.io/blog/2021/00-00-01_aes/</link><pubDate>Sat, 05 Jun 2021 11:19:13 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/00-00-01_aes/</guid><description><![CDATA[<h2 id="概述">概述</h2>
+<p><em>2021年6月5日——6月12日 青甘大环线 一路花香一路唱</em></p>]]></description></item><item><title>AES 算法详解</title><link>https://xinyu-yang.github.io/blog/2021/00-00-01_aes/</link><pubDate>Sat, 05 Jun 2021 11:19:13 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/00-00-01_aes/</guid><description><![CDATA[<h2 id="概述">概述</h2>
 <p>原本想把自己AES加密算法的整个实现过程给详细复述下来，分享给想学习的同学，也方便自己复习，但后来发现该工作量太大，加上作业太多没有过多的时间去写。所以就想把自己在学习的过程中多遇到的好的文章进行汇总，避免重复性的工作，因为我感觉有的文章的介绍和配图写的非常好，再次重复也没有意义。本文里我会将文章的链接附上，如有侵权，敬请告知！</p>
 <p>因为最近要完成课程作业，实现AES128加解密，本以为就是一个简单的算法实现，后来发现AES加密的每一步都挺难，而且都涉及到我没听过的概念，所以最近看了很多帖子、资料。最终终于能够解决这个问题。关于AES算法的介绍，网上有很多的帖子，所以我就不进行赘述了，我只是希望将我遇到的一些比较难以理解的点进行详细的叙述。</p>
 <p>实现AES算法主要包括以下学习步骤：</p>

@@ -1,4 +1,4 @@
-# AES算法详解
+# AES 算法详解
 
 
 <!--more-->
@@ -46,7 +46,7 @@ https://blog.csdn.net/u011516178/article/details/81221646
 
 S盒的置换就是将0~2^8中的任意一个字节置换为另外一个，置换的原则是将该元素置换为在GF（2^8）域上的乘法逆元，什么是GF（2^8）域？什么又是逆元呢？这些定义的准确数学描述我不太懂，根据本次应用，我可以给出粗略说明，GF（2^8）有限域大概就是指定义在该域中的数值经过定义在该域上的函数运算，其结果也都在该域内， 借用网上的一个例子进行说明：
 
-<figure>   <img src="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/GF_compute.png" alt="GF_compute" width="100%" height="100%" /> <figcaption>  
+<figure>   <img src="https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/GF_compute.png" alt="GF_compute" width="100%" height="100%" /> <figcaption>  
 <h4>图一：GF(7)运算</h4>   </figcaption> </figure>
 
 那什么又是乘法逆元呢，形如：
@@ -76,15 +76,15 @@ http://abcdxyzk.github.io/blog/2018/04/16/isal-erase-3/
 
 ## 行移位
 行移位就是对每行数据进行相应的循环移位，没有难以理解的地方，应该是整个加密过程最简单的部分，关于移位的规则，可以参考文献1、2、3、4，均有详细的图示介绍。下图来源于文献4：
-<figure><img src="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/row_shift.png" alt="row_shift" width="80%" height="80%" /><figcaption><h4>图二：行移位</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/row_shift.png" alt="row_shift" width="80%" height="80%" /><figcaption><h4>图二：行移位</h4></figcaption> </figure>
 
 ## 列混合
 列混合就是将数据矩阵乘上一个矩阵，解密的时候乘上原矩阵的逆矩阵进行解密，秩序要按照步骤一步步来即可，同样没有难以理解的地方，按照参考文献1、2、3、4的介绍进行操作就没有问题。关于列混合还可以参照这篇专门介绍的文章[11]，其对于列混合又专门的介绍与实现，而且还有检验数据。下图参照文献4中图片：
-<figure><img src="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/column_mix.png" alt="column_mix" width="80%" height="80%" /><figcaption><h4>图三：列混合</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/column_mix.png" alt="column_mix" width="80%" height="80%" /><figcaption><h4>图三：列混合</h4></figcaption> </figure>
 
 ## 密钥生成
 密钥的生成过程稍微有些麻烦，需要仔细参考规则，避免搞错，但是只需要理解操作规则即可，不需要理论理解，还好参考文献3、4中都有非常生动的图示。下图来源于文献4：
-<figure><img src="https://gitee.com/xinyu-yang/pic/raw/master/img/2021/key_generate.png" alt="key_generate" width="80%" height="80%" /><figcaption><h4>图四：密钥生成</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/key_generate.png" alt="key_generate" width="80%" height="80%" /><figcaption><h4>图四：密钥生成</h4></figcaption> </figure>
 
 ## 循环加密
 循环加密就是对上述过程重复进行若干次。具体实现参照文献1、2、3、4。

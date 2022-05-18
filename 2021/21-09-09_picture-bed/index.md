@@ -1,4 +1,4 @@
-# 可同步图床配置——PicGo+Gitee/Github/Gitlab+Onedrive
+# 可同步图床配置——PicGo+Github/Gitlab+Onedrive
 
 
 <!--more-->
@@ -11,6 +11,14 @@
 因此就又在网上搜索解决之道，经琢磨了多篇解决方案之后，决定选择可能目前最合适的方案：使用 PicGo 作为图床管理软件，Gitee、SM.MS 等作为存储平台，并且使用 Onedrive 来同步 PicGo 的配置文件和数据库（这是`PicGo 2.3`版本以来的新功能:clap:），以实现备份和同步。接下来将就该方案进行介绍：
 
 ## 申请 Gitee 账号，创建仓库
+
+{{< admonition type=info title="Gitee is Dead (May. 2022)" open=true >}}
+Gitee 已经不允许做图床了，可以切换到 Github 和 Gitlab。
+> 当前仓库 Web 页面仅限仓库成员可访问。如需转为公开仓库，需 点此绑定手机 后通过仓库设置提交公开申请，我们将尽快为您处理。
+>
+> -- 上述通知来自 Gitee
+{{< /admonition >}}
+
 因为 Gitee 是国内的网站，加载较快，另外就是还没有使用 Gitee 托管代码的打算，所以不如注册个账号专门用来托管图片，综合以上原因，最终使用了 Gitee。但是 Gitee 也有很多缺点，缺点之一就是空间太小了（这里不得不吐槽一句，本来就是模仿者，又那么小气，没有任何优势，难怪没人用啊~）。
 
 如果没有 Gitee 账号的话，就去申请一个。账号申请就按照步骤来就行，没什么可说的。我申请的时候发现我在 github 上使用的 ID 居然还没被别人占用，就果断申请了该 ID，在 Github、Gitlab 和 Gitee 上做到了统一。
@@ -33,7 +41,7 @@
 到这里，差不多就配置好了，可以随便上传一张图片试试能不能用，我这里上传了一张蜗壳的照片。
 下图是Gitee示例：
 
-![测试](https://gitee.com/xinyu-yang/pic/raw/master/img/Kobe.jpg "测试图片")
+![测试](https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/Kobe.jpg "测试图片")
 
 
 ## Onedrive同步配置
