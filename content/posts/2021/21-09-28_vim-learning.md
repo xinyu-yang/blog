@@ -1,5 +1,5 @@
 ---
-title: "Vim学习记录"
+title: "Vim 学习记录"
 subtitle: ""
 date: 2021-09-28T10:34:49+08:00
 lastmod: 2021-09-28T10:34:49+08:00
