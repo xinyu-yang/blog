@@ -1,5 +1,5 @@
 ---
-title: "Python relative import 详解"
+title: "Python relative import 深入理解"
 subtitle: ""
 date: 2022-05-18T22:05:01+08:00
 lastmod: 2022-05-18T22:05:01+08:00
@@ -8,7 +8,7 @@ author: "Xinyu Yang"
 authorLink: ""
 
 keywords: ["python", "import"]
-description: "本文详细记录了本人在学习相关知识时遇到的问题以及解决方案"
+description: "本文详细记录了本人在使用 python import 时遇到的问题以及解决方案"
 images: []
 
 tags: ["python"]
@@ -289,4 +289,6 @@ else:
 
 最后说些总结：
 
-对于相同路径下的文件，一定要根据是否封装为模块选择合适的导入方式，或者是像上述所说，加上一个判断。
+1. 参考[该文](https://iq-inc.com/importerror-attempted-relative-import/)，除`main.py`等少数包之外，尽量将所有被调用的文件组织成包的形式。
+2. 尽量采用`import`直接导入本地文件，而不是`from * import *`
+3. 如果一定要使用`from * import *`，对于相同路径下的文件，一定要根据是否封装为模块选择合适的导入方式，或者是像上述所说，加上一个判断。
