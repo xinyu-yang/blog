@@ -1,4 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>所有文章 - 麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/posts/</link><description>所有文章 | 麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 18 May 2022 22:05:01 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/posts/" rel="self" type="application/rss+xml"/><item><title>Python relative import 详解</title><link>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</link><pubDate>Wed, 18 May 2022 22:05:01 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</guid><description><![CDATA[<p>随着程序的复杂，会逐渐将不同的功能放置在不同的文件中。项目也从简单脚本的单一文件转变为更加复杂的文件结构，这就涉及到不同文件的导入问题。</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>所有文章 - 麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/posts/</link><description>所有文章 | 麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 18 May 2022 22:05:01 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/posts/" rel="self" type="application/rss+xml"/><item><title>Python relative import 深入理解</title><link>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</link><pubDate>Wed, 18 May 2022 22:05:01 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</guid><description><![CDATA[<p>随着程序的复杂，会逐渐将不同的功能放置在不同的文件中。项目也从简单脚本的单一文件转变为更加复杂的文件结构，这就涉及到不同文件的导入问题。</p>
 <p>以前写的程序都比较简单，即使有多个文件，但也是单层次的扁平结构，操作起来也比较简单，尝试一下就可以正确导入。</p>
 <p>但是当文件有了更复杂的层次之后，发现文件导入并没有自己想象的那么简单。每次都是盲人摸象般的盲目尝试，直到程序不会报错。靠着这种开盲盒般的操作方式，即使最后得出正确结果，也不知道怎么回事。</p>
 <p>也看过一些关于文件导入的文章，但一是没有自己的实际操作；二是很多文章讲的比较肤浅，不涉及本质；甚至有的文章还会给读者错误的导向，害人不浅（这一点后面会说）。</p>
@@ -366,7 +366,11 @@
 <p>至此，大功告成！</p>
 <h2 id="总结">总结</h2>
 <p>最后说些总结：</p>
-<p>对于相同路径下的文件，一定要根据是否封装为模块选择合适的导入方式，或者是像上述所说，加上一个判断。</p>]]></description></item><item><title>Zotero 配置记录</title><link>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</link><pubDate>Tue, 08 Feb 2022 22:21:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</guid><description><![CDATA[<h2 id="zotero-配置记录">Zotero 配置记录</h2>
+<ol>
+<li>参考<a href="https://iq-inc.com/importerror-attempted-relative-import/" target="_blank" rel="noopener noreferrer">该文</a>，除<code>main.py</code>等少数包之外，尽量将所有被调用的文件组织成包的形式。</li>
+<li>尽量采用<code>import</code>直接导入本地文件，而不是<code>from * import *</code></li>
+<li>如果一定要使用<code>from * import *</code>，对于相同路径下的文件，一定要根据是否封装为模块选择合适的导入方式，或者是像上述所说，加上一个判断。</li>
+</ol>]]></description></item><item><title>Zotero 配置记录</title><link>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</link><pubDate>Tue, 08 Feb 2022 22:21:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</guid><description><![CDATA[<h2 id="zotero-配置记录">Zotero 配置记录</h2>
 <p>随着所读论文的增多，渐渐觉得有必要对读过的论文进行整理归类。而之前所用的方法可以称之为“文件夹管理”，即通过文件夹对论文进行分类存放。
 但感觉这种方式不够灵活专业，更重要的是在写论文的时候还得一个个手动查找添加 bib 文件。
 工具都是为需求而生的，以前没读过几篇论文的时候一直 get 不到文献管理工具的意义。
