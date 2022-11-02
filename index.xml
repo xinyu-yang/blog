@@ -401,19 +401,22 @@
 <p>打开 Edit -&gt; Zotero Preferences -&gt; Sync</p>
 <ul>
 <li>Settings -&gt; Data Syncing: 链接账户</li>
-<li>Settings -&gt; File Syncing -&gt; Sync attachment files in My Library using: <code>Zotero</code>: False</li>
+<li>Settings -&gt; File Syncing -&gt; Sync attachment files in My Library using: <code>Zotero</code>: True</li>
 </ul>
 <h3 id="zotfile-插件">ZotFile 插件</h3>
 <p>该插件可以将所导入的 pdf 等格式的文件自动归类到所设置的目标目录。对我来说，目标目录是 Onedrive 的同步目录。</p>
 <p>下载：从<a href="http://zotfile.com/#how-to-install--set-up-zotfile" target="_blank" rel="noopener noreferrer">该地址</a>下载</p>
 <p>安装：Tools -&gt; Add-ons -&gt; ⚙(Install Add-on From File&hellip;)</p>
 <p>相关配置：
-打开 Edit -&gt; Zotero Preferences</p>
+打开 Edit -&gt; Zotero Preferences
+打开 Zotero -&gt; Preferences (MacOS)</p>
 <ol>
 <li>Advanced
 <ul>
 <li>Files and Folders -&gt; Base directory: <code>E:\OneDrive\ZotFile</code></li>
+<li>Files and Folders -&gt; Base directory: <code>/Users/[username]/OneDrive/ZotFile</code> (MacOS)</li>
 <li>Files and Folders -&gt; Data Directory Location -&gt; Custom: <code>E:\Zotero</code></li>
+<li>Files and Folders -&gt; Data Directory Location -&gt; Custom: <code>/Users/[username]/Zotero</code> (MacOS 默认)</li>
 </ul>
 </li>
 </ol>
@@ -423,7 +426,9 @@
 <p>General Settings:</p>
 <ul>
 <li>Source Folder for Attaching New Files: <code>E:\Zotero\storage</code></li>
+<li>Source Folder for Attaching New Files: <code>/Users/[username]/Zotero/storage</code> (MacOS)</li>
 <li>Location of Files -&gt; Sustom Location: <code>E:\OneDrive\ZotFile</code></li>
+<li>Location of Files -&gt; Sustom Location: <code>/Users/[username]/OneDrive/ZotFile</code> (MacOS)</li>
 <li>Location of Files -&gt; Use subfolder defined by <code>\%y\%T</code></li>
 </ul>
 </li>
@@ -449,7 +454,7 @@
 <ol>
 <li>Citation keys
 <ul>
-<li>Citation key format: <code>[auth:lower][year][shorttitle1:lower]</code></li>
+<li>Citation key format: <code>auth.lower+year+shorttitle(1).lower</code></li>
 <li>Keeping citation keys unique -&gt; On conflict &hellip;: <code>postfixed</code></li>
 </ul>
 </li>
@@ -462,7 +467,9 @@
 </ol>
 <p>关于这部分可参考上述下载地址。</p>
 <h3 id="delitem-插件">delitem 插件</h3>
-<p>该插件可以删除链接文件：<a href="https://github.com/redleafnew/delitemwithatt" target="_blank" rel="noopener noreferrer">下载</a>，是 ZotFile 插件的一个功能补充。</p>]]></description></item><item><title>2022年的第一场雪</title><link>https://xinyu-yang.github.io/blog/2022/22-01-26_the-first-snow/</link><pubDate>Wed, 26 Jan 2022 19:16:14 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-01-26_the-first-snow/</guid><description><![CDATA[<meting-js auto="https://music.163.com/#/song?id=77437" theme="#448aff" autoplay="false"></meting-js>
+<p>该插件可以删除链接文件：<a href="https://github.com/redleafnew/delitemwithatt" target="_blank" rel="noopener noreferrer">下载</a>，是 ZotFile 插件的一个功能补充。
+该插件不需要额外的设置，直接安装即可使用。
+其功能主要体现在：选中某条目右键，显示删除附件等选项。</p>]]></description></item><item><title>2022年的第一场雪</title><link>https://xinyu-yang.github.io/blog/2022/22-01-26_the-first-snow/</link><pubDate>Wed, 26 Jan 2022 19:16:14 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-01-26_the-first-snow/</guid><description><![CDATA[<meting-js auto="https://music.163.com/#/song?id=77437" theme="#448aff" autoplay="false"></meting-js>
 <p>这首歌应该是我这代人所接触到的第一代神曲，很难想象它已经二十年了。每到下雪的时候，尤其是第一场雪的时候，总是能够想起这首歌。
 恰逢最近北京下雪，重听此歌，感觉熟悉又生疏。
 有一个模糊地场景浮现在脑海里，临近春节、冰雪未融，一群已放假的小孩满心欢喜地结伴去镇上赶会。
