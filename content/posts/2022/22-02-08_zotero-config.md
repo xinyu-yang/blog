@@ -63,7 +63,7 @@ license: ""
 
 打开 Edit -> Zotero Preferences -> Sync
 - Settings -> Data Syncing: 链接账户
-- Settings -> File Syncing -> Sync attachment files in My Library using: `Zotero`: False
+- Settings -> File Syncing -> Sync attachment files in My Library using: `Zotero`: True
 
 ### ZotFile 插件
 该插件可以将所导入的 pdf 等格式的文件自动归类到所设置的目标目录。对我来说，目标目录是 Onedrive 的同步目录。
@@ -74,14 +74,19 @@ license: ""
 
 相关配置：
 打开 Edit -> Zotero Preferences
+打开 Zotero -> Preferences (MacOS)
 1. Advanced
     - Files and Folders -> Base directory: `E:\OneDrive\ZotFile`
+    - Files and Folders -> Base directory: `/Users/[username]/OneDrive/ZotFile` (MacOS)
     - Files and Folders -> Data Directory Location -> Custom: `E:\Zotero`
+    - Files and Folders -> Data Directory Location -> Custom: `/Users/[username]/Zotero` (MacOS 默认)
 
 打开 Tools -> ZotFile Preferences
 1. General Settings:
     - Source Folder for Attaching New Files: `E:\Zotero\storage`
+    - Source Folder for Attaching New Files: `/Users/[username]/Zotero/storage` (MacOS)
     - Location of Files -> Sustom Location: `E:\OneDrive\ZotFile`
+    - Location of Files -> Sustom Location: `/Users/[username]/OneDrive/ZotFile` (MacOS)
     - Location of Files -> Use subfolder defined by `\%y\%T`
 
 2. Renaming Rules:
@@ -101,7 +106,7 @@ license: ""
 
 相关配置：打开 Edit -> Zotero Preferences -> Better BibTeX
 1. Citation keys
-    - Citation key format: `[auth:lower][year][shorttitle1:lower]`
+    - Citation key format: `auth.lower+year+shorttitle(1).lower`
     - Keeping citation keys unique -> On conflict ...: `postfixed`
 2. Exprot
     - Fields -> When a reference ...: `DOI`
@@ -111,4 +116,6 @@ license: ""
 
 ### delitem 插件
 该插件可以删除链接文件：[下载](https://github.com/redleafnew/delitemwithatt)，是 ZotFile 插件的一个功能补充。
+该插件不需要额外的设置，直接安装即可使用。
+其功能主要体现在：选中某条目右键，显示删除附件等选项。
 
