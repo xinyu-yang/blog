@@ -1,5 +1,5 @@
 ---
-title: "Zotero 配置记录"
+title: "Zotero 配置记录（一：OneDrive 软链接）"
 subtitle: ""
 date: 2022-02-08T22:21:16+08:00
 lastmod: 2022-02-08T22:21:16+08:00
@@ -8,7 +8,7 @@ author: "Xinyu Yang"
 authorLink: ""
 
 keywords: ["zotero"]
-description: "该博客记录了本人所使用的 Zotero 配置"
+description: "该博客记录了基于 OneDrive 软链接的 Zotero 配置"
 images: []
 
 tags: ["config"]
@@ -32,7 +32,7 @@ license: ""
 
 <!--more-->
 
-## Zotero 配置记录
+## Zotero 配置记录（OneDrive 软链接）
 
 随着所读论文的增多，渐渐觉得有必要对读过的论文进行整理归类。而之前所用的方法可以称之为“文件夹管理”，即通过文件夹对论文进行分类存放。
 但感觉这种方式不够灵活专业，更重要的是在写论文的时候还得一个个手动查找添加 bib 文件。
@@ -50,7 +50,8 @@ license: ""
 - Zotero 开源免费（好印象），易用，但同步空间较少（只有 300M）
 - Mendeley 闭源免费，易用，空间较多 （2GB）
 
-经过衡量我决定采用 Zotero + Onedrive 的方式，Zotero 进行文献管理，Onedrive 进行文件同步，Nice!
+经过衡量我决定采用 Zotero + Onedrive 的方式，Zotero 进行文献管理，Onedrive 进行文件同步，Nice! （当然其他的网盘如 Dropbox、GoogleDrive 也适用）
+
 经过实际尝试之后，发现 Zotero 相对于 EndNote 操作简单直观，真是好用太多了。
 以下是相关配置：
 
@@ -81,13 +82,27 @@ license: ""
     - Files and Folders -> Data Directory Location -> Custom: `E:\Zotero`
     - Files and Folders -> Data Directory Location -> Custom: `/Users/[username]/Zotero` (MacOS 默认)
 
+
+以上设置是帮我们附件的基路径和文件存储目录。
+很多软件安装后都需要设置一个默认目录来保存相应数据，而 `Data Directory Location` 就是这个作用，它将保存 Zotero 所用到的所有数据。
+
+而 `Base directory` 则是帮我确定一个附件的基路径。我们可以将附件的地址分为两部分：`基地址 + 相对地址`。
+相对地址一般是我们的文件存储结构，其一般保持不变。
+而基地址就可以根据需求进行不同的配置，比如在不同的电脑上对于该路径的设置不同。
+这种 `基地址 + 相对地址` 的方式大大增加了灵活性。
+
 打开 Tools -> ZotFile Preferences
 1. General Settings:
     - Source Folder for Attaching New Files: `E:\Zotero\storage`
     - Source Folder for Attaching New Files: `/Users/[username]/Zotero/storage` (MacOS)
-    - Location of Files -> Sustom Location: `E:\OneDrive\ZotFile`
-    - Location of Files -> Sustom Location: `/Users/[username]/OneDrive/ZotFile` (MacOS)
+    - Location of Files -> Custom Location: `E:\OneDrive\ZotFile`
+    - Location of Files -> Custom Location: `/Users/[username]/OneDrive/ZotFile` (MacOS)
     - Location of Files -> Use subfolder defined by `\%y\%T`
+
+这里的 `Source Folder for Attaching New Files` 指的是需要被转移的附件的源路径。这个路径是位于我们上面所设置的 `Data Directory Location` 下的。
+
+有了源路径，那么目的路径呢? 目的路径就是 `Custom Location` 所配置的内容。这个恰好也是我们上面所述的 `基地址`。
+因为文件被转移到了该文件夹下，所以我们当然要在这里找到文件。
 
 2. Renaming Rules:
     - Renaming Format -> Use Zotero to Rename: `False`
@@ -115,7 +130,9 @@ license: ""
 关于这部分可参考上述下载地址。
 
 ### delitem 插件
+使用以上方法链接附件，在 Zotero 删除文件的时候并不会删除其所链接的文件，这显然不是我们想要的。
+如果想要删除，还要自己定位到文件真正保存的文件夹，执行手动删除。幸运的是现在已经有插件可以帮我们简化该过程。
+
 该插件可以删除链接文件：[下载](https://github.com/redleafnew/delitemwithatt)，是 ZotFile 插件的一个功能补充。
 该插件不需要额外的设置，直接安装即可使用。
 其功能主要体现在：选中某条目右键，显示删除附件等选项。
-
