@@ -1,4 +1,29 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 18 May 2022 22:05:01 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Python relative import 深入理解</title><link>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</link><pubDate>Wed, 18 May 2022 22:05:01 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</guid><description><![CDATA[<p>随着程序的复杂，会逐渐将不同的功能放置在不同的文件中。项目也从简单脚本的单一文件转变为更加复杂的文件结构，这就涉及到不同文件的导入问题。</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 24 Nov 2022 11:18:16 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Zotero 配置记录（二：坚果云 WebDAV）</title><link>https://xinyu-yang.github.io/blog/2022/22-11-24_zotero-config/</link><pubDate>Thu, 24 Nov 2022 11:18:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-11-24_zotero-config/</guid><description><![CDATA[<h2 id="zotero-配置记录坚果云-webdav">Zotero 配置记录（坚果云 WebDAV）</h2>
+<p>之前写过<a href="../2022/22-02-08_zotero-config.md" rel="">一篇</a>使用 <code>Zotfile + OneDrive</code> 软链接的方式实现附件同步的记录，但是最近准备切换到坚果云。</p>
+<p>之所以使用坚果云所提供的 WebDAV 做备份，不是因为原来的方案不能用。事实上，原来的方案不管在 Windows 平台还是 MacOS 上都表现得很好。
+但是如果想要在移动设备上（主要是平板）使用同步功能，软链接的方式就很麻烦了。因为移动设备不支持软链接。</p>
+<p>我之前的做法是在 Zotero 里看一下基本信息，如年份、类别、文件名等。然后去 OneDrive 里找到文件，打开。虽然操作也没那么复杂，但是这种方式总让人觉得不优美，很麻烦。
+正好有同学在 iPad 上使用 <code>Zotero + 坚果云</code>，我就试了一下，然后发现这种方式太漂亮了！直接沦陷，决定放弃原来的方案，转投坚果云。</p>
+<p>坚果云 <a href="https://www.jianguoyun.com/s/pricing" target="_blank" rel="noopener noreferrer">免费版</a> 提供每月 1GB 上传和 3GB 下载。算了一下，感觉对于纯文档操作来说，绰绰有余。</p>
+<p>本来坚果云的配置非常方便，但是网上的教程不是写的冗长，就是分不清软链接硬链接的关系，让人看了一头雾水。简单的一个过程非得写的那么麻烦，真是蛋疼。本文将准确直白的记录下该过程。</p>
+<p>首先注册坚果云账号，这步没什么难度。但是值得注意的是网上有人说使用带符号的邮箱注册的话，在 Zotero 中配置会有问题。
+我本人的邮箱不存在该问题，但是还是提醒大家注意一下。</p>
+<p>登录之后，点击 账户信息，然后切换到 安全选项 部分，在底部点击 添加应用。
+然后随便起个名字，就写 Zotero 吧，注意这个名字仅仅是个名字，跟随后的存储目录无关。
+然后你会获得一个密码。到此为止，你所拥有的信息有：</p>
+<ol>
+<li>服务器地址：https://dav.jianguoyun.com/dav/ （界面上就有）</li>
+<li>账户：xxx@xxx.xx （就是注册邮箱）</li>
+<li>应用密码：xxxxx （就是刚才所获得的密码）</li>
+</ol>
+<p>使用这三个信息，你就可以在 <code>Zotero -&gt; Preference -&gt; Sync</code> 页面的 <code>File Syncing</code>部分进行配置。选择 <code>Using WebDAV</code>，然后将上述三条信息填上，然后点击 <code>Verify Server</code>。
+理想情况应该显示同步成功。
+随后点一下 Zotero 的同步按钮（就是那个绿色的小圆圈箭头）同步下。</p>
+<p>多点几次，耐心等等，确认都同步上去了，这个可以通过网页打开坚果云查看，点击 我的文件，就有一个叫 zotero 的文件夹。</p>
+<p>待同步之后，还要进行的一个操作就是删除在 Zotero 云盘中占用的空间。
+首先打开 <a href="https://www.zotero.org/settings/storage" target="_blank" rel="noopener noreferrer">https://www.zotero.org/settings/storage</a> , 登录。
+然后在该页面底部可以看到一个 <code>Purge Storage in My Library</code> 按钮，该按钮将会删除所有的存在 Zotero 云盘中的文件。所以操作之前确定备份好所有的文件！</p>
+<p>然后就大功告成了，iPad 和手机端配置类似。</p>]]></description></item><item><title>Python relative import 深入理解</title><link>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</link><pubDate>Wed, 18 May 2022 22:05:01 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-05-18_python-import/</guid><description><![CDATA[<p>随着程序的复杂，会逐渐将不同的功能放置在不同的文件中。项目也从简单脚本的单一文件转变为更加复杂的文件结构，这就涉及到不同文件的导入问题。</p>
 <p>以前写的程序都比较简单，即使有多个文件，但也是单层次的扁平结构，操作起来也比较简单，尝试一下就可以正确导入。</p>
 <p>但是当文件有了更复杂的层次之后，发现文件导入并没有自己想象的那么简单。每次都是盲人摸象般的盲目尝试，直到程序不会报错。靠着这种开盲盒般的操作方式，即使最后得出正确结果，也不知道怎么回事。</p>
 <p>也看过一些关于文件导入的文章，但一是没有自己的实际操作；二是很多文章讲的比较肤浅，不涉及本质；甚至有的文章还会给读者错误的导向，害人不浅（这一点后面会说）。</p>
@@ -370,7 +395,7 @@
 <li>参考<a href="https://iq-inc.com/importerror-attempted-relative-import/" target="_blank" rel="noopener noreferrer">该文</a>，除<code>main.py</code>等少数包之外，尽量将所有被调用的文件组织成包的形式。</li>
 <li>尽量采用<code>import</code>直接导入本地文件，而不是<code>from * import *</code></li>
 <li>如果一定要使用<code>from * import *</code>，对于相同路径下的文件，一定要根据是否封装为模块选择合适的导入方式，或者是像上述所说，加上一个判断。</li>
-</ol>]]></description></item><item><title>Zotero 配置记录</title><link>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</link><pubDate>Tue, 08 Feb 2022 22:21:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</guid><description><![CDATA[<h2 id="zotero-配置记录">Zotero 配置记录</h2>
+</ol>]]></description></item><item><title>Zotero 配置记录（一：OneDrive 软链接）</title><link>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</link><pubDate>Tue, 08 Feb 2022 22:21:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-02-08_zotero-config/</guid><description><![CDATA[<h2 id="zotero-配置记录onedrive-软链接">Zotero 配置记录（OneDrive 软链接）</h2>
 <p>随着所读论文的增多，渐渐觉得有必要对读过的论文进行整理归类。而之前所用的方法可以称之为“文件夹管理”，即通过文件夹对论文进行分类存放。
 但感觉这种方式不够灵活专业，更重要的是在写论文的时候还得一个个手动查找添加 bib 文件。
 工具都是为需求而生的，以前没读过几篇论文的时候一直 get 不到文献管理工具的意义。
@@ -385,8 +410,8 @@
 <li>Zotero 开源免费（好印象），易用，但同步空间较少（只有 300M）</li>
 <li>Mendeley 闭源免费，易用，空间较多 （2GB）</li>
 </ul>
-<p>经过衡量我决定采用 Zotero + Onedrive 的方式，Zotero 进行文献管理，Onedrive 进行文件同步，Nice!
-经过实际尝试之后，发现 Zotero 相对于 EndNote 操作简单直观，真是好用太多了。
+<p>经过衡量我决定采用 Zotero + Onedrive 的方式，Zotero 进行文献管理，Onedrive 进行文件同步，Nice! （当然其他的网盘如 Dropbox、GoogleDrive 也适用）</p>
+<p>经过实际尝试之后，发现 Zotero 相对于 EndNote 操作简单直观，真是好用太多了。
 以下是相关配置：</p>
 <div class="details admonition tips open">
         <div class="details-summary admonition-title">
@@ -420,20 +445,29 @@
 </ul>
 </li>
 </ol>
+<p>以上设置是帮我们附件的基路径和文件存储目录。
+很多软件安装后都需要设置一个默认目录来保存相应数据，而 <code>Data Directory Location</code> 就是这个作用，它将保存 Zotero 所用到的所有数据。</p>
+<p>而 <code>Base directory</code> 则是帮我确定一个附件的基路径。我们可以将附件的地址分为两部分：<code>基地址 + 相对地址</code>。
+相对地址一般是我们的文件存储结构，其一般保持不变。
+而基地址就可以根据需求进行不同的配置，比如在不同的电脑上对于该路径的设置不同。
+这种 <code>基地址 + 相对地址</code> 的方式大大增加了灵活性。</p>
 <p>打开 Tools -&gt; ZotFile Preferences</p>
 <ol>
-<li>
-<p>General Settings:</p>
+<li>General Settings:
 <ul>
 <li>Source Folder for Attaching New Files: <code>E:\Zotero\storage</code></li>
 <li>Source Folder for Attaching New Files: <code>/Users/[username]/Zotero/storage</code> (MacOS)</li>
-<li>Location of Files -&gt; Sustom Location: <code>E:\OneDrive\ZotFile</code></li>
-<li>Location of Files -&gt; Sustom Location: <code>/Users/[username]/OneDrive/ZotFile</code> (MacOS)</li>
+<li>Location of Files -&gt; Custom Location: <code>E:\OneDrive\ZotFile</code></li>
+<li>Location of Files -&gt; Custom Location: <code>/Users/[username]/OneDrive/ZotFile</code> (MacOS)</li>
 <li>Location of Files -&gt; Use subfolder defined by <code>\%y\%T</code></li>
 </ul>
 </li>
-<li>
-<p>Renaming Rules:</p>
+</ol>
+<p>这里的 <code>Source Folder for Attaching New Files</code> 指的是需要被转移的附件的源路径。这个路径是位于我们上面所设置的 <code>Data Directory Location</code> 下的。</p>
+<p>有了源路径，那么目的路径呢? 目的路径就是 <code>Custom Location</code> 所配置的内容。这个恰好也是我们上面所述的 <code>基地址</code>。
+因为文件被转移到了该文件夹下，所以我们当然要在这里找到文件。</p>
+<ol start="2">
+<li>Renaming Rules:
 <ul>
 <li>Renaming Format -&gt; Use Zotero to Rename: <code>False</code></li>
 <li>Renaming Format -&gt; Format for all Item Types: <code>{%a_}{%j_}{%y_}{%t}</code></li>
@@ -467,6 +501,8 @@
 </ol>
 <p>关于这部分可参考上述下载地址。</p>
 <h3 id="delitem-插件">delitem 插件</h3>
+<p>使用以上方法链接附件，在 Zotero 删除文件的时候并不会删除其所链接的文件，这显然不是我们想要的。
+如果想要删除，还要自己定位到文件真正保存的文件夹，执行手动删除。幸运的是现在已经有插件可以帮我们简化该过程。</p>
 <p>该插件可以删除链接文件：<a href="https://github.com/redleafnew/delitemwithatt" target="_blank" rel="noopener noreferrer">下载</a>，是 ZotFile 插件的一个功能补充。
 该插件不需要额外的设置，直接安装即可使用。
 其功能主要体现在：选中某条目右键，显示删除附件等选项。</p>]]></description></item><item><title>2022年的第一场雪</title><link>https://xinyu-yang.github.io/blog/2022/22-01-26_the-first-snow/</link><pubDate>Wed, 26 Jan 2022 19:16:14 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-01-26_the-first-snow/</guid><description><![CDATA[<meting-js auto="https://music.163.com/#/song?id=77437" theme="#448aff" autoplay="false"></meting-js>
@@ -1102,105 +1138,4 @@ $$</p>
 <p>回想这一路，绝大部分时间都待在车里，因为担心会晕车，所以我不敢长时间看手机（以至于剧本杀也不敢玩），因此只好找一个不需要看手机的方式来打发时间。车内有蓝牙音响，且成哥喜欢播放音乐，因此我就提出用我的手机连接蓝牙放歌，所以随后的几天，我基本掌握了车里的点歌权。有时大家一块唱，便用我的手机轮流点歌，但我点的居多，且大部分时间都是我自己在点，几天过后，我的歌单几乎播放了一遍，导致大家对我的音乐爱好有了确切的掌握。因为一路上戈壁居多，且考虑到前有“沙漠蹦迪”，那么且将这个过程称为“戈壁KTV”吧。因为开头写唱歌，最后就也以此结尾吧，首尾呼应一下。差点忘了，最后得感谢<a href="https://github.com/lyswhut/lx-music-mobile" target="_blank" rel="noopener noreferrer">洛雪音乐移动端</a>提供海量无版权音乐，另外洛雪音乐还有桌面版可供使用，开源免费，简洁轻量，真的是居家旅行必备之音乐播放器。</p>
 <p>最后是成哥的微信二维码（头像更换之前）：</p>
 
-<p><em>2021年6月5日——6月12日 青甘大环线 一路花香一路唱</em></p>]]></description></item><item><title>AES 算法详解</title><link>https://xinyu-yang.github.io/blog/2021/00-00-01_aes/</link><pubDate>Sat, 05 Jun 2021 11:19:13 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/00-00-01_aes/</guid><description><![CDATA[<h2 id="概述">概述</h2>
-<p>原本想把自己AES加密算法的整个实现过程给详细复述下来，分享给想学习的同学，也方便自己复习，但后来发现该工作量太大，加上作业太多没有过多的时间去写。所以就想把自己在学习的过程中多遇到的好的文章进行汇总，避免重复性的工作，因为我感觉有的文章的介绍和配图写的非常好，再次重复也没有意义。本文里我会将文章的链接附上，如有侵权，敬请告知！</p>
-<p>因为最近要完成课程作业，实现AES128加解密，本以为就是一个简单的算法实现，后来发现AES加密的每一步都挺难，而且都涉及到我没听过的概念，所以最近看了很多帖子、资料。最终终于能够解决这个问题。关于AES算法的介绍，网上有很多的帖子，所以我就不进行赘述了，我只是希望将我遇到的一些比较难以理解的点进行详细的叙述。</p>
-<p>实现AES算法主要包括以下学习步骤：</p>
-<ul>
-<li>GF（2^8）域上的多项式运算</li>
-<li>扩展的欧几里德算法</li>
-<li>生成S盒</li>
-<li>生成逆S盒</li>
-<li>S盒置换</li>
-<li>行移位</li>
-<li>列混合</li>
-<li>生成秘钥</li>
-<li>循环加密</li>
-</ul>
-<p>其中1、2、3、4步都跟S盒生成有关，根据我所看的一些博客，S盒的生成涉及到数论的基础知识。如果没有基础的话，1、2是要专门去学习的，我在这两步上花费了很多时间。但是在网上也可以找到很多AES算法，他们用的是现成的S盒，没有前4步，直接用现成的S盒置换，这样相对会容易一些。但是本着刨根问底和多学习知识的原则，我还是去学习了S盒的生成方式。第5步就是将每一个字符进行查表替换，没有什么难以理解的地方，所以相对而言比较容易。第6步应该是整个过程当中最简单的一步了，就是进行一个循环移位。第7步列混合涉及到矩阵和多项式的乘法，所以还是有一定难度。。。</p>
-<p>如果想从整体上了解AES加密的完整过程，那么下面几篇文章不管从叙述还是插图上来看都是很不错的，几篇文章介绍的方式不同，但是原理都是一样的，对比结合着看会更有帮助：</p>
-<p><a href="https://www.cnblogs.com/block2016/p/5596676.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/block2016/p/5596676.html</a></p>
-<p><a href="https://blog.csdn.net/u012721519/article/details/79612128" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/u012721519/article/details/79612128</a></p>
-<p><a href="https://www.cnblogs.com/luop/p/4334160.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/luop/p/4334160.html</a></p>
-<p><a href="http://www.alonemonkey.com/2016/05/25/aes-and-des/" target="_blank" rel="noopener noreferrer">http://www.alonemonkey.com/2016/05/25/aes-and-des/</a></p>
-<p>但是仅从这几篇文章来看的话，对于像我这样的小白而言还是没有办法实现的，因为各个步骤介绍的并不具体，尤其是对于缺少基本数学知识学习的同学很难理解。所以这几篇文章可以作为整体进度的把控，接下来看怎么一步步学习实现。</p>
-<h2 id="s盒">S盒</h2>
-<p>我在学习这个算法的时候，在S盒的生成及置换上花费的时间是最多的。可能是因为基础较差，所以需要学习的东西比较多，所以我将这一部分进行了逐项的划分。关于S盒的生成及置换，这篇博客进行了非常详细的介绍，但是有一些东西我还是没明白，所以又参考了很多其他文章，才把这一部分搞明白。建议初学者以这篇博客为基础进行学习：</p>
-<p><a href="https://blog.csdn.net/u011516178/article/details/81221646" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/u011516178/article/details/81221646</a></p>
-<p>下面进行分步的介绍。</p>
-<h3 id="gf28域上的多项式计算">GF(2^8)域上的多项式计算</h3>
-<p>因为整个过程很多，所以我决定分为多个文章分别进行叙述，首先是GF（2^8）域上的多项式计算，因为以前也没有学过相关知识，很多概念都是第一次见到，所以这部分花了很长时间去学习。在学习这个之前，我们需要知道为什么去学习这个东西，AES加密中的哪一步用到了该知识点呢？</p>
-<p>S盒的置换就是将0~2^8中的任意一个字节置换为另外一个，置换的原则是将该元素置换为在GF（2^8）域上的乘法逆元，什么是GF（2^8）域？什么又是逆元呢？这些定义的准确数学描述我不太懂，根据本次应用，我可以给出粗略说明，GF（2^8）有限域大概就是指定义在该域中的数值经过定义在该域上的函数运算，其结果也都在该域内， 借用网上的一个例子进行说明：</p>
-<figure>    <figcaption>  
-<h4>图一：GF(7)运算</h4>   </figcaption> </figure>
-<p>那什么又是乘法逆元呢，形如：</p>
-<p>$$(a\cdot a_{-1} ) \% p=1$$</p>
-<p>其中p为有限域的范围，这里按理说应该为2^8，但是却不能取这个数，因为2^8并不与其内的每一个数互质，所以只能选一个更大的质数（具体原因请参考扩展的欧几里德算法），AES算法中p的值选的是0x11B, 我也不知道为什么，可能是约定俗成的吧，因为如果想找一个稍微比255大的质数，不知道为什么要取283（0x11B）<em>[我后来才明白，这部分大概涉及到<strong>不可约多项式</strong>等概念，关于这一点我将会后续进行学习和补充。]</em>。a 为有限域内的整数，那么 a_{-1} 即为 a 在有限域上的逆元。至此，我们知道逆元是什么，但是具体怎么去求解还不太清楚，这一部分请参照扩展的欧几里德算法。（更新）后来为了加深学习，我又自己写了篇博客。</p>
-<p>我接下来继续说GF（2^8）域上的多项式运算，因为把基本的运算搞清楚是计算GF（2^8）域上乘法逆元的前提，该域上的加减乘除运算是与传统的运算所不同的，具体的多项式运算请参考GF（2^8）域上的多项式运算。当然，也可以先学习扩展的欧几里德算法，然后再学习该部分，实现的时候将欧几里德算法中的四则运算换成GF（2^8）域上的多项式运算就行了。关于GF（2^8）域的计算介绍参考以下几篇博客介绍：</p>
-<p><a href="https://blog.csdn.net/luotuo44/article/details/41645597" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/luotuo44/article/details/41645597</a></p>
-<p><a href="https://blog.csdn.net/shelldon/article/details/54729687" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/shelldon/article/details/54729687</a></p>
-<p><a href="http://abcdxyzk.github.io/blog/2018/04/16/isal-erase-3/" target="_blank" rel="noopener noreferrer">http://abcdxyzk.github.io/blog/2018/04/16/isal-erase-3/</a></p>
-<p>在四则运算中，加减运算就是简单的异或运算，很简单。而乘除运算则是以乘法运算为基础，所以四则运算中最主要的是理解乘法的运算，这篇https://blog.csdn.net/bupt073114/article/details/27382533文章详细介绍了乘法运算，以及其实现。</p>
-<h3 id="扩展的欧几里得算法">扩展的欧几里得算法</h3>
-<p>待掌握了GF（2^8）域的运算知识后，应该去学一下拓展的欧几里得算法，对于该算法，上面所给出的关于S盒生成的综述博文里已经参考相关教材进行了非常详细的论述，所以关于这部分知识可以同样参考这篇博文（参考文献10），</p>
-<p>还可以参考<a href="../euclid" rel="">这篇博客</a>
-如果还不明白，也可以自行查找其他关于拓展欧几里得算法的介绍。</p>
-<h3 id="s盒生成及置换">S盒生成及置换</h3>
-<p>关于S盒的生成及置换，同样参考文献10，该文章已经进行了非常详尽的描述与代码实现。待自己完成后也可以参考博客中的结果进行检验。</p>
-<h2 id="行移位">行移位</h2>
-<p>行移位就是对每行数据进行相应的循环移位，没有难以理解的地方，应该是整个加密过程最简单的部分，关于移位的规则，可以参考文献1、2、3、4，均有详细的图示介绍。下图来源于文献4：</p>
-
-<h2 id="列混合">列混合</h2>
-<p>列混合就是将数据矩阵乘上一个矩阵，解密的时候乘上原矩阵的逆矩阵进行解密，秩序要按照步骤一步步来即可，同样没有难以理解的地方，按照参考文献1、2、3、4的介绍进行操作就没有问题。关于列混合还可以参照这篇专门介绍的文章[11]，其对于列混合又专门的介绍与实现，而且还有检验数据。下图参照文献4中图片：</p>
-
-<h2 id="密钥生成">密钥生成</h2>
-<p>密钥的生成过程稍微有些麻烦，需要仔细参考规则，避免搞错，但是只需要理解操作规则即可，不需要理论理解，还好参考文献3、4中都有非常生动的图示。下图来源于文献4：</p>
-
-<h2 id="循环加密">循环加密</h2>
-<p>循环加密就是对上述过程重复进行若干次。具体实现参照文献1、2、3、4。</p>
-<h2 id="解密">解密</h2>
-<p>解密过程就是将上述的过程反过来执行一遍，原本置换的就置换过来；原本移位的就反向移过来；原本乘上矩阵的就乘上她的逆矩阵。。。上面关于每个加密过程的参考文献都有相应的解密过程。</p>
-<h2 id="实现">实现</h2>
-<p>关于AES128的加密完整实现，可以参照代码 <a href="https://github.com/xinyu-yang/AES128-CBC" target="_blank" rel="noopener noreferrer">https://github.com/xinyu-yang/AES128-CBC</a>，此代码的实现几乎都是参照上文的介绍，唯一不同的是在加密的时候采用了CBC模式，具体什么是CBC加密模式，如果不清楚的可以自行百度。如果有时间我也会把这部分补全。</p>
-<h2 id="参考文献">参考文献：</h2>
-<ol>
-<li>
-<p><a href="https://blog.csdn.net/zhjchengfeng5/article/details/7786595" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/zhjchengfeng5/article/details/7786595</a></p>
-</li>
-<li>
-<p><a href="https://www.cnblogs.com/block2016/p/5596676.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/block2016/p/5596676.html</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/u012721519/article/details/79612128" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/u012721519/article/details/79612128</a></p>
-</li>
-<li>
-<p><a href="https://www.cnblogs.com/luop/p/4334160.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/luop/p/4334160.html</a></p>
-</li>
-<li>
-<p><a href="http://www.alonemonkey.com/2016/05/25/aes-and-des/" target="_blank" rel="noopener noreferrer">http://www.alonemonkey.com/2016/05/25/aes-and-des/</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/luotuo44/article/details/41645597" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/luotuo44/article/details/41645597</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/shelldon/article/details/54729687" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/shelldon/article/details/54729687</a></p>
-</li>
-<li>
-<p><a href="http://abcdxyzk.github.io/blog/2018/04/16/isal-erase-3/" target="_blank" rel="noopener noreferrer">http://abcdxyzk.github.io/blog/2018/04/16/isal-erase-3/</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/bupt073114/article/details/27382533" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/bupt073114/article/details/27382533</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/u011516178/article/details/81221646" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/u011516178/article/details/81221646</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/u012620515/article/details/49893905" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/u012620515/article/details/49893905</a></p>
-</li>
-<li>
-<p><a href="https://www.cnblogs.com/frog112111/archive/2012/08/19/2646012.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/frog112111/archive/2012/08/19/2646012.html</a></p>
-</li>
-<li>
-<p><a href="https://www.cnblogs.com/xinyuyang/p/11439638.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/xinyuyang/p/11439638.html</a></p>
-</li>
-</ol>]]></description></item></channel></rss>
+<p><em>2021年6月5日——6月12日 青甘大环线 一路花香一路唱</em></p>]]></description></item></channel></rss>
