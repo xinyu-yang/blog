@@ -8,8 +8,8 @@
 <p>本来坚果云的配置非常方便，但是网上的教程不是写的冗长，就是分不清软链接硬链接的关系，让人看了一头雾水。简单的一个过程非得写的那么麻烦，真是蛋疼。本文将准确直白的记录下该过程。</p>
 <p>首先注册坚果云账号，这步没什么难度。但是值得注意的是网上有人说使用带符号的邮箱注册的话，在 Zotero 中配置会有问题。
 我本人的邮箱不存在该问题，但是还是提醒大家注意一下。</p>
-<p>登录之后，点击 账户信息，然后切换到 安全选项 部分，在底部点击 添加应用。
-然后随便起个名字，就写 Zotero 吧，注意这个名字仅仅是个名字，跟随后的存储目录无关。
+<p>登录之后，点击 <code>账户信息</code>，然后切换到 <code>安全选项</code> 部分，在底部点击<code>添加应用</code>。
+然后随便起个名字，就写 <code>Zotero</code> 吧，注意这个名字仅仅是个名字，跟随后的存储目录无关。
 然后你会获得一个密码。到此为止，你所拥有的信息有：</p>
 <ol>
 <li>服务器地址：https://dav.jianguoyun.com/dav/ （界面上就有）</li>
@@ -19,7 +19,7 @@
 <p>使用这三个信息，你就可以在 <code>Zotero -&gt; Preference -&gt; Sync</code> 页面的 <code>File Syncing</code>部分进行配置。选择 <code>Using WebDAV</code>，然后将上述三条信息填上，然后点击 <code>Verify Server</code>。
 理想情况应该显示同步成功。
 随后点一下 Zotero 的同步按钮（就是那个绿色的小圆圈箭头）同步下。</p>
-<p>多点几次，耐心等等，确认都同步上去了，这个可以通过网页打开坚果云查看，点击 我的文件，就有一个叫 zotero 的文件夹。</p>
+<p>多点几次，耐心等等，确认都同步上去了，这个可以通过网页打开坚果云查看，点击 <code>我的文件</code>，就有一个叫 <code>zotero</code> 的文件夹。</p>
 <p>待同步之后，还要进行的一个操作就是删除在 Zotero 云盘中占用的空间。
 首先打开 <a href="https://www.zotero.org/settings/storage" target="_blank" rel="noopener noreferrer">https://www.zotero.org/settings/storage</a> , 登录。
 然后在该页面底部可以看到一个 <code>Purge Storage in My Library</code> 按钮，该按钮将会删除所有的存在 Zotero 云盘中的文件。所以操作之前确定备份好所有的文件！</p>
