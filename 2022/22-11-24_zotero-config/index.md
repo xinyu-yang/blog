@@ -3,7 +3,6 @@
 
 <!--more-->
 
-## Zotero 配置记录（坚果云 WebDAV）
 之前写过 [一篇](../22-02-08_zotero-config.md) 使用 `Zotfile + OneDrive` 软链接的方式实现附件同步的记录，但是最近准备切换到坚果云。
 
 之所以使用坚果云所提供的 WebDAV 做备份，不是因为原来的方案不能用。事实上，原来的方案不管在 Windows 平台还是 MacOS 上都表现得很好。
@@ -11,6 +10,8 @@
 
 我之前的做法是在 Zotero 里看一下基本信息，如年份、类别、文件名等。然后去 OneDrive 里找到文件，打开。虽然操作也没那么复杂，但是这种方式总让人觉得不优美，很麻烦。
 正好有同学在 iPad 上使用 `Zotero + 坚果云`，我就试了一下，然后发现这种方式太漂亮了！直接沦陷，决定放弃原来的方案，转投坚果云。
+
+## 坚果云配置
 
 坚果云 [免费版](https://www.jianguoyun.com/s/pricing) 提供每月 1GB 上传和 3GB 下载。算了一下，感觉对于纯文档操作来说，绰绰有余。
 
@@ -26,6 +27,8 @@
 1. 服务器地址：https://dav.jianguoyun.com/dav/ （界面上就有）
 2. 账户：xxx@xxx.xx （就是注册邮箱）
 3. 应用密码：xxxxx （就是刚才所获得的密码）
+
+## Zotero 配置
 
 使用这三个信息，你就可以在 `Zotero -> Preference -> Sync` 页面的 `File Syncing`部分进行配置。选择 `Using WebDAV`，然后将上述三条信息填上，然后点击 `Verify Server`。
 理想情况应该显示同步成功。
