@@ -1,4 +1,337 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 30 Dec 2022 08:54:57 +0000</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>2022 年度总结</title><link>https://xinyu-yang.github.io/blog/2022/22-12-30_22-annual-summary/</link><pubDate>Fri, 30 Dec 2022 08:54:57 +0000</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-12-30_22-annual-summary/</guid><description><![CDATA[<p>转眼 2022 年就要结束了。随着年龄增大，越来越感觉光阴似箭。</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Feb 2023 17:39:47 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>深入理解大小端序与位操作</title><link>https://xinyu-yang.github.io/blog/2023/23-02-01_little-endian/</link><pubDate>Wed, 01 Feb 2023 17:39:47 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2023/23-02-01_little-endian/</guid><description><![CDATA[<p>最近在读代码的时候对端序（<code>endianness</code>）的转换部分产生了一些疑惑，主要原因是对相关知识的理解还不够透彻。查找阅读了一些文献之后，有了更深刻的理解。</p>
+<h2 id="概念引入">概念引入</h2>
+<p>在讨论端序之前，我们先规定一些最基本的顺序，这一点很重要。</p>
+<ul>
+<li>人的书写以及阅读是从左往右的。</li>
+<li>机器读写数据是从低地址到高地址。</li>
+</ul>
+<p>类似的，人们习惯按照从高位到低位来表示一个数字，比如数字 <code>256</code>，百位是 <code>2</code>，十位是 <code>5</code>，个位是 <code>6</code>。再比如一个十六进制数 <code>0x12345678</code> ，最高位是 <code>1</code> ，最低位是 <code>8</code>。</p>
+<p>这种先写（读）高位数据，再写（读）低位数据的顺序，我们称之为 大端序（<code>Big-Endian</code>）。字面意思理解，就是把大的放在前面。结合上面对于基本顺序的规定，前面就是人们书写的左边，或者是机器的低地址。</p>
+<p>聪明的你肯定马上会想到，那么 小端序（<code>Little-Endian</code>）相应的就是先写（读）低位，再写（读）高位。结合上面的例子，对于数字 <code>256</code>，如果按照 <code>“个十百”</code> 的表示顺序，就应该写成 <code>652</code>。</p>
+<h2 id="计算机中的字节序">计算机中的字节序</h2>
+<p>然后让我们回到计算机学科中来讨论。虽然计算机中数据的最小表示单位是 <code>比特（bit）</code>，但由于 <a href="https://en.wikipedia.org/wiki/Endianness" target="_blank" rel="noopener noreferrer">现代计算机体系架构的寻址粒度</a> 一般是 <code>字节（byte）</code>，所以我们所说的端序通常指的是 <strong>字节序</strong>。</p>
+<p>对于比特位的前后顺序（<code>Bit Endieanness</code>），一般在数据序列化的时候讨论，而不是在计算机体系结构中。<strong>所以在本文中，我们规定，字节内的比特位的排列为从高位到低位</strong>。例如，<code>170</code> 用单字节表示为 （参考 <a href="https://www.rfc-editor.org/rfc/rfc1700.html" target="_blank" rel="noopener noreferrer">RFC 1700: Assigned Numbers (rfc-editor.org)</a>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">				  0 1 2 3 4 5 6 7
+</span></span><span class="line"><span class="cl">				 +-+-+-+-+-+-+-+-+
+</span></span><span class="line"><span class="cl">				 |1 0 1 0 1 0 1 0|
+</span></span><span class="line"><span class="cl">				 +-+-+-+-+-+-+-+-+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>信息<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>事实上，如果字节和比特位均为小端序，即先低位，再高位，这种顺序称之为严格小端序。可是<a href="https://www.rfc-editor.org/ien/ien137.txt" target="_blank" rel="noopener noreferrer">这篇文章</a>指出，严格大端序很常见，但是严格小端序没有（截止到该文）。</p>
+<p>因此，我们上述的规定是合理的。</p>
+</div>
+        </div>
+    </div>
+<p>上节例子中的十六进制数 <code>0x12345678</code> ，共占用了四个字节，从最高位字节（<code>Most Significant Byte, MSB</code>）到最低位字节（<code>Least Significant Byte, LSB</code>）分别为 <code>0x12 0x34 0x55 0x78</code>。</p>
+<p>如果按照 <code>Big-Endian</code> 来存储，假设从左到右为低地址到高地址，那么其在存储设备中存储为：<code>0x12 0x34 0x56 0x78</code> 。如果按照 <code>Little-Endian</code> 来存储，其存储为：<code>0x78 0x56 0x34 0x12</code>。</p>
+<p>直到这里还算是云淡风轻，岁月静好。</p>
+<h2 id="小端序的移位操作">小端序的移位操作</h2>
+<p>对于移位操作，大家应该并不陌生，比如 <code>C</code> 语言中的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">short</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0x1080</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这条语句将 <code>0x1080</code>左移一位，然后赋值给两字节变量 <code>i</code>，这里我们主要关注移位操作。</p>
+<p>首先分析 <code>Big-Endian</code> 下的情况，为了直观观察，我们将 <code>0x1080</code> 转换为二进制，如下图第一行所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0001 0000 | 1000 0000 (0x1080)
+</span></span><span class="line"><span class="cl">		  V
+</span></span><span class="line"><span class="cl">Op: Left Shift 1 bit (&lt;&lt; 1)
+</span></span><span class="line"><span class="cl">		  V
+</span></span><span class="line"><span class="cl">0010 0001 | 0000 0000 (0x2100)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后将该值左移一位，变成如最后一行所示的比特串。最终的结果也变为 <code>0x2100</code>，左移相当于 <code>*2</code>，变成原来的两倍，没问题。</p>
+<p>然后再看 <code>Little-Endian</code> 下的情况：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1000 0000 | 0001 0000 (0x1080)
+</span></span><span class="line"><span class="cl">		  V
+</span></span><span class="line"><span class="cl">Op: Left Shift 1 bit (&lt;&lt; 1)
+</span></span><span class="line"><span class="cl">		  V
+</span></span><span class="line"><span class="cl">0000 0000 | 0010 0000 (0x2000)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们发现，直接进行左移的话结果不对呀！可见真实的计算机不是这么做的。</p>
+<p>回过头思考左移的本质，我们发现，左移并不是简单的把二进制数往左移动，而是把数据从低位（<code>LSB</code>）往高位（<code>MSB</code>）移动。只不过人们的书写习惯是 <code>Big-Endian</code>，恰好是从大往小写，所以才造成了左移就是往左移动的错觉。</p>
+<p>意识到这一点，我们再次回归上面的 <code>Little-Endian</code> 例子。如果按照从低位往高位移动的规律，我们发现数据的移动是这样的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;- Shift 1 bit
+</span></span><span class="line"><span class="cl">1000 0000 | 0001 0000 (0x1080)
+</span></span><span class="line"><span class="cl">|                   ^		
+</span></span><span class="line"><span class="cl">+-------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看起来像是循环移位一样，其实不然，如果字节数多的话，我们会发现从一个字节左边移出来的比特位总会补到该字节右边的字节上。</p>
+<p>这个过程让一个简单的移位操作看起来很复杂，但其实有更好的理解方式。</p>
+<p>参考 <a href="https://stackoverflow.com/questions/7184789/does-bit-shift-depend-on-endianness" target="_blank" rel="noopener noreferrer">c - Does bit-shift depend on endianness? - Stack Overflow</a> 这个问题中被采纳的回答。我们只需要将字节序简单地理解为数据在内存中的存储顺序。</p>
+<p>对于该移位操作，<code>CPU</code> 首先将两个字节的数据以大端序存放到寄存器中（如果是 <code>Big-Endian</code>，直接按顺序存放即可；如果是 <code>Little-Endian</code>，将顺序颠倒下）。</p>
+<p>然后对寄存器中的值执行移位操作。最后，再将值按照规则存放到原来的内存中。</p>
+<p>总结下来，不管小端序还是大端序存储，左移和右移的结果跟我们手动算出来是一样的。如果在内存上的小端序存储的移位操作不能直观理解，那么就假设我们先把数据取出来，按照 <code>Big-Endian</code>（人们看起来自然的方式） 放置，然后再移位。</p>
+<h2 id="小端序的按位运算">小端序的按位运算</h2>
+<p>笔者正是在阅读代码的时候，看到对大小端序的转化，以及小端序的按位运算操作，才被搞得晕头转向。所以这里结合一个实际的例子来看。</p>
+<p>我是在看网络编程相关的代码时遇到的该问题，因此，有必要先介绍下网络中的字节序。</p>
+<p>当数据在网络中传输时，仍然需要规定一个顺序。对于独立的字节来说，字节之间的顺序没有意义，就是简单的从前往后，从左往右。</p>
+<p>而对于一组字节（比如 <code>IP ID</code> 具有两个字节），其字节之间的顺序就是我们要讨论的内容。</p>
+<p><a href="https://www.rfc-editor.org/rfc/rfc791" target="_blank" rel="noopener noreferrer">RFC 791</a> 以及 <a href="https://www.rfc-editor.org/rfc/rfc1700.html" target="_blank" rel="noopener noreferrer">RFC 1700</a> 中均提到：报文头和数据的传输顺序都是以<strong>八位字节</strong>为单位来说的，对于一组字节来说，其传输顺序与人的阅读习惯相同（即从左到右）。</p>
+<p>这表明网络中数据的传输是 <code>Big-Endian</code> 的（<code>Big-Endian</code> 也可称为 <code>Network Byte Order</code>，网络字节序）。因此，为了能在 <code>Little-Endian</code> 计算机上正确处理从网络中来的数据，我们需要对数据进行一定的转换。</p>
+<p>代码中有那么一行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">* iph 是 iphdr 类型的变量
+</span></span></span><span class="line"><span class="cl"><span class="cm">* __be32 是由 __u32 定义的类型
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="n">id</span> <span class="o">=</span> <span class="nf">ntohl</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">__be32</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">iph</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为了更好的理解，有必要列出 <code>iphdr</code> 结构中关于 <code>id</code> 字段的部分:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">iphdr</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">__be16</span> <span class="n">id</span><span class="p">;</span> <span class="c1">// __be16 等同于 __u16
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">__be16</span> <span class="n">frag_off</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么对上面那行代码的理解就是，从 <code>id</code> 的起始地址开始，取出 <code>32</code> 比特数据，并将其作为参数传到 <code>ntohl</code> 函数中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    0                   1                   2                   3
+</span></span><span class="line"><span class="cl">    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+</span></span><span class="line"><span class="cl">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</span></span><span class="line"><span class="cl">   |Version|  IHL  |Type of Service|          Total Length         |
+</span></span><span class="line"><span class="cl">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</span></span><span class="line"><span class="cl">   |         Identification        |Flags|      Fragment Offset    |
+</span></span><span class="line"><span class="cl">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</span></span><span class="line"><span class="cl">   |  Time to Live |    Protocol   |         Header Checksum       |
+</span></span><span class="line"><span class="cl">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</span></span><span class="line"><span class="cl">   |                       Source Address                          |
+</span></span><span class="line"><span class="cl">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</span></span><span class="line"><span class="cl">   |                    Destination Address                        |
+</span></span><span class="line"><span class="cl">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>(上图是 IPv4 报文头)</p>
+<p>我们先来看看取出来的这 <code>32</code>比特数据都是什么，根据 <code>IPv4</code> 报文头以及上述 <code>iphdr</code> 结构体可知，我们所取出来的值包括 <code>IP ID</code>、<code>分段标志位</code>、以及 <code>段偏移</code>。也就是这一行上的数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</span></span><span class="line"><span class="cl">   |         Identification        |Flags|      Fragment Offset    |
+</span></span><span class="line"><span class="cl">   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在假设 <code>IP ID</code> 为 <code>0x1234</code>，标志位和段偏移分别为 <code>b010</code>、 <code>b0100010001000</code>。并且 <code>iph→id</code> 字段的起始地址为 <code>0xe0</code> 。那么，其在内存中的值为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Value: 0001 0010 | 0011 0100 | 0100 1000 | 1000 1000
+</span></span><span class="line"><span class="cl">       \--------/ \--------/  \--------/  \--------/
+</span></span><span class="line"><span class="cl">Addr:     0xe0       0xe1        0xe2         0xe3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在如果我们直接以 <code>__be32</code> 的方式将该值从 <code>Little-Endian</code> 机器上读出来，那么该值为：<code>0x88483412</code>。这个值跟我们读到的字节顺序正好是反过来的。</p>
+<p>而我们在写代码的时候希望比较直观的操作。比如，如果我们想看一下 <code>Flags</code> 中第二个标志位（即 <code>Donot Fragment, DF 标志</code>）是多少，我们希望的操作是：使用按位与操作符，看一下从右往左边数第 <code>15</code> 个比特位是否为 <code>1 </code>。其实更准确的说法是：<strong>从低位往高位数，第 15 个比特位</strong>。代码形式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// bit32 = *(__be32 *)&amp;iph-&gt;id，即我们读出来的值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">DF</span> <span class="o">=</span> <span class="n">bit32</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">14</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>左移操作可以将 <code>1</code> 的值从最右边移动到右起第 <code>15</code> 位，或者说从最低位起，第 <code>15</code> 位。</p>
+<p>但以现在的值来看，这种操作明显得不到我们想要的值，因为对于现在取出来的值 <code>0x88483412</code> 来说，从低位起第 <code>15</code> 位对应的是 <code>IP ID</code> 的值。</p>
+<p>因此，如果想要实现一种直观的操作方式，我们可以将所取出来的值的 <strong>字节序颠倒</strong> 过来，即将 <code>0x88483412</code> 变成 <code>0x12344888</code>。</p>
+<p>这样的话，我们看到的值 <code>0x12344888</code> 就跟 <code>IP</code> 头中的值一一对应上了（<code>IP ID</code> 对应 <code>0x1234</code>，标志位和段偏移对应 <code>0x4888</code>）。</p>
+<p>至此，大功告成，但其实这种对应关系经历了两次翻转：</p>
+<ul>
+<li>一次是我们上面所述的字节序颠倒操作。</li>
+<li>另一次是当我们从 <code>Little-Endian</code> 中取出数据的时候，也会有一个从 <code>Little-Endian</code> 转换为 <code>Big-Endian</code> 的颠倒操作。</li>
+</ul>
+<p>那么现在还剩一个问题，如何翻转呢？</p>
+<p>这其实就是函数 <code>ntohl</code> 函数做的事情，该函数全称为 <code>network to host long</code>。很直观，就是将一个网络字节序（<code>Big-Endian</code>）的值转换为 <code>Little-Endian</code> 的 <code>long</code> 类型。</p>
+<p>该函数的实现也挺直观，就是通过移位将字节顺序颠倒：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define ___constant_swab32(x) ((__u32)(				\
+</span></span></span><span class="line"><span class="cl"><span class="cp">	(((__u32)(x) &amp; (__u32)0x000000ffUL) &lt;&lt; 24) |		\
+</span></span></span><span class="line"><span class="cl"><span class="cp">	(((__u32)(x) &amp; (__u32)0x0000ff00UL) &lt;&lt;  8) |		\
+</span></span></span><span class="line"><span class="cl"><span class="cp">	(((__u32)(x) &amp; (__u32)0x00ff0000UL) &gt;&gt;  8) |		\
+</span></span></span><span class="line"><span class="cl"><span class="cp">	(((__u32)(x) &amp; (__u32)0xff000000UL) &gt;&gt; 24)))
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>类似的函数还有 <code>ntohs, htons, htonl</code> 等。</p>
+<h2 id="小端序的优点">小端序的优点</h2>
+<p>大小端序是由 <code>CPU</code> 架构来决定的，例如我们通常所接触到的 <code>x86</code> 架构，就是采用的 <code>Little-Endian</code>。上面介绍了那么多关于 <code>Little-Endian</code> 的性质，但是有一个重要问题还没有回答：为什么 <code>CPU</code> 要采用这种反直觉的存储顺序呢？</p>
+<p>查阅资料，发现 <code>Little-Endian</code> 有以下优点：</p>
+<ol>
+<li>在进行数据类型转换的时候，不同类型的数据的地址是一样的，比如 <code>C</code> 语言中的 <code>int、short、long、char</code>。比如现在有一个 <code>short</code> 类型（<code>2</code> 字节）的变量 <code>num</code>，其值为 <code>0x80</code>。假设其初始地址为 <code>0xe0</code>，按照小端序，该变量在内存中存储为：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.
+</span></span><span class="line"><span class="cl">Value: 0000 1000 | 0000 0000
+</span></span><span class="line"><span class="cl">       \--------/ \--------/
+</span></span><span class="line"><span class="cl">Addr:     0xe0       0xe1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时变量的地址为 <code>0xe0</code>，即：<code>&amp;num == 0xe0</code>;</p>
+<p>现在如果想要将其扩充为 <code>int</code> 类型（<code>4</code> 字节）的变量，即 <code>int num_t = (int) num</code>; 那么其在内存中的值为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">2.
+</span></span><span class="line"><span class="cl">Value: 0000 1000 | 0000 0000 | 0000 0000 | 0000 0000
+</span></span><span class="line"><span class="cl">       \--------/ \--------/  \--------/  \--------/
+</span></span><span class="line"><span class="cl">Addr:     0xe0       0xe1        0xe2         0xe3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时，变量的地址仍为 <code>0xe0</code>。</p>
+<p>类似，如果想要将其转换为 <code>char</code> 类型（<code>1</code> 字节），其在内存中的值将变为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3.
+</span></span><span class="line"><span class="cl">Value: 0000 1000 
+</span></span><span class="line"><span class="cl">       \-------/ 
+</span></span><span class="line"><span class="cl">Addr:     0xe0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>变量地址不变。</p>
+<p>在 <code>C</code> 语言中，以上操作也可以换一种说法：假设有一个数据存储在地址 <code>0xe0</code> （代码行 <code>1)</code>），如果我们以 <code>short</code> 类型来对该地址的值进行读写（即 <code>2)</code> 中的 <code>num_s</code> ），那么其值为 <code>0x0080</code>，对应上述 <code>图 1</code>；如果以 <code>int</code> 或者 <code>char</code> 类型来进行操作（<code>3) 和 4)</code> 中的 <code>num_i 和 num_c</code>），其值分别为 <code>0x00000080</code> 和 <code>0x80</code>，对应<code>图 2 和 3</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="mi">1</span><span class="p">)</span> <span class="kt">addr_t</span> <span class="n">addr</span> <span class="o">=</span> <span class="mh">0xe0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span><span class="p">)</span> <span class="kt">short</span> <span class="o">*</span><span class="n">num_s</span> <span class="o">=</span> <span class="p">(</span><span class="kt">short</span> <span class="o">*</span><span class="p">)</span> <span class="n">addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span><span class="p">)</span> <span class="kt">int</span> <span class="o">*</span><span class="n">num_i</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="mi">4</span><span class="p">)</span> <span class="kt">char</span> <span class="o">*</span><span class="n">num_c</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">addr</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是不管以何种方式操作，其地址值是相同的，即 <code>(addr_t) num_s == num_i == num_c</code>。</p>
+<ol start="2">
+<li>进行加法操作的时候，可以很方便的从小端开始计算。</li>
+</ol>
+<p>进行加法计算的时候，都是从低位到高位进行计算，所以在读取数据的时候，从低位到高位依次取出数据也符合操作逻辑。</p>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Endianness" target="_blank" rel="noopener noreferrer">Endianness - Wikipedia</a></li>
+<li><a href="https://www.quora.com/Why-were-microprocessors-built-as-big-or-little-endian-Why-did-Intel-choose-little-endian-architecture" target="_blank" rel="noopener noreferrer">Why were microprocessors built as big or little endian? Why did Intel choose little endian architecture? - Quora</a></li>
+<li><a href="https://softwareengineering.stackexchange.com/questions/95556/what-is-the-advantage-of-little-endian-format" target="_blank" rel="noopener noreferrer">architecture - What is the advantage of little endian format? - Software Engineering Stack Exchange</a></li>
+<li><a href="https://stackoverflow.com/questions/36812615/bitwise-operation-on-big-endian-and-little-endian-differences" target="_blank" rel="noopener noreferrer">c - Bitwise operation on big endian and little endian differences - Stack Overflow</a></li>
+<li><a href="https://linux.die.net/man/3/ntohs" target="_blank" rel="noopener noreferrer">ntohs(3) - Linux man page (die.net)</a></li>
+</ol>]]></description></item><item><title>2022 年度总结</title><link>https://xinyu-yang.github.io/blog/2022/22-12-30_22-annual-summary/</link><pubDate>Fri, 30 Dec 2022 08:54:57 +0000</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-12-30_22-annual-summary/</guid><description><![CDATA[<p>转眼 2022 年就要结束了。随着年龄增大，越来越感觉光阴似箭。</p>
 <p>回想起这一年，感觉可以用一句诗来形容 <strong>“山重水复疑无路，柳暗花明又一村”</strong> 。因为上学的事情，前面大半年都活在焦虑中。</p>
 <p>首先是申请签证被 check，中间等了半年，每天去签证网站查看若干次，并且每周发多封邮件询问。随着日子一天天过去，心里焦虑更甚，同时也在默默准备着最坏的打算。</p>
 <p>这一切都在半年之后的某一天收到拒签邮件那一刻戛然而止。最终，最担心的事情还是发生了。其实早就想过这方面的可能，但是当事情真正发生，还是觉得突如其来，又感觉如梦方醒。</p>
@@ -34,7 +367,7 @@
 <li>至少读五本好书。</li>
 <li>每周至少锻炼两次，每次不少于半小时。</li>
 </ul>
-<p><em>人生没有意义，而我在努力让其看起来有意义一点。不知道前面路还有多久，且行且珍惜。</em></p>]]></description></item><item><title>Zotero 配置记录（二：坚果云 WebDAV）</title><link>https://xinyu-yang.github.io/blog/2022/22-11-24_zotero-config/</link><pubDate>Thu, 24 Nov 2022 11:18:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-11-24_zotero-config/</guid><description><![CDATA[<p>之前写过 <a href="../22-02-08_zotero-config.md" rel="">一篇</a> 使用 <code>Zotfile + OneDrive</code> 软链接的方式实现附件同步的记录，但是最近准备切换到坚果云。</p>
+<p><em>人生没有意义，而我在努力让其看起来有意义一点。不知道前面路还有多久，且行且珍惜。</em></p>]]></description></item><item><title>Zotero 配置记录（二：坚果云 WebDAV）</title><link>https://xinyu-yang.github.io/blog/2022/22-11-24_zotero-config/</link><pubDate>Thu, 24 Nov 2022 11:18:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-11-24_zotero-config/</guid><description><![CDATA[<p>之前写过 <a href="../22-02-08_zotero-config/" rel="">一篇</a> 使用 <code>Zotfile + OneDrive</code> 软链接的方式实现附件同步的记录，但是最近准备切换到坚果云。</p>
 <p>之所以使用坚果云所提供的 WebDAV 做备份，不是因为原来的方案不能用。事实上，原来的方案不管在 Windows 平台还是 MacOS 上都表现得很好。
 但是如果想要在移动设备上（主要是平板）使用同步功能，软链接的方式就很麻烦了。因为移动设备不支持软链接。</p>
 <p>我之前的做法是在 Zotero 里看一下基本信息，如年份、类别、文件名等。然后去 OneDrive 里找到文件，打开。虽然操作也没那么复杂，但是这种方式总让人觉得不优美，很麻烦。
@@ -1016,70 +1349,4 @@ $$</p>
 <p>这主要体现在两方面，首先是依赖非常多，而且对很多软件的依赖精确到版本。另外一个问题是，如果没有科学上网的话，在编译的时候有些包会下载失败。</p>
 <h4 id="ultisnip-代码段补全"><code>UltiSnip</code> 代码段补全</h4>
 <h4 id="ctags-标签生成"><code>Ctags</code> 标签生成</h4>
-<h4 id="lf-导航"><code>lf</code> 导航</h4>]]></description></item><item><title>可同步图床配置——PicGo+Github/Gitlab+Onedrive</title><link>https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/</link><pubDate>Thu, 09 Sep 2021 11:05:02 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/21-09-09_picture-bed/</guid><description><![CDATA[<h2 id="介绍">介绍</h2>
-<p>本文主要用来记录图床的搭建过程，在写博客的过程中不可避免的可能会用到一些图片，因此图片的保存位置就成了一个需要思考的问题，这个问题在使用博客网站 CSDN、博客园等是不存在的，因为在使用这些网站时，只需要把图片传上去就行，图片会自行保存在这些平台所提供的图床上。</p>
-<p>曾经尝试着在本博客里直接引用博客园和 CSDN 中的图片，不出意外，果然加载不出来，可能是因为这些网站在处理请求的时候会检查 <code>Referer</code> 字段吧，如果仅是这种检查的话似乎可以避开，但是终究不是长久之计。</p>
-<p>一开始惊喜的发现有很多的免费图床网站（比如 imgbb ），开心的以为这个问题解决了，后来发现没那么简单。因为这些免费的图床往往有很多限制，比如上面举例说的这个 imgbb，该网站一开始用着还行，可是过几天再在博客里加载图片时只能加载出缩略图了。</p>
-<p>因此就又在网上搜索解决之道，经琢磨了多篇解决方案之后，决定选择可能目前最合适的方案：使用 PicGo 作为图床管理软件，Gitee、SM.MS 等作为存储平台，并且使用 Onedrive 来同步 PicGo 的配置文件和数据库（这是 <code>PicGo 2.3</code> 版本以来的新功能 👏 ），以实现备份和同步。</p>
-<p>接下来将就该方案进行介绍：</p>
-<h2 id="申请-gitee-账号创建仓库">申请 Gitee 账号，创建仓库</h2>
-<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>Gitee is Dead (May. 2022)<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><p>Gitee 已经不允许做图床了，可以切换到 Github 或者 Gitlab，配置方式相同。</p>
-<blockquote>
-<p>当前仓库 Web 页面仅限仓库成员可访问。如需转为公开仓库，需 点此绑定手机 后通过仓库设置提交公开申请，我们将尽快为您处理。</p>
-<p>&ndash; 上述通知来自 Gitee</p>
-</blockquote>
-</div>
-        </div>
-    </div>
-<p>因为 Gitee 是国内的网站，加载较快，另外就是还没有使用 Gitee 托管代码的打算，所以不如注册个账号专门用来托管图片，综合以上原因，最终使用了 Gitee。但是 Gitee 也有很多缺点，缺点之一就是空间太小了（这里不得不吐槽一句，本来就是模仿者，又那么小气，没有任何优势，难怪没人用啊~）。</p>
-<p>如果没有 Gitee 账号的话，就去申请一个。账号申请就按照步骤来就行，没什么可说的。我申请的时候发现我在 github 上使用的 ID 居然还没被别人占用，就果断申请了该 ID，在 Github、Gitlab 和 Gitee 上做到了统一。</p>
-<p>申请完账号后，登录，然后进入个人信息界面，随后点击左侧栏中的仓库空间管理，随后右上角会出现“新建仓库”的按钮。此时就可以新建仓库了，取名随意，但仓库必须得是公有的。</p>
-<p>然后下一步是创建私人令牌，以保证 PicGo 可以控制该仓库。同样在个人设置界面的左侧“安全设置”栏下有一个“私人令牌”选项，找到并点击。然后点击右上角的生成新令牌，填写描述信息，然后选择权限，我只选择了前三个权限——<code>user_info, projects, pull_requests</code>。</p>
-<p>我感觉这些应该就够了，最后点击提交，然后会生成一个 token ，暂时用记事本等保存该 token ，因为它不会再次出现。</p>
-<h2 id="picgo-端配置">PicGo 端配置</h2>
-<p>生成并保存完 token 之后，就可以进行 PicGo 端配置了。因为该软件不默认支持 Gitee 图床，所以只能通过安装插件来支持，在插件设置的搜索栏里搜索 gitee-uploader，然后点击安装。</p>
-<p>安装完之后点击插件图标右下角的设置按钮，找到 <code>配置uploader-gitee</code>，点击之后会出现一个界面，主要会出现以下几条待填信息：</p>
-<ul>
-<li>repo      (就是刚才所创建的仓库，不过这里的格式是 <code><sup>your id</sup>/<sub>repo name</sub></code>，前面的 <code>gitee.com</code> 就不要填了)</li>
-<li>branch    (一般为master)</li>
-<li>token     (这就是刚才所保存的token)</li>
-<li>path      (文件的保存路径，可以自行设置，我的设置是“img/$customPath”)</li>
-<li>customPath    (这就是path设置里的那个参数，我选的“年”)</li>
-<li>customUrl (没填)</li>
-</ul>
-<p>到这里，差不多就配置好了，可以随便上传一张图片试试能不能用，我这里上传了一张蜗壳的照片。
-下图是Gitee示例：</p>
-<p><figure><a class="lightgallery" href="https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/Kobe.jpg" title="测试" data-thumbnail="https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/Kobe.jpg" data-sub-html="<h2>测试图片</h2><p>测试</p>">
-        
-    </a><figcaption class="image-caption">测试图片</figcaption>
-    </figure></p>
-<h2 id="onedrive同步配置">Onedrive同步配置</h2>
-<p>PicGo是一个很棒的工具，但是之前有一个很大的问题就是没有办法进行不同主机之间的同步。这就导致在一台主机上上传过的图片只在该电脑保存有记录，其他电脑是找不到的。当然，这可以通过直接去图床网站上找链接，或者是在电脑之间复制PicGo的配置文件来解决。</p>
-<p>但是这些解决方案都太麻烦了，而我又是一个比较懒的人。</p>
-<p>目前最新的 PicGo 2.3.0 仍然不能解决该问题 (事实上让一个开源软件作者来搭建服务器并提供同步功能确实有点苛刻)，但是该版本提供了自定义配置文件路径的功能，为解决同步问题提供了可能。</p>
-<p>我所采用的方案是将PicGo的配置文件所在的文件夹使用第三方云同步平台进行同步，这样就实现了同步功能。</p>
-<p>可行的同步平台有很多，如 <code>Onedrive、Dropbox、Google Drive、seafile (如果有的话) 等</code>。甚至 <code>Baidu</code> 云盘好像最近也免费提供了类似的服务 “同步空间”，虽然每月只有 <strong>1G</strong> 的免费流量，但总比没有强。</p>
-<blockquote>
-<p>说到这里岔个题，我一直感觉用户对百度网盘的要求过于苛刻了，对于一样免费的产品，百度云盘是唯一一个能够为我提供2T免费存储空间的平台，这一点迄今还找不到替代者。至于很多用户一直以来报怨的下载速度慢的问题，我只想说反正都是白嫖的，还要啥自行车。从我自己的使用角度来讲，平时用百度网盘保存同步或者是备份一些不经常用的文件，如照片、打包的文档资料等，还是挺好的。</p>
-</blockquote>
-<p>书归正传，首先找到一个适合自己的同步工具，我使用的是 Onedrive，其同步文件夹为 <code>D:\Onedrive\</code>，如果想改变 PicGo 的默认配置路径，则需要首先打开配置文件，然后加入这么一行配置信息：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;configPath&#34;: &#34;D:\\Onedrive\\ApplicationData\\picgo\\data.json&#34;,
-</span></span><span class="line"><span class="cl">  &#34;picBed&#34;: {
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>这是我自己的配置，个人根据情况不同进行修改，另外根据官方建议，可以手动将 <code>data.json, pigco.db</code> 文件复制到自己的自定义文件夹内。</p>
-<h2 id="总结">总结</h2>
-<p>到这里就完成了配置和自动同步配置，当然也可以添加一些其他的免费图床 <code>SM.MS, Superbed</code> 等图床作为备份，我也确实是这么做的。</p>
-<p>最后不得不说一下，感觉 PicGo 真的是开源代码的典范，自己提供一个框架和一套接口，其他人可以按照接口开发各种各样的代码。我感觉对于实用性的工具应用，这种开发方式非常合适。
-功能强大，但不臃肿，用户有足够多的定制选择权。</p>]]></description></item></channel></rss>
+<h4 id="lf-导航"><code>lf</code> 导航</h4>]]></description></item></channel></rss>
