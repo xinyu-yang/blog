@@ -48,9 +48,9 @@ RSS hash function:
 
 上述机制实现了从数据包到队列的对应，为了真正实现负载均衡，我们还需要协调好从队列到 CPU 的对应关系。又因为每个队列对应一个中断(参考[上一篇](../22-02-13_binding-cpu-irq-queue))，所以我们可以通过中断号绑定的方式来实现队列和 CPU 的对应。关于此，请参考关于此，请参考 [理解 CPU、中断、队列、进程的绑定关系 - 麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方](../22-02-13_binding-cpu-irq-queue) 。
 
-![RSS](https://3.bp.blogspot.com/-g_sS7Jf3vW0/WUEN0wEK5BI/AAAAAAAAA9g/PLy6crp9q74ia1xcWX8lwS7WzRz2xL-WwCLcBGAs/s1600/RSS.png "RSS")
+![RSS](https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/RSS.png "RSS")
 
-> 图片来源：[Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)](https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html)
+> 本文RSS、RPS、RFS、aRFS图片来源：[Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)](https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html)
 
 {{< admonition tip >}}
 
@@ -64,9 +64,7 @@ RSS hash function:
 
 RPS 逻辑上是 RSS 的软件实现，但又不完全一样。RSS 可以为每个数据包选择接收队列，因此也就选择了相对应的执行中断处理的 CPU；而在 RPS 中，中断由默认队列触发，中断处理函数结束之后，选择进行后续协议处理的 CPU。
 
-![RPS](https://3.bp.blogspot.com/-zRdZ1Bw1frw/WUNdJCURkvI/AAAAAAAAA-Q/XgYiaHsBsNc9cWwAdZu83HhfOUtuSTCkgCLcBGAs/s640/RPS.png "RPS")
-
-> 图片来源：[Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)](https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html)
+![RPS](https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/RPS.png "RPS")
 
 {{< admonition quote >}}
 RPS 不会增加额外的硬件设备中断，但是引入了处理器间中断（IPI）。
@@ -111,7 +109,7 @@ RFS 机制就是为了实现这一点。该机制利用了与 RSS/RPS 类似的 
 ...
 ```
 
-- 回顾一下，RPS/RSS 中存储的是预先配置好的 CPU 列表。
+> 回顾一下，RPS/RSS 中存储的是预先配置好的 CPU 列表。
 
 如果能查找到有效的 CPU，就按照与 RPS 相同的机制，将数据包入队到 CPU 对应的 `backlog` 队列中；如果查找不到，那么就直接按照 RPS 机制转发。
 
@@ -119,9 +117,8 @@ RFS 机制就是为了实现这一点。该机制利用了与 RSS/RPS 类似的 
 
 为了避免乱序，RFS 使用了另一个表 —— `rps_dev_flow` 表，每个网卡队列对应一个该表。该表的索引依旧是包头的 `hash` 值，每个索引对应两个字段：1) 现在的 CPU（也就是该数据包所属流已经把数据包放在其队列上等待其内核处理的 CPU）号。2) 当该流最后一个数据包到达后，该 CPU 的 backlog 队列的尾计数器值。
 
-![RFS](https://2.bp.blogspot.com/-US9aezp1mUE/WUI90hna5HI/AAAAAAAAA98/yhpI17Ut9wwbzCwlBxhev5Pm4vy-QR4NwCLcBGAs/s640/RFS.png "RFS")
+![RFS](https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/RFS.png "RFS")
 
-> 图片来源：[Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)](https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html)
 
 当选择处理数据包的 CPU 时，首先检查 `rps_sock_flow` 表和 `rps_dev_flow` 表中对应的 CPU 值是否相同。如果一样，说明进程还是运行在相同的 CPU 上，仍将数据包放在该 CPU 的队列上，没有问题。如果不一样，那么就看以下三个情况：
 
@@ -158,9 +155,8 @@ Accelerated RFS 之于 RFS 相当于 RSS 之于 RPS。Accelerated RFS 在硬件�
 回顾一下 `rps_dev_flow` 表中存储的信息，如果该表被更新，说明有某个进程被创建，或者进程连同协议处理完全迁移到了一个新的 CPU。
 {{< /admonition >}}
 
-![aRFS](https://1.bp.blogspot.com/-RQDZerX_Lgk/WUEN1icXAfI/AAAAAAAAA9s/EFfwdrDl7AcsT8ovL_J2x7GVh7awXBsHwCLcBGAs/s640/aRFS.png "aRFS")
+![aRFS](https://raw.githubusercontent.com/xinyu-yang/imgs/master/imgs/aRFS.png "aRFS")
 
-> 图片来源：[Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)](https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html)
 
 每当 `rps_dev_flow` 表中的条目被更新，网络协议栈就会调用驱动中的 `ndo_rx_flow_steer` 函数来更新流到硬件队列的对应关系。
 
