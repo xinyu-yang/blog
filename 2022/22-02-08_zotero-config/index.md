@@ -21,13 +21,17 @@
 - Zotero 开源免费（好印象），易用，但同步空间较少（只有 300M）
 - Mendeley 闭源免费，易用，空间较多 （2GB）
 
+{{< admonition type=info open=true >}}
+关于 `Zotero + 坚果云` 的配置，请参考 [这篇博客](../22-11-24_zotero-config/)。
+{{< /admonition >}}
+
 经过衡量我决定采用 Zotero + Onedrive 的方式，Zotero 进行文献管理，Onedrive 进行文件同步，Nice! （当然其他的网盘如 Dropbox、GoogleDrive 也适用）
 
 经过实际尝试之后，发现 Zotero 相对于 EndNote 操作简单直观，真是好用太多了。
 以下是相关配置：
 
-{{< admonition type=tips title="NOTE" open=true >}}
-不同设备的语言设置务必相同
+{{< admonition type=warning title="提示" open=true >}}
+不同设备的语言设置务必相同!
 {{< /admonition >}}
 
 ### Zotero Sync

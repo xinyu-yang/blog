@@ -1077,15 +1077,23 @@
 <li>Zotero 开源免费（好印象），易用，但同步空间较少（只有 300M）</li>
 <li>Mendeley 闭源免费，易用，空间较多 （2GB）</li>
 </ul>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>信息<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">关于 <code>Zotero + 坚果云</code> 的配置，请参考 <a href="../22-11-24_zotero-config/" rel="">这篇博客</a>。</div>
+        </div>
+    </div>
 <p>经过衡量我决定采用 Zotero + Onedrive 的方式，Zotero 进行文献管理，Onedrive 进行文件同步，Nice! （当然其他的网盘如 Dropbox、GoogleDrive 也适用）</p>
 <p>经过实际尝试之后，发现 Zotero 相对于 EndNote 操作简单直观，真是好用太多了。
 以下是相关配置：</p>
-<div class="details admonition tips open">
+<div class="details admonition warning open">
         <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>NOTE<i class="details-icon fas fa-angle-right fa-fw"></i>
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>提示<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">不同设备的语言设置务必相同</div>
+            <div class="admonition-content">不同设备的语言设置务必相同!</div>
         </div>
     </div>
 <h3 id="zotero-sync">Zotero Sync</h3>
