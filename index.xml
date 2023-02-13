@@ -1,4 +1,301 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Feb 2023 17:39:47 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>深入理解大小端序与位操作</title><link>https://xinyu-yang.github.io/blog/2023/23-02-01_little-endian/</link><pubDate>Wed, 01 Feb 2023 17:39:47 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2023/23-02-01_little-endian/</guid><description><![CDATA[<p>最近在读代码的时候对端序（<code>endianness</code>）的转换部分产生了一些疑惑，主要原因是对相关知识的理解还不够透彻。查找阅读了一些文献之后，有了更深刻的理解。</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Feb 2023 12:37:39 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>网络参数RSS、RPS、RFS、aRFS 学习总结</title><link>https://xinyu-yang.github.io/blog/2023/23-02-13_network-parameters/</link><pubDate>Mon, 13 Feb 2023 12:37:39 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2023/23-02-13_network-parameters/</guid><description><![CDATA[<p>最近学习，发现网络参数（包括内核参数、网卡参数）非常多，搞得人云里雾里，非常头大。因此打算在这里对学习到的东西做个总结，方便知识的梳理和以后的复习。</p>
+<h2 id="receive-side-scaling-rss">Receive Side Scaling (RSS)</h2>
+<p>RSS 是一个 Linux 网络协议栈中的调度机制。它的主要作用是将数据包路由到不同的接收队列，进而由该队列所对应的 CPU 进行处理，从而实现对数据包处理的负载均衡。</p>
+<p>在硬件上，通常使用 <code>hash</code> 函数（一般是 <a href="https://en.wikipedia.org/wiki/Toeplitz_Hash_Algorithm" target="_blank" rel="noopener noreferrer">Toeplitz hash</a>）和长度为 <code>128 (2^7)</code> 的置换表来实现。具体做法是，首先将网络和传输层头部的一些信息（如地址端口四元组）通过 <code>hash</code> 函数计算出一个 <code>hash</code> 值，然后取该 <code>hash</code> 值的后 <code>7</code> 位。将这 <code>7</code> 位数作为索引，在置换表中寻找相应的值，该值即为相应的队列。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[hash value] : [queue number]
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>网卡的置换表可以通过命令 <code>ethtool --show-rxfh-indir &lt;eth0&gt;</code> 来获取，例子如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">RX flow hash indirection table for eth0 with 4 RX ring(s):
+</span></span><span class="line"><span class="cl">    0:      0     0     0     0     0     0     0     0
+</span></span><span class="line"><span class="cl">    8:      0     0     0     0     0     0     0     0
+</span></span><span class="line"><span class="cl">   16:      0     0     0     0     0     0     0     0
+</span></span><span class="line"><span class="cl">   24:      0     0     0     0     0     0     0     0
+</span></span><span class="line"><span class="cl">   32:      1     1     1     1     1     1     1     1
+</span></span><span class="line"><span class="cl">   40:      1     1     1     1     1     1     1     1
+</span></span><span class="line"><span class="cl">   48:      1     1     1     1     1     1     1     1
+</span></span><span class="line"><span class="cl">   56:      1     1     1     1     1     1     1     1
+</span></span><span class="line"><span class="cl">   64:      2     2     2     2     2     2     2     2
+</span></span><span class="line"><span class="cl">   72:      2     2     2     2     2     2     2     2
+</span></span><span class="line"><span class="cl">   80:      2     2     2     2     2     2     2     2
+</span></span><span class="line"><span class="cl">   88:      2     2     2     2     2     2     2     2
+</span></span><span class="line"><span class="cl">   96:      3     3     3     3     3     3     3     3
+</span></span><span class="line"><span class="cl">  104:      3     3     3     3     3     3     3     3
+</span></span><span class="line"><span class="cl">  112:      3     3     3     3     3     3     3     3
+</span></span><span class="line"><span class="cl">  120:      3     3     3     3     3     3     3     3
+</span></span><span class="line"><span class="cl">RSS hash key:
+</span></span><span class="line"><span class="cl">Operation not supported
+</span></span><span class="line"><span class="cl">RSS hash function:
+</span></span><span class="line"><span class="cl">    toeplitz: on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可见一共有 <code>128</code> 条表项，完全均匀分配给了队列 <code>rx-0 → rx-3</code>。该表可通过命令 <code>ethtool —set-rxfh-indir</code> 进行配置。</p>
+<p>上述机制实现了从数据包到队列的对应，为了真正实现负载均衡，我们还需要协调好从队列到 CPU 的对应关系。又因为每个队列对应一个中断(参考<a href="../22-02-13_binding-cpu-irq-queue" rel="">上一篇</a>)，所以我们可以通过中断号绑定的方式来实现队列和 CPU 的对应。关于此，请参考关于此，请参考 <a href="../22-02-13_binding-cpu-irq-queue" rel="">理解 CPU、中断、队列、进程的绑定关系 - 麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</a> 。</p>
+<p><figure><a class="lightgallery" href="https://3.bp.blogspot.com/-g_sS7Jf3vW0/WUEN0wEK5BI/AAAAAAAAA9g/PLy6crp9q74ia1xcWX8lwS7WzRz2xL-WwCLcBGAs/s1600/RSS.png" title="RSS" data-thumbnail="https://3.bp.blogspot.com/-g_sS7Jf3vW0/WUEN0wEK5BI/AAAAAAAAA9g/PLy6crp9q74ia1xcWX8lwS7WzRz2xL-WwCLcBGAs/s1600/RSS.png" data-sub-html="<h2>RSS</h2><p>RSS</p>">
+        
+    </a><figcaption class="image-caption">RSS</figcaption>
+    </figure></p>
+<blockquote>
+<p>图片来源：<a href="https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html" target="_blank" rel="noopener noreferrer">Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)</a></p>
+</blockquote>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><a href="https://www.kernel.org/doc/html/latest/networking/scaling.html" target="_blank" rel="noopener noreferrer">该文档</a> 给出建议，想要实现低延时，应该配置 CPU 数量的队列（即每个 CPU 一个）。对此，笔者的理解是，如果队列数量少了，则可能会有 CPU 闲着，处理不够及时。队列数量多了也没用，因为 CPU 就那么多。</p>
+<p>针对以高速率为目的的网络，文档建议使用尽可能少的队列，在这种配置下，不会出现接收队列因为一个 CPU 饱和而溢出的情况。因为在启用中断合并（如 <code>NAPI</code>）的情况下，队列越多，中断数越多。</p>
+</div>
+        </div>
+    </div>
+<h2 id="receive-packet-steering-rps">Receive Packet Steering (RPS)</h2>
+<p>RPS 逻辑上是 RSS 的软件实现，但又不完全一样。RSS 可以为每个数据包选择接收队列，因此也就选择了相对应的执行中断处理的 CPU；而在 RPS 中，中断由默认队列触发，中断处理函数结束之后，选择进行后续协议处理的 CPU。</p>
+<p><figure><a class="lightgallery" href="https://3.bp.blogspot.com/-zRdZ1Bw1frw/WUNdJCURkvI/AAAAAAAAA-Q/XgYiaHsBsNc9cWwAdZu83HhfOUtuSTCkgCLcBGAs/s640/RPS.png" title="RPS" data-thumbnail="https://3.bp.blogspot.com/-zRdZ1Bw1frw/WUNdJCURkvI/AAAAAAAAA-Q/XgYiaHsBsNc9cWwAdZu83HhfOUtuSTCkgCLcBGAs/s640/RPS.png" data-sub-html="<h2>RPS</h2><p>RPS</p>">
+        
+    </a><figcaption class="image-caption">RPS</figcaption>
+    </figure></p>
+<blockquote>
+<p>图片来源：<a href="https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html" target="_blank" rel="noopener noreferrer">Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)</a></p>
+</blockquote>
+<div class="details admonition quote open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-quote-right fa-fw"></i>引用<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>RPS 不会增加额外的硬件设备中断，但是引入了处理器间中断（IPI）。</p>
+<p>— <a href="https://www.kernel.org/doc/html/latest/networking/scaling.html" target="_blank" rel="noopener noreferrer">Scaling in the Linux Networking Stack — The Linux Kernel documentation</a></p>
+</div>
+        </div>
+    </div>
+<p>RPS 使用和 RSS 相同的 <code>hash</code> 计算方式，并且每个队列对应一个 CPU 列表。使用计算得到的 <code>hash</code> 值模上 CPU 列表的长度就得到了 CPU 号。当确定了新的 CPU 之后，数据包会被放置到相应 CPU 的 backlog 队列中。随后在新的 CPU 上触发一个 IPI 中断，告诉该 CPU 有 RPS 过来的新包需要其处理。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[CPU id] = [hash value] mod [len(CPU list)]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在编译内核时通过设置 <code>CONFIG_RPS</code> 参数来设置是否支持 RPS 功能，系统默认为开。但是需要为想要使用 RPS 功能的队列配置上面提到的 CPU 列表。</p>
+<p>RPS 配置文件为 <code>/sys/class/net/&lt;device&gt;/queue/&lt;rx-queue&gt;/rps_cpus</code> ，其中 <code>&lt;device&gt;</code> 表示网络设备，如 <code>eth0</code> ，<code>&lt;rx-queue&gt;</code> 表示接收队列，如 <code>rx-0</code>。</p>
+<p>该文件中存储的是一个十六进制的 <code>bitmap</code>。每一个二进制比特代表一个 CPU，最右边对应序号最小的 CPU（即 <code>CPU0</code>），最左边代表最大的。（参考<a href="../22-02-13_binding-cpu-irq-queue" rel="">上一篇</a>）</p>
+<p>每个队列的配置默认为 <code>0</code>，即关闭 RPS 功能。如果要打开，用户可以根据规则自行设置。</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>如果网卡只支持单个队列，并且有多个 CPU 的的话，在 NUMA 系统中，一般将 RPS CPU 设置为在相同 <code>domain</code> 的 CPU，非 NUMA 系统就无所谓了，因为设置为每一个 CPU 的性能都是一样的。</p>
+<p>对于多队列网卡，一般系统不会同时启用 RSS 和 RPS，因为这没什么好处。但也有例外，比如网卡所支持的队列数目少于 CPU 数，也就是每个 CPU 还分不到一个接收队列，那么使用 RPS 可能会使得 CPU 的任务分布更高效。</p>
+</div>
+        </div>
+    </div>
+<h2 id="receive-flow-steering-rfs">Receive Flow Steering (RFS)</h2>
+<p>以上机制很好地保证了数据包处理的负载均衡，可以将处理任务合理的分配到所有的 CPU 上。</p>
+<p>但是，有时候我们还需要考虑其他的因素。比如，网卡收到了属于一个运行在 <code>CPU0</code> 上的进程的数据包，那么这些数据包被 <code>CPU0</code> 处理会比其他 CPU 处理更高效。</p>
+<p>原因很简单直观，数据在 CPU 内传递比跨 CPU 传递要更节省时间。因此，我们希望数据包尽量能够被其所属的进程所在的 CPU 处理，至少能够被同属一个 NUMA 域的 CPU 处理。</p>
+<p>RFS 机制就是为了实现这一点。该机制利用了与 RSS/RPS 类似的 <code>hash</code> 和查找策略，即使用 <code>hash</code> 函数根据包头信息计算得到一个 <code>hash</code> 值，然后作为索引查表。但与之不同的是，RFS 所查找的匹配表（<code>rps_sock_flow_table</code>）中存储的是<strong>数据包所属进程所在的 CPU</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[hash value] : [CPU id]
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>回顾一下，RPS/RSS 中存储的是预先配置好的 CPU 列表。</li>
+</ul>
+<p>如果能查找到有效的 CPU，就按照与 RPS 相同的机制，将数据包入队到 CPU 对应的 <code>backlog</code> 队列中；如果查找不到，那么就直接按照 RPS 机制转发。</p>
+<p>与 RPS 预先配置好的 CPU 列表不同，<code>rps_sock_flow</code> 表是动态更新的。如果有数据包的收发操作，如 <code>inet_recvmsg(), inet_sendmsg(), inet_sendpage(), tcp_splice_read()</code> 等操作，则会插入新的值。类似的情况还发生在进程被调度到新的 CPU 的时候。这时候就需要更新匹配表中的值。如果原来的 CPU 队列上还有未处理完的数据包，那么就会发生乱序。</p>
+<p>为了避免乱序，RFS 使用了另一个表 —— <code>rps_dev_flow</code> 表，每个网卡队列对应一个该表。该表的索引依旧是包头的 <code>hash</code> 值，每个索引对应两个字段：1) 现在的 CPU（也就是该数据包所属流已经把数据包放在其队列上等待其内核处理的 CPU）号。2) 当该流最后一个数据包到达后，该 CPU 的 backlog 队列的尾计数器值。</p>
+<p><figure><a class="lightgallery" href="https://2.bp.blogspot.com/-US9aezp1mUE/WUI90hna5HI/AAAAAAAAA98/yhpI17Ut9wwbzCwlBxhev5Pm4vy-QR4NwCLcBGAs/s640/RFS.png" title="RFS" data-thumbnail="https://2.bp.blogspot.com/-US9aezp1mUE/WUI90hna5HI/AAAAAAAAA98/yhpI17Ut9wwbzCwlBxhev5Pm4vy-QR4NwCLcBGAs/s640/RFS.png" data-sub-html="<h2>RFS</h2><p>RFS</p>">
+        
+    </a><figcaption class="image-caption">RFS</figcaption>
+    </figure></p>
+<blockquote>
+<p>图片来源：<a href="https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html" target="_blank" rel="noopener noreferrer">Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)</a></p>
+</blockquote>
+<p>当选择处理数据包的 CPU 时，首先检查 <code>rps_sock_flow</code> 表和 <code>rps_dev_flow</code> 表中对应的 CPU 值是否相同。如果一样，说明进程还是运行在相同的 CPU 上，仍将数据包放在该 CPU 的队列上，没有问题。如果不一样，那么就看以下三个情况：</p>
+<ol>
+<li>现在的 CPU 队列头计数器 ≥ <code>rps_dev_flow</code> 表中的队列尾计数器。</li>
+<li>现在的 CPU 未被设置 (≥ <code>nr_cpu_ids</code>)。</li>
+<li>现在的 CPU 下线了。</li>
+</ol>
+<p>如果上面任意一条满足，就将现在的 CPU 更新为 Desired CPU （即 <code>rps_sock_flow</code> 表中的值）。否则，仍在原（现） CPU 上执行。</p>
+<p>直观的理解上面的判断机制，那就是：当进程切换 CPU 时，先判断原 CPU 队列上有没有未处理完的包，如果有就不切换；如果没有，就切换。</p>
+<p>Linux 内核编译可通过允许 <code>CONFIG_RPS</code> 来使能该功能，一般默认允许。但要是想让 RFS 真正工作，还需要进行配置上面提到的两个表，他们的配置路径分别为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/proc/sys/net/core/rps_sock_flow_entries
+</span></span><span class="line"><span class="cl">/sys/class/net/&lt;dev&gt;/queues/rx-&lt;n&gt;/rps_flow_cnt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><a href="https://www.kernel.org/doc/html/latest/networking/scaling.html" target="_blank" rel="noopener noreferrer">该文档</a> 建议 <code>rps_sock_flow_entries</code> 的数量应该跟活跃流的数量相当，然后四舍五入取二的指数值。进一步，文档建议对于一般负载的服务器，值取为 <code>32768 (2^15)</code> 效果比较好。对于 <code>rps_flow_cnt</code> 的取值应该参考 <code>rps_sock_flow_entries</code>，因为前者是每个队列一个，后者是全局的，所以只要将 <code>rps_flow_cnt</code> 取为 <code>rps_sock_flow_entries / N</code> 就行，其中 <code>N</code> 为队列数。</div>
+        </div>
+    </div>
+<p>关于该建议，本人的理解是：最好能够给每一个活跃的流都能分配一个表项，使其能够准确找到对应的 CPU。</p>
+<h2 id="accelerated-rfs">Accelerated RFS</h2>
+<p>Accelerated RFS 之于 RFS 相当于 RSS 之于 RPS。Accelerated RFS 在硬件上就可以选择正确的队列，随后触发该数据包所属流所在的 CPU 的中断。由此可见，如果想要在硬件上实现队列选择，我们需要一个从流到硬件队列的对应关系。</p>
+<p>从上文可知，我们已经有了一个从流到 CPU 的映射关系，记录在 <code>rps_dev_flow</code> 表中。然后，我们也有 CPU 和硬件队列的关系，通过 <code>/proc/irq/&lt;irq_num&gt;/smp_affinity</code> 进行配置。</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>信息<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">回顾一下 <code>rps_dev_flow</code> 表中存储的信息，如果该表被更新，说明有某个进程被创建，或者进程连同协议处理完全迁移到了一个新的 CPU。</div>
+        </div>
+    </div>
+<p><figure><a class="lightgallery" href="https://1.bp.blogspot.com/-RQDZerX_Lgk/WUEN1icXAfI/AAAAAAAAA9s/EFfwdrDl7AcsT8ovL_J2x7GVh7awXBsHwCLcBGAs/s640/aRFS.png" title="aRFS" data-thumbnail="https://1.bp.blogspot.com/-RQDZerX_Lgk/WUEN1icXAfI/AAAAAAAAA9s/EFfwdrDl7AcsT8ovL_J2x7GVh7awXBsHwCLcBGAs/s640/aRFS.png" data-sub-html="<h2>aRFS</h2><p>aRFS</p>">
+        
+    </a><figcaption class="image-caption">aRFS</figcaption>
+    </figure></p>
+<blockquote>
+<p>图片来源：<a href="https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html" target="_blank" rel="noopener noreferrer">Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)</a></p>
+</blockquote>
+<p>每当 <code>rps_dev_flow</code> 表中的条目被更新，网络协议栈就会调用驱动中的 <code>ndo_rx_flow_steer</code> 函数来更新流到硬件队列的对应关系。</p>
+<p>Accelerated RFS 需要在编译阶段使能 <code>CONFIG_RFS_ACCEL</code>，并且需要硬件和驱动的支持。此外，还需要使用 <code>ethtool</code> 设置 <code>ntuple</code> 过滤。其他的就不需要配置了。</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Accelerated RFS 机制可以将数据包直接放在最终的 CPU 硬件队列上，所以性能应该是要比 RFS 高。因此，当硬件支持该选项，应该选择此机制。</div>
+        </div>
+    </div>
+<h2 id="总结">总结</h2>
+<p>回顾一下这些机制之间的关系。首先是 RSS/RPS，该机制在接收数据包的时候，通过手动配置，甚至是根据负载情况的自动配置（如 <code>irqbalance</code>），来把数据包的处理负载均匀分配到不同的 CPU 上。<strong>RSS/RPS 仅根据负载大小进行判断</strong>，但是这可能导致从协议栈处理到上层应用处理之间数据包的转移。</p>
+<p>因此 RFS/aRFS 更进一步，在进行 CPU 选择的时候考虑上层应用所处位置，对每一个流都配置一个 Desired CPU。因此，在为数据包选择 CPU 的时候，会优先选择 Desired CPU。</p>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="https://www.kernel.org/doc/html/latest/networking/scaling.html" target="_blank" rel="noopener noreferrer">Scaling in the Linux Networking Stack — The Linux Kernel documentation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Toeplitz_Hash_Algorithm" target="_blank" rel="noopener noreferrer">Toeplitz Hash Algorithm - Wikipedia</a></li>
+<li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/performance_tuning_guide/network-rps" target="_blank" rel="noopener noreferrer">8.7. Receive Packet Steering (RPS) Red Hat Enterprise Linux 6 | Red Hat Customer Portal</a></li>
+<li><a href="https://www.kernel.org/doc/html/latest/core-api/irq/irq-affinity.html" target="_blank" rel="noopener noreferrer">SMP IRQ affinity — The Linux Kernel documentation</a></li>
+<li><a href="https://garycplin.blogspot.com/2017/06/linux-network-scaling-receives-packets.html" target="_blank" rel="noopener noreferrer">Linux Network Scaling: Receiving Packets (garycplin.blogspot.com)</a></li>
+</ol>]]></description></item><item><title>理解 CPU、中断、队列、进程的绑定关系</title><link>https://xinyu-yang.github.io/blog/2023/23-02-13_binding-cpu-irq-queue/</link><pubDate>Mon, 13 Feb 2023 12:27:10 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2023/23-02-13_binding-cpu-irq-queue/</guid><description><![CDATA[<p>最近在学习网络性能的测试，其中涉及到 CPU、中断、队列以及进程的映射关系。因为所涉及的元素比较多，所以对于他们的映射关系感到迷迷糊糊，产生了一大堆问题，比如：中断和队列是一对一吗？CPU 和队列是一对一吗？怎么查看和修改他们的映射关系？</p>
+<p>为了解决以上问题，笔者查阅了很多文档资料。为了加深理解并且防止遗忘，决定将自己的理解记录下来。</p>
+<p>首先回答第一个问题：每一个队列有一个与之对应的中断号，然后可以使用 <code>Message Signaled Interrupts (MSI-X)</code> 来将中断路由给指定的 CPU。队列与中断之间的映射可以从 <code>/proc/interrupts</code> 获取，下面是一个 <code>8</code> 核 CPU 的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">						CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       
+</span></span><span class="line"><span class="cl">   0:          6          0          0          0          0          0          0          0   IO-APIC    2-edge      timer
+</span></span><span class="line"><span class="cl">   1:          0          4          0          0          0          0          0          0   IO-APIC    1-edge      i8042
+</span></span><span class="line"><span class="cl">   8:          0          0          1          0          0          0          0          0   IO-APIC    8-edge      rtc0
+</span></span><span class="line"><span class="cl">   9:          0          0          0          0          0          0          0          0   IO-APIC    9-fasteoi   acpi
+</span></span><span class="line"><span class="cl">  12:          6          0          0          0          0          0          0          0   IO-APIC   12-edge      i8042
+</span></span><span class="line"><span class="cl">  16:          0          0          0          0          0          0          0          0   IO-APIC   16-fasteoi   i801_smbus
+</span></span><span class="line"><span class="cl">  17:          0          0          0          0          0          0          0        151   IO-APIC   17-fasteoi   snd_hda_intel:card1
+</span></span><span class="line"><span class="cl"> 125:          0          0          0          0          0          0          0          0   PCI-MSI 327680-edge      xhci_hcd
+</span></span><span class="line"><span class="cl"> 126:          0          0          0          0      11596          0    5250359          0   PCI-MSI 376832-edge      ahci[0000:00:17.0]
+</span></span><span class="line"><span class="cl"> 127:        765          0          0          0          0          0          0   70831230   PCI-MSI 3145728-edge      enp6s0
+</span></span><span class="line"><span class="cl"> 128:          0          0          0          0          0       4285          0          0   PCI-MSI 360448-edge      mei_me
+</span></span><span class="line"><span class="cl"> 129:          0          0          0          0          0          0        699          0   PCI-MSI 514048-edge      snd_hda_intel:card0
+</span></span><span class="line"><span class="cl"> NMI:       2784       2802       2778       2755       2605       2570       2615       2658   Non-maskable interrupts
+</span></span><span class="line"><span class="cl"> LOC:  530160796  528154099  531420711  523368187  526087908  508786297  499113075  494567411   Local timer interrupts
+</span></span><span class="line"><span class="cl"> SPU:          0          0          0          0          0          0          0          0   Spurious interrupts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看出网卡 <code>enp6s0</code> 的队列所对应的中断号为 <code>127</code>。除此之外，还可以看出，该中断几乎都是由 <code>CPU7</code> 进行处理的。那么该中断跟 <code>CPU7</code> 有什么关系呢？</p>
+<p>为了回答该问题，我们可以查看该中断对应的绑定信息，该信息可以用 <code>cat /proc/irq/127/smp_affinity</code> 命令获取 (可参考 <a href="https://www.kernel.org/doc/html/latest/core-api/irq/irq-affinity.html" target="_blank" rel="noopener noreferrer">SMP IRQ affinity — The Linux Kernel documentation</a>)。结果为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat /proc/irq/127/smp_affinity
+</span></span><span class="line"><span class="cl"><span class="m">80</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>80</code> 是一个十六进制的 <code>bitmap</code>，转换成二进制就是 <code>0b 1000 0000</code> ，从右往左数，第 <code>8</code> 个位置为 <code>1</code>，所表示的意思就是：该中断（<code>127</code>）被绑定到第 <code>8</code> 个 CPU （<code>CPU7</code>）。</p>
+<p>如果要更改该绑定关系，直接将相应的数字写到该文件中即可。比如我们想将其绑定到 <code>CPU0-3</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo su
+</span></span><span class="line"><span class="cl"><span class="c1"># echo 0f &gt; /proc/irq/127/smp_affinity</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo sh -c <span class="s1">&#39;echo 0f &gt; /proc/irq/127/smp_affinity&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里需要注意的是，无法直接使用 <code>sudo</code>，需要先切换为 <code>root</code> 用户，才能用此操作，或者将整个命令当成脚本（参考 <a href="https://stackoverflow.com/questions/82256/how-do-i-use-sudo-to-redirect-output-to-a-location-i-dont-have-permission-to-wr" target="_blank" rel="noopener noreferrer">linux - How do I use sudo to redirect output to a location I don&rsquo;t have permission to write to? - Stack Overflow</a>）。</p>
+<p>虽然理论上我们已经将网卡对应的中断绑定到 <code>CPU0-3</code>，但是笔者发现，在实际使用中（<code>Ubuntu 20.04</code>），中断默认被序列号最小的 CPU 处理，也不知道是什么原因。</p>
+<p>通过以上操作，我们也回答了第二、三个问题，CPU 和队列不是一对一的关系，一个 CPU 可以对应多个队列，同时一个队列也可以配置多个 CPU。关于更改如何修改绑定，上文已经详述。</p>
+<h2 id="参考文献">参考文献</h2>
+<ol>
+<li><a href="https://www.kernel.org/doc/html/latest/networking/scaling.html" target="_blank" rel="noopener noreferrer">Scaling in the Linux Networking Stack — The Linux Kernel documentation</a></li>
+</ol>]]></description></item><item><title>深入理解大小端序与位操作</title><link>https://xinyu-yang.github.io/blog/2023/23-02-01_little-endian/</link><pubDate>Wed, 01 Feb 2023 17:39:47 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2023/23-02-01_little-endian/</guid><description><![CDATA[<p>最近在读代码的时候对端序（<code>endianness</code>）的转换部分产生了一些疑惑，主要原因是对相关知识的理解还不够透彻。查找阅读了一些文献之后，有了更深刻的理解。</p>
 <h2 id="概念引入">概念引入</h2>
 <p>在讨论端序之前，我们先规定一些最基本的顺序，这一点很重要。</p>
 <ul>
@@ -1030,323 +1327,4 @@ $$</p>
 总之，为了不浪费在车上的时间，社畜们各显神通。令人惊奇的是，在这种环境下，他们居然表现出了就像在自家沙发上玩手机一样的舒适感，人类超强的适应能力再次得到了证明。</p>
 <p>随后我又想到了一个问题，他们是怎么把手机拿出来的呢？我感觉比较可能的答案就是：他们在上车的时候手机就一直拿在手里，高举着手机走进车厢，然后高举着下车。就像虔诚的信徒将十字架举过头顶，从而彰显着所持物品的无上地位。
 想到这里感觉还挺有意思，似乎干愣着也没那么无聊了。</p>
-<p>北京给我最深的印象不是遍布的古迹、公园，也不是繁华的商圈，而是北京的 <strong>“快”</strong> 和 <strong>“挤”</strong>。不同的人肯定感触不同，而匆忙拥挤的生活节奏可能就是我这个阶层的人在这个城市所能拥有的最多的感受吧。</p>]]></description></item><item><title>托福考试总结</title><link>https://xinyu-yang.github.io/blog/2021/21-10-27_toefl-summary/</link><pubDate>Wed, 27 Oct 2021 10:34:07 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/21-10-27_toefl-summary/</guid><description><![CDATA[<h2 id="心路历程">心路历程</h2>
-<p>现在已经距离考试有一个多月了，早就打算写一写总结，但是一拖再拖，就像我下的坚持学习英语的决心那样，一直没有付诸实践。现在做一个简单的开篇，慢慢填补内容，免得再往后拖。</p>
-<p>书归正传，我之所以要考英语，是因为要出国读博，（插播：写下这段文字的我刚收到纸质版 TOEFL 成绩单）。一直以来英语都是我不敢直面的学科，对于这门课我心里只有逃避，就想着某一天再也不用学英语。曾经高考的时候，以为高考就是结点。后来上大学之后，又结结实实被四六级折磨了几年，因为不是硬性毕业规定，所以直到本科毕业都没能考过六级（最高一次 423）。
-后来考研，又不得不面对这个老对手，不过因为考研英语比较难，很难考出比较高的分数且拉开差距，所以并没有太多的压迫感。</p>
-<p>到后来读研究生，发现英语不但没有从我的生命中消失，反而显得越发重要。从读论文，到听国外学者的讲座，甚至到自己参加国际会议，英语都必不可少。所以自己平时也在背背单词什么的，事实也证明，经常接触英语确实可以提高英语水平，因为在这期间通过了一直没有考过的英语六级。
-但在我下定决心出国之前，也从没想过要考托福或者雅思之类的。</p>
-<p>后来由于一些原因，在本实验室读博无望的情况下，我决定出国读博。相对于国际疫情和中美贸易战等因素，我最担心的可能就是自己的英语考试了。不管去哪个国家，英语是必须通过的标准，也是我在做准备工作时的最高优先级。</p>
-<p>最终经过了三个多月的集中备考，总共经历了两次考试，最终的分数定格在了 103，相对于网上各种复习俩星期分数 105+ 的大佬们，这个分数肯定不算啥，但对我来说已经是很不错的成绩了。
-接下来将介绍我备考的经过。</p>
-<h2 id="复习经验">复习经验</h2>
-<p>正式的英语备考从研究生毕业开始，毕业之后就紧张的投入到备考之中了。首先是先报名，登录到网站上之后，我惊奇的发现北京最近的可以报名的时间竟然在四个多月之后。于是果断地查看了临近地区的考点，幸运的是石家庄就有两个月之后的名额，于是毫不（不敢）犹豫地报上了名。
-刚开始备考的前几天我先在网上看了各种备考的经验和指南，对 TOEFL 有了一个大概的认识，包括考试时长、形式、大概内容等。
-然后开始做了几套 TPO，做完之后发现阅读是我感觉唯一有把握的，听力完全听不懂，口语就更不用说了，完全不知道如何下手，至于作文嘛，感觉也没啥能力拿高分，就随便写了写~</p>
-<p>于是，针对以上问题，我开始了备考准备之路。首先按照网上的备考经验用 Excel 表格做了一个备考计划，第一次计划了一周的内容。打算先看看效果，然后再根据自己的情况进行调整。
-刚开始的计划不算特别多，大概就是每天精听半套 TPO，做一套阅读题，写一篇作文并更改。对，在这个阶段，口语直接放弃了😂，或者是完全不知道怎么复习。</p>
-<p>一周之后，计划差不多完成了。听力还是听不懂，阅读则可以稳定在 25 以上，作文还是语法错误连篇，且有时候不知道怎么写，在计时的时间内连 300 字都写不到。
-于是，我针对该学习效果进行了计划的调整。将比较薄弱的听力调整为每天听写半套 TPO（后几天改成了跟读），阅读每天一篇，以维持状态。作文和<del>口语</del>复习方式不变。</p>
-<p>又过了一周左右，发现听力还是没有提高，始终维持在 16-20 之间，鉴于听写或跟读实在是太耽误时间，再加上有的帖子说需要将 TPO 都听一篇，熟悉所有话题。我就决定还是精听吧，每天一套 TPO，提高速度。阅读偶尔会计时做一套，分数大概维持在 25-27 左右，但始终没有突破 27。
-作文感觉好了一点点，但是进步不大。对于我来说，遣词造句都很困难，所以也就没有做过多的解题思路，答题逻辑方面的练习，而是将重点放在了如何能写出一些没有语法错误的句子。
-与此同时，口语也每天练习一套，但一般都是草草就过了，有时候实在啥都说不出来的就多说几遍。后来的事实证明，这种口语练习方式不能说是收效甚微吧，简直可以说是毫无用处。</p>
-<p>等差不多过了一个月左右的时候，听力还是没有提高。因为之前看过的很多备考帖子和视频都是建议精听，所以我就想当然地以为只要精听一段时间，听力自然而然的就会提高。
-因此每天几乎如打卡一般，听完了就算完成任务了。
-但已经精听了一个月了，我的听力还是没有提高，此时我已经有点慌了，我就想是不是这个方法不太适合我。于是又在网上重温了各种关于听力的备考经验帖、视频，甚至请教了前段时间备考的同学。
-但似乎最终只能得出一个结论：继续保持精听。</p>
-<p>即使心里非常忐忑，还是继续保持每天的精听练习，只是听的时候不敢再有丝毫大意，聚精会神，确保自己能听懂每一个词。
-随着时间一天天过去，虽然偶尔听力分数能到 22-23 分，但是大部分还是在 20 分左右徘徊。在这期间阅读、作文和口语也都在练习。</p>
-<p>很快就到了第一次考试，个人加考试环境等种种因素导致最终只考了 86（27+21+16+22） 分。此时距离备考已经过了两个月，最终还是没能考到 90 分，心情还是比较沮丧的。但同时也感觉 90 分不是那么遥不可及。</p>
-<p>考完之后，觉得听力还是需要多加练习，当然，这一点我考试之前就知道，因为毕竟平时的练习效果摆在那，自己确实就是这个水平。
-除了听力，另外让我震惊的就是口语了，分数低得超乎我的想象。不过想想自己之前复习口语的态度，也算是理所当然吧。</p>
-<p>第二次考试跟第一次相隔差不多 40 天，但感觉自己的有效复习时间顶多 20 天。因为第一次考试完等成绩的那一周时间几乎什么都没干。然后后来又干了点其他事，也算是对托福备考的逃避。</p>
-<p>等考前 20 天左右再准备复习时，就采取了重点复习听力口语，保持阅读作文的策略（其实差不多一直这样）。听力的练习方式就是 1.5 倍速精听 TPO 真题，一套接着一套，一篇接着一篇，疯狂听。当然，对于每一篇，一定要完全听懂才算合格。</p>
-<p>痛定思痛下，决定对口语也要采用更积极的态度去复习，说到这里，我不得不感谢在网上看到的一个备考经验贴。该帖给我提供了很多方法上的借鉴，同时还有心态上的鼓励。
-发帖的应该是位小姐姐，她把自己的备考经验和资料放到了这个 <code>6635388600</code> 百度云盘群里，需要的可以加群下载。</p>
-<p>这其中对我最重要的就是关于口语第一题的备考，大概思路就是找一些常用的语料库熟练背诵，然后说的时候就往上套。该方法其实可以分为两步：</p>
-<ul>
-<li>第一步：把所有的范文全部熟练背诵，最好能达到不假思索的程度</li>
-<li>第二步：疯狂做题（每天 20+ ），把所有的题都往语料库上靠，然后熟练作答</li>
-</ul>
-<p>通过该方法，第一题可以比较熟练的答出来，这会给作答后面的几道题带来很大的信心提升。即使单从英语熟练度上来看，经常练习也是很有帮助的。</p>
-<p>第二次考试的时候，口语从 16 分提高到了 22 分，虽然不高，但对我来说是一个很大的进步了。而这很大程度上都要感谢上面的练习方法。</p>
-<h2 id="考试过程">考试过程</h2>
-<p>疫情期间的报名和考试并不是一件容易的事情，对我来说，事实也是如此。报名的曲折和备考中的挫折可以说是相得益彰、互不相让。</p>
-<p>首先，因为北京的考试报不上，就报名了还算离得比较近的石家庄，这个过程还算比较顺利。直到考试前两周的时候，收到了一条考场取消的短信，才拉开了我曲折的报名之路的大幕。考场由于官方取消，可以免费更换考场或者退考。
-于是，没有任何迟疑，我迅速寻找周边能报名的地，搜索了一圈之后发现呼和浩特似乎是个不错的选项，从北京坐高铁只需要两个多小时。
-已经算是周边离得最近的了，同时也觉得内蒙那边人烟应该比较稀少，不大可能因为疫情取消吧（实际上取消考场的石家庄好像也没有疫情消息，至少从官方上没有）。</p>
-<p>于是就赶紧报名了内蒙古农业大学的考场，考试时间距离石家庄那场又晚了两周。心里感慨浪费了时间的同时还有一些庆幸，
-感慨浪费时间是因为我不想第一次考试花太多时间备考，因为这样的话感觉容易一直陷入一些复习盲区，不能对自己的错误进行及时的纠正。
-庆幸当然是因为我直到自己复习的实在是不行😂，反正就是想逃避。</p>
-<p>等把石家庄的车票、住宿都退掉，然后又订好呼和浩特的车票和住宿，并全力备考的时候，我又收到了考场取消的消息。
-上网查了查内蒙古好像也没有新的疫情，考场就这样莫名其妙地取消了。心烦且无语，但经历过一次改签后，也有一些心理准备。
-不敢有任何迟疑，我又马上投入到新的考场查询、转考、退票、订票等一系列操作当中。
-但查来查去，好像在差不多的考试时间，附近城市都没有考场。无奈只好把范围一再扩大，最后发现西安有一个几乎同一时间的考场，于是稍作权衡，决定转考到西安。</p>
-<h3 id="西安考试">西安考试</h3>
-<p>好在这次的考场没有被取消，但随后的经历让我对这件事的好坏有了怀疑。
-这次的考试地点是陕西师范大学，西安的两个托福考场之一，记住这个考场的名字，因为我接下来要重点说一下关于这个考场的切实体会。
-因为西安当时要办全运会（后来才知道），所以入境要求严格，根据网上可以查到的相关通知，所有的来客都要携带核酸检测证明。
-好在我看到了该通知，坏在我在上车之前才看到该通知。本来就觉得北京和西安都是低风险地区，而且北京对低风险地区没有什么核酸检测要求。
-所以我就想当然的以为西安也没有要求。结果临上车一查，吓了自己一大跳，然后脑子里就飞快地盘算 “咋办？咋办？”。</p>
-<p>现在做核酸检测也来不及了，而且就算来得及，几个小时之后还是拿不到结果。然后就又想如果没有核酸证明，到时候会被怎么处理，也许直接让买票回去，或者强制隔离，再或者现场做核酸。
-感觉最后一种应该是最好的可能了。
-然后，就怀着这样忐忑的心情，我上了高铁。一路上在搜索关于西安疫情管控的消息，但是没有看到任何有价值的信息。
-于是我原本打算好好利用起来复习的几个小时，就这样白白浪费掉了。路上宾馆前台给我打来电话，问我当晚能否入住，我感觉她们可能比较了解相应的防疫政策，
-就询问她们，但也没有得到准确回复，不过据说顶多会现场给做核酸。
-听到这些，我的心也就稍稍宽慰了些。</p>
-<p>等下了火车之后，我就紧张地关注附近有没有盘查点，并且一边还想着如何应对。结果直到我进了地铁站，除了期间有一个比较敷衍的查看行程码的关口，期间没有遇到任何盘查。哎，虚惊一场。</p>
-<p>因为考场要求 48 小时之内的核酸检测，所以我就提前两天到了，然后考试前一天早早地去检测核酸，然后下午拿到结果。住的地方我定在了紧挨着学校的一个宾馆，后来知道这其实也是陕师大的招待所。
-宾馆在一个三层的美食城里面，宾馆前台正对着一层美食城门口。待我放好东西之后，差不多是下午六点多，于是我就准备去找点吃的。溜达了一下发现，这个美食城其实就是陕师大围墙的一部分，从学校东门出来就进到了美食城的里面。
-到饭点的时候，来吃饭的大都是学校的学生。</p>
-<div class="mapbox" id="id-1" style="width: 100%; height: 20rem;"></div>
-<p>吃完饭后，我发现门口的保安管的好像并不严，就打算进去看看考场的位置。然后我就背着书包大摇大摆地进了学校。进去之后，感觉学校挺大的，但是从东门进离考场不远。从考场楼下溜达完之后，我就从另外一条路返回学校大门，然后发现了一条更近的小路。
-第二天在附近的医院做完核酸检测并顺利的拿到证明，然后又经过了紧张焦虑的一晚上，第三天考试才正式开始。</p>
-<p>顺着前两天熟悉过的考场位置，我不到八点就到了考场，此时一楼负责检查的一个老师正在玩狂野飙车。看到有人来，就赶紧结束了游戏。
-此时的我感觉紧张的心都快跳出来了，看到这个老师还在这悠闲地打游戏，不禁感慨人的悲伤真是互不相通啊。
-随后我按照他们的指示出示了身份证什么的，然后寄存了书包，最后经过了类似于坐火车时一样的安全扫描，我就被告知去二楼等待。
-此时二楼已经来了俩考生，有一个正在斜倚着靠背睡觉。我就找了个位置坐了下来，按要求填了一个保证书，随后焦急不安地度过考试前的最后二十多分钟。</p>
-<p>然后等时间差不多之后，我们就被告知排队进入楼上考场。然后我们就排好了队，一个个照相，最后进入了考场的指定座位。
-坐到座位上之后，我先检查了所有的东西，包括铅笔、纸、耳机、鼠标等。当我测试铅笔的时候，还被警告不能写东西。
-因为疫情的原因，整个考试都要带着口罩，并且耳机什么的也都有一次性保护套（可能一直都有），但是考场并没有给套上，所以还得等待考试开始的时候自己套上。</p>
-<p>考场的桌子摆放相当拥挤，并且隔板很低，我正常坐直的话，可以很容易的看到前面考生的屏幕。当然，别人的动作也会对我造成干扰，而且很有可能口语的时候会非常吵，这让我感觉很郁闷。
-事实证明我的担忧并非多虑，在考试听力的时候，还真的遇到了一个让人很崩溃的事。</p>
-<!--欲知后事如何，请看下回分解。。。-->
-<p>听力考试时间，大家纷纷举手找老师换草稿纸，前面已经说过，座位之间的挡板很低，所以人来人往的免不了影响注意力，但也算可以接受。正当我努力将注意力拉回考试之际，右前方有位大姐举手换草稿纸。
-监考老师没有注意到，于是她就开始呼叫老师。虽然可以听出其出于不影响其他人而故意压低的声音，然而这种声音已经足以使我的注意力转到她那。
-然后监考老师匆忙赶来，给她更换了草稿纸。原以为事情就此结束，但随后她突然自言自语了一声“我记的笔记还在原来的纸上”，于是再次呼叫老师。
-监考老师再次匆匆赶来，但是考试时间并不会停，所以等老师赶来的时候，那道题的时间已经结束。
-看着无法更改的结果，她很生气，于是就你一言我一语地跟监考老师理论了起来，什么 “没及时看到我举手”，“耽误我的考试时间” 等等。
-直到下到题开始，监考老师劝她先考试，争论才暂时结束。而这些生动的对话场景就发生在我面前。</p>
-<p>听完我对这件事如此详细的叙述，你应该就能明白我的听力分数能有多么精彩。这种干扰对于听力好的可能影响不大，但是对于我这种水平本来就不太行，分数全靠状态的选手而言，打击不可谓不大。</p>
-<h3 id="开封考试">开封考试</h3>
-<p>第二次考试是在开封大学，大约是在我第一次考试的 40 天之后。在这期间，我专心复习了大概 20 天左右。复习过程大体与之前相似，不再赘述。其中最大的区别就是对于口语的复习不再那么消极了，可参考复习经验部分。</p>
-<p>第一天坐火车到开封北站，然后一路公交到达开封大学对面的一个小区，我定的民宿就在这个小区里。
-在公交上的一路感觉城市道路宽敞干净，猜想可能是因为经过的是新区，在规划上自然更现代化一些。
-到了小区之后才发现，小区进门的两排低矮小楼全是各式各样的民宿，我就住在进小区门右手边的那栋。价格挺便宜，好像只要七十多一晚。
-对于条件我没有太多要求，只希望晚上能够休息好，不吵就行。整体结果还算是符合期望，除了直到九点多才逐渐平息的挖掘机施工的声音。
-看起来这好像是一个比较新的小区，边边角角有一些未竟的施工处。</p>
-<p>下午到了之后，现在房间待了会，在地图上看了下周围的商铺，就准备出去找点吃的。出门走了大概四五百米的样子，有一排店铺，拐角处是一间超市，其他都是些饭馆什么的。
-徘徊片刻，最终选定了附近的小馆子，点了份羊肉烩面，毕竟好久没吃到了。
-进门的时候，店里只有一个十四五岁的小兄弟，体态壮硕，穿着校服，书包放在桌子一边，边看手机边吃饺子，颇有气势。
-心想这小兄弟可比我在这个年龄胆子大多了，我在他这个年龄，几乎都没有出过门，如果没有人带着或跟人一块，可能都不敢进馆子里吃东西。</p>
-<p>不一会，烩面上来，没有我记忆中那么好吃，不过也还行。正吃着面，那小兄弟突然说了句 “这 JB 饺子，dao 一个烂一个，不吃了”。
-给我上面的中年男人出来，说 “这别问我，得问你妈去”，然后端着盘子回了后厨。
-此时的我心想，他们仅寥寥说了两句话，他们的关系，甚至性格已经昭然若揭。不禁感慨，语言真是博大精深。
-然后又想起来，当我叙述一件事的时候总是啰啰嗦嗦、没完没了，其实很多时候完全可以用很精炼的语言描述。进而觉得学习之路漫长。</p>
-<p>第二天考试，早上很早就睡不着了，然后在房间里也等不住，就匆匆吃了点面包赶去考场了。
-因为是周三的考试，进门的时候门卫还纳闷了一些有没有考试，待得到同伴的确认，才查了核酸、准考证等信息，让进了考场。
-在进楼的时候还赶上了学生在进教室，颇为热闹。考场在最高层六层，待上去之后，发现门还没开，就在楼道里和其他赶到的同学站着等待。
-随后进了考场，过程大概与西安那次相同。但感觉似乎不如上次专业，因为有的监考老师甚至还在用河南方言交流。
-但后来我觉得我得为我这个草率的结论道歉。</p>
-<p>整个过程监考老师都非常友好，并且甚至在考试之前还会给我们将考试流程。虽然我认为任何一个来考试的人并且备考过的人都应该对这套流程颇为熟悉，但还是很感谢监考老师耐心的介绍。
-他甚至还鼓励我们不要紧张、发挥出自己的实力就行。感觉还是颇为认真负责的。</p>
-<p>等到我进了考场之后，发现这简直跟我上次考试的地方完全不同啊。显而易见的就是隔板高了很多，目测至少有一米五的高度，完全不用担心别人的走动扰乱注意力。
-其次是座位之间的间隔要宽敞得多，这也就意味着口语的干扰也会小很多，考试的时候发现也确实如此。</p>
-<p>考试的时候同样是非常紧张，不知为何，觉得自己完全无法进入到专心答题的状态。阅读有一道做过的原题，好像是恐龙灭绝。
-即使如此，阅读还是没剩太多时间，以至于觉得自己做的颇为仓促。
-幸运的是，听力也有一道原题，关于巴黎铁塔那道，虽然无法记住原题，但是因为听过很多次，大概记得在讲什么，这已经非常有帮助了。
-这次听力加试，我怀疑第一个 Section 就是加试题目，因为我感觉第一个 Section 我完全没听懂。而从后来的分数来看，如果不是加试的话完全考不到那个分。
-而且还有另外一个原因，就是我在听第一个 Section 的间隙回头看了一个同学的屏幕，他的听力内容跟我不一样，我就知道这大概率是加试了。</p>
-<p>这次给我感觉改变最大的就是口语考试，考试的时候我居然靠着背的素材很流利地答完了第一题，这给后面的考试打下了很好的信心基础。虽然后面的题也还是答得磕磕绊绊 😂 。
-但是对于作文，我反倒觉得考的不是特别行。</p>
-<p>终于打完了所有的题，考试结束！怀着忐忑的心情，我点了一个又一个按钮，直到分数突然出现在我的眼前 Reading 29 Listening 28 ，哇！那时的我欣喜若狂，感觉所有的努力都没有白费。
-终于走出了那么多天的阴霾，仿佛如获新生。这种感觉我当时考研的时候仿佛也有过。</p>
-<p>考完试之后，心情愉悦，感觉浑身是劲，于是动力十足地背起行囊，准备利用火车出发之前的这几个小时看看这个历史悠久且带给我幸运的城市。
-其实来开封最想看的是开封铁塔，但是距离稍微有点远，并且清明上河园等景区就在附近，于是就决定挑这些比较近的地方打发完这几个小时。
-最近看到一个新闻，河南的”所有“景区免门票一个月，现在恰好在免门票范围内。那么好的白嫖机会可不能浪费，想到这里，不觉又加快脚步。</p>
-<p>因为距离不远，大概不到两公里的样子，所以准备直接步行过去，我戴上耳机，步伐轻快，不一会就到了清明上河园门口。
-但我所到的大门没开，问了一个清洁阿姨，她给我指了另外一个门，距离也就一两百米的样子。到了门口，看大牌子写着票价 120，并且排队买票的人络绎不绝。
-心想不是免费吗？于是又查了下，原来有个免费景点名单，清明上河园不在其中，且是河南唯二之一不免费的五星级景点，另一个是少林寺。</p>
-<p>进不进去呢？一方面想来都来了，不能因为不免费就不去吧；另一方面又想，那么贵的门票，也看不了一会就要走，很亏。最终选择了后者，还有一个原因是附近有好几处公园，没必要在这棵树上吊死，去其他地方溜达溜达吧。
-附近果然景色不错，即使没有进到具体某个公园里面，但在河边溜达，就已经让人心旷神怡了。可能因为是工作日，且不是河边各色酒吧的营业时间，所以河边几乎空无一人。</p>
-<p><figure><a class="lightgallery" href="https://s2.loli.net/2021/12/27/xZjkEPtIYeG8HqQ.jpg" title="开封" data-thumbnail="https://s2.loli.net/2021/12/27/xZjkEPtIYeG8HqQ.jpg" data-sub-html="<h2>开封</h2><p>开封</p>">
-        
-    </a><figcaption class="image-caption">开封</figcaption>
-    </figure></p>
-<p>走了好长时间，稍微有点累，于是随便找了个河边的大石头坐下来休息，并随手拍了张照。在一个温度适中、天气晴朗的午后，悠闲地坐在河边欣赏景色，好不惬意。稍微休息了会，开始继续溜达。
-附近大概有四五个公园，溜达了好几处，竟只有一处免费，好一个“所有景区免门票”啊。免费的那个公园是以文人字画为主题的公园，刚进公园，就赶上了一个话剧表演。
-名为《羲之买鹅》，讲的内容大概是两个年轻书生想求得王羲之的真迹，见街上有一个大婶在卖鹅，所售之鹅体态俊美。
-他们也知道王羲之非常喜欢鹅，于是就想了个主意，重金请大婶将鹅卖给王羲之，因为他们见到王羲之没有带很多钱，于是就让大婶把价钱开高一些，好让王羲之写个借条，以获得他的真迹。
-最终计划成功，书生获得了王羲之真迹，大婶获得了丰厚的报酬，王羲之获得了自己喜欢的鹅，三全其美，很有意思。</p>
-<p>又溜达了一会，感觉时间差不多了，并且也确实走累了，就决定赶往开封火车站了。看路边有共享电动车，且路途不算远，于是就扫码开了辆电单车，边观光边走，不一会就到了火车站，开封之行到这里也就结束了。</p>
-<h2 id="总结">总结</h2>
-<p>这次（暂且称为一次）考试虽说不是什么高考考研一类的大考，但中间过程曲折艰辛，使其足以成为我最为印象深刻的几次考试了。最后总结下这次考试的体会：</p>
-<ul>
-<li>不能逃避问题，就像我一直在逃避学习英语，但最终也逃不掉。</li>
-<li>勇敢的迈出第一步，会发现有的问题可能并没有想象中那么无法完成。</li>
-</ul>]]></description></item><item><title>Vim 学习记录</title><link>https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/</link><pubDate>Tue, 28 Sep 2021 10:34:49 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/21-09-28_vim-learning/</guid><description><![CDATA[<h2 id="介绍">介绍</h2>
-<p>很久以来，一直想写一些关于 Vim 的使用博客。但是随着对 Vim 的了解加深，我意识到自己还达不到创作文章介绍Vim的能力。
-一方面是因为自己对 Vim 的了解实在是有限，很多东西都只是鹦鹉学舌，了解简单的用法，而介绍这些基本用法的博客文章等浩如烟海，因此没有重复赘述的必要。
-另一方面是因为随着学习的深入，我也接触到了很多优秀的博客文章，值得仔细研读。同时也意识到自己的水平跟这些文章的作者相去甚远，想要达到同等水平况且需要些时日，更不用说写出更有深度的东西了。</p>
-<p>鉴于以上原因，我决定首先将我学习过程中所参考的优秀学习资料进行汇总和简介。如果初学者能看到本文，并因此在学习中少走些弯路，那便是本文的价值。
-另外，我应该不会写偏向于大而全的 Vim 介绍博客，至少目前不会。但是我可能会写一些关于某些功能点的深入学习和记录的文章，我认为在当前网络中所能搜索到的文章中，这类更有价值。</p>
-<p>目前本人主要使用的是 Vim ，但是目前 Neovim 似乎后来居上，大有取而代之之势，并且 github 上有很多优秀活跃的 Neovim 插件在开发。从长久趋势来看，新的东西总是基于已有设计，总结经验，克服弊端，并最终淘汰旧的。从传承上来看， Neovim 不过是对 Vim 的推倒重建式的重构，亦如当年 Vim 对于 Vi 编辑器的改良一般。</p>
-<p>据称 Neovim 完全兼容 Vim 的功能和配置，并提供了额外的功能，从其风靡程度来看，我也相信这一点。但至少从目前来看，我还没有足够的理由和动机去使用它。也许还是缺少一个契机。这个契机就是遇到 Vim 无法或很难解决的痛点，并且 Neovim 可以很容易解决。而在这之前，则需要对 Vim 更加熟练的使用。</p>
-<h2 id="综合教程">综合教程</h2>
-<h3 id="入门教程-vimtutor">入门教程: Vimtutor</h3>
-<p>Vimtutor 作为自带的官方教程，其作为入门教程的权威性自然不言而喻。当然，除了其明面上的地位之外，其作为一个入门教程，给初学者提供了一个很好的实际操作体验，该教程会提供一些例子供阅读者进行实际的操作，比起仅仅列举式的功能介绍，该导论还是挺容易被初学者接受的。
-下面是截取的一部分例子：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>                     <span class="nx">Lesson</span> <span class="m">1</span>.<span class="m">3</span>: <span class="nx">TEXT</span> <span class="nx">EDITING</span> <span class="p">-</span> <span class="nx">DELETION</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>           ** <span class="nx">Press</span>  <span class="nx">x</span>  <span class="nx">to</span> <span class="nx">delete</span> <span class="nx">the</span> <span class="nx">character</span> <span class="nx">under</span> <span class="nx">the</span> <span class="nx">cursor</span>. **<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="m">1</span>. <span class="nx">Move</span> <span class="nx">the</span> <span class="nx">cursor</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">line</span> <span class="nx">below</span> <span class="nx">marked</span> <span class="p">---&gt;</span>.<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="m">2</span>. <span class="nx">To</span> <span class="nx">fix</span> <span class="nx">the</span> <span class="nx">errors</span><span class="p">,</span> <span class="nx">move</span> <span class="nx">the</span> <span class="nx">cursor</span> <span class="nx">until</span> <span class="nx">it</span> <span class="nx">is</span> <span class="nx">on</span> <span class="nx">top</span> <span class="nx">of</span> <span class="nx">the</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>     <span class="nx">character</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">deleted</span>.<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="m">3</span>. <span class="nx">Press</span> <span class="nx">the</span>  <span class="nx">x</span>  <span class="nx">key</span> <span class="nx">to</span> <span class="nx">delete</span> <span class="nx">the</span> <span class="nx">unwanted</span> <span class="nx">character</span>.<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="m">4</span>. <span class="nx">Repeat</span> <span class="nx">steps</span> <span class="m">2</span> <span class="nx">through</span> <span class="m">4</span> <span class="nx">until</span> <span class="nx">the</span> <span class="nx">sentence</span> <span class="nx">is</span> <span class="nx">correct</span>.<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">---&gt;</span> <span class="nx">The</span> <span class="nx">ccow</span> <span class="nx">jumpedd</span> <span class="nx">ovverr</span> <span class="nx">thhe</span> <span class="nx">mooon</span>.<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>  <span class="m">5</span>. <span class="nx">Now</span> <span class="nx">that</span> <span class="nx">the</span> <span class="nx">line</span> <span class="nx">is</span> <span class="nx">correct</span><span class="p">,</span> <span class="nx">go</span> <span class="nx">on</span> <span class="nx">to</span> <span class="nx">lesson</span> <span class="m">1</span>.<span class="m">4</span>.<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">NOTE</span>: <span class="nx">As</span> <span class="nx">you</span> <span class="nx">go</span> <span class="nx">through</span> <span class="nx">this</span> <span class="nx">tutor</span><span class="p">,</span> <span class="nx">do</span> <span class="nx">not</span> <span class="nx">try</span> <span class="nx">to</span> <span class="nx">memorize</span><span class="p">,</span> <span class="nx">learn</span> <span class="nx">by</span> <span class="nx">usage</span>.<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="p">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span><span class="err">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>整篇教程不长，一小时之内就能读完，然后就能够对平时经常用到的绝大部分功能有一个大概的认识。如果想要熟练掌握，还是要勤加练习，并且强迫自己用不同的方式实现某一功能。</p>
-<p>该教程是随Vim一块安装的，打开方式很简单，只需在终端敲入<code>vimtutor</code>：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vimtutor
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>如果想打开中文版（对，居然自带中文版😃），可以使用<code>vimtutor zh_cn</code>命令。
-当然，该文档也可以从Vim中打开，在<code>normal</code>模式敲入：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="p">:</span><span class="nx">e</span> $<span class="nx">VIMRUNTIME</span><span class="sr">/vim/</span><span class="nx">tutor</span>/<span class="nx">tutor</span>.<span class="nx">zh_cn</span>.<span class="nx">utf</span><span class="m">-8</span><span class="err">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>不过还是推荐使用<code>vimtutor</code>进行打开，因为在使用该命令时，<code>Vim</code>会自动把原文档复制一份成临时文件然后打开。因此，对通过该方式打开的文档进行操作不会改变原文档。这样使用者就可以放心操作了。</p>
-<h3 id="其他入门教程">其他入门教程</h3>
-<h4 id="简明vim练级攻略httpscoolshellcnarticles5426html"><a href="https://coolshell.cn/articles/5426.html" target="_blank" rel="noopener noreferrer">简明Vim练级攻略</a></h4>
-<p>这是一篇11年的教程，虽然时间稍早，但是排版易读，语言诙谐，并且加入了很多图片和动图，对读者比较友好。目前该文已有超多120万的阅读量👍。
-这篇教程整体内容跟Vimtutor差不多，可以看成是Vimtutor的补充，读完Vimtutor之后可以读下这篇，跟着操作一遍，可以起到复习的效果。</p>
-<h4 id="vim实操教程httpswwwbookstackcnreadlearn-vimreadmemd"><a href="https://www.bookstack.cn/read/learn-vim/README.md" target="_blank" rel="noopener noreferrer">Vim实操教程</a></h4>
-<p>文如其名，这同样是一份注重实际操作的教程，整体内容也跟上两个文档差不多，可以作为补充一块阅读。
-该教程的优点是排版较好，有着类似于书籍的章节排版，逻辑清晰。而且相对上两篇而言，比较新一些，同时有一些关于插件的简单介绍。</p>
-<h4 id="每日一vimhttpsliuzhijuniteyecomcategory270228"><a href="https://liuzhijun.iteye.com/category/270228" target="_blank" rel="noopener noreferrer">每日一vim</a></h4>
-<p>这是一个教程系列，共计30篇，每篇介绍一个功能，篇幅较短，阅读的时候不会有心里负担，当然对于功能的介绍也是浅尝辄止，读者可以根据需要有选择性的阅读。</p>
-<h3 id="高级进阶vim从入门到精通vim-galore-zh_cnhttpsgithubcomwsdjegvim-galore-zh_cn">高级进阶：<a href="https://github.com/wsdjeg/vim-galore-zh_cn" target="_blank" rel="noopener noreferrer">Vim从入门到精通（vim-galore-zh_cn）</a></h3>
-<p>当搜索Vim的学习教程时，很多人都推荐《Vim galore》，这篇文章就是其中文翻译。虽然中文翻译有点俗套的编程语言教程内味，但是并不影响这是一篇很好的Vim教程。</p>
-<p>该仓库下就链接了其他语言的版本，英文好的可以读英文原版，不太好的可以读中文，并且该教程还有日语、西班牙语和俄语选项，都是开源社区贡献的，这也从侧面印证了该教程的牛x。</p>
-<p>相对于上面所提到的入门教程，该文章提供了更加深入的介绍，但同时也不那么容易阅读，需要反复咀嚼才能将其学透。
-我在第一次看该教程的时候，已经读了上面那些教程，并且有了一段时间的Vim使用经验，但是还是有很多地方读不懂和不理解。后来慢慢的对于里面的内容有了认识（比如那么多的寄存器），但是还是有些不太懂。
-所以建议初学者可以先不要读此教程，待有了一定的基础之后再来阅读，当然该教程也需要反复复习。越是经典的教程越是值得我们反复咀嚼，并且每次阅读都会有新的收获。</p>
-<h3 id="高级进阶vim学习笔记httpsyyq123githubiolearn-vim">高级进阶：<a href="https://yyq123.github.io/learn-vim/" target="_blank" rel="noopener noreferrer">Vim学习笔记</a></h3>
-<p>这是一个颇为低调的学习笔记，如果不是偶然看到，可能很难搜索到该教程，该教程所对应的github博客主页甚至都是空白的。据作者称，这是他从一本书整理而来。
-经过简单浏览我发现这本书还是不错的，介绍深入浅出，不会只简单介绍基本操作，而是对Vim有较为高级的介绍。
-博客内容很丰富，感觉有时间可以学习学习。</p>
-<h2 id="插件">插件</h2>
-<h3 id="配置教程">配置教程</h3>
-<h4 id="所需即所获像-ide-一样使用-vimhttpsgithubcomyangyangwithgnuuse_vim_as_ide"><a href="https://github.com/yangyangwithgnu/use_vim_as_ide" target="_blank" rel="noopener noreferrer">所需即所获：像 IDE 一样使用 vim</a></h4>
-<p>这是我阅读的第一篇关于Vim插件配置的文章，主要是我在搜索关于Vim配置的文章的时候，这篇文章高居搜索引擎榜首。虽然已经五年没有更新了，但仍然在github上有9k Star。
-这是我读到并且跟着操作的第一篇关于插件配置的博客，该博客涉及的内容很多，以至于很难短时间内搞明白所有的内容，事实上我到现在还搞不明白有些插件的用处。因此需要在实际操作中逐渐摸索。
-因为时间原因，文中有些插件早已经被开发者放弃或者被其他的插件所代替。因为不同的人需求也不尽相同，所以有很多文中列举的插件其他使用者可能会觉得根本没有必要。</p>
-<p>考虑到以上原因，我采用的方法是首先将所有的配置文件直接拷贝下来，然后逐渐学习和摸索每个插件的用处，然后增删改查，最后打造属于自己的配置。
-直接使用现成配置的好处是增加学习过程中的收获感，因为配置完成之后直接就可以看到最终的效果，虽然这个阶段对每一个功能都一脸茫然，但是仍然可以增加自己的成就感。而如果从头开始摸索的话，则可能因为工作量太大并且久久看不到自己想要的效果而丧失学习乐趣。</p>
-<p>逐渐摸索下来之后便可对插件进行逐一学习和探索，并且你会逐渐发现这项工作深不见底。因为从对已有插件简单的使用到掌握复杂的配置已经是一个颇为困难的过程，更不用说你甚至可以直接写自己所需的插件。真是学海无涯啊~</p>
-<p>这里同样推荐一些成熟配置以供参考，当然关于Vim的配置在网上一搜一大堆，在github的topics中也能找到很多高star<a href="https://github.com/topics/vimrc" target="_blank" rel="noopener noreferrer">仓库</a>，以下是摘录的几个：</p>
-<h4 id="spacevimhttpsspacevimorg"><a href="https://spacevim.org/" target="_blank" rel="noopener noreferrer">SpaceVim</a></h4>
-<p>该项目也许是最有名的Vim配置，在github的<code>vimrc</code>话题中高居榜首，其甚至有<a href="https://spacevim.org/cn/" target="_blank" rel="noopener noreferrer">中文文档</a>（后来才知道该项目原来就是由国人发起的👍）。官网称自己为Vim发布（Vim distribution），感觉就像BSD是作为Linux操作系统的一个发布一样。该发布非常成熟，当然也比较复杂。
-我没用过，但是感觉入门成本应该比较低，按照成熟的官方文档进行配置应该没啥问题。因此该配置对于想直接使用Vim配置完全体的用户来说比较友好。</p>
-<p>但是我本人没有用该配置的原因也是如此，该配置太成熟和复杂了，以至于很难入手去学习。对我自己而言，一个简易配置，并且容易上手鼓捣的版本才比较适合我。
-因为这样可以很好的折中使用体验和入门成本，这也是我选择上述文章学习的原因。</p>
-<p>另外要说的一点，当自己逐渐熟悉Vim的配置流程之后，会发现SpaceVim的源码是一个很好的学习材料。</p>
-<h4 id="k-vimhttpsgithubcomwklkenk-vim"><a href="https://github.com/wklken/k-vim" target="_blank" rel="noopener noreferrer">k-vim</a></h4>
-<p>该配置在github上也有高star，并且作者是国人。该配置的说明文档不是特别详细，但是问题不大，因为该配置并不是特别复杂，并且在配置文件中有很好的注释。虽然感觉项目稍老，而且开发也不是特别活跃，但是是一个很好的入门和学习素材。</p>
-<p>另外作者还开发了一个简化版的<a href="https://github.com/wklken/vim-for-server" target="_blank" rel="noopener noreferrer">vim-for-server</a>版本，用于不太方便安装插件的场景，对我很有启发，我决定也要搞这么一个东西。</p>
-<h4 id="myvimhttpsgithubcomxinyu-yangmyvim"><a href="https://github.com/xinyu-yang/myvim" target="_blank" rel="noopener noreferrer">myvim</a></h4>
-<p>最后允许我厚颜无耻的放上我自己的Vim配置，这是我自己摸索的一个配置，虽然简单，但是暂时够用，同时我也会不断的摸索和完善该配置。</p>
-<p>在某博客上读到一句话，感觉比较赞同，大概意思是<strong>应该将Vim打造成适合自己的方式，而不是自己去适应已有的配置</strong>。这也可能也是大多数人一直乐此不疲折腾的原因吧。
-所以以上参考都只是参考和学习资料，毕竟什么配置最合适只有自己知道。</p>
-<h3 id="插件推荐">插件推荐</h3>
-<p>关于插件的推荐，网上同样有很多相关的教程。同时，也可以经常看<a href="https://vimawesome.com/" target="_blank" rel="noopener noreferrer">vimawesome 网站</a>。这个网站有很多流行的插件推荐，可以根据自己的需要进行摸索，
-这里我根据自己的使用情况介绍几个个人感觉比较重要的：</p>
-<p>我认为首先需要做的是一些美化工作，这包括找一个合适的主题，还有漂亮的状态显示工具。
-当然，在最开始之前，最好安装一个插件管理程序，以便于管理。</p>
-<p>关于这方面的插件有几个不错的，其中包括<code>Vundle</code>, <code>vim-plug</code>, <code>dein</code>。这几个插件的评分都挺高的，而且功能也相近。</p>
-<p>其中<a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener noreferrer">Vundle</a>是一个比较老的插件，同时可能也是最流行的一个。
-目前对我来说，该插件完全够用。因为我只是需要一个能自动安装插件的这么一个管理器，而且我平时用的插件也不算多，所以对性能等要求也不算特别高。</p>
-<p>但遗憾的是<code>Vundle</code>插件似乎已经停止开发了，但是其他的两个插件仍处在活跃开发中。其中<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener noreferrer">vim-plug</a>是我看到的被推荐次数最多的替代品，安装该插件只需要下载一个名为<code>plug.vim</code>的文件。该插件支持一些新的功能，比如可以指定版本和标签，以及设置插件加载的时间。</p>
-<p>也许等我安装的插件比较多，需要这么一个懒加载插件管理器来提升速度，或者想要尝试一下新的功能的时候，我会试着学习下该插件，但目前似乎还不是时候。</p>
-<p><code>dein</code>的功能不是特别了解，但感觉应该会跟<code>vim-plug</code>差不多。这三个插件选择一个即可。</p>
-<p>另外，本人最近又读到了一些文章，提倡尽量简化配置，尽量多用vim自带的功能来代替那些可有可无的插件，即 <strong>“如非必要，勿增实体”</strong> 。而据说<code>vim 8.0</code>之后的版本自带插件的管理功能，关于这点，留待以后学习研究。目前还是用些易用的管理插件比较好，这同样也是基于折腾成本与获得感的考虑。</p>
-<p><figure><a class="lightgallery" href="https://i.loli.net/2021/11/22/wNt5PvpkadhErHq.png" title="vim screenshot" data-thumbnail="https://i.loli.net/2021/11/22/wNt5PvpkadhErHq.png" data-sub-html="<h2>Vim 截图</h2><p>vim screenshot</p>">
-        
-    </a><figcaption class="image-caption">Vim 截图</figcaption>
-    </figure></p>
-<p>下面开始推荐我认为有必要安装的插件：</p>
-<h4 id="gruvbox-主题"><code>gruvbox</code> 主题</h4>
-<p>对于一个编辑器来说，好用自然是第一要素，但是颜值也是不可或缺的重要因素。漂亮的界面让人看起来心情愉悦，只有这样才能写出好的程序（或者任何东西）。
-关于颜值，那么就不得不说主题了，一个主题相当于一个人的穿着，决定着整体形象。</p>
-<p>我选择了比较流行，但更重要的是自己比较喜欢的 <a href="https://github.com/morhetz/gruvbox" target="_blank" rel="noopener noreferrer">gruvbox</a> 主题。我感觉该主题看起来比较舒服，而这个结论是我经过多个主题的实际安装对比得出来的，可能会有其他更漂亮和科学的主题，但是目前我选择了这个我已经比较满意的。
-该主题的整体配色如上图所示。</p>
-<p>同时我建议大家在选择自己的主题之前，一定要自己多多对比，然后选择自己看起来比较舒服的主题。这个就像买衣服一样，合不合适只有自己知道。（发现上面举得穿着的例子还挺合适😂）</p>
-<h4 id="vim-airline-状态栏"><code>vim-airline</code> 状态栏</h4>
-<p>如果说主题是编辑器的穿着的话，那么 <a href="https://github.com/vim-airline/vim-airline" target="_blank" rel="noopener noreferrer">vim-airline</a> 就像是装饰品，可以起到画龙点睛的作用。
-即使不从美观角度来考虑，通过将自己经常需要敲命令查看的东西放在我们易于看到的地方，也会给效率带来巨大的提升。
-而该插件可能就是目前这方面做的最好的一个。</p>
-<p>该插件目前仍然在不断开发和维护当中，该插件不仅提供底部状态栏（上图 A2 部分），而且还有顶部标签栏（上图 A1 部分所示），并且提供了很多选项供使用者进行配置。当然，对于不需要深度定制的用户，简单使用默认配置即可。我就曾经在这个插件上花了很长的时间，几乎阅读了所有的文档。当最终结果还是很好的，正是有了这个插件，我才真正看到了现代编辑器应该有的样子。</p>
-<p>另外，主题和状态栏的兼容还是挺重要的，幸运的是目前我用的主题和该插件是兼容的。
-事实上，稍微成熟些的主题一般都会选择跟该插件进行兼容，毕竟这个插件几乎是这方面的标杆。</p>
-<h4 id="tagbar-概要"><code>tagbar</code> 概要</h4>
-<p>该插件主要提供文件的概览，就是代码的目录，可以浏览和跳转。就像 VS Code 中的 outline 那样，当然基本上所有的 IDE 都提供类似的功能。而 Vim 中该功能就由 tagbar 来实现。
-但是仅靠 tagbar 还不够，还需要另外一个工具的支持，该工具就是 ctags，虽然我们在 Vim 中看不到它的体现，但是 ctags 非常重要，事实上很多插件和功能都要基于它来做。
-比如 Vim 中自带的 <code>]</code> 命令 C 语言函数跳转功能。</p>
-<p>关于 tagbar 我并没有过多的进行配置，直接把别人的配置拿过来，能显示就行了，研究过多花里胡哨的功能即浪费时间也没必要。该插件的使用效果如上图中的 B 区域所示。</p>
-<h4 id="nerdtree-文件导航"><code>NERDTree</code> 文件导航</h4>
-<p>该插件是 vimawesome 上最流行的插件之一，github 上的 star 也很多。但是后来我感觉没啥用，更重要的是能够找到很好的替代品，所以就卸载了该插件。
-该插件主要提供的功能是文件导航（参考截图区域 C ），类似于 VS CODE 等编辑器的文件导航，这几乎也是成熟编辑器或 IDE 的标配功能。
-当需要打开新的文件的时候，尤其是同目录下的文件，比较简单。
-目前我所使用的是 Vim 自带的 Netrw 插件（即上图区域 C 所示）。</p>
-<h4 id="youcompleteme-自动补全"><code>YouCompleteme</code> 自动补全</h4>
-<p>第一次使用该插件是在写 C 语言程序的时候，该插件提供了与成熟 IDE 类似的强大补全功能，并且可以实现基于语义的跳转功能，这一点比仅支持标签匹配的 ctags 跳转要更加强大。
-上图中 E 区域展示了当光标停到某个函数上时，该函数的一些信息会自动弹出来。
-毫不夸张，使用该插件可以将 Vim 的生产力真正提高到一个新的台阶，让人不免感叹这才是编辑器该有的样子。</p>
-<p>但是该插件存在一个非常致命的问题：很难安装</p>
-<p>这主要体现在两方面，首先是依赖非常多，而且对很多软件的依赖精确到版本。另外一个问题是，如果没有科学上网的话，在编译的时候有些包会下载失败。</p>
-<h4 id="ultisnip-代码段补全"><code>UltiSnip</code> 代码段补全</h4>
-<h4 id="ctags-标签生成"><code>Ctags</code> 标签生成</h4>
-<h4 id="lf-导航"><code>lf</code> 导航</h4>]]></description></item></channel></rss>
+<p>北京给我最深的印象不是遍布的古迹、公园，也不是繁华的商圈，而是北京的 <strong>“快”</strong> 和 <strong>“挤”</strong>。不同的人肯定感触不同，而匆忙拥挤的生活节奏可能就是我这个阶层的人在这个城市所能拥有的最多的感受吧。</p>]]></description></item></channel></rss>
