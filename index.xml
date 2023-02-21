@@ -655,6 +655,15 @@
 <li>至少读五本好书。</li>
 <li>每周至少锻炼两次，每次不少于半小时。</li>
 </ul>
+<blockquote>
+<p><strong>计划执行情况追踪</strong></p>
+<p><em>0221 更新:</em></p>
+<ul>
+<li>好的书籍很多，一时间有些迷茫，现在确定计划：Tanenbaum Andrew 的 《Computer Networks》，还有 Hennessy 和 Patterson 的《Computer Architecture》。每周定个阅读计划，💪。</li>
+<li>目前读过莎士比亚的几本书《李尔王》、《哈姆雷特》、《麦克白》、《奥赛罗》，但都篇幅较短。目前正在阅读《别逗了，费曼先生！》，感觉费曼的经历很有意思。计划之后阅读《资本论》。</li>
+<li>最近几周，每天早上跑步，继续坚持。</li>
+</ul>
+</blockquote>
 <p><em>人生没有意义，而我在努力让其看起来有意义一点。不知道前面路还有多久，且行且珍惜。</em></p>]]></description></item><item><title>Zotero 配置记录（二：坚果云 WebDAV）</title><link>https://xinyu-yang.github.io/blog/2022/22-11-24_zotero-config/</link><pubDate>Thu, 24 Nov 2022 11:18:16 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2022/22-11-24_zotero-config/</guid><description><![CDATA[<p>之前写过 <a href="../22-02-08_zotero-config/" rel="">一篇</a> 使用 <code>Zotfile + OneDrive</code> 软链接的方式实现附件同步的记录，但是最近准备切换到坚果云。</p>
 <p>之所以使用坚果云所提供的 WebDAV 做备份，不是因为原来的方案不能用。事实上，原来的方案不管在 Windows 平台还是 MacOS 上都表现得很好。
 但是如果想要在移动设备上（主要是平板）使用同步功能，软链接的方式就很麻烦了。因为移动设备不支持软链接。</p>
