@@ -1,4 +1,20 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Feb 2023 12:37:39 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>网络参数RSS、RPS、RFS、aRFS 学习总结</title><link>https://xinyu-yang.github.io/blog/2023/23-02-13_network-parameters/</link><pubDate>Mon, 13 Feb 2023 12:37:39 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2023/23-02-13_network-parameters/</guid><description><![CDATA[<p>最近学习，发现网络参数（包括内核参数、网卡参数）非常多，搞得人云里雾里，非常头大。因此打算在这里对学习到的东西做个总结，方便知识的梳理和以后的复习。</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方</title><link>https://xinyu-yang.github.io/blog/</link><description>麋鹿博客 -- 一个分享知识和乐趣的地方</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>yangxinyu75@qq.com (Xinyu Yang)</managingEditor><webMaster>yangxinyu75@qq.com (Xinyu Yang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 03 Mar 2023 17:26:03 +0800</lastBuildDate><atom:link href="https://xinyu-yang.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>《别闹了，费曼先生》摘录</title><link>https://xinyu-yang.github.io/blog/2023/23-03-03_mr-feynman/</link><pubDate>Fri, 03 Mar 2023 17:26:03 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2023/23-03-03_mr-feynman/</guid><description><![CDATA[<!--![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e371f3f9-776c-4a09-91fa-dcec088342c0/Untitled.png)-->
+<p>某次看到了关于该书的推荐，于是就在手机上的读书软件里找到了这本书，断断续续读了很久，最近才读完。</p>
+<p>虽然本书主角费曼是一个不折不扣的大佬，但内容并不是经常在新闻媒体或公众号里常见的 “xxx 成功的 99 条建议”，“xxx 的成功方法学” 之类的。
+本书绝大部分内容都是关于费曼的一些或故意搞怪或有意思的经历，作者将这些经历以费曼的口吻讲述给读者，口语化的表述方式更添几分诙谐有趣。同时，从这些经历中也可以一窥费曼绝顶聪明的大脑。</p>
+<p>大部分时间，费曼都是以一个调皮捣蛋者的形象出现，但在内容最后一小节，费曼先生终于正经了一次——这好像也是本书唯一一次。
+在这一节，费曼以一个科研前辈的身份严肃地（相对于前面的内容）给后来者提了一些建议，并传达了祝福。鉴于本人有过并正在经历一些科研工作，所以对这部分比较有感触，这里直接摘录下来，与大家分享：</p>
+<blockquote>
+<p>总起来说，这个观念是，要努力把所有信息都摆出来，以帮助别人来判断你的贡献的价值。不要单单摆出那些会把他们的判断引导到这个或那个特别方向上去的信息。</p>
+<p>解释这个观念的最容易的办法，是拿它与（比方说）广告做个比较。昨天晚上，我听说“维森”牌的食用油，不会渗到食物里头。这不是不诚实。但我说的这个事儿，并不仅仅是一个不要不诚实的问题，而是一个科学的正直品格的问题，这层次更高。如果在一定的温度下操作，那么没有什么食用油能渗到食物里头去，这个事实是应该加到广告词中去的。如果在另一个温度下操作，那么所有的食用油——包括“维森”油——都会渗到食物里头去。因此，那个广告传达的，是蒙人的玩意儿，而非事实，事实才是真实的。这个区别，我们非得搞清楚不可。</p>
+<p>我们从经验中知道，真理总会出来。其他实验家会重复你的实验，会发现你是错还是对。自然的现象，将同意或者不同意你的理论。另外，尽管你或许会得到昙花一现的名声和兴奋，如果你在这种或那种工作中不曾做到非常小心谨慎的话，你将得不到身为科学家的好声望。正是这种类型的正直，正是这种不把自己当傻瓜的审慎态度，才是那些野狐禅科学研究中在很大程度上缺少的东西。</p>
+<p>…</p>
+<p>我愿意再补充点儿东西，这个东西对科学来说，并不必要，却是我相信的一种东西，这东西是，在你身为科学家跟外行人谈话的时候，你也不应该把他们当傻瓜。我不想告诉你怎么骗你妻子，怎么愚弄你的女朋友，以及诸如此类的事儿，那个时候，你也不打算以科学家的身份行事，你只想以普通的人类身份行事。我将把那些问题，留给你自己和你的牧师。我现在谈的是一种特别的、额外类型的正直品格，这种正直不是躺着撒谎（lying），而是脊梁骨向后挺直，来表明你自己或许是错误的。在你身为科学家行事的时候，你非得有这种正直品格不可。你对其他科学家当然要如此正直，而我认为，对外行，亦复如是。</p>
+<p>比方说，有一次我和一个朋友谈话，他要上广播电台说话，我有点儿吃惊。他是搞宇宙论和天文学的，他不知道怎么解释他的工作有什么实用价值。哦，”我说，“没什么实用价值。”他说，“对，但那样说，我们就得不到资金赞助来进行进一步的研究了。”我认为，那是一种不诚实。如果你以科学家的身份出现，那你就应该向外行人解释你正在干的事儿——如果他们在那些情况下不想给你资金赞助，那是他们的决定。</p>
+<p>…</p>
+<p>因此，我对你们只有一个祝愿——祝你好运，到一个你能够自由地保持我刚才说的这种正直品格的地方去吧，在那个地方，你不觉得被迫需要维持你在一个组织中的地位或者财政支持，以及诸如此类的事儿，从而失去你的正直品格。祝愿你享有这样的自由。</p>
+</blockquote>
+<p>——摘录来自：《别逗了，费曼先生》[美]R·P·费曼，R·莱顿 著 王祖哲 译</p>]]></description></item><item><title>网络参数RSS、RPS、RFS、aRFS 学习总结</title><link>https://xinyu-yang.github.io/blog/2023/23-02-13_network-parameters/</link><pubDate>Mon, 13 Feb 2023 12:37:39 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2023/23-02-13_network-parameters/</guid><description><![CDATA[<p>最近学习，发现网络参数（包括内核参数、网卡参数）非常多，搞得人云里雾里，非常头大。因此打算在这里对学习到的东西做个总结，方便知识的梳理和以后的复习。</p>
 <h2 id="receive-side-scaling-rss">Receive Side Scaling (RSS)</h2>
 <p>RSS 是一个 Linux 网络协议栈中的调度机制。它的主要作用是将数据包路由到不同的接收队列，进而由该队列所对应的 CPU 进行处理，从而实现对数据包处理的负载均衡。</p>
 <p>在硬件上，通常使用 <code>hash</code> 函数（一般是 <a href="https://en.wikipedia.org/wiki/Toeplitz_Hash_Algorithm" target="_blank" rel="noopener noreferrer">Toeplitz hash</a>）和长度为 <code>128 (2^7)</code> 的置换表来实现。具体做法是，首先将网络和传输层头部的一些信息（如地址端口四元组）通过 <code>hash</code> 函数计算出一个 <code>hash</code> 值，然后取该 <code>hash</code> 值的后 <code>7</code> 位。将这 <code>7</code> 位数作为索引，在置换表中寻找相应的值，该值即为相应的队列。</p>
@@ -1318,21 +1334,4 @@ $$</p>
         <div class="details-content">
             <div class="admonition-content"><strong>在markdown的公式环境中尽量减少使用转义符👉<code>\</code>👈</strong></div>
         </div>
-    </div></p>]]></description></item><item><title>乘坐北京地铁有感</title><link>https://xinyu-yang.github.io/blog/2021/21-11-24_beijing-subway/</link><pubDate>Wed, 24 Nov 2021 20:21:38 +0800</pubDate><author>作者</author><guid>https://xinyu-yang.github.io/blog/2021/21-11-24_beijing-subway/</guid><description><![CDATA[<p>今天再次有幸乘坐北京早上八点左右的地铁，有一些想法，本文进行记录。</p>
-<p>之所以强调北京早上八点的地铁，因为这个时候的地铁不同一般时间，具有鲜明的特点。如果用一个字来形容的话，那就是“快”。不光地铁快，人也快。
-人是怎么个快法呢？就是地铁站里的乘客大多都是在小跑，而不是普通的走路甚至是快走。此时的乘客就像是灾难电影中慌忙逃生的人群。如果是初次置身于此情此景，恐怕会感到惊讶。</p>
-<p>仍记得 17 年刚来北京那会，年少无知，坐扶梯的时候站在了扶梯左侧，受到过几次不耐烦的 “借过一下” 甚至是抱怨。
-我刚开始还觉得有点奇怪，后来渐渐习惯了， 便察觉自己之前的少不更事，并养成了坐扶梯一定站在右边的习惯，或者干脆加入他们，在左侧走，体验 <em>速度 x2</em>。</p>
-<p>这个习惯是在北京养成的，以至于后来即使在其他城市坐地铁时也是如此。即使这些城市没有人在扶梯上走，事实上北京也是我迄今为止唯一经历过此情此景的城市。当然，原因可能是我并没有经历过其他城市的早高峰。</p>
-<p>其实三年前有过一段时间的工作经历，也是每天都在赶早高峰，但是这次经历似乎有不一样的体验。或许是自己三年来对这个场景变得陌生，也或许是自己当时没有时间静心观察这些。
-不知为何，此时心里突然有了一个令自己哭笑不得的想法：希望以后自己能做一个走着坐地铁的人。</p>
-<p>今天在做第一班车的时候空间还算比较富裕，但是当转到另外一条线时，情况就发生了变化。看着停靠的车厢里挤满了人，本以为会有好多人下车，从而能够给我们下面这帮排队的人腾出点位置。可没曾想居然一个下的都没有，看着队列前面还有好几个人，就想着等前面几个上去，然后自己等下一班吧。
-结果等我前面的人都走强行挤上去之后，我后面的人也跃跃欲试，此时上不上车已由不得我了，因此只能拼命挤上车，为了不让门夹住书包，只得拼命抓紧扶手把自己的身体往里挤。</p>
-<p>还好等到门顺利关上，我就可以稍微放松，把身体倚在门上。很快到了下一站，可怕的是这种情况还在重复，又挤上来两个大姐。我本来握在侧边扶手上的手被大姐建议“抬一下”以便她能上来，然后我就把手以一个奇怪的角度握住上方的扶杆。
-因为姿势别扭且费力，我就想反正都几乎动不了了，也就没必要扶什么扶手了。想到这里我自认为机智地把手松开，然后发现我的手似乎没地可放，垂直放下去是不可能的，因为此时很难通过那道人与人之间紧贴而形成的屏障。
-所以我就又把手搭在了扶手上，这下扶手可真的被用来 <strong>“扶”</strong> 手了。</p>
-<p>当我在车厢里无聊的左顾右看的时候，我注意到其实大多数人都很专注，有的在专心刷短视频，有的在看剧，甚至还有的在玩连连看。
-总之，为了不浪费在车上的时间，社畜们各显神通。令人惊奇的是，在这种环境下，他们居然表现出了就像在自家沙发上玩手机一样的舒适感，人类超强的适应能力再次得到了证明。</p>
-<p>随后我又想到了一个问题，他们是怎么把手机拿出来的呢？我感觉比较可能的答案就是：他们在上车的时候手机就一直拿在手里，高举着手机走进车厢，然后高举着下车。就像虔诚的信徒将十字架举过头顶，从而彰显着所持物品的无上地位。
-想到这里感觉还挺有意思，似乎干愣着也没那么无聊了。</p>
-<p>北京给我最深的印象不是遍布的古迹、公园，也不是繁华的商圈，而是北京的 <strong>“快”</strong> 和 <strong>“挤”</strong>。不同的人肯定感触不同，而匆忙拥挤的生活节奏可能就是我这个阶层的人在这个城市所能拥有的最多的感受吧。</p>]]></description></item></channel></rss>
+    </div></p>]]></description></item></channel></rss>
