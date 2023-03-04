@@ -1,5 +1,5 @@
 ---
-title: "《别闹了，费曼先生》摘录"
+title: "《别逗了，费曼先生》摘录"
 subtitle: ""
 date: 2023-03-03T17:26:03+08:00
 lastmod: 2023-03-03T17:26:03+08:00
@@ -17,7 +17,7 @@ categories: ["乱七八糟"]
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: ""
+featuredImagePreview: "https://s2.loli.net/2023/03/04/kC4SXqT9AUgfZH6.png"
 
 toc:
   enable: false
@@ -25,13 +25,11 @@ math:
   enable: false
 comment:
   enable: true
-lightgallery: false
+lightgallery: true
 
 license: ""
 ---
 
-
-<!--![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e371f3f9-776c-4a09-91fa-dcec088342c0/Untitled.png)-->
 
 某次看到了关于该书的推荐，于是就在手机上的读书软件里找到了这本书，断断续续读了很久，最近才读完。
 
@@ -39,6 +37,8 @@ license: ""
 本书绝大部分内容都是关于费曼的一些或故意搞怪或有意思的经历，作者将这些经历以费曼的口吻讲述给读者，口语化的表述方式更添几分诙谐有趣。同时，从这些经历中也可以一窥费曼绝顶聪明的大脑。
 
 <!--more-->
+
+![mrfeynman](https://s2.loli.net/2023/03/04/kC4SXqT9AUgfZH6.png "《别逗了，费曼先生！》")
 
 大部分时间，费曼都是以一个调皮捣蛋者的形象出现，但在内容最后一小节，费曼先生终于正经了一次——这好像也是本书唯一一次。
 在这一节，费曼以一个科研前辈的身份严肃地（相对于前面的内容）给后来者提了一些建议，并传达了祝福。鉴于本人有过并正在经历一些科研工作，所以对这部分比较有感触，这里直接摘录下来，与大家分享：
