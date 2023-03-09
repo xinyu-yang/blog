@@ -1,4 +1,4 @@
-baseURL = "https://xinyu-yang.github.io/blog/"
+baseURL = "https://blog.luckyoung.org/"
 # [en, zh-cn, fr, pl, ...] determines default content language
 defaultContentLanguage = "zh-cn"
 # theme
@@ -135,7 +135,7 @@ ignoreErrors = ["error-remote-getjson"]
           # Gravatar Email for preferred avatar in home page
           gravatarEmail = ""
           # URL of avatar shown in home page
-          avatarURL = "/blog/images/avatar.png"
+          avatarURL = "/images/avatar.png"
           # {{< version 0.1.1 >}} Alt text for avatar (default is the author name)
           avatarAlt = ""
           # title shown in home page (HTML format is supported)
@@ -246,7 +246,7 @@ ignoreErrors = ["error-remote-getjson"]
         # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
         post = ""
         name = "文章"
-        url = "../blog/posts/"
+        url = "posts/"
         title = "文章列表"
         weight = 1
       [[languages.zh-cn.menu.main]]
@@ -254,7 +254,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         post = ""
         name = "标签"
-        url = "../blog/tags/"
+        url = "tags/"
         title = ""
         weight = 3
       [[languages.zh-cn.menu.main]]
@@ -262,7 +262,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         post = ""
         name = "分类"
-        url = "../blog/categories/"
+        url = "categories/"
         title = ""
         weight = 2
       #[[languages.zh-cn.menu.main]]
@@ -277,7 +277,7 @@ ignoreErrors = ["error-remote-getjson"]
         pre = ""
         post = ""
         name = "关于"
-        url = "../blog/about/"
+        url = "about/"
         title = ""
         weight = 5
       [[languages.zh-cn.menu.main]]
@@ -338,7 +338,7 @@ ignoreErrors = ["error-remote-getjson"]
           # Gravatar 邮箱，用于优先在主页显示的头像
           gravatarEmail = ""
           # 主页显示头像的 URL
-          avatarURL = "/blog/images/avatar.png"
+          avatarURL = "/images/avatar.png"
           # {{< version 0.1.1 >}} Alt text for avatar (default is the author name)
           avatarAlt = ""
           # 主页显示的网站标题 (支持 HTML 格式)
@@ -446,7 +446,7 @@ ignoreErrors = ["error-remote-getjson"]
     # Header title config
     [params.header.title]
       # URL of the LOGO
-      logo = "/blog/images/avatar.png"
+      logo = "/images/avatar.png"
       # title name
       name = "麋鹿博客"
       # you can add extra information before the name (HTML format is supported), such as icons
@@ -658,11 +658,11 @@ ignoreErrors = ["error-remote-getjson"]
     # Page SEO config
     [params.page.seo]
       # image URL
-      images = ["/blog/images/avatar.png"]
+      images = ["/images/avatar.png"]
       # Publisher info
       [params.page.seo.publisher]
         name = "Xinyu Yang"
-        logoUrl = "/blog/images/avatar.png"
+        logoUrl = "/images/avatar.png"
 
   # TypeIt config
   [params.typeit]
@@ -686,9 +686,9 @@ ignoreErrors = ["error-remote-getjson"]
   # Site SEO config
   [params.seo]
     # image URL
-    image = "/blog/images/avatar.png"
+    image = "/images/avatar.png"
     # thumbnail URL
-    thumbnailUrl = "/blog/images/avatar.png"
+    thumbnailUrl = "/images/avatar.png"
 
   # Analytics config
   [params.analytics]
