@@ -3,4 +3,4 @@
 	url = https://github.com/olOwOlo/hugo-theme-even
 [submodule "themes/EnjoyIt"]
 	path = themes/EnjoyIt
-	url = git@github.com:xinyu-yang/EnjoyIt.git
+	url = https://github.com/xinyu-yang/EnjoyIt.git
