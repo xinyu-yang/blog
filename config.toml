@@ -5,7 +5,7 @@ defaultContentLanguage = "zh-cn"
 theme = "EnjoyIt"
 
 # website title
-title = "麋鹿博客 (Elk blog) | 一个分享知识和乐趣的地方"
+title = "麋鹿博客"
 
 # whether to use robots.txt
 enableRobotsTXT = true
@@ -82,12 +82,12 @@ ignoreErrors = ["error-remote-getjson"]
         pre = "<i class='fab fa-github fa-fw'></i>"
         post = ""
         name = ""
-        url = "https://github.com/xinyu-yang/blog"
+        url = "https://github.com/xinyu-yang/"
         title = "GitHub"
         weight = 6
     [languages.en.params]
       # site description
-      description = "Elk blog -- A place to share knowledge and fun"
+      description = "Elk blog"
       # site keywords
       keywords = ["blog", "xinyu yang"]
       # App icon config
@@ -142,7 +142,7 @@ ignoreErrors = ["error-remote-getjson"]
           title = ""
           # subtitle shown in home page
           # {{< version 0.1.1 changed >}} (HTML format is supported)
-          subtitle = "Life is Finite, Knowledge is Infinite<br>Pursuing Infinite Knowledge With Finite Life is Noxious"
+          subtitle = "Life is Finite, Knowledge is Infinite<br>Pursuing Infinite Knowledge With Finite Life is Noxious!"
           # whether to use typeit animation for subtitle
           typeit = true
           # whether to show social links
@@ -290,7 +290,7 @@ ignoreErrors = ["error-remote-getjson"]
         weight = 6
     [languages.zh-cn.params]
       # 网站描述
-      description = "麋鹿博客 -- 一个分享知识和乐趣的地方"
+      description = "麋鹿博客"
       # 网站关键词
       keywords = ["blog", "xinyu yang"]
       # 应用图标配置
@@ -564,11 +564,11 @@ ignoreErrors = ["error-remote-getjson"]
       enable = true
       Twitter = true
       Facebook = true
-      Linkedin = false
+      Linkedin = true
       Whatsapp = false
       Pinterest = false
       Tumblr = false
-      HackerNews = true
+      HackerNews = false
       Reddit = false
       VK = false
       Buffer = false
@@ -775,7 +775,7 @@ ignoreErrors = ["error-remote-getjson"]
 [author]
   name = "Xinyu Yang"
   email = "yangxinyu75@qq.com"
-  link = "https://xinyu-yang.github.io"
+  link = "./about/"
 
 # Sitemap config
 [sitemap]
