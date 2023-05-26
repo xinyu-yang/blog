@@ -47,7 +47,15 @@
                 "name": "Xinyu Yang"
             },"description": ""
     }
-    </script></head>
+    </script>
+
+		<script language=javascript>
+			redir_hostname = "blog.luckyoung.org";
+			<!--To replace url like /blog/2021/text/ to /2021/text/-->
+			redir_path = location.pathname.split("/").slice(2).join("/")
+			location.href = location.protocol + "//" + redir_hostname + "/" + redir_path;
+		</script>
+	</head>
     <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
