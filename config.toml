@@ -775,7 +775,8 @@ ignoreErrors = ["error-remote-getjson"]
 [author]
   name = "Xinyu Yang"
   email = "yangxinyu75@qq.com"
-  link = "./about/"
+  # This link should be an absolute URL
+  link = ""
 
 # Sitemap config
 [sitemap]
