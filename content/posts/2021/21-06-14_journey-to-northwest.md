@@ -8,7 +8,7 @@ author: ""
 authorLink: ""
 description: ""
 
-tags: ["travel notes"]
+tags: ["travel"]
 categories: ["乱七八糟"]
 
 hiddenFromHomePage: false

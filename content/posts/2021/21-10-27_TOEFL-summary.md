@@ -8,7 +8,7 @@ author: "Xinyu Yang"
 authorLink: ""
 description: "本文主要记录自己托福的备考和考试经历"
 
-tags: ["english", "travel notes"]
+tags: ["english", "travel"]
 categories: ["乱七八糟"]
 
 hiddenFromHomePage: false
