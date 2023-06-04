@@ -17,7 +17,7 @@ categories: ["乱七八糟"]
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: ""
+featuredImagePreview: "https://s2.loli.net/2023/06/04/OGf9JuTn4yFcEix.jpg"
 
 toc:
   enable: false
