@@ -1,6 +1,6 @@
-# xinyu-yang.github.io
+# Blog
 
-Xinyu Yang's [blog](https://xinyu-yang.github.io/blog).
+Xinyu Yang's [blog](https://blog.luckyoung.org).
 
 ```bash
 git clone git@github.com:xinyu-yang/blog.git --recursive
