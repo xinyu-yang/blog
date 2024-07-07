@@ -1,24 +1,22 @@
 ---
-title: "桂林旅游日记"
+title: 桂林旅游日记
 subtitle: ""
 date: 2023-09-02T22:30:59+08:00
 lastmod: 2023-09-02T22:30:59+08:00
 draft: false
-author: "Xinyu Yang"
+author: Xinyu Yang
 authorLink: ""
-
-keywords: ["桂林"]
+keywords:
+  - 桂林
 description: ""
-images: []
-
-tags: ["travel"]
-categories: ["乱七八糟"]
-
+images: 
+tags: 
+categories:
+  - 游记
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: "https://s2.loli.net/2023/09/02/kBSbahyQHj7UWdc.jpg"
-
+featuredImagePreview: https://s2.loli.net/2023/09/02/kBSbahyQHj7UWdc.jpg
 toc:
   enable: false
 math:
@@ -26,7 +24,6 @@ math:
 comment:
   enable: true
 lightgallery: false
-
 license: ""
 ---
 

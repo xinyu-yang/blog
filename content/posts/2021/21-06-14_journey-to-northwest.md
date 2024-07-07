@@ -1,5 +1,5 @@
 ---
-title: "西北游记"
+title: 西北游记
 subtitle: ""
 date: 2021-06-14T19:49:23+08:00
 lastmod: 2021-06-14T19:49:23+08:00
@@ -7,23 +7,19 @@ draft: false
 author: ""
 authorLink: ""
 description: ""
-
-tags: ["travel"]
-categories: ["乱七八糟"]
-
+tags: []
+categories:
+  - 游记
 hiddenFromHomePage: false
 hiddenFromSearch: false
-
 featuredImage: ""
-featuredImagePreview: "https://i.loli.net/2021/06/17/sLWuxE5jFoNw97P.jpg"
-
+featuredImagePreview: https://i.loli.net/2021/06/17/sLWuxE5jFoNw97P.jpg
 toc:
   enable: true
 math:
   enable: false
 comment:
   enable: true
-
 lightgallery: true
 license: ""
 ---

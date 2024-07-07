@@ -1,24 +1,21 @@
 ---
-title: "澳门一日游"
+title: 澳门一日游
 subtitle: ""
 date: 2023-06-01T21:52:24+08:00
 lastmod: 2023-06-01T21:52:24+08:00
 draft: true
-author: "Xinyu Yang"
+author: Xinyu Yang
 authorLink: ""
-
-keywords: []
+keywords: 
 description: ""
-images: []
-
-tags: ["travel"]
-categories: ["乱七八糟"]
-
+images: 
+tags: 
+categories:
+  - 游记
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: "https://s2.loli.net/2023/06/04/OGf9JuTn4yFcEix.jpg"
-
+featuredImagePreview: https://s2.loli.net/2023/06/04/OGf9JuTn4yFcEix.jpg
 toc:
   enable: false
 math:
@@ -26,7 +23,6 @@ math:
 comment:
   enable: true
 lightgallery: false
-
 license: ""
 ---
 

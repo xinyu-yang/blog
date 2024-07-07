@@ -1,24 +1,23 @@
 ---
-title: "潮汕之旅"
+title: 潮汕之旅
 subtitle: ""
 date: 2023-05-28T23:53:49+08:00
 lastmod: 2023-05-28T23:53:49+08:00
 draft: false
-author: "Xinyu Yang"
+author: Xinyu Yang
 authorLink: ""
-
-keywords: ["潮汕"]
+keywords:
+  - 潮汕
 description: ""
-images: ["https://s2.loli.net/2023/05/29/xo9ayp2lrMcevHn.jpg"]
-
-tags: ["travel"]
-categories: ["乱七八糟"]
-
+images:
+  - https://s2.loli.net/2023/05/29/xo9ayp2lrMcevHn.jpg
+tags: []
+categories:
+  - 游记
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: "https://s2.loli.net/2023/05/29/xo9ayp2lrMcevHn.jpg"
-
+featuredImagePreview: https://s2.loli.net/2023/05/29/xo9ayp2lrMcevHn.jpg
 toc:
   enable: false
 math:
@@ -26,7 +25,6 @@ math:
 comment:
   enable: true
 lightgallery: false
-
 license: ""
 ---
 
