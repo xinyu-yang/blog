@@ -136,7 +136,7 @@ license: ""
 我们点了一个类似于当地特色菜 “啤酒鱼” 的一个水煮鱼，味道不错。值得一提的还有 “田螺酿”——在田螺里面填上肉末调料之后煮出来的。听老板娘介绍，这道菜是他们这里的特色菜，并且也是本地人婚丧喜庆必备的一道菜。根据场合不同，田螺里面填充的料也不同。
 初尝第一个感觉还行，吃了两三个就腻的吃不动了。后来剩下的半份没舍得扔，就打包装书包里了（后来拿到家里还是扔了）。
 
-<figure><img src="https://s2.loli.net/2024/06/23/J9cnSXWaIoVjUgD.jpg" alt="桥上风景" width="80%" height="80%" /><figcaption><h4>桥上风景</h4></figcaption> </figure>
+<figure><img src="https://s2.loli.net/2024/06/23/J9cnSXWaIoVjUgD.jpg" alt="桥上风景" width="50%" height="50%" /><figcaption><h4>桥上风景</h4></figcaption> </figure>
 
 吃完饭之后，我们就心满意足地出发了。一路上遇到很多跟我们一样租个电动车骑行的游客。我和 xiaozhu 一路上在山水画廊里，走走停停，好不惬意。如果有机会，还想再去体验一下。
 
