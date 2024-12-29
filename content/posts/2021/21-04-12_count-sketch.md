@@ -17,7 +17,7 @@ author: ""
 首先介绍算法的过程，初始化$t$个独立的hash函数$h_1, h_2, ...,h_t$，每一个hash函数都是从集合$[n] \to [k]$的映射。同时还要初始化$t$个符号函数$s_i : [n] \to [\pm 1]$，然后初始化一个二维矩阵，如下图所示：
 
 <center>
-<a><img src="https://i.loli.net/2021/06/18/3zKatdnRrbDgxeO.png" alt="image" align="middle" border="0"></a>
+<a><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/3zKatdnRrbDgxeO.png" alt="image" align="middle" border="0"></a>
 </center>
 
 对于具有m个元素的集合A，对其进行如下操作:

@@ -15,7 +15,7 @@ hiddenFromHomePage: false
 hiddenFromSearch: false
 
 featuredImage: ""
-featuredImagePreview: "https://s2.loli.net/2021/12/27/xZjkEPtIYeG8HqQ.jpg"
+featuredImagePreview: "https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/xZjkEPtIYeG8HqQ.jpg"
 
 toc:
   enable: true
@@ -205,7 +205,7 @@ license: ""
 进不进去呢？一方面想来都来了，不能因为不免费就不去吧；另一方面又想，那么贵的门票，也看不了一会就要走，很亏。最终选择了后者，还有一个原因是附近有好几处公园，没必要在这棵树上吊死，去其他地方溜达溜达吧。
 附近果然景色不错，即使没有进到具体某个公园里面，但在河边溜达，就已经让人心旷神怡了。可能因为是工作日，且不是河边各色酒吧的营业时间，所以河边几乎空无一人。
 
-![开封](https://s2.loli.net/2021/12/27/xZjkEPtIYeG8HqQ.jpg "开封")
+![开封](https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/xZjkEPtIYeG8HqQ.jpg "开封")
 
 走了好长时间，稍微有点累，于是随便找了个河边的大石头坐下来休息，并随手拍了张照。在一个温度适中、天气晴朗的午后，悠闲地坐在河边欣赏景色，好不惬意。稍微休息了会，开始继续溜达。
 附近大概有四五个公园，溜达了好几处，竟只有一处免费，好一个“所有景区免门票”啊。免费的那个公园是以文人字画为主题的公园，刚进公园，就赶上了一个话剧表演。

@@ -15,7 +15,7 @@ categories:
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: https://s2.loli.net/2023/06/04/OGf9JuTn4yFcEix.jpg
+featuredImagePreview: https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/OGf9JuTn4yFcEix.jpg
 toc:
   enable: false
 math:
@@ -51,7 +51,7 @@ license: ""
 
 值得一提的是，澳门的路虽然不太宽敞，但是都非常精致，且干净整洁，颇具一种发达社会的浪漫气息。并且路上的大小车辆并不争抢，对待行人友善礼让，鸣笛催促等行为更是鲜有（这一点跟北京形成鲜明对比）。具 xiaozhu 说，这里的街道很有西班牙的感觉。
 
-<figure><img src="https://s2.loli.net/2023/06/04/OGf9JuTn4yFcEix.jpg" alt="大三巴牌坊" width="60%" height="60%" /><figcaption><h4>“大三巴”牌坊</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/OGf9JuTn4yFcEix.jpg" alt="大三巴牌坊" width="60%" height="60%" /><figcaption><h4>“大三巴”牌坊</h4></figcaption> </figure>
 
 中间我们也路过了几家感觉比较有特色的小馆子，进去尝了尝。先是吃了 “盛记白粥”，后来又吃了一个忘了什么名字的粉，感觉都还行，而且都可以支付宝支付。就这样边走边转，我们就到了澳门的地标性建筑 ——  “大三巴牌坊”。
 
@@ -63,7 +63,7 @@ license: ""
 
 过了 “大三巴” 牌坊，我们又一路往南走。走了一段路，慢慢看到了 “澳门塔”。因为上午耽误的时间比较多，澳门半岛的几个其他景点就没时间去了。所以我们准备直接在 “澳门塔” 附近乘坐免费的大巴去氹仔。
 
-<figure><img src="https://s2.loli.net/2023/06/04/njYgwSa6JRmxNsV.jpg" alt="澳门塔" width="60%" height="60%" /><figcaption><h4>澳门塔</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/njYgwSa6JRmxNsV.jpg" alt="澳门塔" width="60%" height="60%" /><figcaption><h4>澳门塔</h4></figcaption> </figure>
 
 值得一提的是开大巴车的是一个老伯，头发花白，开车非常平稳，像坐高铁一样。没过多久我们就到了 “上葡京” 酒店门口，经常在盗版视频网站上看到的地名出现在了现实里。
 

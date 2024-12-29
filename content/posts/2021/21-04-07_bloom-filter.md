@@ -61,7 +61,7 @@ $$-\frac{m}{n} \ln p\ln(1-p)$$
 <!--</center>-->
 
 <center>
-<img src="https://i.loli.net/2021/04/18/juWqTKa9SlxYyeP.png"/>
+<img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/juWqTKa9SlxYyeP.png"/>
 </center>
 
 从图中可以看出，当$m/n$比例一定时，假阳性的值随$k$先减小再增大，比如当$m/n=9$时，其最小值在$k=6$处取得。

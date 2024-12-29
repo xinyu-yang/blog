@@ -17,7 +17,7 @@ categories: ["乱七八糟"]
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: "https://s2.loli.net/2022/01/26/5MDNf4nJVpBwuxc.jpg"
+featuredImagePreview: "https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/5MDNf4nJVpBwuxc.jpg"
 
 toc:
   enable: false
@@ -65,7 +65,7 @@ license: ""
 第一天，满怀期待，但不出所料，雪下的果然不大。
 稀稀拉拉飘了一天，地上也不过薄薄的一层。第二天也差不多。
 
-![](https://s2.loli.net/2022/01/26/WGSMNTEd9FpZo3c.jpg "紫操傍晚雪景")
+![](https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/WGSMNTEd9FpZo3c.jpg "紫操傍晚雪景")
 
 第三天早上发现雪还在下，窗外的空调外机上已经厚厚一层雪，“总算是下大了！”。
 于是怀着激动的心情，我马上起床、洗漱、出门，然后开心地骑着自行车去了学校。
@@ -74,7 +74,7 @@ license: ""
 
 到了紫操之后，发现操场已经平整的覆盖了厚厚一层白雪。再加上已是年末，学校里人少，厚大的白毯子上只有零星几排脚印。
 
-![](https://s2.loli.net/2022/01/26/5MDNf4nJVpBwuxc.jpg "紫操雪景")
+![](https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/5MDNf4nJVpBwuxc.jpg "紫操雪景")
 
 好美一场雪，雪大，风小，雪花飘然落下，很富有诗意。突然想到小时候背的一篇文言文，其中有一句 “未若柳絮因风起”，确是此情此景的准确描述。
 文中还有另外一句 “撒盐空中差可拟”，想来我也确实遇到过这样的雪，寒风刺骨，细小的雪粒如刀子一般打在脸上。
@@ -91,8 +91,8 @@ license: ""
 
 滚了一上午，感觉筋疲力尽，才推了两个半大的雪球，不过还好比例适中。于是就准备把他们放在一块，堆成个雪人的形状，如下图所示：
 
-<!--![](https://s2.loli.net/2022/01/26/9ntqwLlVd8eMBvW.jpg "雪人")-->
-{{< image src="https://s2.loli.net/2022/01/26/9ntqwLlVd8eMBvW.jpg" caption="雪人" height=500 width=250 >}}
+<!--![](https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/9ntqwLlVd8eMBvW.jpg "雪人")-->
+{{< image src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/9ntqwLlVd8eMBvW.jpg" caption="雪人" height=500 width=250 >}}
 
 
 *[1] 我们那里，早上叫赶集，全天的那种叫赶会。*

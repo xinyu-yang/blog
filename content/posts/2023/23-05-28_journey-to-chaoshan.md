@@ -10,14 +10,14 @@ keywords:
   - 潮汕
 description: ""
 images:
-  - https://s2.loli.net/2023/05/29/xo9ayp2lrMcevHn.jpg
+  - https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/xo9ayp2lrMcevHn.jpg
 tags: []
 categories:
   - 游记
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: https://s2.loli.net/2023/05/29/xo9ayp2lrMcevHn.jpg
+featuredImagePreview: https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/xo9ayp2lrMcevHn.jpg
 toc:
   enable: false
 math:
@@ -65,7 +65,7 @@ license: ""
 
 <div>
 <!--<figure>-->
-<img src="https://s2.loli.net/2023/05/29/xo9ayp2lrMcevHn.jpg" alt="牌坊街" width="40%" height="40%" align="left" hspace="20" vspace="5" />
+<img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/xo9ayp2lrMcevHn.jpg" alt="牌坊街" width="40%" height="40%" align="left" hspace="20" vspace="5" />
 <!--<figcaption><h4>早上的牌坊街几乎空无一人</h4></figcaption> </figure>-->
 </div>
 
@@ -88,7 +88,7 @@ license: ""
 
 到了 “开元寺” 门口，我们排了一个不长的队就进去了，景区门票免费，这一点还是不错的。寺庙院子有三进，中间的大殿正前方的庭院比较开阔，庭院两边有两棵很粗壮的银杏树，中间的某处石牌上甚至还刻有 “镇国禅寺” 几个大字。
 
-<figure><img src="https://s2.loli.net/2023/05/29/IxcqN3Ot4uYlfDh.jpg" alt="开元寺" width="80%" height="80%" /><figcaption><h4>开元寺</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/IxcqN3Ot4uYlfDh.jpg" alt="开元寺" width="80%" height="80%" /><figcaption><h4>开元寺</h4></figcaption> </figure>
 
 整个寺庙虽然不算特别大，但是还算庄严整洁、宽敞明亮。如果是相对于这个小城的话，确实算是一处很大的院落了。
 
@@ -109,11 +109,11 @@ license: ""
 
 又在潮州古城兜兜转转，过了大半晌，已经到了下午两三点。差不多也该出发去汕头南澳岛了，毕竟距离不进，中途也要倒几次车。
 
-<figure><img src="https://s2.loli.net/2023/05/29/62SyG5MuiXkzAoP.jpg" alt="古井" width="80%" height="80%" /><figcaption><h4>牌坊街上的一处古井</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/62SyG5MuiXkzAoP.jpg" alt="古井" width="80%" height="80%" /><figcaption><h4>牌坊街上的一处古井</h4></figcaption> </figure>
 
 临走之前觉得还是有必要先吃顿饭，于是我们在附近找了一家据说是潮州特色的生腌馆。点了一份鱼片，一份虾，还有俩大生蚝——都是生的。总体而言还算不错，没有我想的那么难以接受。但是后来去汕头的顺风车司机开的很快，颠得我胃里一直有点翻涌，影响了对刚才这顿生腌的印象。
 
-<figure><img src="https://s2.loli.net/2023/05/29/Gy9RgWEdmLrTiZX.jpg" alt="生腌" width="80%" height="80%" /><figcaption><h4>潮汕生腌</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/Gy9RgWEdmLrTiZX.jpg" alt="生腌" width="80%" height="80%" /><figcaption><h4>潮汕生腌</h4></figcaption> </figure>
 
 经过了三个多小时的颠簸，到达南澳岛上已经是七点多了。此时岛上的风很大，吹得人头痛。我们从汽车站走到了位于半山坡上得旅店的时候，就再也不想出去了。
 
@@ -125,7 +125,7 @@ license: ""
 
 到了 “青澳湾” 之后，发现景区门口就有好多卖豆浆油条的小摊。我们就又买了一杯豆浆，价格便宜，但是冲泡味明显。走过北回归线广场，就到了一处海滩。海滩两侧的海岸向海里突出，所以沙滩部分所在的海岸形成了一个小小的海湾。
 
-<figure><img src="https://s2.loli.net/2023/05/29/lPZFUntgJdqI7kC.jpg" alt="青澳湾" width="80%" height="80%" /><figcaption><h4>青澳湾</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/lPZFUntgJdqI7kC.jpg" alt="青澳湾" width="80%" height="80%" /><figcaption><h4>青澳湾</h4></figcaption> </figure>
 
 海岸上面到处散落着烟花爆竹的残骸，细铁丝、硬纸盒、长纸筒随处可见，宛如一处垃圾场。昨晚是跨年夜，不难推测，肯定有很多善男信女在这片海滩上，肆意挥洒着喜悦，以这种虔诚而又浪漫的方式庆祝过去、祝福未来。
 

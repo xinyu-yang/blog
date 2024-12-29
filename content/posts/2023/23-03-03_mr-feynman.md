@@ -17,7 +17,7 @@ categories: ["乱七八糟"]
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: "https://s2.loli.net/2023/03/04/kC4SXqT9AUgfZH6.png"
+featuredImagePreview: "https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/kC4SXqT9AUgfZH6.png"
 
 toc:
   enable: false
@@ -38,7 +38,7 @@ license: ""
 
 <!--more-->
 
-![mrfeynman](https://s2.loli.net/2023/03/04/kC4SXqT9AUgfZH6.png "《别逗了，费曼先生！》")
+![mrfeynman](https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/kC4SXqT9AUgfZH6.png "《别逗了，费曼先生！》")
 
 大部分时间，费曼都是以一个调皮捣蛋者的形象出现，但在内容最后一小节，费曼先生终于正经了一次——这好像也是本书唯一一次。
 在这一节，费曼以一个科研前辈的身份严肃地（相对于前面的内容）给后来者提了一些建议，并传达了祝福。鉴于本人有过并正在经历一些科研工作，所以对这部分比较有感触，这里直接摘录下来，与大家分享：

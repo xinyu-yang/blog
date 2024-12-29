@@ -62,7 +62,7 @@ license: ""
 
 <!--<div>-->
 <figure>
-<img src="https://s2.loli.net/2024/07/07/sRuAtnEqYmGvZHb.jpg" alt="美庐竹林" width="30%" height="30%"  align="left" hspace="5" vspace="5"/>
+<img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/sRuAtnEqYmGvZHb.jpg" alt="美庐竹林" width="30%" height="30%"  align="left" hspace="5" vspace="5"/>
 <figcaption><h4>美庐</h4></figcaption>
 </figure>
 <!--</div>-->
@@ -78,7 +78,7 @@ license: ""
 我们先去了大名鼎鼎的美庐，按照游览路线走马观花地转了一圈。熙熙攘攘的游客无时不在提醒我这只是一个景区，让人无暇深入遐想，将这里与那段厚重的历史联系在一起。反而，让我印象最深的是窗外的一片干净整齐的竹子，清新雅致。
 
 
-<figure><img src="https://s2.loli.net/2024/07/07/ArLmfD2yaNH9KpY.jpg" alt="芦林湖" width="80%" height="80%" /><figcaption><h4>芦林湖</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/ArLmfD2yaNH9KpY.jpg" alt="芦林湖" width="80%" height="80%" /><figcaption><h4>芦林湖</h4></figcaption> </figure>
 
 游览完美庐之后，又去附近的一些博物馆看了看，隐约记得是在讲庐山的历史，从古至今。然后就去了芦林湖，其实就是一个小水库。据说曾经承担着重要的饮用水源的作用。
 随便逛了逛，然后就乘坐观光车去了一个观景台，据说天气好的时候可以看到鄱阳湖。眺望远方，确实可以看到一片片湖泊，但是是不是鄱阳湖就不知道了。

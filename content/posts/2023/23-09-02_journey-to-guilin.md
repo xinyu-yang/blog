@@ -16,7 +16,7 @@ categories:
 hiddenFromHomePage: false
 hiddenFromSearch: false
 featuredImage: ""
-featuredImagePreview: https://s2.loli.net/2023/09/02/kBSbahyQHj7UWdc.jpg
+featuredImagePreview: https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/kBSbahyQHj7UWdc.jpg
 toc:
   enable: false
 math:
@@ -51,7 +51,7 @@ license: ""
 
 看不了装满彩灯的塔，我们就决定沿着漓江随便溜达溜达。初见夜晚的漓江，第一感觉是平坦开阔。两岸河堤平缓，漓江就像是在这平地上突然出现的一汪泉水，赋予这片土地精神和灵气。虽然已经深夜，但是漓江边上的游人络绎不绝。有人在江边带着乐器音响搭建了个小型舞台，周围吸引了很多俊男靓女。但是更多的还是在江边钓鱼的人，一个挨着一个，在黑夜里一言不发，仔细盯着水里带小灯的浮漂。
 
-<figure><img src="https://s2.loli.net/2023/09/02/75vNqXRoLirgmIn.jpg" alt="桂林米粉" width="40%" height="40%" /><figcaption><h4>桂林米粉</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/75vNqXRoLirgmIn.jpg" alt="桂林米粉" width="40%" height="40%" /><figcaption><h4>桂林米粉</h4></figcaption> </figure>
 
 没多久我们就回去旅店了，在旅店旁边看到了一家桂林米粉店，临近午夜还开着门，并且还有几个顾客。我们推断这很可能就是本地人也来吃的正宗桂林米粉了。一是溜达那么久确实有点饿了，二是带着没吃到正宗桂林米粉的不甘，我们点了二两米粉，五块钱，晚上十一点之后要多加一块钱，但价格仍然很实惠。米粉口感清爽顺滑，搭配着自己按需添加的腌竹笋、腌豆角等调味料，味道的确不错。
 
@@ -59,13 +59,13 @@ license: ""
 
 <div>
 <!--<figure>-->
-<img src="https://s2.loli.net/2023/09/02/H6VYLDFqoPSEs8h.jpg" alt="芦笛岩" width="40%" height="40%" align="left" hspace="20" vspace="5" />
+<img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/H6VYLDFqoPSEs8h.jpg" alt="芦笛岩" width="40%" height="40%" align="left" hspace="20" vspace="5" />
 <!--<figcaption><h4>早上的牌坊街几乎空无一人</h4></figcaption> </figure>-->
 </div>
 <!--<figure><img src="" alt="芦笛岩" width="40%" height="40%" /><figcaption><h4>芦笛岩</h4></figcaption> </figure>-->
 第二天早上又去吃了那家米粉，然后去了离市区不远的“芦笛岩”风景区去看溶洞。我和 xiaozhu 都只看到溶洞的图片和视频，从来没有亲眼见过溶洞。于是，对“芦笛岩”景区还是有很多期待的。在携程买了票之后我们就排队进入了景区。几十个人一组，跟着导游游览。在前几个景点，看着五颜六色、形状各异的石头，听着导游的讲解，倒还津津有味。但是到后来就基本上失去了兴趣，觉得看来看去不过就是一些奇怪的石头，打上五颜六色的灯光，再搭配上导游天马行空的讲解。参观完这个景区之后，恐怕再难对其他的溶洞产生多大的兴趣了，更不用说还要付价格不菲的门票。
 
-<figure><img src="https://s2.loli.net/2023/09/02/Q65msUPiVKwzpNn.jpg" alt="芦笛岩" width="55%" height="55%" /><figcaption><h4>芦笛岩</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/Q65msUPiVKwzpNn.jpg" alt="芦笛岩" width="55%" height="55%" /><figcaption><h4>芦笛岩</h4></figcaption> </figure>
 
 参观完“芦笛岩”之后，我们就坐汽车出发前往了杨堤码头，准备从杨堤码头坐竹筏到兴坪古镇。到杨堤码头的时候，只有我们两个乘客。因为一个船四个人，如果人数不够的话，乘船的人需要补船票，要不然就等人凑够了再走。但是等了一会也没等到人，再加上觉得跟陌生人一块坐一个小竹筏比较尴尬。我们就补上钱，包了个竹筏出发了。
 
@@ -76,7 +76,7 @@ license: ""
 坐在船上游览山水还是和岸上不太一样。如果说在岸上是观景，在游船上则有一种走进景色里的感觉。
 从杨堤码头一路顺流而下，山水清秀、交相辉映，不愧是桂林景色的精华。韩愈亦有诗云“江作青罗带，山如碧玉簪”。据说“桂林山水甲天下”后面还有一句“阳朔山水甲桂林”。桂林其他地方也有山有水，但漓江水流之处，山往往零零散散的分散开来。有的有山无水，有的有水无山。而在阳朔，桂林的山水才真正紧密地结合起来——山簇拥着水，水环抱着山。
 
-<figure><img src="https://s2.loli.net/2023/09/02/A3tpdYBawFvGjIe.jpg" alt="杨堤码头" width="80%" height="80%" /><figcaption><h4>杨堤码头</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/A3tpdYBawFvGjIe.jpg" alt="杨堤码头" width="80%" height="80%" /><figcaption><h4>杨堤码头</h4></figcaption> </figure>
 
 虽说称之为竹筏，但是船身是竹筏形状的合成材料。在船尾还有一台发动机，机器开起来轰轰隆隆，眨眼已过“万重山”。
 “船夫头戴斗笠，悠然地撑着长蒿，翠绿的竹筏在水面缓缓荡起阵阵涟漪......” 的景象也只能存在于想象中了。
@@ -84,7 +84,7 @@ license: ""
 片刻的闲聊得知，开船的师傅多是当地上了年纪的居民，可能为了避免恶意竞争和保障游客安全，当地政府对码头的“船夫”进行了统一管理和分配。
 由于“船夫”供大于求，所以每个师傅每隔几天才有一次接单机会。因此，他们大部分时间还是在家务农。
 
-<figure><img src="https://s2.loli.net/2023/09/02/kBSbahyQHj7UWdc.jpg" alt="九马画山" width="80%" height="80%" /><figcaption><h4>九马画山</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/kBSbahyQHj7UWdc.jpg" alt="九马画山" width="80%" height="80%" /><figcaption><h4>九马画山</h4></figcaption> </figure>
 
 一路上有几处地方，师傅都饶有兴致地给我们介绍一些或山或水的“拟人拟物”的景点名字。略懂人情世故的话，或许应该积极表现出“颇有同感“的样子。但每一处山水都让人沉醉其中，反倒觉得这刻意的几处景点有点画蛇添足。辜负了师傅的好意。
 
@@ -102,7 +102,7 @@ license: ""
 
 <div>
 <!--<figure>-->
-<img src="https://s2.loli.net/2024/07/27/IfAKWhTXNweB7tu.jpg" alt="供游客拍照的鸬鹚" width="40%" height="40%" align="left" hspace="20" vspace="5"/>
+<img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/IfAKWhTXNweB7tu.jpg" alt="供游客拍照的鸬鹚" width="40%" height="40%" align="left" hspace="20" vspace="5"/>
 
 <!--<figcaption><h4>早上的牌坊街几乎空无一人</h4></figcaption> </figure>-->
 </div>
@@ -138,7 +138,7 @@ license: ""
 一路担惊受怕之后，我们终于走到了一个村子，并且导航也显示我们已经很接近目的地了。但是可惜导航出现了偏差，我们遇到了一个好心的村民的指引才最终到达我们预定的民宿。
 等我们把电动车放到车棚，合上湿漉漉的雨伞办理入住的时候，心里总算长出一口气，竟有一种绝处逢生之感。
 
-<figure><img src="https://s2.loli.net/2024/06/23/l9gAFzmWjoC1dLp.jpg" alt="九马画山" width="80%" height="80%" /><figcaption><h4>民宿窗外景色</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/l9gAFzmWjoC1dLp.jpg" alt="九马画山" width="80%" height="80%" /><figcaption><h4>民宿窗外景色</h4></figcaption> </figure>
 
 第二天我们八点多起床，准备去吃个东西，然后出去发 “十里画廊”。
 打开窗之后，发现我们窗外的景色非常漂亮。突然又觉得昨天晚上来的这一趟是值得的。最大的问题就是不该那么晚过来。
@@ -147,11 +147,11 @@ license: ""
 我们点了一个类似于当地特色菜 “啤酒鱼” 的一个水煮鱼，味道不错。值得一提的还有 “田螺酿”——在田螺里面填上肉末调料之后煮出来的。听老板娘介绍，这道菜是他们这里的特色菜，并且也是本地人婚丧喜庆必备的一道菜。根据场合不同，田螺里面填充的料也不同。
 初尝第一个感觉还行，吃了两三个就腻的吃不动了。后来剩下的半份没舍得扔，就打包装书包里了（后来拿到家里还是扔了）。
 
-<figure><img src="https://s2.loli.net/2024/06/23/J9cnSXWaIoVjUgD.jpg" alt="桥上风景" width="50%" height="50%" /><figcaption><h4>桥上风景</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/J9cnSXWaIoVjUgD.jpg" alt="桥上风景" width="50%" height="50%" /><figcaption><h4>桥上风景</h4></figcaption> </figure>
 
 吃完饭之后，我们就心满意足地出发了。一路上遇到很多跟我们一样租个电动车骑行的游客。我和 xiaozhu 一路上在山水画廊里，走走停停，好不惬意。如果有机会，还想再去体验一下。
 
-<figure><img src="https://s2.loli.net/2024/06/23/LWftMpNwvEFrCj8.jpg" alt="一处农田" width="80%" height="80%" /><figcaption><h4>一处农田</h4></figcaption> </figure>
+<figure><img src="https://raw.githubusercontent.com/xinyu-yang/imgs/refs/heads/master/2024/LWftMpNwvEFrCj8.jpg" alt="一处农田" width="80%" height="80%" /><figcaption><h4>一处农田</h4></figcaption> </figure>
 
 差不多到下午三四点的时候，我们就绕了一圈，又回到了我们租车的地方。还了车之后，我们就步行去汽车站，乘大巴到阳朔高铁站了。因为担心路上再次堵车，赶不上高铁，就一路匆忙，甚至没来得及吃饭。临走之前，在高铁站旁边唯一的一家米粉店吃了一碗米粉，就结束了这次桂林之行。
 
